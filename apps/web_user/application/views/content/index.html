@@ -1,0 +1,89 @@
+<!--{if isset($no_child)}-->
+<div class="bg-triangle">
+    <div class="container">
+        <!--{include file="partial/no_item.html" message="表示できるお子様がいません。\n「プロフィール編集」内の「家族グループ」でお子様を登録してください。"}-->
+    </div>
+</div>
+<!--{else}-->
+<div class="content-index-page">
+    <div class="tab-title">
+        <div class="container">
+            <ul class="list-unstyled" role="tablist">
+                <!--{if !empty($subjects)}-->
+                <!--{assign var=i value=1}-->
+                    <!--{foreach from=$subjects key=key item=item}-->
+                        <li role="presentation" class="<!--{$item.subject.color|escape|default:'-'}--> <!--{if $i == 1}--> active <!--{/if}-->">
+                            <a href="#tab_<!--{$item.subject.id}-->" role="tab" data-toggle="tab"><!--{$item.subject.short_name|escape|default:'-'}--></a>
+                            <h2 class="title">
+                                <span class="textbook-name"><!--{$subjects[$key].textbook.name|default:'-'}--></span>
+                                <span class="hidden-xs">｜</span><br class="visible-xs">
+                                <span class="publisher"><!--{$subjects[$key].publisher.name|default:'-'}--></span>
+                            </h2>
+                        </li>
+                        <!--{assign var=i value=2}-->
+                    <!--{/foreach}-->
+                <!--{/if}-->
+            </ul>
+        </div>
+    </div>
+    <div class="tab-content">
+        <!--{if !empty($subject_textbooks)}-->
+            <!--{assign var=i value=1}-->
+            <!--{foreach from=$subject_textbooks key=key item=textbooks}-->
+                <div class="tab-pane <!--{if $i == 1}--> active <!--{/if}-->" id="tab_<!--{$key|escape|default:'-'}-->">
+                    <!--{foreach from=$textbooks item=item}-->
+                        <div class="main-content bg-triangle">
+                        <div class="container">
+                            <div class="current-progress">
+                                <p class="progress-subject"><span class="bold">この教科書のゴールまでの道のり</span></p>
+                                <div class="progress-wrapper">
+                                    <div class="progress">
+                                        <!--{assign var=total value=$chapters[$item].chapters|@count}-->
+                                        <!--{assign var=in_progress value=$chapters[$item].in_progress|@count}-->
+                                        <!--{assign var=progress value=$in_progress*100/$total}-->
+                                        <div class="progress-bar progress-bar-striped progress-bar-warning active" role="progressbar" aria-valuenow="<!--{$progress|default:0}-->" aria-valuemin="0" aria-valuemax="100" style="width:<!--{$progress|default:0}-->%"></div>
+                                    </div>
+                                    <div class="progress-text clearfix">
+                                        <div class="text pull-left"><!--{$chapters[$item].chapters[0].name|escape|default:'-'}--></div>
+                                        <!--{assign var=last_chapter value=$chapters[$item].chapters|@end}-->
+                                        <div class="text pull-right"><!--{$last_chapter.name|escape|default:'-'}--></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--{include file="partial/video_content_list.html" item=$item chapters=$chapters[$item].chapters videos=$videos in_progress=$chapters[$item].in_progress done=$chapters[$item].done total_questions = $chapters[$item].total_questions correct_answer = $chapters[$item].correct_answer}-->
+                        </div>
+                    </div>
+                    <!--{/foreach}-->
+                </div>
+            <!--{assign var=i value=2}-->
+            <!--{/foreach}-->
+        <!--{/if}-->
+    </div>
+
+</div>
+
+<!--{content_for name="plugincss"}-->
+<link rel="stylesheet" href="/third_party/owl-carousel/owl.theme.css">
+<link rel="stylesheet" href="/third_party/owl-carousel/owl.transitions.css">
+<link rel="stylesheet" href="/third_party/owl-carousel/owl.carousel.css">
+<!--{/content_for}-->
+
+<!--{content_for name="headjs"}-->
+<script type="text/javascript" src="/third_party/owl-carousel/owl.carousel.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.js-owl-slider').owlCarousel({
+            items: 4,
+            /*itemsDesktop : [1000,5],
+             itemsDesktopSmall : [900,3],
+             itemsTablet: [600,2],
+             itemsMobile : false,*/
+            pagination: false,
+            navigation: true,
+            navigationText: ["<i class='el-icons el-angle-left'></i>", "<i class='el-icons el-angle-right'></i>"]
+        });
+    });
+</script>
+<!--{/content_for}-->
+<!--{/if}-->

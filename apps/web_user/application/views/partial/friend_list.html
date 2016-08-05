@@ -1,0 +1,19 @@
+<ul class="friend-list list-unstyled">
+    <!--{foreach from=$friends item=friend}-->
+    <li>
+        <a href="/dashboard/<!--{$friend.id|escape}-->">
+            <div class="content-xs">
+                <div class="thumb thumb-xs">
+                    <img src="/images/avatar/<!--{if $friend.avatar_id == 0}-->2<!--{else}--><!--{$friend.avatar_id}--><!--{/if}-->.png" alt="" class="img-responsive avatar">
+                </div>
+                <div class="name name-xs">
+                    <span class="text">
+                        <!--{$friend.nickname|escape|default:'ニックネームなし'}-->
+                    </span>
+                </div>
+                <span class="el-icons el-chevron-right2"></span>
+            </div>
+        </a>
+    </li>
+    <!--{/foreach}-->
+</ul>

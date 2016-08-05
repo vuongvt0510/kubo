@@ -1,0 +1,10 @@
+<!--{if !empty($result.rabipoint.responses)}-->
+    <li class="rt-reason-list">
+        <!--{foreach from=$result.rabipoint.responses key=key item=res name=i}-->
+        <div class="rt-reason-row">
+            <p class="rowLeft"><!--{$res.label|escape|default:''}--></p>
+            <p class="rowRight">+<!--{$res.bonus|escape|default:''}--></p>
+        </div>
+        <!--{/foreach}-->
+    </li>
+<!--{/if}-->

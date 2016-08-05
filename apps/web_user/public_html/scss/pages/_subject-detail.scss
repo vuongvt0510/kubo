@@ -1,0 +1,212 @@
+.subject-detail-page {
+  .current-textbook {
+    text-align: center;
+    font-weight: 700;
+    padding: 30px 0 30px;
+    @include clearfix;
+    .h4 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 0;
+
+      @media (max-width: $screen-xs-max) {
+        font-size: 16px;
+        margin-bottom: 6px;
+      }
+    }
+    .h1 {
+      font-size: 38px;
+      font-weight: 700;
+      margin: 0;
+
+      @media (max-width: $screen-xs-max) {
+        font-size: 24px;
+      }
+    }
+    .btn {
+      margin-bottom: 0;
+    }
+  }
+  .video-banner {
+    background-color: #1b171a;
+    background-repeat: no-repeat;
+    position: relative;
+    margin-bottom: 0;
+    .video-banner-bg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: auto;
+      height: 100%;
+      z-index: 2;
+      &.bg-2 {
+        top: -155px;
+        left: 20px;
+      }
+      &.bg-3 {
+        top: 59px;
+        right: 0;
+        left: auto;
+      }
+
+      @media (max-width: $screen-sm-max) {
+        left: -260px;
+
+        &.bg-2 {
+          top: -85px;
+          left: 0px;
+        }
+        &.bg-3 {
+          top: 59px;
+          right: 0;
+          left: auto;
+        }
+      }
+      @media (max-width: $screen-sm-max) {
+        &.bg-2 {
+          top: -50px;
+          left: -50px;
+        }
+        &.bg-3 {
+          top: 45px;
+          right: -50px;
+        }
+      }
+    }
+    .video-banner-wrapper {
+      position: relative;
+      @include clearfix;
+
+      @media (max-width: $screen-sm-max) {
+        margin: 0 -15px;
+      }
+    }
+
+    .video-image {
+      position: relative;
+      width: percentage(705px/1020px);
+      z-index: 2;
+      
+      @media (min-width: $screen-md) {
+        float: right;
+      }
+      @media (max-width: $screen-sm-max) {
+        width: 100%;
+      }
+
+      a {
+        display: block;
+        padding-bottom: 56.25%;
+        position: relative;
+        &:before {
+          content: '';
+          display: block;
+          width: 84px;
+          height: 84px;
+          background-image: url('../images/icons/video-play-lg.png');
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          margin-top: -42px;
+          margin-left: -42px;
+          z-index: 2;
+          opacity: 1;
+        }
+        &:hover:before {
+          opacity: 0.7;
+        }
+        img {
+          position: absolute;
+          width: 100%;
+          height: auto;
+          @include transform(translateY(-50%));
+          left: 0;
+          top: 50%;
+        }
+      }
+    }
+  }
+
+  .textbook-description {
+
+    .unit-and-chapter {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .title {
+      font-size: 30px;
+      font-weight: 700;
+    }
+
+    @media (min-width: $screen-md) {
+      position: absolute;
+      z-index: 3;
+      padding-top: 28px;
+
+      .unit-and-chapter {
+        color: #6ECBE6;
+      }
+      .title {
+        max-width: 600px;
+        background-color: $c-primary;
+        display: inline-block;
+        color: $c-white;
+        padding: 16px 20px;
+        margin: 0 0 40px;
+      }
+      .point {
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+      .point-text {
+        width: 325px;
+        background: #fff;
+        padding: 5px;
+      }
+    }
+
+    @media (max-width: $screen-sm-max) {
+      position: static;
+      margin-bottom: 60px;
+
+      .unit-and-chapter {
+        display: inline-block;
+        background: #fff;
+        padding: 5px 10px;
+        border-radius: 4px;
+        margin-bottom: 8px;
+      }
+      .title {
+        margin: 0 0 10px;
+      }
+      .points-list {
+        margin-top: 0;
+      }
+    }
+
+    @media (max-width: $screen-xs-max) {
+      margin-bottom: 40px;
+
+      .unit-and-chapter {
+        font-size: 12px;
+      }
+      .title {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .main-content {
+    padding-top: 110px;
+
+    @media (max-width: $screen-sm-max) {
+      padding-top: 30px;
+    }
+    @media (max-width: $screen-xs-max) {
+      padding-top: 15px;
+    }
+  }
+}
+

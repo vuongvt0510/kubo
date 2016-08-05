@@ -1,0 +1,72 @@
+// hide button play when play video
+.vjs-big-play-button {
+  display: none !important;
+}
+/*
+.vjs-ended {
+  .vjs-big-play-button {
+    display: block !important;
+    top: 50% !important;
+    left: 50% !important;
+    margin-left: -78px !important;
+    margin-top: -52px !important;
+    &:before {
+      content: '\f116' !important;
+      margin-top: 25px;
+    }
+    &:after {
+      content: "もう一度見る";
+      margin-top: -30px;
+      display: block;
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+}*/
+
+.btn-pageRefresh {
+  position: absolute;
+  top: 50% !important;
+  left: 50% !important;
+  z-index: 20;
+  margin-left: -78px !important;
+  margin-top: -52px !important;
+  width: 156px;
+  height: 105px;
+  display: none;
+  background: #000;
+  border-radius: 21px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  padding: 1px;
+
+  .btn-pageRefresh-reload {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+    &:before {
+      content: '\f116';
+      color: #fff;
+      display: block;
+      font-family: VideoJS;
+      font-size: 23px;
+      line-height: 27px;
+      margin: 24px auto 8px;
+      opacity: .8;
+      text-align: center;
+      width: 23px;
+      font-style: normal;
+    }
+  }
+  &.buttonShow {
+    display: block;
+  }
+  &:hover {
+    box-shadow: 0 0 15px 3px #FFF;
+  }
+}
+

@@ -1,0 +1,186 @@
+<!--{content_for name="page_styles"}-->
+<link href="/assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css"/>
+<link href="/assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+<!--{/content_for}-->
+
+<!--{content_for name="page_plugins"}-->
+<script src="/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>
+<!--{/content_for}-->
+
+<!--{content_for name="page_scripts"}-->
+
+<!--{/content_for}-->
+<!-- BEGIN PAGE HEADER-->
+<div class="page-title-wrap">
+    <h3 class="page-title">ユーザー詳細</h3>
+</div>
+
+<div class="pull-right">
+    <a href="#details-modal" data-toggle="modal" class="btn btn-lg green">このユーザーを追加</a>
+</div>
+
+<div class="btn-group btn-group-devided margin-bottom-20">
+    <a href="/group" class="btn btn-lg btn-default btn-icon-lg"><i class="fa fa-arrow-circle-o-left"></i> 戻る</a>
+</div>
+<!-- END PAGE HEADER-->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="table-scrollable">
+            <table class="table table-hover table-align-middle">
+                <colgroup>
+                    <col width="15%">
+                    <col>
+                </colgroup>
+                <tr>
+                    <th class="active">ID</th>
+                    <td>satoru</td>
+                </tr>
+                <tr>
+                    <th class="active">名前</th>
+                    <td>
+                        さとる
+                    </td>
+                </tr>
+                <tr>
+                    <th class="active">メールアドレス</th>
+                    <td>satoko@mail.com</td>
+                </tr>
+                <tr>
+                    <th class="active">ユーザー種別</th>
+                    <td>子</td>
+                </tr>
+                <tr>
+                    <th class="active">郵便番号</th>
+                    <td>
+                        1600022
+                    </td>
+                </tr>
+                <tr>
+                    <th class="active">住所</th>
+                    <td>東京都新宿区新宿2-3-15 大橋御苑ビル9階</td>
+                </tr>
+                <tr>
+                    <th class="active">電話番号</th>
+                    <td>0353577020</td>
+                </tr>
+                <tr>
+                    <th class="active">性別</th>
+                    <td>
+                        男
+                    </td>
+                </tr>
+                <tr>
+                    <th class="active">生年月日</th>
+                    <td>2000/04/23</td>
+                </tr>
+                <tr>
+                    <th class="active">学年</th>
+                    <td>中学校1年</td>
+                </tr>
+                <tr>
+                    <th class="active">所属学校</th>
+                    <td>
+                        新宿区立新宿中学校（東京都新宿区新宿6-15-22）
+                    </td>
+                </tr>
+                <tr>
+                    <th class="active">家族グループID</th>
+                    <td>100923</td>
+                </tr>
+                <tr>
+                    <th class="active">家族一覧</th>
+                    <td>
+                        ID：satoko (保護者)
+                        <a href="/user/details" class="btn grey-salsa btn-sm pull-right">ユーザー詳細</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="active"></th>
+                    <td>
+                        ID：yuji (保護者)
+                        <a href="/user/details" class="btn grey-salsa btn-sm pull-right">ユーザー詳細</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="active">友達グループID</th>
+                    <td>100921</td>
+                </tr>
+                <tr>
+                    <th class="active">友達一覧</th>
+                    <td>
+                        ID：takashi (子)
+                        <a href="/user/details" class="btn grey-salsa btn-sm pull-right">ユーザー詳細</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="active"></th>
+                    <td>
+                        ID：yuta (子)
+                        <a href="/user/details" class="btn grey-salsa btn-sm pull-right">ユーザー詳細</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div id="details-modal" class="modal fade modal-scroll" tabindex="-1" data-replace="true" data-width="760">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">グループに追加</h4>
+    </div>
+    <div class="modal-body">
+        <p>このユーザーを追加しますか？</p>
+
+        <div class="table-scrollable">
+            <table class="table table-hover table-align-middle">
+                <colgroup>
+                    <col width="15%">
+                    <col>
+                </colgroup>
+                <tr>
+                    <th class="active">ID</th>
+                    <td>satoru</td>
+                </tr>
+                <tr>
+                    <th class="active">名前</th>
+                    <td>
+                        さとる
+                    </td>
+                </tr>
+                <tr>
+                    <th class="active">メールアドレス</th>
+                    <td>satoko@mail.com</td>
+                </tr>
+                <tr>
+                    <th class="active">ユーザー種別</th>
+                    <td>子</td>
+                </tr>
+            </table>
+        </div>
+        <p class="margin-top-30">追加するグループを確認してください</p>
+
+        <div class="table-scrollable">
+            <table class="table table-hover table-align-middle">
+                <colgroup>
+                    <col width="15%">
+                    <col>
+                </colgroup>
+                <tr>
+                    <th class="active">家族グループID</th>
+                    <td>―</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="text-center">
+            <button type="button" data-dismiss="modal" class="btn btn-lg grey-salsa">キャンセル</button>
+            <a href="/user/details" class="btn btn-lg green">追加</a>
+        </div>
+    </div>
+</div>

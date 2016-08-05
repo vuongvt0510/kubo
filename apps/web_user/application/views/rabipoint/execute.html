@@ -1,0 +1,118 @@
+<div class="coin-page rabi-page result-exchange">
+    <div class="bg-triangle">
+        <div class="container">
+            <div class="page-title">
+                <p class="h1">ラビポイントを交換</p>
+            </div>
+            <div class="main-content">
+                <div class="content-frame form-horizontal">
+                    <!--{if !empty($user)}-->
+                    <div class="bg-triangle-blue head text-center">
+                        <span class="title">
+                            <span class="name"><!--{$user.nickname|escape|default:$user.login_id}-->のラビポイント</span>
+                        </span>
+                    </div>
+                    <div class="current-coin">
+                        <img src="/images/icons/rabbi-point.png" alt="">
+                        <span class="num"><!--{$user.point|number_format|escape|default:'0'}--></span>ポイント
+                    </div>
+                    <!--{/if}-->
+
+                    <div class="coin-area padTop22">
+                        <div class="purchase-coin-area col-md-12">
+                            <h4 class="text-center mgb5">ネットマイルに交換</h4>
+                            <p class="text-center"><img src="/images/logo_netmine.png" alt="NetMine"></p>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="exchange-rate text-center">
+                                <p class="col-md-12"><b>交換レート</b></p>
+                                <div class="col-md-6 col-sm-6 col-xs-6 color1">
+                                    <p class="text-center">ラビポイント</p>
+                                    <div class="exchange-box">
+                                        <img src="/images/icons/rabbi-point.png" class="img-responsive">
+                                        <span class="num"><!--{$min_point|number_format|escape|default:'0'}--></span>
+                                        <span class="txt">ラビポイント</span>
+                                    </div>
+                                    <span class="icon-convert"></span>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 color2">
+                                    <p class="text-center">ネットマイル</p>
+                                    <div class="exchange-box">
+                                        <img src="/images/icons/netmine.png" class="img-responsive">
+                                        <span class="num"><!--{$min_mile|number_format|escape|default:'0'}--></span>
+                                        <span class="txt">マイル</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="select-option col-md-12">
+                            <h4 class="text-center">＜交換するポイント数を選んでください＞</h4>
+                            <div class="exchange-form">
+                                <span class="form-label hidden-xs">交換するポイント</span>
+                                <select id="select_pack" class="form-control">
+                                    <option value="ex_0" selected>選択してください</option>
+                                    <!--{if (!empty($list_package))}-->
+                                    <!--{foreach from=$list_package key=key item=pack name=i}-->
+                                    <option value="<!--{$key|escape|default:''}-->"><!--{$pack.point|escape|default:''}-->ラビポイント(<!--{$pack.mile|escape|default:''}-->マイル)</option>
+                                    <!--{/foreach}-->
+                                    <!--{/if}-->
+                                </select>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="row mg0">
+                        <div class="btn-sp col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-5 col-xs-offset-1">
+                            <a class="btn btn-gray btn-block mgb10" href="/rabipoint">キャンセル</a>
+                        </div>
+                        <div class="btn-sp col-md-5 col-sm-5 col-xs-5">
+                            <button id="considerPointExchange" class="btn btn-green btn-block mgb10">ポイント交換</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--{include file="partial/modal/not_enough_point.html"}-->
+
+<!--{content_for name="headjs"}-->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#considerPointExchange').on('click', function() {
+
+            $(this).removeClass('btn-green');
+            $(this).addClass('btn-gray');
+            $(this).text('ポイント交換');
+            $(this).css('cursor', 'progress');
+            $(this).prop('disabled', true);
+
+            var pack_select = $("#select_pack option:selected").val();
+            $.ajax({
+                type: 'POST',
+                url: '/rabipoint/check_enough_point',
+                data: {
+                    'pack': pack_select
+                },
+                dataType: 'JSON'
+            }).done(function(res) {
+                if (res.success) {
+                    // show modal
+                     window.location.href = '/rabipoint/confirm_exchange'
+                } else {
+                    // show modal
+                    $( '#ModalNotPoint' ).modal({
+                        show: true,
+                        backdrop: 'static'
+                    });
+                }
+            });
+        });
+    });
+</script>
+<!--{/content_for}-->

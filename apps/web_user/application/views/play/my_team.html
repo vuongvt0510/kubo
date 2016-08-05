@@ -1,0 +1,61 @@
+<div class="play-page play-match-page my-team">
+    <div class="bg-shining-yellow">
+        <div class="bg-inner" id="drill-screen">
+
+            <div class="container">
+                <div class="content-frame-designed-corner with-ribbon-title">
+                    <div class="frame-inner">
+                        <div class="layer"></div>
+                        <div class="head"></div>
+                            <div class="frame-inner">
+                            <h1 class="ribbon-img-title">チーム選択</h1>
+                            <p class="frame-title">バトルするチームを選ぼう</p>
+                            
+                            <!--{if !empty($groups)}-->
+                            <ul class="friend-list list-unstyled">
+                                <!--{foreach from=$groups.items key=key item=group name=i}-->
+                                <li>
+                                    <a href="/play/team/battle/my_team/<!--{$group.id|escape|default:''}-->" class="my-team-list">
+                                        <div class="thumb">
+                                            <img src="/images/avatar/<!--{$group.avatar_id|escape|default:'12'}-->.png" alt="" class="img-responsive avatar">
+                                        </div>
+                                        <div class="name">
+                                            <span class="text"><!--{$group.name|escape|default:''}--></span>
+                                            <span class="id">チームID: &nbsp;<!--{$group.id|escape|default:''}--></span>
+                                        </div>
+                                        <!--{if ($group.highest_score)}-->
+                                        <div class="score">
+                                            <span>ハイスコア</span>
+                                            <p class="num"><!--{$group.highest_score|escape|default:''}--> <span class="arow">点</span></p>
+                                        </div>
+                                        <!--{else}-->
+                                        <div class="score">
+                                            <span>チームバトルに</span>
+                                            <p>まだ参加していません</p>
+                                        </div>
+                                        <!--{/if}-->
+                                    </a>
+                                </li>
+                                <!--{/foreach}-->
+                            </ul>
+                            <!--{else}-->
+                            <div class="row clearfix">
+                                <!--{include file="partial/no_item.html" message="参加しているチームはありません<br>以下のボタンから￼新しいチームを作成して招待することができます。"}-->
+                            </div>
+                            <!--{/if}-->
+
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="text-center">
+                    <a href="/play/select_player" class="btn btn-outline back-link">戻る</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

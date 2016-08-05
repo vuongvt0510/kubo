@@ -1,0 +1,90 @@
+<div class="group-setting-page">
+    <div class="bg-triangle">
+        <div class="container">
+            <div class="page-title">
+                <div class="container text-center">
+                    <p class="h1"><!--{if $operator_primary_type == 'parent'}-->家族グループ選択<!--{else}-->家族グループ<!--{/if}--></p>
+                    <p class="caption">
+                        <!--{if $operator_primary_type == 'parent'}-->編集する家族グループを選択してください<!--{else}-->家族グループを作ると、保護者の方と一緒に学習をすることができます<!--{/if}-->
+                    </p>
+                </div>
+            </div>
+            <div class="main-content">
+                <!--{if !empty($list_groups)}-->
+                <div class="row clearfix">
+                    <!--{foreach from=$list_groups key=key item=group}-->
+                    <div class="col-md-6">
+                        <!--{if $operator_primary_type == 'parent'}-->
+                        <a class="group-box" href="/group_setting/<!--{$group.id|escape|default:''}-->/student">
+                        <!--{else}-->
+                        <div class="group-box">
+                        <!--{/if}-->
+                            <div class="group-id"><!--{$group.id|escape|default:''}--></div>
+                            <dl class="group-info dl-horizontal">
+                                <dt class="group-name-dt">グループ名</dt>
+                                <dd class="group-name"><!--{$group.name|escape|default:''}--></dd>
+                                <dt>作成日時</dt>
+                                <dd><!--{date('Y年m月d日',strtotime($group.created_at|escape|default:''))}--></dd>
+                                <dt>作成者</dt>
+                                <dd>
+                                    <span class="role-label <!--{if $group.owner.primary_type == 'parent'}-->orange<!--{else}-->green<!--{/if}-->">
+                                        <!--{if $group.owner.primary_type == 'parent'}-->保護者<!--{else}-->子ども<!--{/if}-->
+                                    </span>
+                                    <!--{if empty($group.owner.email_verified)}--><span>メール未認証</span><!--{/if}-->
+                                    <span class="owner-nickname"><!--{$group.owner.nickname|escape|default:'ニックネームなし'}--></span>
+                                    <span class="owner-id">(ID: <!--{$group.owner.login_id|escape|default:''}-->)</span>
+                                </dd>
+                            </dl>
+                            <ul class="member-list list-unstyled">
+                                <!--{foreach from=$group.members key=key item=member}-->
+                                <li class="item">
+                                    <div class="cell first">
+                                        <img class="thumb" src="/images/avatar/<!--{if $member.avatar_id == 0}--><!--{if $member.primary_type == 'parent'}-->12<!--{else}-->2<!--{/if}--><!--{else}--><!--{$member.avatar_id}--><!--{/if}-->.png" alt="">
+                                    </div>
+                                    <div class="cell second">
+                                        <span class="role-label <!--{if $member.primary_type == 'parent'}-->orange<!--{else}-->green<!--{/if}-->">
+                                            <!--{if $member.primary_type == 'parent'}-->保護者<!--{else}-->子ども<!--{/if}-->
+                                        </span>
+                                    </div>
+                                    <div class="cell third">
+                                        <span class="member-name"><!--{$member.nickname|escape|default:'ニックネームなし'}--></span><br>
+                                        <span class="member-id">ID: <!--{$member.login_id|escape|default:''}--></span>
+                                        <!--{if empty($member.email_verified)}--><small>メール未認証</small><!--{/if}-->
+                                    </div>
+                                </li>
+                                <!--{/foreach}-->
+                            </ul>
+                        <!--{if $operator_primary_type == 'parent'}-->
+                        </a>
+                        <!--{else}-->
+                        </div>
+                        <!--{/if}-->
+                    </div>
+                    <!--{/foreach}-->
+                </div>
+                <!--{else}-->
+                <div class="row clearfix">
+                    <!--{if $current_user.primary_type == 'student'}-->
+                        <!--{include file="partial/no_item.html" message="参加している家族グループはありません\n家族グループは、保護者の方のアカウントで作ることができます。"}-->
+                    <!--{else}-->
+                        <!--{include file="partial/no_item.html" message="参加している家族グループはありません"}-->
+                    <!--{/if}-->
+                </div>
+                <!--{/if}-->
+                <!--{if $operator_primary_type == 'parent'}-->
+                <div class="btn-area-lg text-center">
+                    <a class="btn btn-light-blue" href="/group_setting/add_family_group">新しいグループを作成</a>
+                </div>
+                <!--{/if}-->
+
+                <div class="divider dashed gray"></div>
+
+                <div class="btn-area text-center">
+                    <div class="col-sm-6 col-sm-push-3">
+                        <a class="btn btn-gray btn-block" href="/setting">プロフィール編集に戻る</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<!--{if isset($share_deck)}-->
+<div id="share_deck_message">
+    <!--{include file="partial/deck_list_line.html" decks=$deck}-->
+</div>
+<!--{/if}-->
+<div class="col-xs-10 col-sm-11 message-block">
+    <textarea id="comment_content" name="content" class="message-area" placeholder="メッセージを入力" value=""></textarea>
+</div>
+<div class="col-xs-2 col-sm-1 button-block">
+    <button id="comment_submit" type="submit" class="btn btn-send" <!--{if !isset($share_deck)}-->disabled<!--{/if}-->>送信</button>
+    <span class="loading-icon loading-send"></span></div>
+</div>

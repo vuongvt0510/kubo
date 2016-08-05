@@ -1,0 +1,57 @@
+<div class="pay-service-page pay-service-purchase">
+    <div class="bg-triangle">
+        <div class="container">
+            <div class="page-title">
+                <p class="h1">スクールTV Plusに申し込む</p>
+            </div>
+            <div class="main-content">
+                <div class="content-frame">
+                    <div class="price"><!--{$amount}-->円／月</div>
+                    <div class="settings-list">
+                        <ul class="list-unstyled">
+                            <li>
+                                <div class="name">カード情報</div>
+                                <div class="description bold">
+                                    <!--{$credit_card.card_type|escape|default:''}--> <!--{$credit_card.card_number|escape|default:''}--><br>
+                                    有効期限： <!--{$credit_card.expire|escape|default:''}-->
+                                </div>
+                                <div class="link">
+                                    <a href="/credit_card/register/?redirect=<!--{$params_register_url|escape|dummy:''}-->" class="btn btn-green btn-right-arrow"><!--{if $contract.status == 'pending'}-->支払い<!--{else}-->編集<!--{/if}--></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="divider dashed"></div>
+
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <a href="/pay_service/<!--{$user.id|escape|default:''}-->" class="btn btn-gray btn-block">キャンセル</a>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="hidden" name="amount" value="<!--{$amount}-->">
+                                <button id="submit_purchase" class="btn btn-green btn-block" type="submit">申し込む</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="display: none;" class="loading-wrap"></div>
+
+<!--{content_for name="headjs"}-->
+<script type="text/javascript">
+    (function () {
+        $(document).ready(function() {
+            $("#submit_purchase").on("click", function() {
+                $(this).disabled = true;
+                $(".loading-wrap").show();
+            });
+        });
+    })();
+</script>
+<!--{/content_for}-->

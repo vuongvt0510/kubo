@@ -1,0 +1,64 @@
+<div class="inquiry-page">
+    <div class="bg-triangle">
+        <div class="container">
+            <div class="page-title">
+                <p class="h1">お問い合わせ</p>
+                <p class="caption">お問い合わせ内容を入力してください</p>
+            </div>
+            <div class="main-content">
+                <form class="content-frame form-horizontal" method="post">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label text-left">
+                            お問い合わせ項目 <br class="visible-sm">
+                            <span class="c-green">【必須】</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <select name="type" class="form-control">
+                                <option value="">選択してください</option>
+                                <option value="1" <!--{if $post.type|escape|default:'' == 1}-->selected<!--{/if}-->>動画について</option>
+                                <option value="2" <!--{if $post.type|escape|default:'' == 2}-->selected<!--{/if}-->>ドリルについて</option>
+                                <option value="3" <!--{if $post.type|escape|default:'' == 3}-->selected<!--{/if}-->>コインの購入について</option>
+                                <option value="4" <!--{if $post.type|escape|default:'' == 4}-->selected<!--{/if}-->>アカウントや設定について </option>
+                                <option value="5" <!--{if $post.type|escape|default:'' == 5}-->selected<!--{/if}-->>その他 </option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label text-left">
+                            お問い合わせ内容 <br class="visible-sm">
+                            <span class="c-green">【必須】</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <textarea name="question" placeholder="お問い合わせ内容を入力してください" rows="10"><!--{$post.question|escape|default:''}--></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label text-left">
+                            ご登録メールアドレス
+                        </label>
+                        <div class="col-sm-8">
+                            <div class="current-value"><!--{$email|escape|default:''}--></div>
+                            <small>※ご登録のこのメールアドレス宛にお問い合わせの回答をお送りします。</small>
+                        </div>
+                    </div>
+
+                    <div class="divider dashed"></div>
+
+                    <p class="text-center">5営業日以内に回答いたします。</p>
+                    <p class="text-center">なお、お問い合わせ内容によってはお時間をいただくことがございます。予めご了承ください。</p>
+
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <a href="/setting" class="btn btn-gray btn-block">戻る</a>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-green btn-block">送信</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+{
+  "name": "jquery-selection",
+  "homepage": "https://github.com/Mr21/jquery-selection",
+  "_release": "8de13c3411",
+  "_resolution": {
+    "type": "branch",
+    "branch": "gh-pages",
+    "commit": "8de13c34112bdbeb695ece445eec117a99a4d3a8"
+  },
+  "_source": "git://github.com/Mr21/jquery-selection.git",
+  "_target": "gh-pages",
+  "_originalSource": "Mr21/jquery-selection",
+  "_direct": true
+}

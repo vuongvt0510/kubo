@@ -1,0 +1,113 @@
+<div class="play-page memorize">
+    <div class="bg-shining-yellow">
+        <div class="bg-inner">
+            <div class="container ">
+                <div class="content-frame-designed-corner">
+                    <div class="frame-inner">
+                        <div class="head"></div>
+                        <div class="middle pd30">
+
+                            <p class="frame-title">覚えたかな？</p>
+
+                            <div class="frame-content">
+
+                                <div class="frame-question vocab-sound row">
+                                    <p id="memorize-key" class="frame-text"></p>
+                                    <span class="frame-volumn"><img src="/images/play/vollum.png" class="img-responsive"></span>
+                                </div>
+                                <div id="areaAnswer" class="">
+                                    <div class="frame-answer bg-custom front">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <p id="memorize-hint" class="frame-text">答えを確認する</p>
+                                        </div>
+                                    </div>
+                                    <div class="frame-answer back">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <p id="memorize-answer" class="frame-text"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="list-button row">
+                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                        <button id="memorize-circle" type="button" class="btn btn-outline white-bg<!--{if $questions.0.status == 'remember'}--> active<!--{/if}-->">
+                                            <img src="/images/play/circle.png"><br>覚えた!
+                                        </button>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                        <button id="memorize-triangle" type="button" class="btn btn-outline white-bg<!--{if $questions.0.status == 'consider'}--> active<!--{/if}-->">
+                                            <img src="/images/play/triangle.png" class="mgb2"><br>もうすこし…
+                                        </button>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                        <button id="memorize-cross" type="button" class="btn btn-outline white-bg<!--{if $questions.0.status == 'forget'}--> active<!--{/if}-->">
+                                            <img src="/images/play/cross.png" class="mgb2"><br>覚えていない
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="list-button-media row">
+                                <hr>
+                                <div class="pull-left">
+                                    <button id="memorize-previous" type="button" class="x-btn-previous btn btn-outline btn-yellow">前へ</button>
+                                </div>
+                                <div class="pull-right">
+                                    <button id="memorize-next" type="button" class="x-btn-next btn btn-outline btn-yellow">次へ</button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                </div>
+                <hr>
+                <div class="text-center">
+                    <button id="memorize-result" type="button" class="btn btn-outline back-link">チェック終了</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--{content_for name="headjs"}-->
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $("#areaAnswer").click(function(){
+            $(this).toggleClass("flipped");
+        });
+    });
+
+</script>
+
+<!--{/content_for}-->
+
+<!--{content_for name="modal"}-->
+<!--{include file="partial/modal/memorize_change_status.html"}-->
+<!--{include file="partial/modal/memorize_result.html"}-->
+<!--{/content_for}-->
+
+<!--{content_for name="headjs"}-->
+<script src="/js/ST.Memorization.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        var remove_question = false;
+        <!--{if $remove_question == TRUE}-->
+        remove_question = true;
+        <!--{/if}-->
+
+        var questions = new ST.Memorization({
+            memorizations: <!--{$questions|@json_encode|default:"{}"}-->,
+            user_id: <!--{$current_user.id|escape|default:''}-->,
+            remove_question: remove_question
+        });
+
+        questions.change_memorization();
+
+    });
+</script>
+<!--{/content_for}-->

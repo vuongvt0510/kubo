@@ -1,0 +1,40 @@
+スクールTVにお問合わせが届きました。
+
+
+お問い合わせ詳細
+━━━━━━━━━━━━━━━━━━━━━━
+ユーザーID：<!--{$user_id|default:""}-->
+ニックネーム： <!--{$nickname|default:""}-->
+アカウント種別：<!--{if $primary_type == 'parent'}-->保護者アカウント
+<!--{elseif $primary_type == 'student'}-->子どもアカウント<!--{/if}-->
+学年：<!--{$current_grade.name|default:""}-->
+メールアドレス：<!--{$email|default:""}-->
+<!--{if !empty($forceclub)}-->招待コード：<!--{$forceclub|default:""}--><!--{/if}-->
+
+お問い合わせ項目：<!--{if $type == 1}-->動画について
+<!--{elseif $type == 2}-->ドリルについて
+<!--{elseif $type == 3}-->コインの購入について
+<!--{elseif $type == 4}-->アカウントや設定について
+<!--{else}-->その他
+<!--{/if}-->
+お問い合わせ内容：
+<!--{$question|nl2br|default:""}-->
+━━━━━━━━━━━━━━━━━━━━━━
+
+<!--{* FOOTER *}-->
+<!--{include file="<!--{$smarty.const.SHAREDPATH}-->views/mails/footer.html"}-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

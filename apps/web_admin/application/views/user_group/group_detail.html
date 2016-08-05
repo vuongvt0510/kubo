@@ -1,0 +1,150 @@
+<!-- BEGIN PAGE TITLE-->
+<h3 class="page-title"> <i class="icon-user-follow"></i> ユーザーの詳細 </h3>
+<!-- END PAGE TITLE-->
+<div class="btn-group btn-group-devided margin-bottom-20">
+    <button type="button" onclick="history.back();" class="btn btn-lg yellow-lemon btn-icon-lg"><i class="fa fa-arrow-circle-o-left"></i> 戻る</button>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title tabbable-line">
+                <div class="caption">
+                    <i class="icon-magnifier font-dark"></i>
+                    <span class="caption-subject font-dark bold uppercase">絞り込み検索</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-container">
+                            <table class="table table-striped table-bordered">
+                                <tr>
+                                <tr width="25%">
+                                    <th class="active"><!--{if $group.type == 'family'}-->家族グループID<!--{else}-->友達グループID<!--{/if}--></th>
+                                    <td><!--{$group_id|escape|default:''}--> (<!--{$group.group_name|escape|default:''}-->)</td>
+                                </tr>
+                                <tr width="25%" >
+                                    <th rowspan="<!--{$rowspan|default:0}-->" class="active"><!--{if $group.type == 'family'}-->家族一覧<!--{else}-->メンバー<!--{/if}--></th>
+                                </tr>
+                                <!--{foreach from=$members key=key item=item}-->
+                                <tr>
+                                    <td>ID <!--{$item.id|escape|default:''}-->: <!--{$item.login_id|escape|default:''}--> [<!--{$item.nickname|escape|default:'ニックネームなし'}-->]
+                                        <span class="label label-sm label-primary ml5"><!--{if $item.primary_type == 'student'}-->子<!--{else}-->保護者<!--{/if}--></span>
+                                        <!--{if (($item.status != 'active') && ($item.status != 'suspended'))}--> <span class="ml5 label label-sm label-warning">未承認</span><!--{/if}-->
+                                    </td>
+                                </tr>
+                                <!--{/foreach}-->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <form method="get" class="form- margin-bottom-30" role="form">
+                    <div class="row">
+                        <div class="col-md-3 col-xs-12">
+                            <label class="sr-only">ID</label>
+                            <div class="form-group">
+                                <input type="text" name="user_id" class="form-control" value="<!--{$search.user_id|escape|default:''}-->" placeholder="ユーザーID">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-12">
+                            <label class="sr-only">ID</label>
+                            <div class="form-group">
+                                <input type="text" name="login_id" class="form-control" value="<!--{$search.login_id|escape|default:''}-->" placeholder="ログインID">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-12">
+                            <label class="sr-only">ID</label>
+                            <div class="form-group">
+                                <input type="text" name="nickname" class="form-control" value="<!--{$search.nickname|escape|default:''}-->" placeholder="ニックネーム">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-12">
+                            <label class="sr-only">Eメールアドレス</label>
+                            <div class="form-group">
+                                <input type="email" name="email" class="form-control" value="<!--{$search.email|escape|default:''}-->" placeholder="メールアドレス">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 text-right">
+                            <a href="/user_group/group_detail/<!--{$group_id|escape|default:''}-->" class=" btn btn-lg grey-salsa">リセット</a>
+                            <button type="submit" class="btn btn-lg green"><i class="icon-magnifier font-white"></i> 検索</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="portlet light bordered">
+            <div class="portlet-title tabbable-line">
+                <div class="caption">
+                    <i class="icon-list font-dark"></i>
+                    <span class="caption-subject font-dark bold uppercase">ユーザー一覧</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-container">
+                            <div class="table-actions-wrapper">
+                            </div>
+                            <div class="pull-left">
+                                <!--{include file='partial/pagination_limit.html' config=$pagination}-->
+                            </div>
+                            <div class="clearfix">
+                                
+                            </div>
+                            <!--{if isset($pagination)}-->
+                            <!--{include file='partial/pagination.html' config=$pagination}-->
+                            <!--{/if}-->
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                <tr role="row" class="heading">
+                                    <th class="text-right" width="5%">#</th>
+                                    <th class="text-right" width="7%">ユーザーID</th>
+                                    <th width="15%">ログインID</th>
+                                    <th width="25%">ニックネーム</th>
+                                    <th>ユーザー種別</th>
+                                    <th>メールアドレス</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <!--{foreach from=$users key=key item=item}-->
+                                <tr>
+                                    <td class="text-right"><!--{($pagination.offset + $key)}--></td>
+                                    <td class="text-right"><!--{$item.id|escape|default:''}--></td>
+                                    <td><!--{$item.login_id|escape|default:''}--></td>
+                                    <td><!--{$item.nickname|escape|default:'ニックネームなし'}--></td>
+                                    <!--{if $item.primary_type == 'student' }-->
+                                    <td>子ども</td>
+                                    <!--{else}-->
+                                    <td>保護者</td>
+                                    <!--{/if}-->
+                                    <td><!--{$item.email|escape|default:''}--></td>
+                                    <td class="text-center">
+                                        <!--{if $item.button_style == 1}-->
+                                        <a href="/user_group/user_detail/<!--{$group_id|escape|default:''}-->/<!--{$item.id|escape|default:''}-->" class="btn green">
+                                            選択
+                                        </a>
+                                        <!--{else if $item.button_style == 2}-->
+                                            参加済み
+                                        <!--{else}-->
+                                            -
+                                        <!--{/if}-->
+                                    </td>
+                                </tr>
+                                <!--{/foreach}-->
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

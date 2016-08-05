@@ -1,0 +1,35 @@
+<div class="bg-triangle">
+    <div class="container">
+        <div class="page-title">
+                <p class="h1">子どもアカウントを削除</p>
+                <p class="caption">アカウントを削除しますか？ <br>
+                    このアカウントでの学習はできなくなります <br>
+                    一度削除すると、もとに戻すことはできません
+                </p>
+        </div>
+
+        <div class="main-content">
+            <form class="content-frame form-horizontal" method="post">
+                <div class="bg-triangle-blue head text-center">
+                    <span class="h4">選択中のグループ <!--{$group_name|escape|default:''}--></span>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label text-left">ID/名前</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static bold"><!--{$remove_member.member_login_id|escape|default:''}-->/<!--{$remove_member.member_nickname|escape|default:''}--></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <a href="/group_setting/<!--{$group_id|escape|default:''}-->/delete_student" class="btn btn-gray btn-block">削除しない</a>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-green btn-block">削除する</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

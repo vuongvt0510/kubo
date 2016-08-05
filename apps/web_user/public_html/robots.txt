@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /core
+Disallow: /images_tmp
+Disallow: /scss
+Disallow: /docs

@@ -1,0 +1,27 @@
+<div class="modal fade" id="ModalNotPoint" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    ラビポイントが不足しています
+                </div>
+            </div>
+            <div class="modal-body text-center">
+                <p style="font-size: 16px;">交換できるラビポイント数をもう一度確かめてください</p>
+            </div>
+            <div class="modal-footer modal-footer-btngroup text-center">
+                <button id="noEnoughPoint" class="btn btn-green">OK</button>
+            </div>
+        </div>
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--{content_for name="headjs"}-->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#noEnoughPoint').on('click', function() {
+            $('#ModalNotPoint').modal('hide');
+        });
+    });
+</script>
+<!--{/content_for}-->

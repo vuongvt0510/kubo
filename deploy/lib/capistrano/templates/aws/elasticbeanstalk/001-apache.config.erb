@@ -1,0 +1,39 @@
+<%
+  require 'json'
+  begin
+    options = JSON.parse(ARGV[0], {symbolize_names: true})
+  rescue
+    options = {}
+  end
+%>
+files:
+  <% if options[:apache][:plugins].include?('deflate') %>
+  "/etc/httpd/conf.d/deflate.conf":
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      <IfModule mod_deflate.c>
+          BrowserMatch ^Mozilla/4\.0[678] no-gzip
+          BrowserMatch ^Mozilla/4 gzip-only-text/html
+          BrowserMatch \bMSI[E] !no-gzip !gzip-only-text/html
+          SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|ico) no-gzip dont-vary
+          SetEnvIfNoCase Request_URI _\.utxt$ no-gzip
+          # Insert filters
+          AddOutputFilterByType DEFLATE text/html
+          AddOutputFilterByType DEFLATE text/css
+          AddOutputFilterByType DEFLATE text/javascript
+          AddOutputFilterByType DEFLATE application/x-httpd-php
+          AddOutputFilterByType DEFLATE application/javascript
+          AddOutputFilterByType DEFLATE application/x-javascript
+
+          # Drop problematic browsers
+          BrowserMatch ^Mozilla/4 gzip-only-text/html
+          BrowserMatch ^Mozilla/4\.0[678] no-gzip
+          BrowserMatch \bMSI[E] !no-gzip !gzip-only-text/html
+
+          # Make sure proxies don't deliver the wrong content
+          Header append Vary User-Agent env=!dont-vary
+      </IfModule>
+  <% end %>
+

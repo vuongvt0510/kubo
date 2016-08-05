@@ -1,0 +1,105 @@
+<div class="group-setting-page recommend-student-confirm-page">
+    <div class="bg-triangle">
+        <div class="container">
+            <div class="page-title">
+                <p class="h1">紐付け依頼</p>
+                <p class="caption">
+                    <!--{if $already_added == TRUE}-->
+                    この家族グループにはすでに参加しています
+                    <!--{else}-->
+                    家族グループへの招待が届いています
+                    <!--{/if}-->
+                </p>
+            </div>
+            <div class="content-frame">
+                <!--{if isset($errmsg)}-->
+                <div class="form-group">
+                    <label style="color:red;" class="col-xs-12 text-center control-label"><!--{$errmsg|escape}--></label>
+                </div>
+                <!--{/if}-->
+                <div class="form-horizontal">
+                    <div class="form-title text-center clearfix">
+                        招待を送ったユーザー
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">ID</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static bold"><!--{$invite_user.login_id|escape|default:''}--></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">名前</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static bold"><!--{$invite_user.nickname|escape|default:''}--></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group-box">
+                <div class="group-id"><!--{$group_id|escape|default:''}--></div>
+                <dl class="group-info dl-horizontal">
+                    <dt class="group-name-dt">グループ名</dt>
+                    <dd class="group-name"><!--{$group_name|escape|default:''}--></dd>
+                    <dt>作成日時</dt>
+                    <dd><!--{date('Y年m月d日',strtotime($created_at|escape|default:''))}--></dd>
+
+                    <!--{if isset($students)}-->
+                    <!--{foreach $students as $student}-->
+                    <!--{if $student.role == 'owner'}-->
+
+                    <dt>作成者</dt>
+                    <dd>
+                        <span class="role-label <!--{if $student.primary_type == 'parent'}-->orange<!--{else}-->green<!--{/if}-->">
+                            <!--{if $student.primary_type == 'parent'}-->保護者<!--{else}-->子ども<!--{/if}-->
+                        </span>
+                        <span class="owner-nickname"><!--{$student.nickname|escape|default:''}--></span>
+                        <span class="owner-id">(ID: <!--{$student.login_id|escape|default:''}-->)</span>
+                    </dd>
+
+                    <!--{/if}-->
+                    <!--{/foreach}-->
+                </dl>
+
+                <ul class="member-list list-unstyled">
+                    <!--{foreach $students as $student}-->
+                    <!--{if $student.email_verified == 1 && $student.role != 'owner'}-->
+                    <li class="item">
+                        <div class="cell first">
+                            <img class="thumb" src="/images/avatar/<!--{if $student.avatar == 0}-->2<!--{else}--><!--{$student.avatar}--><!--{/if}-->.png" alt="">
+                        </div>
+                        <div class="cell second">
+                            <span class="role-label <!--{if $student.primary_type == 'parent'}-->orange<!--{else}-->green<!--{/if}-->">
+                                <!--{if $student.primary_type == 'parent'}-->保護者<!--{else}-->子ども<!--{/if}-->
+                            </span>
+                        </div>
+                        <div class="cell third">
+                            <span class="member-name"><!--{$student.nickname|escape|default:''}--></span><br>
+                            <span class="member-id">ID: <!--{$student.login_id|escape|default:''}--></span>
+                        </div>
+                    </li>
+                    <!--{/if}-->
+                    <!--{/foreach}-->
+                </ul>
+                <!--{else}-->
+
+                </dl>
+                <!--{/if}-->
+            </div>
+
+            <form class="form-horizontal" method="post">
+                <div class="divider dashed gray"></div>
+
+                <div class="btn-area">
+                    <div class="col-sm-6 col-sm-push-3">
+                        <!--{if $already_added == TRUE}-->
+                        <a href="/profile/detail" class="btn btn-green btn-block">トップページへ</a>
+                        <!--{else}-->
+                        <button type="submit" class="btn btn-green btn-block">この家族グループに参加する</button>
+                        <!--{/if}-->
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

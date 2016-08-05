@@ -1,0 +1,88 @@
+<div class="bg-triangle">
+    <div class="container">
+        <div class="page-title">
+            <p class="h1">ログイン</p>
+        </div>
+        <div class="main-content">
+            <form class="content-frame form-horizontal" method="post">
+                <!--{if isset($errmsg)}-->
+                <div class="form-group">
+                    <label style="color:red;" class="col-xs-12 text-center control-label"><!--{$errmsg|escape}--></label>
+                </div>
+                <!--{/if}-->
+                <div class="form-group">
+                    <label class="col-sm-4 control-label text-left">
+                        ID
+                        <span class="c-green">【必須】</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" name="id" class="form-control" placeholder="IDを入力" value="<!--{$post.id|escape|default:''}-->">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label text-left">
+                        パスワード
+                        <span class="c-green">【必須】</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="password" name="password" class="form-control" placeholder="パスワードを入力">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <div class="checkbox">
+                            <label style="text-align: left;">
+                                <input <!--{if isset($post.auto_login) and $post.auto_login == 'on'}-->checked<!--{/if}--> name="auto_login" type="checkbox">
+                                &nbsp;&nbsp;<b>次回から自動ログインする</b>&nbsp;&nbsp;&nbsp;
+                                <br class="visible-xs visible-sm">
+                                <span class="small">※共用のパソコンではチェックを外してください</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-6 col-sm-push-3">
+                        <div class="row">
+                            <button type="submit" class="btn btn-green btn-block">ログイン</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="text-center links-group">
+                        <ul class="list-unstyled">
+                            <li>
+                                <p class="bold">IDを忘れた方は <a href="/login/forget_id">こちら</a></p>
+                            </li>
+                            <li>
+                                <p class="bold">パスワードを忘れた方は <a href="/login/forget_password">こちら</a></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="form-group social-login">
+                    <p class="h4 bold text-center">保護者の方はSNSアカウントでもログインできます</p>
+                    <div class="col-md-10 col-md-push-1">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a href="/facebook/authorize" class="btn btn-sns btn-sns-facebook btn-block">Facebookでログイン</a>
+                            </div>
+                            <div class="col-sm-6">
+                                <a href="/twitter/authorize" class="btn btn-sns btn-sns-twitter btn-block">Twitterでログイン</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="form-group">
+                    <p class="h4 bold text-center">アカウントをお持ちでない方はこちらから</p>
+                    <div class="col-sm-6 col-sm-push-3">
+                        <div class="row">
+                            <a href="/register<!--{$register_url|default:''}-->" class="btn btn-block btn-green">無料会員登録</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="ranking-page">
+    <div class="bg-triangle-yellow-light">
+        <h1 class="title-triangle-yellow-bg"><!--{if $ranking_type == 'global'}-->グローバルランキング<!--{else}-->パーソナルランキング<!--{/if}--></h1>
+        <div class="container">
+            <div class="main-content">
+                <div class="content-frame yellow message-frame">
+
+                    <ul class="tab list-unstyled">
+                        <li>
+                            <a href="/ranking" class="<!--{if $ranking_type == 'global'}-->active<!--{/if}-->">グローバルランキング</a>
+                        </li>
+                        <li>
+                            <a href="/ranking/index/personal" class="<!--{if $ranking_type == 'personal'}-->active<!--{/if}-->">パーソナルランキング</a>
+                        </li>
+                    </ul>
+
+                    <!--{if !empty($items)}-->
+                    <ul class="ranking-list list-stage list-unstyled">
+                        <!--{foreach from=$items key=key item=user}-->
+                        <li class="item no-auto" data-number="<!--{$user.rank|escape|default:''}-->">
+                            <a class="item-content" href="/dashboard/<!--{$user.user_id|escape}-->">
+                                <div class="avatar-box">
+                                    <img class="avatar" src="/images/avatar/<!--{if $user.avatar_id == 0}-->2<!--{else}--><!--{$user.avatar_id}--><!--{/if}-->.png" alt="">
+                                </div>
+                                <div class="description p-t-3">
+                                    <p class="name"><!--{$user.nickname|escape|default:''}--></p>
+                                    <p class="score"><span class="num"><!--{$user.highest_score|escape|default:0}--></span>点</p>
+                                    <!--{if $current_user.id != $user.user_id}-->
+                                    <!--{if $user.is_friend|escape|default:0}-->
+                                    <img class="friend-icon" src="/images/icons/icon-group.png"/>
+                                    <!--{/if}-->
+                                    <!--{/if}-->
+                                </div>
+
+                                <div class="right">
+                                    <span class="el-icons el-angle-right"></span>
+                                </div>
+                            </a>
+                        </li>
+                        <!--{/foreach}-->
+                    </ul>
+                    <!--{else}-->
+                    <div class="row clearfix">
+                        <!--{include file="partial/no_item.html" message="表示できるランキングはありません"}-->
+                    </div>
+                    <!--{/if}-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

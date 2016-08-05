@@ -1,0 +1,27 @@
+<%
+  require 'json'
+
+  begin
+    options = JSON.parse(ARGV[0], {symbolize_names: true})
+  rescue
+    options = {}
+  end
+%>
+option_settings:
+  "aws:elasticbeanstalk:container:php:phpini":
+    memory_limit: 64M
+    zlib.output_compression: false
+    allow_url_fopen: true
+    display_errors: "Off"
+    max_execution_time: 60
+    composer_options: vendor/package
+
+  "aws:elasticbeanstalk:application:environment":
+    CODEIGNITER_ENV: <%= options[:stage] || 'staging' %>
+
+  "aws:elasticbeanstalk:customoption":
+    CloudWatchMetrics: "--mem-util --mem-used --mem-avail --disk-space-util --disk-space-used --disk-space-avail --disk-path=/ --auto-scaling"
+    <% if options.has_key?(:extensions) and options[:extensions].has_key?(:cloudwatch) %>
+    CloudWatchAlarmEmail: <%= options[:extensions][:cloudwatch][:email] || 'alert+schooltv@interest-marketing.net' %>
+    <% end %>
+

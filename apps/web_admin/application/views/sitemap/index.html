@@ -1,0 +1,24 @@
+<ul>
+    <li><a target="_blank" href="/news">NL10 (news list) PAGE</a></li>
+    <li><a target="_blank" href="/news">NL20 (news details) MODAL, ND10 (news delete) MODAL</a></li>
+    <li><a target="_blank" href="/news/add">NA10 (news add) FORM, NA20 (news add/edit confirm) MODAL</a></li>
+    <li><a target="_blank" href="/news/edit">NA10 (news edit) FORM, NA20 (news add/edit confirm) MODAL</a></li>
+    <li><a target="_blank" href="/news/edit">NA20 (news add/edit confirm) MODAL</a></li>
+    <li><a target="_blank" href="/user/search">US10 (search users) PAGE, UD10 (delete user) MODAL</a></li>
+    <li><a target="_blank" href="/user/detail">UE10 (get user detail) PAGE</a></li>
+    <li><a target="_blank" href="/user/edit">UE10 (edit user) PAGE</a></li>
+    <li><a target="_blank" href="/group/add_user">GA10 (search user and add user to group) PAGE</a></li>
+    <li><a target="_blank" href="/group/view_user">GA10 (user details) PAGE</a></li>
+</ul>
+
+
+<!--{content_for name="page_scripts"}-->
+<script type="text/javascript">
+    $(document).ready(function(){
+        Helpers.showNotification('Error text', 'error');
+        Helpers.showNotification('Success text', 'success');
+        Helpers.showNotification('Information text', 'info');
+        Helpers.showNotification('Warning text', 'warning');
+    });
+</script>
+<!--{/content_for}-->

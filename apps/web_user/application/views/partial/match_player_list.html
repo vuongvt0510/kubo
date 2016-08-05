@@ -1,0 +1,33 @@
+<ul class="match-player-list list-unstyled">
+    <!--{if !empty($players)}-->
+    <!--{foreach from=$players key=key item=player}-->
+    <li class="item">
+        <!--{if isset($href)}-->
+        <a class="clearfix item-in" href="/<!--{$href|escape|default:''}--><!--{$player.play_id|escape|default:''}-->">
+        <!--{else}-->
+        <div class="clearfix item-in">
+        <!--{/if}-->
+            <table class="tb-score">
+                <tr>
+                    <td class="text-left td-image"> <img class="thumb" src="/images/avatar/<!--{if $player.avatar_id == 0}-->2<!--{else}--><!--{$player.avatar_id}--><!--{/if}-->.png" alt=""></td>
+                    <td class="text-left td-username"><span class="user-name"><!--{$player.nickname|escape|default:''}--></span></td>
+                    <td class="text-right td-score">
+                        <!--{if isset($player.is_friend) && $player.is_friend == TRUE}-->
+                       <img class="ic-group" width="18px" src="/images/icons/icon-group.png"/>
+                        <!--{/if}-->
+                        <div class="score">
+                            <span class="num"><!--{$player.score|escape|default:''}--></span>点
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        <!--{if isset($href)}-->
+        </a>
+        <!--{else}-->
+        </div>
+        <!--{/if}-->
+    </li>
+    <!--{/foreach}-->
+    <!--{/if}-->
+</ul>

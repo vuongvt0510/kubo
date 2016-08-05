@@ -1,0 +1,83 @@
+<!-- Modal school settings -->
+<div class="modal fade" id="modalUsername" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">名前を入力しよう</h4>
+                <div class="modal-basic-title">
+                    一緒に学習するときに、家族や友だちに分かる名前をつけよう
+                </div>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group text-center">
+                        あなたのID <br>
+                        <strong><!--{$login_id|escape|default:''}--></strong>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-6">
+                            <input id="modal_nickname" type="text" class="form-control" placeholder="ニックネーム">
+                            <p id="modal_nickname_error_msg" style="display: none;" class="text-danger help-text">
+                                現在のニックネーム欄は必須フィールドです
+                            </p>
+                            <p class="small">
+                                スクールTVで利用する名前を入力してください<br>
+                                10文字以内で入力してください（半角・全角いずれもOK）
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="col-sm-6 col-sm-push-3">
+                    <button id ="modal_update_nickname" type="button" class="btn btn-green btn-block">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--{content_for name="headjs"}-->
+<script>
+    $(document).ready(function(){
+
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+            }
+        });
+
+        <!--{if !isset($point_modals)}-->
+        // Show the Modal on load
+        $("#modalUsername").modal({
+            keyboard: false,
+            backdrop: 'static' // don't allow to close modal without submit nickname
+        });
+        <!--{/if}-->
+
+        // Cal ajax to update nickname
+        $( "#modal_update_nickname" ).on( "click", function() {
+            var nickname = $("#modal_nickname").val();
+            if(nickname.trim() != '' && nickname.length <=10) {
+                $.ajax({
+                    method: 'POST',
+                    url: '/register/update_nickname',
+                    data: {
+                        nickname: nickname
+                    },
+                    dataType: 'json'
+                }).always(function (res) {
+                    $("#modalUsername").modal("hide");
+                    window.location.reload();
+                });
+            } else if (nickname.length >10) {
+                $( "#modal_nickname_error_msg").html('ニックネーム欄は10文字以内で入力してください');
+                $( "#modal_nickname_error_msg").show();
+            } else {
+                $( "#modal_nickname_error_msg").show();
+            }
+        });
+    });
+</script>
+<!--{/content_for}-->

@@ -1,0 +1,140 @@
+<div class="play-page play-match-page my-team">
+    <div class="bg-shining-yellow">
+        <div class="bg-inner" id="drill-screen">
+
+            <div class="container">
+                <div class="content-frame-designed-corner with-ribbon-title">
+                    <div class="frame-inner">
+                        <div class="layer"></div>
+                        <div class="head"></div>
+                        <div class="frame-inner">
+                            <h1 class="ribbon-img-title">相手チーム選択</h1>
+                            <p class="frame-title">バトルする相手のチームを選ぼう</p>
+
+                            <div class="team-detail text-center">
+                                <div class="team-detail-inner">
+                                    <p class="txt1">プレイするチーム</p>
+                                    <p class="txt2" id="group-name-page"><!--{$group.name|escape|default:''}--></p>
+                                    <p class="score">
+                                        <span class="arow1">ハイスコア</span><!--{$group.highest_score|escape|default:''}--> <span class="arow2">点</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="text-center search-form">
+                                <form action="/play/team/battle/search_opponent" method="POST" role="form">
+                                    <div class="form-group">
+                                        <input type="text" name="group_param" class="form-control" placeholder="チーム名、チームIDで検索">
+                                    </div>
+                                    <button type="submit" class="btn btn-yellow">検索</button>
+                                </form>
+                            </div>
+
+                            <!--{if !empty($target_groups)}-->
+                            <ul id="opponent_list" class="friend-list list-unstyled">
+                                <!--{foreach from=$target_groups.items key=key item=target_group name=i}-->
+                                <li>
+                                    <a href="#" class="confirmBattle">
+                                        <div class="thumb">
+                                            <img src="/images/avatar/<!--{$target_group.avatar_id|escape|default:'12'}-->.png" alt="" class="img-responsive avatar">
+                                        </div>
+                                        <div class="name">
+                                            <span class="text target-group-name-page"><!--{$target_group.name|escape|default:''}--></span>
+                                            <span class="id">チームID: &nbsp;<span><!--{$target_group.id|escape|default:''}--></span></span>
+                                        </div>
+                                        <!--{if ($target_group.highest_score)}-->
+                                        <div class="score">
+                                            <span>ハイスコア</span>
+                                            <p><!--{$target_group.highest_score|escape|default:''}--> <span class="arow">点</span></p>
+                                        </div>
+                                        <!--{else}-->
+                                        <div class="score">
+                                            <p>チームバトルに</p>
+                                            <p>まだ参加していません</p>
+                                        </div>
+                                        <!--{/if}-->
+                                    </a>
+                                </li>
+                                <!--{/foreach}-->
+                            </ul>
+                            <!--{/if}-->
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="text-center">
+                    <a href="/play/team/battle/" class="btn btn-outline back-link">相手チーム選択へ</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--{include file="partial/modal/start_battle.html"}-->
+<!--{include file="partial/modal/confirm_battle.html"}-->
+<!--{include file="partial/modal/confirm_duplicate_member.html"}-->
+<!--{include file="partial/modal/confirm_battle_no_score.html"}-->
+
+<!--{content_for name="headjs"}-->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".confirmBattle").on("click", function() {
+            var group_name = $("#group-name-page").text();
+            var target_group_name = $(this).find(".target-group-name-page").text();
+            var target_group_id = $(this).find('span.id>span').text();
+
+            // Add value start battle
+            $("#group-name-modal").text(group_name);
+            $("#target-group-name-modal").text(target_group_name);
+            $("#link-to-room").attr('href', '/play/team/battle/opponent/'+ target_group_id);
+
+            // Check target group
+            $.ajax({
+                type: 'POST',
+                url: '/play/check_target_group',
+                data: {
+                    target_group_id: parseInt(target_group_id)
+                },
+                dataType: 'json'
+            }).done(function(res) {
+                if(res.success && (res.result.is_not_highScore == true || res.result.is_duplicated_member == true)) {
+                    if (res.result.is_not_highScore) {
+                        $("#ConfirmBattleNoScore").modal({
+                            show: true,
+                            backdrop: 'static'
+                        });
+                    } else if (res.result.is_duplicated_member) {
+                        $("#ConfirmDuplicateMember").modal({
+                            show: true,
+                            backdrop: 'static'
+                        });
+                    }
+                } else {
+                    // show modal
+                    $("#modalConfirmBattle" ).modal({
+                        show: true,
+                        backdrop: 'static'
+                    });
+                }
+            });
+
+            // Get current time use business time
+            $.ajax({
+                type: 'POST',
+                url: '/play/get_current_business_time',
+                data: {
+                },
+                dataType: 'json'
+            }).done(function(res) {
+                if(res.success) {
+                    $("#begin-time-battle").text(res.result);
+                }
+            });
+        });
+    });
+</script>
+<!--{/content_for}-->

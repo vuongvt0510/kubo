@@ -1,0 +1,83 @@
+<div class="play-page play-index-page">
+    <div class="bg-shining-yellow">
+        <div class="bg-inner">
+            <div class="container">
+                <div class="content-frame-designed-corner with-ribbon-title">
+                    <div class="frame-inner">
+                        <div class="layer"></div>
+                        <div class="head"></div>
+                        <div class="middle">
+                            <div class="rt-score-wrap">
+                                <p class="rt-score">
+                                    <span><!--{$result.score|escape|default:0}--></span>点
+                                </p>
+                                <ul class="rt-addmorescore">
+                                    <!--{if $current_user.primary_type == 'student' AND !$is_trial AND $from_quest == FALSE}-->
+                                    <!--<li>-->
+                                        <!--<div class="rt-ico rt-ico-point">ラビポイント</div>-->
+                                        <!--<div class="rt-point">-->
+                                            <!--+ <span class="ico-point">&lt;!&ndash;{$result.rabipoint_bonus|escape|default:'5'}&ndash;&gt;</span>-->
+                                        <!--</div>-->
+                                    <!--</li>-->
+                                    <li>
+                                        <div class="rt-ico rt-ico-carrot">パワー</div>
+                                        <div class="rt-point">+ 
+                                            <span class="ico-carrot"><!--{$result.power_bonus|abs|escape|default:'10'}--></span>
+                                        </div>
+                                    </li>
+                                    <!--{/if}-->
+                                </ul>
+                                <dl class="rt-board">
+                                    <dt>ドリルの成績</dt>
+                                    <dd>
+                                        <div class="rt-board-in">
+                                            <table class="table">
+                                                <tr>
+                                                    <td>
+                                                        正解
+                                                    </td>
+                                                    <td width="120">
+                                                        <span class="correct-number"><!--{$result.correct_number|escape|default:''}--></span>/<span class="question-total"><!--{$result.question_total|escape|default:''}-->問中</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        正解率
+                                                    </td>
+                                                    <td>
+                                                        <span class="correct-rate"><!--{$result.correct_rate|escape|default:''}-->%</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        スピード
+                                                    </td>
+                                                    <td>
+                                                        <span class="speed-second"><!--{$result.speed.second|escape|default:''}--></span>秒<span class="speed-milliSecond"><!--{$result.speed.milliSecond|escape|default:''}--></span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </dd>
+                                </dl>
+                            </div>
+                            <!--{if ($is_trial)}-->
+                            <div class="rt-button-group">
+                                <a href="/deck/<!--{$deck_id|escape|default:''}-->"class="btn btn-outline btn-yellow">ドリルのページに戻る</a>
+                            </div>
+                            <!--{else if $from_quest == TRUE}-->
+                            <a href="/play/quest_detail" class="btn btn-outline btn-yellow">クエスト詳細へ</a>
+                            <!--{else}-->
+                            <div class="rt-button-group">
+                                <a href="/play/training"class="btn btn-outline btn-yellow">もう一度プレイ</a>
+                                <a href="/play/select_drill" class="btn btn-outline btn-yellow">ドリルを選ぶ</a>
+                            </div>
+                            <!--{/if}-->
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

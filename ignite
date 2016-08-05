@@ -1,0 +1,581 @@
+#!env php
+<?php
+
+/**
+ * Class ServerCoreCommandLineTool
+ *
+ * Server core commandline Installer/Updater
+ *
+ * @author Yoshikazu Ozawa <ozawa@interest-marketing.net>
+ */
+
+class ServerCoreCommandLineTool
+{
+    /**
+     * @var object 引数パーサー
+     */
+    protected $parser = NULL;
+
+    /**
+     * @var string Install/Update branch default
+     */
+    protected $version = "master";
+
+    /**
+     * ServerCoreCommandLineTool constructor.
+     *
+     * @param array $params
+     * @throws Exception
+     */
+    public function __construct($params = array())
+    {
+        error_reporting(0);
+        try {
+            $result = include_once 'Console/CommandLine.php';
+            if (!$result) {
+                error_reporting(E_ALL);
+                throw new Exception('[Error] Please install pear Console_CommandLine.');
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return;
+        }
+
+        $this->parser = new Console_CommandLine(array(
+            'description' => 'server-core utility tool.',
+            'version'     => '1.0.0'
+        ));
+
+        $this->parser->addOption('verbose', array(
+            'short_name'  => '-v',
+            'long_name'   => '--verbose',
+            'action'      => 'StoreTrue',
+            'description' => 'turn on verbose output.'
+        ));
+
+        /** @var object $install */
+        $install = $this->parser->addCommand('install', array(
+            'description' => "install core, template, third_party modules."
+        ));
+
+        $install->addOption('branch', array(
+            'short_name'  => '-b',
+            'long_name'   => '--branch',
+            'optional' => TRUE,
+            'default' => !empty($this->version) ? $this->version : 'master',
+            'description' => 'install branch. (default: master)'
+        ));
+
+        /** @var object $update */
+        $update = $this->parser->addCommand('update', array(
+            'description' => "update core, third_party modules."
+        ));
+
+        $update->addOption('branch', array(
+            'short_name'  => '-b',
+            'long_name'   => '--branch',
+            'optional' => TRUE,
+            'default' => !empty($this->version) ? $this->version : 'master',
+            'description' => 'update branch. (default: master)'
+        ));
+    }
+
+    public function execute()
+    {
+        /** @var object $result */
+        $result = null;
+
+        try {
+            $result = $this->parser->parse();
+        } catch (Exception $e) {
+            $this->parser->displayError();
+        }
+
+        switch ($result->command_name) {
+        case 'install':
+            $this->install(
+                dirname(__FILE__),
+                $result->command->options['branch']
+            );
+            break;
+
+        case 'update':
+            $this->update(
+                dirname(__FILE__),
+                $result->command->options['branch']
+            );
+            break;
+
+        default:
+            $this->parser->displayError();
+            break;
+        }
+    }
+
+    public function install($path, $version)
+    {
+        $installer = new ServerCoreInstaller(array(
+            'path' => $path,
+            'version' => $version
+        ));
+        $installer->install();
+    }
+
+    public function update($path, $version)
+    {
+        $installer = new ServerCoreInstaller(array(
+            'path' => $path,
+            'version' => $version
+        ));
+        $installer->update();
+    }
+}
+
+/**
+ * サーバーコアインストーラ
+ *
+ * @author Yoshikazu Ozawa <ozawa@interest-marketing.net>
+ */
+class ServerCoreInstaller
+{
+    /**
+     * インストールバージョン
+     * @var string
+     */
+    protected $version = "master";
+
+    /**
+     * インストール先
+     * @var string
+     */
+    protected $path;
+
+    /**
+     * リポジトリ
+     * @var string
+     */
+    private $repository = "https://github.com/interest-marketing/server-core.git";
+
+    /**
+     * コピー内容
+     * @var array
+     */
+    private $updateFiles = array(
+        'system',
+        'shared',
+        'tools',
+        'ignite',
+        '.gitignore'
+    );
+
+    /**
+     * 初回インストールでインストール一覧
+     * @var string
+     */
+    private $installFiles = array(
+        'apps/sample_api',
+        'apps/auto_test',
+        'deploy'
+    );
+
+    /**
+     * アップデートしないファイル一覧
+     * @var string
+     */
+    private $ignoreUpdateFiles = array(
+        '^shared/config/.*$' => 'match',
+        '^apps/.*$' => 'match'
+    );
+
+    /**
+     * 削除しないファイル一覧
+     * @var string
+     */
+    private $ignoreRemoveFiles = array(
+        // @TODO 正規表現で特定の文字列にマッチしない指定方法があればそちらに変更する
+        '^tools/applications/controllers/.*$' => 'match',
+        '^shared/(config|third_party|views)/.*$' => 'match',
+        '^shared/config/hooks/.*$' => 'match',
+        '^shared/(core|controllers|models|helpers|libraries)/([^/]*/)*APP_.*$' => 'unmatch',
+        '^shared/libraries/(Error_notifier|Logger|Smarty)$' => 'match'
+    );
+
+    public function __construct($params = array())
+    {
+        $this->version = empty($params['version']) ? $this->version : $params['version'];
+        $this->path = empty($params['path']) ? NULL : $params['path'];
+
+        register_shutdown_function(function(){
+            $this->removeCheckoutFiles();
+        });
+    }
+
+    /**
+     * 標準入力からバージョンを取得
+     *
+     * @access public
+     * @return string
+     */
+    public function setVersionFromInput()
+    {
+        while (empty($input)) {
+            echo("\e[0;32mplease input install or update version:\e[0m ");
+            $input = fgets(STDIN, 4096);
+            $input = trim($input);
+        }
+
+        return $this->version = $input;
+    }
+
+    /**
+     * 標準入力からインストールパスを取得
+     *
+     * @access public
+     * @return string
+     */
+    public function setPathFromInput()
+    {
+        $input = null;
+        $default = dirname(__FILE__);
+
+        while (true) {
+            echo("please input install or update path (default: {$default}): ");
+            $input = fgets(STDIN, 4096);
+            $input = trim($input);
+
+            if (empty($input)) {
+                $input = $default;
+            }
+
+            if (is_dir($input)) {
+                echo "directory ({$input}) is not exists.\n";
+                continue;
+            }
+
+            break;
+        }
+
+        return $this->path = $input;
+    }
+
+    /**
+     * インストール処理
+     *
+     * @access public
+     * @return bool
+     */
+    public function install()
+    {
+        if (empty($this->path)) {
+            $this->setPathFromInput();
+        }
+
+        if ($this->isUpdate()) {
+            echo "core is already installed on {$this->path}.\n";
+            return FALSE;
+        }
+
+        if (empty($this->version)) {
+            $this->setVersionFromInput();
+        }
+
+        $this->checkoutFiles();
+        $this->copy($this->installFiles);
+        $this->copy($this->updateFiles);
+
+        return TRUE;
+    }
+
+    /**
+     * アップデート処理
+     *
+     * @access public
+     * @return bool
+     */
+    public function update()
+    {
+        if (empty($this->path)) {
+            $this->setPathFromInput();
+        }
+
+        if (!$this->isUpdate()) {
+            echo "core is not installed on {$this->path}.";
+            return FALSE;
+        }
+
+        if (empty($this->version)) {
+            $this->setVersionFromInput();
+        }
+
+        $this->checkoutFiles();
+        $this->copy($this->updateFiles);
+        $this->remove($this->updateFiles);
+
+        return TRUE;
+    }
+
+    /**
+     * アップデート処理をするべきかどうか
+     *
+     * @access public
+     * @return bool
+     */
+    public function isUpdate()
+    {
+        if (is_dir($this->path . "/system")) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    /**
+     * リポジトリのパスを返す
+     *
+     * @access protected
+     * @return string
+     */
+    protected function clonePath()
+    {
+        if (empty($this->path)) {
+            return NULL;
+        }
+
+        return $this->path . "/.server-core";
+    }
+
+    /**
+     * リポジトリからチェックアウト
+     *
+     * @access protected
+     *
+     * @return bool
+     */
+    protected function checkoutFiles()
+    {
+        exec("git clone {$this->repository} {$this->clonePath()}", $output, $return); 
+        if ($return != 0) {
+            RuntimeException('git command is failed.');
+        }
+
+        if (FALSE === chdir($this->clonePath())) {
+            RuntimeException('chdir command is failed.');
+        }
+
+        exec("git checkout {$this->version}", $output, $return);
+        if ($return != 0) {
+            RuntimeException('git command is failed.');
+        }
+
+        if (FALSE === chdir($this->path)) {
+            RuntimeException('chdir command is failed.');
+        }
+    }
+
+    /**
+     * リポジトリを削除
+     *
+     * @access protected
+     * @return bool
+     */
+    protected function removeCheckoutFiles()
+    {
+        $path = $this->clonePath();
+        if (!empty($path)) {
+            system("rm -rf {$this->clonePath()}");
+        }
+    }
+
+    /**
+     * リポジトリからコピー
+     *
+     * @access protected
+     * @param array $files
+     *
+     * @return bool
+     */
+    protected function copy($files)
+    {
+        foreach ($files as $file) {
+            if (FALSE === $this->copyFromRepository($file)) {
+                return FALSE;
+            }
+        }
+
+        return TRUE;
+    }
+
+    /**
+     * リポジトリに存在しないファイルを削除
+     *
+     * @access protected
+     * @param array $files
+     *
+     * @return bool
+     */
+    protected function remove($files)
+    {
+        foreach ($files as $file) {
+            if (FALSE === $this->removeFromProject($file)) {
+                return FALSE;
+            }
+        }
+
+        return TRUE;
+    }
+
+    /**
+     * リポジトリから指定されたファイルをコピー
+     *
+     * @access private
+     * @param string $file
+     * @return bool
+     */
+    private function copyFromRepository($file)
+    {
+        $src = $this->clonePath() . "/" . $file;
+        $dest = $this->path . "/" . $file;
+
+        if (!file_exists($src)) {
+            return FALSE;
+        }
+
+        if (is_dir($src)) {
+            $files = scandir($src);
+            $files = array_filter($files, function ($f) {
+                return !in_array($f, array('.', '..'));
+            });
+
+            foreach ($files as $f) {
+                if (FALSE === $this->copyFromRepository($file . "/" . $f)) {
+                    return FALSE;
+                }
+            }
+            return TRUE;
+        }
+
+        if (file_exists($dest)) {
+
+            exec("diff {$src} {$dest}", $output, $return);
+            if ($return != 0 && $return != 1) {
+                RuntimeException('diff command is failed.');
+            }
+
+            if (count($output) <= 0) {
+                return TRUE;
+            }
+
+            if ($this->isIgnoreFile($this->ignoreUpdateFiles, $file)) {
+                echo "skip updating {$file}\n";
+                return TRUE;
+            }
+
+            echo "updating {$file}\n";
+            if (FALSE === copy($src, $dest)) {
+                return FALSE;
+            }
+
+            return TRUE;
+
+        } else {
+
+            echo "installing {$file}\n";
+
+            if (!file_exists(dirname($dest))) {
+                if (FALSE === mkdir(dirname($dest), 0755, TRUE)) {
+                    return FALSE;
+                }
+            } else if (is_file(dirname($dest))) {
+                return FALSE;
+            }
+
+            if (FALSE === copy($src, $dest)) {
+                return FALSE;
+            }
+            
+            return TRUE;
+        }
+    }
+
+    /**
+     * リポジトリに存在しないファイルを削除
+     *
+     * @access private
+     * @param string $file
+     * @return bool
+     */
+    private function removeFromProject($file)
+    {
+        $src = $this->clonePath() . "/" . $file;
+        $dest = $this->path . "/" . $file;
+
+        if (!file_exists($src)) {
+            return TRUE;
+        }
+
+        // 通常ファイルは無視する
+        if (is_file(dirname($dest))) {
+            return TRUE;
+        }
+
+        // それぞれのディレクトリを走査して差分を抽出する
+        $srcFiles = scandir($src);
+        $srcFiles = array_filter($srcFiles, function ($f) {
+            return !in_array($f, array('.', '..'));
+        });
+
+        $destFiles = scandir($dest);
+        $destFiles = array_filter($destFiles, function ($f) {
+            return !in_array($f, array('.', '..'));
+        });
+
+        $deletingFiles = array_diff($destFiles, $srcFiles);
+
+        foreach ($deletingFiles as $f) {
+            if ($this->isIgnoreFile($this->ignoreRemoveFiles, $file . "/" . $f)) {
+                // echo "skip deleting {$file}/{$f}\n";
+                continue;
+            }
+
+            echo "deleting {$file}/{$f}\n";
+            unlink("{$dest}/{$f}");
+        }
+
+        foreach ($srcFiles as $f) {
+            if (is_dir($src . "/" . $f)) {
+                $this->removeFromProject($file . "/" . $f);
+            }
+        }
+    }
+
+    /**
+     * 指定されたファイルが無効かどうか
+     *
+     * @access private
+     * @param array $ignoreFiles
+     * @param string $file
+     *
+     * @return bool
+     */
+    private function isIgnoreFile($ignoreFiles, $file)
+    {
+        foreach ($ignoreFiles as $regex => $check) {
+            $result = preg_match('#' . $regex . '#', $file);
+
+            if ($check == 'match') {
+                $result = !!$result;
+            } else {
+                $result = !$result;
+            }
+
+            if ($result) {
+                return TRUE;
+            }
+        }
+
+        return FALSE;
+    }
+}
+
+(new ServerCoreCommandLineTool())->execute();
+

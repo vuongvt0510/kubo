@@ -1,0 +1,48 @@
+<!--{content_for name="page_styles"}-->
+<link href="/assets/pages/css/login.min.css" rel="stylesheet" type="text/css"/>
+<!--{/content_for}-->
+
+<div class="menu-toggler sidebar-toggler"></div>
+<!-- END SIDEBAR TOGGLER BUTTON -->
+<!-- BEGIN LOGO -->
+<div class="logo">
+    <a href="index.html">
+        <img src="/assets/pages/img/logo-big.png" alt=""/> </a>
+</div>
+<!-- END LOGO -->
+<!-- BEGIN LOGIN -->
+
+<div class="content">
+    <!-- BEGIN LOGIN FORM -->
+    <form class="login-form" method="post">
+        <h3 class="form-title font-green">ログイン</h3>
+
+        <!--{if isset($errmsg) }-->
+        <p style="color:red;"><!--{$errmsg|escape}--></p>
+        <!--{else}-->
+        </p>ログイン情報を入力してください</p>
+        <!--{/if}-->
+
+        <div class="alert alert-danger display-hide">
+            <button class="close" data-close="alert"></button>
+            <span> ログイン情報を入力してください </span>
+        </div>
+        <div class="form-group">
+            <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+            <label class="control-label visible-ie8 visible-ie9">ID</label>
+            <input value="<!--{$post.id|escape|default:''}-->" class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off"
+                   placeholder="ID" name="id"/></div>
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">Password</label>
+            <input value="<!--{$post.password|escape|default:''}-->" class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off"
+                   placeholder="Password" name="password"/></div>
+        <div class="form-group">
+            <label class="check">
+                <input type="checkbox" name="remember" value="1"/>ログイン情報を保存</label>
+        </div>
+        <div class="form-actions text-center">
+            <button type="submit" class="btn green uppercase">ログイン</button>
+        </div>
+    </form>
+    <!-- END LOGIN FORM -->
+</div>

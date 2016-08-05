@@ -1,0 +1,109 @@
+<!--{if $device_type == 'SP'}-->
+<div class="video-boxes visible-xs">
+    <!--{foreach from=$chapters key=k item=item}-->
+
+    <!--{if isset($item.video)}-->
+    <!--{assign var=video value=$item.video}-->
+    <!--{/if}-->
+    <!--{if isset($videos[$item.deck_id]) && isset($item.deck_id)}-->
+    <!--{assign var=video value=$videos[$item.deck_id]}-->
+    <!--{/if}-->
+
+    <!--{if isset($subject_is_mixed)}-->
+    <!--{assign var=item value=$item.chapter}-->
+    <!--{/if}-->
+
+    <!--{if !empty($video.brightcove_id)}--><!--{* hide the videos which hasn't been connected to brightcove yet *}-->
+    <div class="item bottom-subject col-xs-6 <!--{if ($k>3)}-->hidden<!--{/if}-->">
+        <div class="item-wrapper">
+            <div class="thumbnail-wrapper">
+                <a class="<!--{if empty($current_user)}-->x-limit-playing-video<!--{/if}-->" href="/v/<!--{$item.id}-->">
+                    <img src="<!--{$video.thumbnail_url|default:'/images/video-no-image.png'}-->" alt="" class="thumbnail img-responsive">
+                </a>
+                <div class="subject bg-<!--{if !empty($subject_color)}--><!--{$subject_color}--><!--{else}--><!--{$item.subject_color|default:''}--><!--{/if}--> <!--{if isset($list_in_progress)}-->with-progress<!--{/if}-->">
+                    <!--{if !empty($subject_name)}-->
+                    <!--{$subject_name}-->
+                    <!--{else}-->
+                    <!--{$item.subject_short_name|default:''}-->
+                    <!--{/if}-->
+                </div>
+                <!--{if isset($list_in_progress)}-->
+                    <!--{if isset($videos_status[$video.id])}-->
+                    <!--{if $videos_status[$video.id].duration == 0 }-->
+                        <!--{assign var=percent_done value=0}-->
+                    <!--{else}-->
+                        <!--{assign var=percent_done value=($videos_status[$video.id].second / $videos_status[$video.id].duration ) * 100}-->
+                    <!--{/if}-->
+                        <div class="progress-wrapper">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="<!--{$percent_done|default:0}-->" aria-valuemin="0" aria-valuemax="100" style="width: <!--{$percent_done|default:0}-->%">
+                                </div>
+                            </div>
+                        </div>
+                    <!--{/if}-->
+                <!--{/if}-->
+            </div>
+            <div class="small-title c-<!--{if !empty($subject_color)}--><!--{$subject_color}--><!--{else}--><!--{$item.subject_color|default:''}--><!--{/if}-->"><!--{$item.chapter_name}--></div>
+            <div class="title x-ellipsis bold"><!--{$item.name|strip}--></div>
+        </div>
+    </div>
+    <!--{/if}-->
+
+    <!--{/foreach}-->
+    <div class="button-box">
+        <button type="button" class="show-more-slide btn btn-block"><i class="el-icons el-angle-down"></i></button>
+    </div>
+</div>
+
+<!--{else}-->
+<div class="video-boxes x-owl-slider owl-carousel hidden-xs">
+    <!--{foreach from=$chapters item=item}-->
+    <!--{if isset($item.video)}-->
+        <!--{assign var=video value=$item.video}-->
+    <!--{/if}-->
+    <!--{if isset($videos) && isset($item.deck_id)}-->
+        <!--{assign var=video value=$videos[$item.deck_id]}-->
+    <!--{/if}-->
+
+    <!--{if isset($subject_is_mixed)}-->
+    <!--{assign var=item value=$item.chapter}-->
+    <!--{/if}-->
+
+    <!--{if !empty($video.brightcove_id)}--><!--{* hide the videos which hasn't been connected to brightcove yet *}-->
+    <div class="item bottom-subject">
+        <div class="item-wrapper">
+            <div class="thumbnail-wrapper">
+                <a class="<!--{if empty($current_user)}-->x-limit-playing-video<!--{/if}-->" href="/v/<!--{$item.id}-->">
+                    <img src="<!--{$video.thumbnail_url}-->" alt="" class="thumbnail img-responsive">
+                </a>
+                <div class="subject bg-<!--{if !empty($subject_color)}--><!--{$subject_color}--><!--{else}--><!--{$item.subject_color|default:''}--><!--{/if}--> <!--{if isset($list_in_progress)}-->with-progress<!--{/if}-->">
+                    <!--{if !empty($subject_name)}-->
+                        <!--{$subject_name}-->
+                    <!--{else}-->
+                        <!--{$item.subject_short_name|default:''}-->
+                    <!--{/if}-->
+                </div>
+                <!--{if isset($list_in_progress)}-->
+                    <!--{if isset($videos_status[$video.id])}-->
+                    <!--{if $videos_status[$video.id].duration == 0 }-->
+                        <!--{assign var=percent_done value=0}-->
+                    <!--{else}-->
+                        <!--{assign var=percent_done value=($videos_status[$video.id].second / $videos_status[$video.id].duration ) * 100}-->
+                    <!--{/if}-->
+                        <div class="progress-wrapper">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="<!--{$percent_done|default:0}-->" aria-valuemin="0" aria-valuemax="100" style="width: <!--{$percent_done|default:0}-->%">
+                                </div>
+                            </div>
+                        </div>
+                    <!--{/if}-->
+                <!--{/if}-->
+            </div>
+            <div class="small-title c-<!--{if !empty($subject_color)}--><!--{$subject_color}--><!--{else}--><!--{$item.subject_color|default:''}--><!--{/if}-->"><!--{$item.chapter_name}--></div>
+            <div class="title x-ellipsis bold"><!--{$item.name|strip}--></div>
+        </div>
+    </div>
+    <!--{/if}-->
+    <!--{/foreach}-->
+</div>
+<!--{/if}-->

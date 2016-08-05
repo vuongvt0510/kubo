@@ -1,0 +1,103 @@
+.label-status {
+  display: inline-block;
+  width: 130px;
+  height: 32px;
+  color: #2c3941;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  padding: 4px 0;
+  background: #fff;
+  border: 2px solid #898e91;
+  border-radius: 4px;
+
+  &.in-progress {
+    color: #3d8093;
+    background: #ffd7d7;
+    border-color: #feb8ba;
+
+    img {
+      margin-top: -4px;
+
+      @media (max-width: $screen-xs-max) {
+        margin-top: -3px;
+        width: 10px;
+      }
+    }
+  }
+
+  &.done {
+    color: #3e7f91;
+    background: #fffc3b;
+    border-color: #e2e035;
+  }
+
+  @media (max-width: $screen-xs-max) {
+    font-size: 11px;
+    width: 80px;
+    height: 25px;
+    padding: 2px 0;
+  }
+}
+
+
+
+
+.label-subject {
+  color: $c-white;
+  font-size: 18px;
+  padding-top: 9px;
+  padding-bottom: 10px;
+  line-height: 26px;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 4px;
+  background-color: $c-white;
+  border: 3px solid $c-gray;
+
+  @media (max-width: $screen-xs-max) {
+    width: 100px;
+    white-space: normal;
+    font-size: 16px;
+    padding: 6px 10px;
+    margin: 0 auto;
+  }
+
+  &.label-orange {
+    background-color: #ff8a23;
+    border-color: #ff8a23;
+  }
+  &.label-yellow {
+    background-color: #f5c000;
+    border-color: #f5c000;
+  }
+  //&.label-violet {
+  //  background-color: #82a3ea;
+  //  border-color: #82a3ea;
+  //}
+  &.label-blue {
+    background-color: #82a3ea;
+    border-color: #82a3ea;
+  }
+  &.label-light-pink {
+    background-color: #fe7e7d;
+    border-color: #fe7e7d;
+  }
+  &.label-brown {
+    background-color: #d9a84c;
+    border-color: #d9a84c;
+  }
+  &.label-light-blue {
+    background-color: #3be0fe;
+    border-color: #3be0fe;
+  }
+  &.label-green {
+    background-color: #2de8a1;
+    border-color: #2de8a1;
+  }
+
+  //&.label-light-green {
+  //  background-color: $c-light-green;
+  //  border-color: $c-light-green;
+  //}
+}

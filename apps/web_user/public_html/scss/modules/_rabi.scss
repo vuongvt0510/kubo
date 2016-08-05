@@ -1,0 +1,125 @@
+// this will be used also in MC70 (not exist in WF)
+
+.rabi-balloon-wrapper {
+  height: 240px;
+  overflow: hidden;
+
+  @media (max-width: $screen-xs-max) {
+    height: auto;
+    overflow: visible;
+  }
+
+  .rabi-balloon {
+    position: relative;
+    @include clearfix;
+
+    .rabi {
+      position: absolute;
+      left: 90px;
+      top: 40px;
+      width: 206px;
+      height: 298px;
+      background: url("../images/rabi-balloon/rabi.png") left top no-repeat;
+      background-size: 100% auto;
+
+      @media (max-width: 1279px) {
+        left: 40px;
+      }
+      @media (max-width: $screen-md-max) {
+        left: -50px;
+      }
+      @media (max-width: $screen-xs-max) {
+        width: 90px;
+        height: 85px;
+        top: auto;
+        bottom: -20px;
+        left: -10px;
+      }
+    }
+    .balloon {
+      float: right;
+      width: 762px;
+      height: 415px;
+      background: url("../images/rabi-balloon/balloon.png") left top no-repeat;
+      background-size: 100% auto;
+      padding: 115px 110px 100px 100px;
+      margin-top: -80px;
+
+      @media (max-width: $screen-sm-max) {
+        float: right;
+        width: 620px;
+        height: 335px;
+        padding: 75px 90px 100px 100px;
+        margin-top: -50px;
+        margin-right: -40px;
+      }
+      @media (max-width: $screen-xs-max) {
+        width: 100%;
+        height: auto;
+        margin: 15px 0px 30px;
+        padding: 10px 10px 30px;
+        background-image: none;
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 3px;
+      }
+    }
+    .title {
+      color: #60c1d4;
+      font-size: 34px;
+      font-weight: bold;
+      margin: 0 0 20px;
+
+      @media (max-width: $screen-xs-max) {
+        font-size: 22px;
+        margin: 0 0 10px
+      }
+    }
+    p {
+      color: #2d3940;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+
+      @media (max-width: $screen-xs-max) {
+        font-size: 13px;
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+
+  // SA10 Login
+  &.higher {
+    @media (min-width: 768px) {
+      height: 320px;
+    }
+
+    .rabi-balloon {
+      .balloon {
+        @media (min-width: $screen-md) {
+          padding: 80px 110px 100px 100px;
+          margin-top: -50px;
+        }
+
+        @media (min-width: 768px) and (max-width: $screen-sm-max) {
+          padding: 60px 110px 100px 100px;
+          margin-top: -20px;
+          width: 710px;
+          margin-right: -100px;
+        }
+      }
+      .rabi {
+        @media (min-width: $screen-md) and (max-width: $screen-md-max) {
+          left: -10px;
+        }
+      }
+    }
+  }
+  .btn {
+    width: 280px;
+
+    @media (max-width: $screen-xs-max) {
+      width: 100%;
+    }
+  }
+}

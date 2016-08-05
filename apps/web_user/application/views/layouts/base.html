@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!--{include file='layouts/html_head.html'}-->
+<!--{content_yield name='headcss'}-->
+</head>
+<body class="<!--{if !empty($show_modal_lead_to_register)}-->show-modal-lead-to-register<!--{/if}-->">
+<div class="el-wrapper">
+    <!--{include file="layouts/header.html"}-->
+    <main class="main-contents">
+        <!--{content_yield name='main'}-->
+    </main>
+    <!--{include file="layouts/footer.html"}-->
+
+    <!--{* show modal first time come without login *}-->
+    <!--{if $flag_modal_grade === TRUE}-->
+        <!--{include file='partial/modal/grade.html'}-->
+    <!--{/if}-->
+
+    <!--{if !empty($current_user) && empty($current_user.nickname)}-->
+    <!--{include file='partial/modal/nickname.html'}-->
+    <!--{/if}-->
+
+    <!--{if empty($current_user)}-->
+    <!--{include file="partial/modal/lead_to_register.html"}-->
+    <!--{/if}-->
+
+    <!--{content_yield name='modal'}-->
+</div>
+<!--{include file='layouts/scripts.html'}-->
+<!--{content_yield name='headjs'}-->
+
+<script type="text/javascript">
+    var __GTM_User = {
+        id: <!--{$current_user.id|default:"null"}-->,
+        primary_type: '<!--{$current_user.primary_type|default:""}-->',
+        school: '<!--{$current_user.school.name|default:""}-->',
+        grade: '<!--{if !empty($current_user.current_student_grade.name)}--><!--{$current_user.current_student_grade.name|default:""}--><!--{else}--><!--{$current_grade.name|escape|default:""}--><!--{/if}-->'
+    };
+</script>
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-57WV6F"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-57WV6F');</script>
+<!-- End Google Tag Manager -->
+
+
+<!--{content_yield name='google_tag'}-->
+</body>
+</html>

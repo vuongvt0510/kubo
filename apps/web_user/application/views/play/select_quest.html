@@ -1,0 +1,62 @@
+<div class="play-page select-request">
+    <div class="bg-shining-yellow">
+        <div class="bg-inner">
+
+            <div class="container">
+                <div class="content-frame-designed-corner">
+                    <div class="frame-inner">
+                        <div class="head"></div>
+                        <div class="middle">
+
+                            <p class="frame-title mgbt10">クエストを選ぼう</p>
+
+                            <div class="team-detail text-center">
+                                <div class="team-detail-inner">
+                                    <p class="txt1">プレイするチ〡ム</p>
+                                    <p class="txt2">チ〡ム名チ〡ム名<!--{$group_name|escape|default:''}--></p>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <!--{include file="partial/deck_list_line.html" decks=$deck}-->
+                            <!--{include file="partial/stage_list.html" stages=$stage}-->
+
+                            <hr>
+                            <div class="list-question-btn">
+                                <ul class="list-unstyled">
+                                    <!--{foreach from=$quests key=key item=quest}-->
+                                    <li>
+                                        <!--{if !empty($quest.status)}-->
+                                        <a href="/play/select_quest/<!--{$quest.round_id|default:''}-->" class="enable .title-gray-bg">
+                                            クエスト<!--{$quest.order|escape|default:''}--> <br>
+                                            <!--{if $quest.status == 'progress'}-->
+                                            <span class="progress">チャレンジ中のマーク</span>
+                                            <!--{/if}-->
+                                            <!--{if $quest.status == 'failed'}-->
+                                            <span class="failed">クエスト失敗のマーク</span>
+                                            <!--{/if}-->
+                                            <!--{if $quest.status == 'success'}-->
+                                            <span class="clear">クリアのマーク</span>
+                                            <!--{/if}-->
+                                        </a>
+                                        <!--{else}-->
+                                        <div href="#" class="disible">クエスト<!--{$quest.order|escape|default:''}--></div>
+                                        <!--{/if}-->
+                                    </li>
+                                    <!--{/foreach}-->
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="text-center">
+                    <a href="/play/select_stage" class="btn btn-outline back-link">戻￼ステ〡ジ選択へ戻る</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

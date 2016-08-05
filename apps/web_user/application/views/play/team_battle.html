@@ -1,0 +1,50 @@
+<div class="play-page play-match-page battle-page">
+    <div class="bg-shining-yellow">
+        <div class="bg-inner" id="drill-screen">
+
+            <div class="container">
+                <div class="content-frame-designed-corner with-ribbon-title">
+                    <div class="frame-inner">
+                        <div class="layer"></div>
+                        <div class="head"></div>
+                        <div class="middle">
+                            <h1 class="ribbon-img-title">チームバトル</h1>
+                            <p class="frame-title">チームで協力してバトルに勝利せよ!</p>
+                            <div class="text-center">
+                                <a href="/play/team/battle/history" class="btn btn-yellow btn-lg">チーム総合ランキング</a>
+                            </div>
+                            <p class="frame-title bg-frame">バトル中</p>
+                            <!--{foreach from=$rooms.items key=key item=room name=i}-->
+                            <div class="list-team-battle">
+                                <span class="txt-vs">VS</span>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <p class="team-title"><!--{$room.group_name|escape|default:"チーム名チーム名"}--></p>
+                                        <p class="team-scort"><!--{$room.group_score|escape|default:""}--> <span class="arow">点</span></p>
+                                    </li>
+                                    <li>
+                                        <p class="team-title"><!--{$room.target_group_name|escape|default:"チーム名チーム名"}--></p>
+                                        <p class="team-scort"><!--{$room.target_group_score|escape|default:""}--> <span class="arow">点</span></p>
+                                    </li>
+                                </ul>
+                                <p class="battle-txt text-center">バトル終了時間 <!--{$room.created_at|escape|default:""}--></p>
+                                <div class="text-center">
+                                    <a href="/play/team/battle/room/<!--{$room.id|escape|default:''}-->" class="btn btn-yellow btn-lg">チーム総合ランキング</a>
+                                </div>
+                            </div>
+                            <!--{/foreach}-->
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="text-center">
+                    <a href="/play/team/battle/my_team" class="btn btn-outline back-link">チームを選択してバトル</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

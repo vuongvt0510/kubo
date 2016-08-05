@@ -1,0 +1,78 @@
+<div class="bg-triangle">
+    <div class="container">
+        <div class="page-title">
+            <p class="h1">郵便番号から学校名を検索</p>
+            <p class="caption">お住まいの住所の郵便番号を入力してください</p>
+        </div>
+
+        <div class="main-content">
+            <div class="content-frame">
+                <form class="form-horizontal" method="post">
+                    <!--{if isset($chosen_school.name)}-->
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label text-left">選択中の学校</label>
+                        <div class="col-sm-8">
+                            <div class="current-value">
+                                <!--{$chosen_school.name|escape}-->
+                                <!--{if isset($chosen_school.address)}--><br><span class="small"><!--{$chosen_school.address|escape}--></span><!--{/if}-->
+                            </div>
+                        </div>
+                    </div>
+                    <!--{/if}-->
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label text-left">
+                            郵便番号 <span class="c-green">【必須】</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <input value="<!--{$post.postal_code|escape|default:''}-->" type="text" name="postal_code" class="form-control" placeholder="0000000">
+                            <span class="small">
+                                入力すると学校名の候補が表示されます<br>
+                                ハイフン 「–」 を入れずに入力してください<br>
+                                学校名が見つからない場合は<a href="/school/search/keyword/<!--{$user_id|escape|default:''}-->">都道府県検索</a>もお試しください
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <a href="/setting" class="btn btn-gray btn-block">戻る</a>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-green btn-block">検索</button>
+                        </div>
+                    </div>
+                </form>
+                <!--{if isset($list_schools)}-->
+                <form class="form-horizontal" method="post">
+                    <div class="result-box">
+                        <!--{foreach $list_schools as $key => $item}-->
+                        <div class="form-group">
+                            <div class="radio radio-primary">
+                                <label>
+                                    <input <!--{if $key == 0}-->checked<!--{/if}--> type="radio" name="school_id" id="optionsRadios1" value="<!--{$item.id|escape|default:''}-->">
+                                    <b><!--{$item.name|escape|default:''}--></b>
+
+                                    <p class="small"><!--{$item.address|escape|default:''}--></p>
+                                </label>
+                            </div>
+                        </div>
+                        <!--{foreachelse}-->
+                            <!--{include file="partial/no_item.html" message="お探しの学校名が見つかりませんでした<br>入力内容をお確かめください<br><br><small>学校名が見つからない場合は<a href='/school/search/keyword/$user_id'>都道府県・学校名検索</a>もお試しください</small>"}-->
+                        <!--{/foreach}-->
+                    </div>
+                    <!--{if !empty($list_schools)}-->
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <a href="/school/search/<!--{$user_id|escape|default:''}-->" class="btn btn-gray btn-block">戻る</a>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-green btn-block">この学校に決定</button>
+                        </div>
+                    </div>
+                    <!--{/if}-->
+                </form>
+            </div>
+            <!--{/if}-->
+        </div>
+    </div>
+</div>

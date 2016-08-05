@@ -1,0 +1,21 @@
+<div class="bg-triangle news-detail-page">
+    <div class="container">
+        <div class="page-title">
+            <p class="h1">お知らせ一覧</p>
+        </div>
+        <div class="main-content">
+            <div class="content-frame">
+                <div class="news-title">
+                    <p class="h2"><!--{$news.title|escape}--></p>
+                    <p class="date-time"><!--{date('Y年m月d日',strtotime($news.started_at))|escape}--></p>
+                </div>
+                <div class="news-content">
+                    <!--{htmlspecialchars_decode($news.content)|default:''}-->
+                </div>
+                <div class="text-center">
+                    <a href="/news" class="btn btn-outline">ニュース一覧に戻る</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,192 @@
+<!--{if isset($errmsg)}-->
+<div class="notification complete-action" style="background: red;">
+    <div class="container">
+        <div class="notification-text">
+            <label class="col-sm-5 control-label text-center" style="color: #fff; font-size: 18px; margin: 16px 0 16px 0"><!--{$errmsg|escape}--></label>
+        </div>
+    </div>
+</div>
+<!--{/if}-->
+<div class="deck-page">
+    <div class="container">
+        <div class="deck-info">
+            <div class="cell thumb-cell">
+                <div class="thumb">
+                    <img src="<!--{image_link key=$deck.image_key|escape|default:''}-->" class="img-responsive" alt=""><!--{* TODO: Assign deck image *}-->
+                </div>
+            </div>
+            <div class="text-area cell">
+                <div class="clearfix">
+                    <div class="subject-thumb pull-left"> <!--{* TODO: after merge *}-->
+                        <div class="hexagon-img">
+                            <img src="/images/panel/<!--{$deck.subject.type|escape|default:''}-->.png" alt="">
+                        </div>
+                    </div>
+                    <div class="deck-title clearfix">
+                        <h1 class="name"><!--{$deck.name|escape|default:''}--></h1>
+                        <span class="category">カテゴリ</span>
+                        <span class="subject"><!--{$deck.subject.short_name|escape|default:''}--></span>
+                        <!--{* TODO: if other publisher add, this should be variable (modify schema) *}-->
+                        <img class="publisher-logo pull-right" src="/images/publisher/obunsha.png">
+                    </div>
+                </div>
+
+                <!--{if $device_type != 'SP'}-->
+                <div class="btn-area clearfix">
+                    <!--{include file="deck/partial/button.html"}-->
+                    <a href="#modalShare" data-toggle="modal" class=" btn btn-green">
+                        シェア
+                    </a>
+                </div>
+
+                <!--{/if}-->
+            </div>
+        </div>
+
+        <!--{if $device_type == 'SP'}-->
+        <div class="btn-area clearfix">
+            <!--{include file="deck/partial/button.html"}-->
+            <a href="#modalShare" data-toggle="modal" class="btn btn-green">
+                シェア
+            </a>
+        </div>
+        <!--{/if}-->
+    </div>
+    <!--{include file="partial/modal/share_deck.html" deck_id=$deck.id|escape|default:''}-->
+    <div class="bg-triangle description-section">
+        <div class="container">
+
+            <div class="panel panel-light-blue-linear-gradient">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <div class="panel-image">
+                            <div class="hexagon-img">
+                                <img src="/images/panel/drill.png" alt="">
+                            </div>
+                        </div>
+                        ドリル詳細
+                    </div>
+                </div>
+            </div>
+
+            <p class="deck-description"><!--{$deck.description|nl2br|default:''}--></p>
+
+            <!--{*deck screenshot like app store*}-->
+            <div class="deck-screenshots-wrapper">
+                <ul class="deck-screenshots list-unstyled slick-slider owl-theme">
+                    <!--{if !empty($deck.deck_captures)}-->
+                    <!--{foreach from=$deck.deck_captures key=key item=image}-->
+                    <li class="item">
+                        <div class="item-inner">
+                            <img src="<!--{image_link key=$image|escape|default:''}-->" alt="" width="220" height="154">
+                        </div>
+                    </li>
+                    <!--{/foreach}-->
+                    <!--{/if}-->
+                </ul>
+                <div class="owl-controls clickable">
+                    <div class="owl-buttons">
+                        <div class="owl-prev"><i class="el-icons el-angle-left"></i></div>
+                        <div class="owl-next"><i class="el-icons el-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--{if !empty($categories) || !empty($subjects)}-->
+    <div class="bg-triangle-blue search-items-by">
+        <div class="container">
+            <!--{if !empty($categories)}-->
+            <div class="search-group">
+                <i class="el-icons el-book"></i>
+                <p class="h3">同じシリーズのその他のドリル</p>
+                <h3 class="title-yellow-bg text-left"><!--{$deck.category.title|escape|default:''}--></h3>
+                <!--{include file="partial/deck_list.html" decks=$categories href="deck/"}-->
+            </div>
+            <!--{/if}-->
+
+            <!--{if !empty($subjects)}-->
+            <div class="search-group">
+                <i class="el-icons el-book"></i>
+                <p class="h3"><!--{$deck.subject.short_name|escape}-->のその他のドリル</p>
+
+                <!--{foreach $subjects as $subject}-->
+                <h3 class="title-yellow-bg text-left"><!--{$subject.category.title|escape}--></h3>
+                <!--{include file="partial/deck_list.html" decks=$subject.decks href="deck/"}-->
+                <!--{/foreach}-->
+            </div>
+            <!--{/if}-->
+        </div>
+    </div>
+    <!--{/if}-->
+</div>
+
+<!--{content_for name="headjs"}-->
+<!--{if !empty($deck)}-->
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#modalGetting-deck').on('click', function() {
+            $.ajax({
+                type: 'POST',
+                url: '/deck/buying',
+                data: {
+                    'deck_id': <!--{$deck.id|escape|default:''}-->
+                },
+                dataType: 'json'
+            }).done(function(res) {
+                if(res.result.submit) {
+                    window.location.href = "/deck/<!--{$deck.id|escape|default:''}-->";
+                } else {
+                    $("#modalCantGetDeck").modal('show');
+                }
+            });
+
+        });
+
+        $('.slick-slider').slick({
+            slidesToShow: 4,
+            arrows: true,
+            prevArrow: $('.owl-prev'),
+            nextArrow: $('.owl-next'),
+            responsive: [
+                {
+                    breakpoint: 1025,
+                    settings: {
+                        infinite: true,
+                        slidesToShow: 1,
+                        focusOnSelect: true,
+                        arrows: false,
+                        prevArrow: false,
+                        nextArrow: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 3,
+                    }
+                },
+                {
+                    breakpoint: 769,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 2,
+                    }
+                },
+                {
+                    breakpoint: 640,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+    });
+</script>
+
+<!--{/if}-->
+<!--{/content_for}-->

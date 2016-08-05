@@ -1,0 +1,473 @@
+#header {
+  position: relative;
+  z-index: 1000;
+
+  .container-main {
+    height: 105px;
+    background-color: $c-primary;
+    //padding-top: 20px;
+    //padding-bottom: 20px;
+    @include box-shadow(2px 4px 7px 0 rgba(0, 0, 0, 0.4));
+  }
+  .logo {
+    margin-bottom: -15px;
+    float: left;
+    position: absolute;
+    top: 0;
+    background-color: #ffffff;
+    padding: 30px 20px 33px;
+    border: 3px solid $c-primary;
+    border-top-width: 0;
+    border-bottom-width: 7px;
+    @include border-top-radius(0px);
+    @include border-bottom-radius(9px);
+    @include box-shadow(0 1px 0 0 rgba(0, 0, 0, 0.3));
+  }
+  .menu-head {
+    width: auto;
+    padding-left: 272px;
+  }
+
+  .menu-user {
+    float: right;
+    padding-top: 10px;
+    li {
+      float: left;
+    }
+    .user-name {
+      text-align: right;
+      margin-top: 29px;
+    }
+
+    &.student {
+      .user-name {
+        margin-top: 17px;
+      }
+    }
+
+    font-size: 18px;
+    color: #ffffff;
+    a {
+      color: #ffffff;
+    }
+
+    .ellipsis {
+      display: block;
+      width: 160px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      @media(max-width: $screen-md-max) {
+        width: 80px;
+      }
+    }
+    .avatar {
+      width: 90px;
+      height: auto;
+      margin-left: 10px;
+    }
+  }
+
+  .dropdown-menu {
+    text-align: center;
+    padding: 15px;
+    border: 3px solid #a0d8e8;
+    border-radius: 5px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      display: block;
+      width: 0;
+      height: 0;
+      border: 8px solid transparent;
+      border-bottom: 10px solid #FFFFFF;
+      margin-left: -5px;
+    }
+
+    li {
+      float: none;
+      margin: 0 0 10px;
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+    a {
+      color: #3e8093;
+      font-size: 16px;
+      padding: 0;
+    }
+  }
+
+  .menu-action-wrapper {
+    float: left;
+    width: 385px;
+    padding-top: 14px;
+
+    &.student {
+      padding-top: 30px;
+    }
+
+    .icon-dashboard {
+      margin: -2px -4px 0 0;
+    }
+  }
+
+  .select-student {
+    display: block;
+    width: 100%;
+    height: auto;
+    color: #3e8093;
+    font-size: 14px;
+    padding: 6px 12px;
+    line-height: 1;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    margin-bottom: 10px;
+  }
+
+  .menu-notification {
+    float: left;
+    padding: 38px 0 0 0px;
+    margin: 0;
+    li {
+      float: left;
+      margin: 0 7px;
+    }
+    a {
+      position: relative;
+      display: block;
+    }
+    img {
+      width: auto;
+      height: 24px;
+    }
+    .badge {
+      position: absolute;
+      top: -3px;
+      right: -5px;
+      font-size: 10px;
+      color: #E23258;
+      font-weight: bold;
+      background: #fff;
+      padding: 3px 4px;
+      border: 1px solid #6ECBE6;
+      border-radius: 50%
+    }
+  }
+
+  .menu-action,
+  .menu-login {
+    margin: 0;
+    li {
+      float: left;
+    }
+  }
+
+  .menu-login {
+    float: right;
+    padding-top: 30px;
+
+    .btn {
+      padding: 8px 30px;
+
+      @media (min-width: $screen-md) {
+        margin-left: 10px;
+      }
+    }
+    .btn-link {
+      padding: 10px 30px;
+    }
+  }
+
+  .btn-link {
+    padding: 7px 10px;
+    margin: 0;
+  }
+  .btn-header {
+    color: #fff;
+    background: #6dcbe5;
+    border-color: transparent;
+    padding: 4px 10px;
+    margin: 0;
+
+    @media(min-width: $screen-md) {
+      &.active {
+        color: #3e8093;
+        background-color: #fff;
+        border: 3px solid #9fd9e7;
+      }
+    }
+    @media(max-width: $screen-sm-max) {
+      display: block;
+      width: 100%;
+      font-size: 24px;
+      color: #3c8191;
+      background: #fff;
+      border-radius: 0;
+      padding: 19px 10px;
+      margin: 0;
+
+      &.active {
+        color: #fff;
+        background: #62C2DE;
+        border: 3px solid #62C2DE;
+      }
+    }
+    @media(max-width: $screen-xs-max) {
+      font-size: 10px;
+      padding: 2px 5px;
+    }
+
+    &.btn-login {
+      color: #3d8091;
+      background: #fffd39;
+
+      &.active {
+        background: #fff;
+        border-color: #e1e036;
+      }
+    }
+  }
+
+  .btn-link {
+    @media (min-width: $screen-md) {
+      color: #fff;
+    }
+    @media (max-width: $screen-sm-max) {
+      float: right;
+      width: auto;
+      padding: 15px 0 0;
+      margin: 0;
+    }
+    @media (max-width: $screen-xs-max) {
+      font-size: 13px;
+      padding: 0;
+    }
+  }
+
+  .notification {
+    padding: 19px 0;
+    border-bottom: 1px solid #fff;
+
+    &.recommend-action {
+      background-color: #d87800;
+    }
+    &.complete-action {
+      background-color: #00d88d;
+    }
+    &.news {
+      background-color: #fff151;
+
+      .notification-text {
+        &, & a {
+          color: #3e8093;
+        }
+      }
+    }
+
+    .notification-text {
+      padding-left: 272px;
+      font-size: 18px;
+
+      &, & a {
+        color: $c-white;
+      }
+    }
+  }
+  .header-title {
+    padding: 43px 0 30px;
+    background-image: url('../../images/header-title-bg.png');
+    background-repeat: no-repeat;
+    background-position: center right;
+    min-height: 100px;
+    .h1 {
+      margin: 0;
+      font-size: 24px;
+      color: #253c42;
+    }
+  }
+
+  @media (max-width: $screen-sm-max) {
+    //overflow: hidden;
+
+    .container-main {
+      height: auto;
+      padding: 0;
+      background-color: $c-white;
+      max-height: none;
+      box-shadow: none;
+    }
+
+    .menu-head {
+      position: relative;
+    }
+
+    .logo {
+      width: 100%;
+      position: static;
+      margin-bottom: 0;
+      border: 0 none;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 25px 0 25px;
+      img {
+        width: 200px;
+        height: auto;
+      }
+      .logo-link {
+        float: left;
+        display: block;
+      }
+    }
+
+    .bg-light-blue-sp {
+      background: #62C2DE;
+      padding: 10px 0;
+    }
+
+    .select-student {
+      float: left;
+      width: 400px;
+      margin: 0;
+    }
+    .menu-notification {
+      float: right;
+      padding: 3px 0;
+    }
+
+    .menu-action-wrapper-sp {
+      background: #62C2DE;
+      border-bottom: 5px solid #3c8191;
+
+      &.border-top {
+        border-top: 5px solid #3c8191; // remove this after 4/4 release
+      }
+    }
+    .menu-action {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+
+      li {
+        float: none;
+        display: table-cell;
+        width: 33.33333%;
+        margin: 0;
+      }
+    }
+    .menu-user {
+      position: absolute;
+      color: #3e8093;
+      right: 0;
+      top: 0;
+
+      a {
+        color: #3e8093;
+      }
+
+      .ellipsis {
+        width: 300px;
+      }
+    }
+
+    .menu-login {
+      float: none;
+      padding: 0;
+      width: 100%;
+
+      li {
+        float: left;
+        width: 50%;
+      }
+      .btn-header {
+        color: #fff;
+        padding: 15px 30px;
+        background: #6dcbe5;
+      }
+      .btn-login {
+        color: #3d8091;
+        background: #fffd39;
+      }
+    }
+
+    .notification .notification-text {
+      padding-left: 0;
+      text-align: left;
+    }
+  }
+  @media (max-width: $screen-xs-max) {
+    .logo {
+      padding: 12px 0 12px;
+      img {
+        width: 100px;
+        height: auto;
+      }
+    }
+
+    .select-student {
+      width: 70%;
+      font-size: 10px;
+    }
+
+    .menu-user {
+      padding-top: 3px;
+
+      li {
+        font-size: 11px;
+        .bold {
+          font-size: 14px;
+        }
+      }
+      .user-name {
+        margin-top: 12px;
+      }
+
+      .ellipsis {
+        width: 120px;
+      }
+
+      &.student {
+        .user-name {
+          margin-top: 8px;
+        }
+      }
+
+      .avatar {
+        width: 45px;
+      }
+    }
+
+    .menu-action {
+      .icon-dashboard {
+        width: 13px;
+        margin: -1px -1px 0 0;
+      }
+    }
+
+    .menu-login {
+      .btn-header {
+        padding: 4px 15px;
+      }
+    }
+
+    .notification {
+      padding: 5px 0;
+
+      .notification-text {
+        font-size: 12px;
+      }
+    }
+  }
+}

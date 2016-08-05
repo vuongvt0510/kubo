@@ -1,0 +1,59 @@
+<!--{if isset($no_child)}-->
+<div class="bg-triangle">
+    <div class="container">
+        <!--{include file="partial/no_item.html" message="表示できるお子様がいません。\n「プロフィール編集」内の「家族グループ」でお子様を登録してください。"}-->
+    </div>
+</div>
+<!--{else}-->
+<div class="profile-history-page">
+    <div class="main-content bg-triangle">
+        <!--{if !empty($videos.items)}-->
+        <!--{foreach from=$videos.items key=key item=video}-->
+        <div class="section-title">
+            <div class="container date-header">
+                <!--{$key|date_format:"%m月%d日（%a）"|replace:"Sun":"日"|replace:"Mon":"月"|replace:"Tue":"火"|replace:"Wed":"水"|replace:"Thu":"木"|replace:"Fri":"金"|replace:"Sat":"土"}-->
+            </div>
+        </div>
+        <div class="container">
+            <div class="video-boxes-with-more-details">
+                <!--{foreach from=$video key=key item=data}-->
+                    <!--{include file="partial/video_history_detail.html" chapter=$data.chapter video=$data videos=NULL textbook=NULL }--><!--{* TODO: need textbook name *}-->
+                <!--{/foreach}-->
+            </div>
+        </div>
+        <!--{/foreach}-->
+        <div class="pagination-wrapper">
+            <!--{if !empty($videos) && $pagination.total > $pagination.items_per_page}-->
+                <!--{include file='partial/pagination.html' config=$pagination}-->
+            <!--{/if}-->
+        </div>
+        <!--{else}-->
+        <!--{include file="partial/no_item.html" message="あなたが勉強した動画がここに表示されるよ\nさっそく動画をみてみよう"}-->
+        <!--{/if}-->
+    </div>
+</div>
+
+<!--{content_for name="plugincss"}-->
+<link rel="stylesheet" href="/third_party/owl-carousel/owl.theme.css">
+<link rel="stylesheet" href="/third_party/owl-carousel/owl.transitions.css">
+<link rel="stylesheet" href="/third_party/owl-carousel/owl.carousel.css">
+<!--{/content_for}-->
+
+<!--{content_for name="headjs"}-->
+<script type="text/javascript" src="/third_party/owl-carousel/owl.carousel.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.js-owl-slider').owlCarousel({
+            items: 4,
+            /*itemsDesktop : [1000,5],
+             itemsDesktopSmall : [900,3],
+             itemsTablet: [600,2],
+             itemsMobile : false,*/
+            pagination: false,
+            navigation: true,
+            navigationText: ["<i class='el-icons el-angle-left'></i>", "<i class='el-icons el-angle-right'></i>"]
+        });
+    });
+</script>
+<!--{/content_for}-->
+<!--{/if}-->

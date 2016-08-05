@@ -1,0 +1,348 @@
+<!--{if isset($no_child)}-->
+<div class="bg-triangle">
+    <div class="container">
+        <!--{include file="partial/no_item.html" message="表示できるお子様がいません。\n「プロフィール編集」内の「家族グループ」でお子様を登録してください。" small=TRUE}-->
+    </div>
+</div>
+<!--{else}-->
+<div class="dashboard-page">
+    <div class="container">
+        <div class="user-dashboard clearfix">
+            <div class="left">
+                <img
+                        src="/images/avatar/<!--{if $user_info.avatar == 0}-->2<!--{else}--><!--{$user_info.avatar}--><!--{/if}-->.png"
+                        alt="" class="img-responsive avatar" width="190" height="165">
+                <a href="/ranking" class="ranking">
+                    <p class="bold">
+                        <span class="point"><!--{$user_ranking|escape|number_format|default:'--'}--></span>
+                        <span>位</span>
+                    </p>
+                    <p>スコアランキング</p>
+                </a>
+                <div class="name"><!--{$user_info.nickname|escape|default:'ニックネームなし'}--></div>
+
+                <!--{if isset($check_friend) && $check_friend == TRUE}-->
+                <button type="button" class="btn btn-navy-border btn-block btn-unfriend" data-toggle="modal"
+                        data-target="#delete-friend-modal">友達を解除
+                </button>
+                <!--{content_for name="modal"}-->
+                <!--{include file="partial/modal/friend_delete.html"}-->
+                <!--{/content_for}-->
+                <!--{/if}-->
+                <!--{if isset($check_friend) && $check_friend == FALSE}-->
+                <a class="btn btn-navy-border btn-block btn-friend" href="/friend/add"><span>友達になる</span></a>
+                <!--{/if}-->
+                <!--{if !empty($contract)}-->
+                <a href="/pay_service/<!--{$user_info.id|escape|default:''}-->"
+                   class="btn btn-right-arrow btn-blue btn-navy btn-block">スクールTV Plus : <span class="status-name"><!--{$contract|escape|default:''}--></span></a>
+                <!--{/if}-->
+            </div>
+            <div class="right">
+
+                <div class="row btn-group-1 pdb0">
+                    <!--{if !isset($check_friend) && !isset($check_friend_from_parent)}-->
+                    <div class="col-xs-12 col-sm-12 col-md-6 mgb15">
+                        <a href="/play" class="btn btn-right-arrow btn-block btn-yellow btn-image">
+                            <img src="/images/icons/gamepad.png" alt="" class="controller" height="39" width="65">
+                            <span>ひとりで</br>ドリルをプレイ</span>
+                        </a>
+                    </div>
+                    <!--{/if}-->
+
+                    <!--{if $user_info.id == $current_user.id}-->
+                    <!--<div class="col-xs-12 col-sm-12 col-md-4 mgb15">
+                        <a href="/play/team" class="btn btn-right-arrow btn-block btn-yellow btn-image">
+                            <img src="/images/icons/friends.png" alt="" class="controller">
+                            <span>チームで</br>ドリルをプレイ</span>
+                        </a>
+                    </div>Remove from 3.0.0-->
+                    <!--{/if}-->
+
+                    <!--{if !isset($check_friend) && !isset($check_friend_from_parent)}-->
+                    <div class="col-xs-12 col-sm-12 col-md-6 mgb15">
+                        <a href="/station" class="btn btn-right-arrow btn-block btn-yellow btn-image">
+                            <img src="/images/icons/search.png" alt="" class="controller" height="56" width="65">
+                            <span>ドリルを探す</span>
+                        </a>
+                    </div>
+                    <!--{/if}-->
+                </div>
+
+                <!--{if isset($check_friend) || isset($check_friend_from_parent)}-->
+                <div class="h115"></div>
+                <!--{/if}-->
+                <div class="divider dashed"></div>
+                <div class="counter-group">
+
+                    <div class="cell first">
+                        <div class="content">
+                            <img src="/images/icons/heart.png" alt="" class="img-responsive">
+                            <p><span class="point"><!--{$goods|default:''}--></span>GOOD</p>
+                        </div>
+                    </div>
+
+                    <div class="cell second">
+                        <div class="content">
+                            <img src="/images/icons/friends.png" alt="" class="img-responsive">
+                            <p><span class="point"><!--{$friends|escape|default:0}--></span>フレンド</p>
+                            <a href="/friend/<!--{$user_info.id|default:''}-->" class="btn btn-sm btn-blue">フレンドを見る</a>
+                        </div>
+                    </div>
+                    <div class="cell third">
+                        <div class="content">
+                            <img src="/images/icons/drill.png" alt="" class="img-responsive">
+                            <p><span class="point"><!--{$purchased_decks.total|escape|default:'0'}--></span>ドリル</p>
+                            <a href="/station/purchased/<!--{$user_info.id|default:''}-->" class="btn btn-sm btn-blue">ドリルを見る</a>
+                        </div>
+                    </div>
+                </div>
+                <!--{if !isset($check_friend_from_parent)}-->
+                <div class="points row clearfix">
+
+                    <div class="col-xs-6 col-sm-12 col-md-6 col-point">
+                        <div class="item first">
+                            <a class="c-navy" href="/rabipoint/<!--{$user_id|escape|default:''}-->">
+                                <img src="/images/icons/rabbi-point.png" alt="">
+                                <span class="text">
+                                    <span class="point"><!--{$rabipoints|escape|number_format|default:'0'}--></span>
+                                    <small>ラビポイント</small>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <!--{if !isset($check_friend)}-->
+                    <div class="col-xs-6 col-sm-12 col-md-6 col-coin">
+                        <div href="/coin/<!--{$user_info.id|default:''}-->" class="item second">
+                            <img src="/images/icons/rabikoin.png" alt="">
+                            <span class="text">
+                                <!--{if !isset($check_parent)}-->
+                                <a class="c-navy" href="/coin/<!--{$user_info.id|default:''}-->">
+                                    <span class="point"><!--{$remaining_coin|escape|number_format|default:''}--></span>
+                                </a>
+                                <!--{else}-->
+                                <span class="point"><!--{$remaining_coin|escape|number_format|default:''}--></span>
+                                <!--{/if}-->
+                                <small>コイン</small>
+                            </span>
+                        </div>
+                    </div>
+                    <!--{/if}-->
+                </div>
+                <!--{if isset($check_parent)}-->
+                <div class="clearfix col-purchase">
+                    <a href="/coin/<!--{$user_info.id|default:''}-->" class="purchase-btn">
+                        <img src="/images/icons/purchase.png" alt="" class="img-responsive">
+                        コインを購入
+                    </a>
+                </div>
+                <!--{/if}-->
+                <!--{/if}-->
+            </div>
+        </div>
+    </div>
+
+
+    <div class="trophy-area bg-yellow">
+        <div class="container">
+            <!--{if !empty($trophy_items)}-->
+            <div class="trophy-list-wrap">
+                <div class="trophy-list-fixed">
+                    <div class="counter">
+                        <a href="/trophy/<!--{$user_info.id|default:''}-->">
+                            <!--<img src="/images/trophy/counter.png" alt="counter">-->
+                            <div class="text">
+                                <span class="total"><!--{$trophy_total|escape|default:'0'}--></span>バッジ
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="trophy-list-ct">
+                    <div class="trophy-list owl-carousel">
+                        <!--{foreach from=$trophy_items key=key item=trophy}-->
+                        <div class="item">
+                            <div class="item-wrapper">
+                                <a href="javascript:;" data-trophy_id="<!--{$trophy.trophy_id|escape|default:''}-->"
+                                   class="show_trophy_modal">
+                                    <img class="trophy-img"
+                                         src="<!--{image_link key=$trophy.image_key|escape|default:'' type='small'}-->"
+                                         alt="" width="128" height="128">
+                                </a>
+                            </div>
+                        </div>
+                        <!--{/foreach}-->
+                    </div>
+                </div>
+            </div>
+            <!--{else}-->
+            <!--{include file="partial/no_item.html" message="動画で学習したりドリルをプレイすると\nトロフィーがもらえるよ" small=TRUE}-->
+            <!--{/if}-->
+        </div>
+    </div>
+
+
+    <div class="deck-area bg-triangle-blue">
+        <div class="container">
+            <h3 class="drill-title">
+                <img src="/images/icons/drill.png" alt="" class="img-responsive">
+                ドリル
+            </h3>
+            <!--{if !empty($purchased_decks.items)}-->
+            <a href="/station/purchased/<!--{$user_info.id|default:''}-->"
+               class="view-more btn btn-sm btn-circle white-bg">
+                <i class="el-icons el-angle-right"></i>
+                もっと見る
+            </a>
+            <!--{include file="partial/deck_list.html" decks=$purchased_decks.items href=$play_URL}-->
+            <!--{else}-->
+            <!--{include file="partial/no_item.html" message="購入したドリルはありません" small=TRUE}-->
+            <!--{/if}-->
+        </div>
+    </div>
+
+
+    <div class="activity-area bg-triangle">
+        <div class="container">
+
+            <!--{if !isset($check_friend) && !isset($check_friend_from_parent)}-->
+            <!--DB10 - new learning history-->
+            <h4 class="title-light-blue-bg">
+                <!--{$user_info.nickname|escape|default:'ニックネームなし'}-->の学習状況
+            </h4>
+
+            <div class="row">
+                <div class="container activity-list learning-list">
+                    <div class="col-md-6">
+                        <div class="content-frame activity-content learning-content">
+                            <div class="header text-center">
+                                <img src="/images/icons/learning.png" alt="icons" class="img-responsive center-block"  height="28" width="33">
+                                <h4 class="title c-green-dark bold">スクールTV 動画視聴時間</h4>
+                            </div>
+                            <div class="block-time text-center">
+                                <div class="bg-gray h3 bold">今月: <!--{if floor($watching_monthly_report.this_month / 3600) != 0}--><span><!--{floor($watching_monthly_report.this_month / 3600)|escape}--></span>時間<!--{/if}--><span><!--{floor($watching_monthly_report.this_month / 60 % 60)|escape|default:'0'}--></span>分</div>
+                                <!--{if isset($playing_monthly_report.last_month)}--><h4>先月: <!--{if floor($watching_monthly_report.last_month / 3600) != 0}--><span><!--{floor($watching_monthly_report.last_month / 3600)|escape}--></span>時間<!--{/if}--><span><!--{floor($watching_monthly_report.last_month / 60 % 60)|escape|default:'0'}--></span>分</h4><!--{/if}-->
+                            </div>
+                            <div class="text-center">
+                                <a href="/content/learning_history/<!--{$user_info.id|escape|default:''}-->" class="btn btn-dark-blue" title="教科ごとの学習状況">教科ごとの学習状況</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="content-frame activity-content learning-content">
+                            <div class="header text-center">
+                                <img src="/images/icons/drill.png" alt="icons" class="img-responsive center-block" height="30" width="32">
+                                <h4 class="title c-green-dark bold">スクールTV ドリルプレイ時間</h4>
+                            </div>
+                            <div class="block-time text-center">
+                                <div class="bg-gray h3 bold">今月: <!--{if floor($playing_monthly_report.this_month / 3600) != 0}--><span><!--{floor($playing_monthly_report.this_month / 3600)|escape}--></span>時間<!--{/if}--><span><!--{floor($playing_monthly_report.this_month / 60 % 60)|escape|default:'0'}--></span>分</div>
+                                <!--{if isset($playing_monthly_report.last_month)}--><h4>先月: <!--{if floor($playing_monthly_report.last_month / 3600) != 0}--><span><!--{floor($playing_monthly_report.last_month / 3600)|escape}--></span>時間<!--{/if}--><span><!--{floor($playing_monthly_report.last_month / 60 % 60)|escape|default:'0'}--></span>分</h4><!--{/if}-->
+                            </div>
+                            <div class="text-center">
+                                <a href="/play?type=status" class="btn btn-dark-blue" title="ドリルごとの学習状況">ドリルごとの学習状況</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--{/if}-->
+
+            <!--/DB10-->
+            <!--{if !isset($check_friend_from_parent)}-->
+            <h4 class="title-light-blue-bg">
+                <!--{$user_info.nickname|escape|default:'ニックネームなし'}-->のアクティビティ
+
+                <a href="/timeline/<!--{$user_info.id|default:''}-->" class="view-more btn btn-sm btn-circle white-bg">
+                    <i class="el-icons el-angle-right"></i>
+                    もっと見る
+                </a>
+            </h4>
+            <!--{if !empty($timelines)}-->
+            <div class="grid">
+                <!--{include file="partial/activity_list.html" timelines=$timelines}-->
+            </div>
+            <!--{else}-->
+            <!--{include file="partial/no_item.html" message="アクティビティはありません\n動画をみたりドリルをプレイすると\n学習した内容がここに表示されるよ" small=TRUE}-->
+            <!--{/if}-->
+
+            <!--{/if}-->
+
+            <!--{if isset($only_myself) && $only_myself == TRUE}-->
+            <h4 class="title-green-bg">
+                みんなのアクティビティ
+                <a href="/timeline/friend/<!--{$user_info.id|default:''}-->"
+                   class="view-more btn btn-sm btn-circle white-bg">
+                    <i class="el-icons el-angle-right"></i>
+                    もっと見る
+                </a>
+            </h4>
+            <!--{if !empty($timelines_everyone)}-->
+            <div class="grid">
+                <!--{include file="partial/activity_list.html" timelines=$timelines_everyone}-->
+            </div>
+            <!--{else}-->
+            <!--{include file="partial/no_item.html" message="友達のアクティビティはありません\n友達がどんな学習をしているかわかるよ" small=TRUE}-->
+            <!--{/if}-->
+
+            <!--{/if}-->
+
+        </div>
+    </div>
+
+</div>
+
+<!--{content_for name="modal"}-->
+<!--{include file="partial/modal/trophy_detail.html"}-->
+<!--{/content_for}-->
+
+<!--{content_for name="headjs"}-->
+<script src="/dist/masonry.pkgd.min.js"></script>
+<script src="/js/ST.Timeline.Detail.js"></script>
+<script type="text/javascript">
+    (function () {
+        $(document).ready(function () {
+            new ST.Timeline({});
+
+            $('.show_trophy_modal').on('click', function () {
+                var el = $(this);
+                $.ajax({
+                    method: "POST",
+                    url: "<!--{site_url('trophy')}-->/get_detail",
+                    data: {
+                        trophy_id: el.data('trophy_id'),
+                        user_id: <!--{$user_info.id|default:''}-->
+                    },
+                    dataType: 'json'
+                }).done(function (res) {
+                    var trophy_detail = res;
+                    $("#trophy_title").html(trophy_detail['name']);
+                    $("#trophy_description").html(trophy_detail['description']);
+
+                    $("#trophy_image").prop('src', "/image/show/" + trophy_detail['image_key']);
+                    $('#modal-trophy-detail').modal();
+                });
+            });
+
+            /** make grid **/
+            $('.grid').masonry({
+                itemSelector: '.col-sm-6',
+            });
+
+
+        });
+        $(".owl-carousel").owlCarousel({
+            pagination: false,
+            items: 6,
+            itemsDesktop : [1199, 6],
+            itemsDesktopSmall : [1024, 5],
+            itemsTablet : [991, 4],
+            itemsTabletSmall : false,
+            itemsMobile : [479, 4],
+            singleItem : false,
+            itemsScaleUp : false,
+            navigation : true,
+            navigationText: ["<i class='el-icons el-angle-left'></i>", "<i class='el-icons el-angle-right'></i>"]
+        });
+    })();
+
+</script>
+<!--{/content_for}-->
+<!--{/if}-->

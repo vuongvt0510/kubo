@@ -1,0 +1,103 @@
+<div class="subject-detail-page">
+    <div class="container">
+        <div class="current-textbook">
+            <h1 style="margin: 0;">
+                <div class="h4"><!--{$textbook.publisher.name|escape|default:'--'}--></div>
+                <div class="h1"><!--{$textbook.textbook.name|escape|default:'--'}--></div>
+            </h1>
+            <!--{if empty($current_user)}-->
+            <a href="javascript:;" class="btn btn-outline x-require-login"
+                data-message="教科書を変更するには会員登録が必要です。" data-url="/register" data-label="登録ページへ">
+                <i class="el-icons el-book-open"></i>
+                教科書を変更
+            </a>
+            <!--{else}-->
+            <!--{/if}-->
+        </div>
+    </div>
+
+    <!--{if !empty($videos[$first_chapter.deck_id].brightcove_id)}--><!--{* hide the videos which hasn't been connected to brightcove yet *}-->
+    <div class="video-banner">
+        <img src="/images/video-banner-bg.png" alt="" class="video-banner-bg">
+        <img src="/images/video-banner-bg-2.png" alt="" class="video-banner-bg bg-2">
+        <img src="/images/video-banner-bg-3.png" alt="" class="video-banner-bg bg-3">
+        <div class="container">
+            <div class="video-banner-wrapper">
+                <div class="video-image">
+                    <a class="<!--{if empty($current_user)}-->x-limit-playing-video<!--{/if}-->" href="/v/<!--{$first_chapter.id}-->">
+                        <img src="<!--{$videos[$first_chapter.deck_id].thumbnail_url|default:'/images/video-no-image.png'}--> " alt="" class="img-reponsive">
+                    </a>
+                </div>
+                <div class="textbook-description hidden-xs hidden-sm">
+                    <p class="unit-and-chapter"><!--{$first_chapter.chapter_name|escape|default:'--'}--></p>
+                    <h2 class="title"><!--{$first_chapter.name|escape|strip|default:'--'}--></h2>
+                    <div class="point">Point</div>
+                    <p class="point-text"><!--{$first_chapter.description|escape|nl2br|default:'--'}--></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--{/if}-->
+    <div class="main-content bg-triangle">
+        <div class="container">
+            <!--{if !empty($videos[$first_chapter.deck_id].brightcove_id)}--><!--{* hide the videos which hasn't been connected to brightcove yet *}-->
+            <div class="textbook-description visible-xs visible-sm">
+                <p class="unit-and-chapter"><!--{$first_chapter.chapter_name|escape|default:'--'}--></p>
+                <h2 class="title"><!--{$first_chapter.name|escape|default:'--'}--></h2>
+                <ul class="list-unstyled points-list">
+                    <li>
+                        <!--{$first_chapter.description|escape|nl2br|default:'-'}-->
+                    </li>
+                </ul>
+            </div>
+            <!--{/if}-->
+            <div class="panel panel-blue">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <div class="panel-image">
+                            <div class="hexagon-img">
+                                <img src="/images/panel/other-videos.png" alt="">
+                            </div>
+                        </div>
+                        その他の動画
+                    </div>
+                    <div class="panel-action">
+
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="video-boxes-wrapper">
+                        <!--{ if(!empty($chapters)) }-->
+                        <!--{include file="partial/video_carousel_list.html" chapters=$chapters videos=$videos subject_name=$textbook.subject.short_name subject_color=$textbook.subject.color subject_type=$textbook.subject.type}-->
+                        <!--{ /if }-->
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-blue">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <div class="panel-image">
+                            <div class="hexagon-img">
+                                <img src="/images/panel/other-chapters.png" alt="">
+                            </div>
+                        </div>
+                        この教科を他の教科書で見る
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="video-boxes-wrapper">
+                        <!--{assign var=non_login value=TRUE}-->
+                        <!--{if isset($current_user)}-->
+                        <!--{assign var=non_login value=FALSE}-->
+                        <!--{/if}-->
+                        <!--{ if(!empty($other_textbook)) }-->
+                            <!--{include file="partial/textbook_carousel_list.html" textbooks=$o_textbooks non_login=$non_login}-->
+                        <!--{ /if }-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

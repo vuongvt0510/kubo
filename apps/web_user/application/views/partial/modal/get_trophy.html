@@ -1,0 +1,47 @@
+<div class="modal fade" id="modalGetTrophy" tabindex="99" role="dialog" style="z-index: 9000;">
+    <div class="modal-dialog modal-dialog-result">
+        <div class="modal-content">
+            <button id="trophy_close" type="button" class="close_trophy close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-body">
+
+                <div class="content-frame-designed-corner with-ribbon-title">
+                    <div class="frame-inner">
+                        <div class="layer"></div>
+                        <div class="head"></div>
+                        <div class="middle">
+                            <div class="text-center rt-score-wrap">
+                                <p class="rt-titleimg rt-titlematch">
+                                    <div class="trophy-title">
+                                        <div><p id="get_trophy_title"><!--{$trophy.name|default:''}--></p></div>
+                                    </div>
+                                    <span>バッジをゲットしました！</span><br/>
+                                    <span id="get_trophy_description"><!--{$trophy.description|default:''}--></span>
+                                </p>
+                                <p class="mb20 text-center">
+                                    <img id="get_trophy_image" src="<!--{image_link key=$trophy.image_key|escape|default:''}-->" alt="">
+                                </p>
+                            </div>
+                            <div class="rt-button-group">
+                                <a id="getTrophy_close" class="close_trophy btn btn-outline btn-yellow" href="javascript:;">閉じる</a>
+                            </div>
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--{if !isset($not_show_get_trophy_script)}-->
+<!--{content_for name="headjs"}-->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#getTrophy_close').on('click', function(){
+            $('#modalGetTrophy').modal('hide');
+        });
+    });
+</script>
+<!--{/content_for}-->
+<!--{/if}-->

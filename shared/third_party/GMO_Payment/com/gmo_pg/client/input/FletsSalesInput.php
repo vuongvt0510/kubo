@@ -1,0 +1,223 @@
+<?php
+require_once ('com/gmo_pg/client/input/BaseInput.php');
+/**
+ * <b>フレッツ売上確定　入力パラメータクラス</b>
+ * 
+ * @package com.gmo_pg.client
+ * @subpackage input
+ * @see inputPackageInfo.php
+ * @author GMO PaymentGateway
+ */
+class FletsSalesInput extends BaseInput {
+
+	/**
+	 * @var string ショップID
+	 */
+	var $shopID;
+	/**
+	 * @var string ショップパスワード
+	 */
+	var $shopPass;
+	/**
+	 * @var string 取引ID
+	 */
+	var $accessID;
+	/**
+	 * @var string 取引パスワード
+	 */
+	var $accessPass;
+	/**
+	 * @var string オーダーID
+	 */
+	var $orderID;
+	/**
+	 * @var integer 変更利用金額
+	 */
+	var $changeAmount;
+	/**
+	 * @var integer 変更税送料
+	 */
+	var $changeTax;
+
+	
+	/**
+	 * コンストラクタ
+	 *
+	 * @param array $params 入力パラメータ
+	 */
+	function FletsSalesInput($params = null) {
+		$this->__construct($params);
+	}
+
+	/**
+	 * コンストラクタ
+	 *
+	 * @param array $params 入力パラメータ
+	 */
+	function __construct($params = null) {
+		parent::__construct($params);
+	}
+
+	
+	/**
+	 * ショップID取得
+	 * @return string ショップID
+	 */
+	function getShopID() {
+		return $this->shopID;
+	}
+	/**
+	 * ショップパスワード取得
+	 * @return string ショップパスワード
+	 */
+	function getShopPass() {
+		return $this->shopPass;
+	}
+	/**
+	 * 取引ID取得
+	 * @return string 取引ID
+	 */
+	function getAccessID() {
+		return $this->accessID;
+	}
+	/**
+	 * 取引パスワード取得
+	 * @return string 取引パスワード
+	 */
+	function getAccessPass() {
+		return $this->accessPass;
+	}
+	/**
+	 * オーダーID取得
+	 * @return string オーダーID
+	 */
+	function getOrderID() {
+		return $this->orderID;
+	}
+	/**
+	 * 変更利用金額取得
+	 * @return integer 変更利用金額
+	 */
+	function getChangeAmount() {
+		return $this->changeAmount;
+	}
+	/**
+	 * 変更税送料取得
+	 * @return integer 変更税送料
+	 */
+	function getChangeTax() {
+		return $this->changeTax;
+	}
+
+	/**
+	 * ショップID設定
+	 *
+	 * @param string $shopID
+	 */
+	function setShopID($shopID) {
+		$this->shopID = $shopID;
+	}
+	/**
+	 * ショップパスワード設定
+	 *
+	 * @param string $shopPass
+	 */
+	function setShopPass($shopPass) {
+		$this->shopPass = $shopPass;
+	}
+	/**
+	 * 取引ID設定
+	 *
+	 * @param string $accessID
+	 */
+	function setAccessID($accessID) {
+		$this->accessID = $accessID;
+	}
+	/**
+	 * 取引パスワード設定
+	 *
+	 * @param string $accessPass
+	 */
+	function setAccessPass($accessPass) {
+		$this->accessPass = $accessPass;
+	}
+	/**
+	 * オーダーID設定
+	 *
+	 * @param string $orderID
+	 */
+	function setOrderID($orderID) {
+		$this->orderID = $orderID;
+	}
+	/**
+	 * 変更利用金額設定
+	 *
+	 * @param integer $changeAmount
+	 */
+	function setChangeAmount($changeAmount) {
+		$this->changeAmount = $changeAmount;
+	}
+	/**
+	 * 変更税送料設定
+	 *
+	 * @param integer $changeTax
+	 */
+	function setChangeTax($changeTax) {
+		$this->changeTax = $changeTax;
+	}
+
+
+	/**
+	 * デフォルト値設定
+	 */
+	function setDefaultValues() {
+	   
+	}
+
+	/**
+	 * 入力パラメータ群の値を設定する
+	 *
+	 * @param IgnoreCaseMap $params 入力パラメータ
+	 */
+	function setInputValues($params) {
+		// 入力パラメータがnullの場合は設定処理を行わない
+	    if (is_null($params)) {
+	        return;
+	    }
+	    
+		$this->setShopID($this->getStringValue($params, 'ShopID', $this->getShopID()));
+		$this->setShopPass($this->getStringValue($params, 'ShopPass', $this->getShopPass()));
+		$this->setAccessID($this->getStringValue($params, 'AccessID', $this->getAccessID()));
+		$this->setAccessPass($this->getStringValue($params, 'AccessPass', $this->getAccessPass()));
+		$this->setOrderID($this->getStringValue($params, 'OrderID', $this->getOrderID()));
+		$this->setChangeAmount($this->getStringValue($params, 'ChangeAmount', $this->getChangeAmount()));
+		$this->setChangeTax($this->getStringValue($params, 'ChangeTax', $this->getChangeTax()));
+
+	}
+
+	/**
+	 * 文字列表現
+	 * @return string 接続文字列表現
+	 */
+	function toString() {
+		$str ='';
+		$str .= 'ShopID=' . $this->encodeStr($this->getShopID());
+		$str .='&';
+		$str .= 'ShopPass=' . $this->encodeStr($this->getShopPass());
+		$str .='&';
+		$str .= 'AccessID=' . $this->encodeStr($this->getAccessID());
+		$str .='&';
+		$str .= 'AccessPass=' . $this->encodeStr($this->getAccessPass());
+		$str .='&';
+		$str .= 'OrderID=' . $this->encodeStr($this->getOrderID());
+		$str .='&';
+		$str .= 'ChangeAmount=' . $this->encodeStr($this->getChangeAmount());
+		$str .='&';
+		$str .= 'ChangeTax=' . $this->encodeStr($this->getChangeTax());
+
+	    return $str;
+	}
+
+
+}
+?>

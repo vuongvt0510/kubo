@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Spice apps" default="test_junit">
+	<property name="src.dir" value="src"></property>
+	<property name="lib.dir" value="lib"></property>
+	<property name="build.dir" value="build"></property>
+	<property name="build.classes.dir" value="${build.dir}/classes"></property>
+	<property name="build.report.dir" value="${build.dir}/report"></property>
+	<property name="build.report.plain.dir" value="${build.dir}/report/plain"></property>
+	
+	<path id="resource.lib">
+		<fileset dir="${lib.dir}" includes="**/*.jar"></fileset>
+		<pathelement path="${build.classes.dir}"/>
+		<pathelement path="${java.class.path}"/>
+	</path>
+	
+	<target name="init">
+		<echo>Create folder build</echo>
+		<delete dir="${build.dir}"/>
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${build.classes.dir}" />
+	</target>
+	
+	<!-- compile .java to .class -->
+	<target name="compile" depends="init">
+		<javac srcdir="${src.dir}" destdir="${build.classes.dir}" includeantruntime="yes" encoding="utf-8">
+			<classpath>
+				<fileset dir="${lib.dir}">
+					<include name="**/*.jar"/>
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+	
+	<!-- Start test with junit -->
+	<target name="test_junit" depends = "compile">
+		<echo>Run test ....</echo>
+		<delete dir="${build.report.plain.dir}"></delete>
+		<mkdir dir="${build.report.plain.dir}"/>
+		
+		<junit description="test case" >
+			<classpath refid="resource.lib"></classpath>
+			<batchtest todir="${build.report.plain.dir}" fork="yes">
+				<fileset dir="${build.classes.dir}" includes="**/*.class"> </fileset>
+				<formatter type="plain"/>
+			</batchtest>
+		</junit>
+	</target>
+	
+
+</project>

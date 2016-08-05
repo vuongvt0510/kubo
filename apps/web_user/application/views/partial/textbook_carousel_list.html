@@ -1,0 +1,51 @@
+<!--{if $device_type == 'SP'}-->
+<div class="video-boxes visible-xs">
+    <!--{foreach from=$textbooks key=k item=item}-->
+    <div class="item top-subject textbook col-xs-6 <!--{if ($k>3)}-->hidden<!--{/if}-->">
+        <div class="item-wrapper">
+            <div class="thumbnail-wrapper">
+                <!--{if isset($non_login) && $non_login==TRUE}-->
+                <a href="javascript:;" class="x-require-login"
+                   data-message="教科書を変更するには会員登録が必要です。" data-url="/register" data-label="登録ページへ">
+                    <!--{else}-->
+                    <a class="<!--{$item.subject.type|default:'-'}-->" href="/s/<!--{$item.subject.type|default:'-'}-->/<!--{$item.textbook.id|default:'-'}-->">
+                        <!--{/if}-->
+                    <span class="text-wrapper <!--{$item.subject.type|default:'-'}-->">
+                        <span class="h3 x-ellipsis"><!--{$item.textbook.name|escape}--></span>
+                        <span class="h4 x-ellipsis"><!--{$item.publisher.name|escape}--></span>
+                    </span>
+                    </a>
+            </div>
+            <div class="subject bg-<!--{$item.subject.color|default:'-'}-->"><!--{$item.subject.name}--></div>
+        </div>
+    </div>
+    <!--{/foreach}-->
+    <div class="button-box visible-xs">
+        <button type="button" class="show-more-slide btn btn-block"><i class="el-icons el-angle-down"></i></button>
+    </div>
+</div>
+
+<!--{else}-->
+<div class="video-boxes x-owl-slider owl-carousel hidden-xs">
+    <!--{foreach from=$textbooks item=item}-->
+    <div class="item top-subject textbook">
+        <div class="item-wrapper">
+            <div class="thumbnail-wrapper">
+                <!--{if isset($non_login) && $non_login==TRUE}-->
+                    <a href="javascript:;" class="x-require-login"
+                        data-message="教科書を変更するには会員登録が必要です。" data-url="/register" data-label="登録ページへ">
+                <!--{else}-->
+                    <a class="<!--{$item.subject.type|default:'-'}-->" href="/s/<!--{$item.subject.type|default:'-'}-->/<!--{$item.textbook.id|default:'-'}-->">
+                <!--{/if}-->
+                    <span class="text-wrapper <!--{$item.subject.type|default:'-'}-->">
+                        <span class="h3 x-ellipsis"><!--{$item.textbook.name|escape}--></span>
+                        <span class="h4 x-ellipsis"><!--{$item.publisher.name|escape}--></span>
+                    </span>
+                </a>
+            </div>
+            <div class="subject bg-<!--{$item.subject.color|default:'-'}-->"><!--{$item.subject.name}--></div>
+        </div>
+    </div>
+    <!--{/foreach}-->
+</div>
+<!--{/if}-->

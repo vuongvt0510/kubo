@@ -1,0 +1,128 @@
+<div class="bg-triangle">
+    <div class="container">
+        <div class="page-title">
+            <p class="h1">無料会員登録</p>
+            <p class="caption">
+                登録すると続きの動画を再生したり教科書を設定して
+                <br>
+                学校の授業にあった動画を見ることができます
+            </p>
+        </div>
+        <div class="main-content">
+            <form class="content-frame content-frame-polygon-bg form-horizontal" method="post">
+                <div class="polygon-bg"><img src="/images/background/content-frame-polygon.png" alt="" class="img-responsive"></div>
+                <div class="form-steps">
+                    <ul class="list-unstyled">
+                        <li>アカウントを<br>えらぶ</li>
+                        <li class="active">保護者<br>アカウント<br>作成</li>
+                        <li>子ども<br>アカウント<br>作成</li>
+                        <li>学習<br>スタート</li>
+                    </ul>
+                </div>
+                <div class="form-title text-center clearfix">
+                    <p class="h2 bold">保護者アカウント登録</p>
+                    <p class="h4">まずは保護者の⽅のアカウントを作成しましょう</p>
+                </div>
+                <!--{if isset($errmsg)}-->
+                <div class="form-title text-center clearfix">
+                    <p style="color:red;" class="h4 bold"><!--{$errmsg}--></p>
+                </div>
+                <!--{/if}-->
+                <div class="form-group">
+                    <label class="col-sm-4 control-label text-left">
+                        メールアドレス <br class="visible-sm">
+                        <span class="c-green">【必須】</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input name="email" type="text" class="form-control" placeholder="schooltv@mail.com" value="<!--{$post.email|escape|default:$oauth_email}-->">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label text-left">
+                        ID <span class="c-green">【必須】</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" name="id" class="form-control" placeholder="satoru" value="<!--{$post.id|escape|default:''}-->">
+                        <p class="small">
+                            登録後は変更できません
+                            <br>
+                            半⾓英数字（a-z, 0-9）を組み合わせ、8⽂字以上16⽂字以内で⼊⼒してください。
+                            <br>
+                            記号は「@」「_」「.」「-」のみ、ご利用頂けます。
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label text-left">
+                        パスワード <span class="c-green">【必須】</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="password" name="password" class="form-control">
+                        <span class="small">半角英数小文字(a-z、0-9)、8文字以上16文字以内でご入力ください。 <br>
+                            「@」「_」「.」「-」などの記号はご利用頂けません。</span>
+                    </div>
+                </div>
+                <!--{if empty($invitation_token)}-->
+                <div class="form-group" style="display:  <!--{if isset($promotion_code) || !empty($promotion_code)}--> none <!--{/if}-->">
+                    <label class="col-sm-4 control-label text-left">
+                        紹介コード
+                    </label>
+                    <div class="col-sm-8">
+                        <!--{if isset($promotion_code) || !empty($promotion_code)}-->
+                            <input type="text" name="promotion_code" class="form-control" placeholder="紹介コード" value="<!--{$promotion_code|escape|default:''}-->">
+                        <!--{else}-->
+                            <input type="text" name="promotion_code" class="form-control" placeholder="紹介コード" value="<!--{$post.promotion_code|escape|default:''}-->">
+                        <!--{/if}-->
+                        <p class="small">
+                            紹介コードをお持ちの方は入力してください。<br>
+                            「-」（ハイフン）は抜いてご入力ください。
+                        </p>
+                    </div>
+                </div>
+                <!--{/if}-->
+                <div class="form-group">
+                    <label class="col-sm-4 control-label text-left">
+                        キャンペーンコード
+                    </label>
+                    <div class="col-sm-8">
+                        <!--{if isset($campaign_code) || !empty($campaign_code)}-->
+                        <input type="hidden" name="campaign_code" class="form-control" placeholder="キャンペーンコード" value="<!--{$campaign_code|escape|default:''}-->">
+                        <!--{else}-->
+                        <input type="text" name="campaign_code" class="form-control" placeholder="キャンペーンコード" value="<!--{$post.campaign_code|escape|default:''}-->">
+                        <!--{/if}-->
+                        <p class="small">
+                            キャンペーンコードをお持ちの方は入力してください。
+                        </p>
+                    </div>
+                </div>
+                <div class="divider dashed"></div>
+                <div class="form-group">
+                    <div class="col-lg-12">
+                        <p class="h5 text-center">
+                            スクールTVのお申し込みにあたっては <a href="/rules" style="color: #01977c;">「スクールTV利用規約」</a> を必ずご確認ください。
+                            <br>
+                            「確認」ボタンをクリックしてお申し込みいただいたことで利用規約へのご同意をいただいたこととさせていただきます。
+                        </p>
+                    </div>
+                    <div class="col-md-6 col-md-push-3 col-sm-8 col-sm-push-2 mt20">
+                        <button class="btn btn-green btn-block" type="submit">次へ</button>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="form-group social-login">
+                    <p class="h4 bold text-center">保護者の方はSNSアカウントでもログインできます</p>
+                    <div class="col-sm-10 col-sm-push-1">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <a href="/facebook/authorize" class="btn btn-sns btn-sns-facebook btn-block">Facebookでログイン</a>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <a href="/twitter/authorize" class="btn btn-sns btn-sns-twitter btn-block">Twitterでログイン</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

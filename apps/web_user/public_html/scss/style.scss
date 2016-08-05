@@ -1,0 +1,208 @@
+//  Fonts
+//  Bootstrap
+//  Global
+//  Layout
+// =Fonts & Bootstrap
+// --------------------------------------------------
+//
+// =Fonts & Bootstrap
+// --------------------------------------------------
+//
+// =Bootstrap
+// --------------------------------------------------
+@import "custom-bootstrap";
+//
+// =Global
+// --------------------------------------------------
+@import "general/mixins";
+@import "general/colors";
+@import "general/icons";
+@import "general/settings";
+//
+// =Material
+// Document: https://fezvrasta.github.io/bootstrap-material-design
+// --------------------------------------------------
+@import "custom-bootstrap-material-design";
+@import "custom-ripples";
+//
+// =Modules
+// --------------------------------------------------
+@import "modules/background";
+@import "modules/hexagon";
+@import "modules/form";
+@import "modules/display";
+@import "modules/button";
+@import "modules/label";
+@import "modules/images";
+@import "modules/modal";
+@import "modules/panel";
+@import "modules/progress";
+@import "modules/points-list";
+@import "modules/video-boxes";
+@import "modules/pagination";
+@import "modules/news-list";
+@import "modules/settings-list";
+@import "modules/btn-dropdown";
+@import "modules/tooltip";
+@import "modules/tweet-buttons";
+@import "modules/video-player";
+
+// Stage2
+@import "modules/deck-list";
+@import "modules/activity";
+@import "modules/rabi";
+@import "modules/no-item";
+@import "modules/match-player-list";
+@import "modules/stage-list";
+@import "modules/friend-list";
+@import "modules/ranking-list";
+
+//
+// =Layout
+// --------------------------------------------------
+@import "layout/header";
+@import "layout/footer";
+@import "layout/content";
+
+body {
+  background-color: #fff;
+}
+
+.h1, .h2, .h3, .h4, body, h1, h2, h3, h4, h5, h6 {
+  font-family: '小塚ゴシック Pr6N', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', "游ゴシック", 'メイリオ', Meiryo, verdana, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+//
+// =Setting
+// --------------------------------------------------
+@import "pages/setting";
+
+//
+// =Questions
+// --------------------------------------------------
+//@import "../third_party/jquery-dragndrop/jquery-dragndrop.css";
+@import "pages/question";
+
+//
+// =Subject detail page: subject/detail
+// --------------------------------------------------
+@import "pages/subject-detail";
+
+//
+// =Subject detail page: video/detail
+// --------------------------------------------------
+@import "pages/video-detail";
+
+//
+// =Subject detail page: profile/detail
+// --------------------------------------------------
+@import "pages/profile-detail";
+
+//
+// =Top index page: top/index
+// --------------------------------------------------
+@import "pages/top-index";
+
+//
+// =Content index page: content/index
+// --------------------------------------------------
+@import "pages/content-index";
+
+//
+// =News details page: news/detail
+// --------------------------------------------------
+@import "pages/news-detail";
+
+
+
+// Stage2
+
+//
+// =Station index page: station/index
+// --------------------------------------------------
+@import "pages/station";
+
+//
+// =Play pages: station/xx
+// --------------------------------------------------
+@import "pages/play";
+
+//
+// =Group setting pages: group_setting/xx
+// --------------------------------------------------
+@import "pages/group-setting";
+
+//
+// =Deck page: deck/detail
+// --------------------------------------------------
+@import "pages/deck";
+
+//
+// =Dashboard page: dashboard/
+// --------------------------------------------------
+@import "pages/dashboard";
+
+
+//
+// =Friend pages: friend/
+// --------------------------------------------------
+@import "pages/friend";
+
+
+//
+// =Inquiry pages: inquiry/
+// --------------------------------------------------
+@import "pages/inquiry";
+
+
+//
+// =Ranking pages: ranking/
+// --------------------------------------------------
+@import "pages/ranking";
+
+//
+// =Coin pages: coin/
+// --------------------------------------------------
+@import "pages/coin";
+
+//
+// =Pay service pages: pay_service/
+// --------------------------------------------------
+@import "pages/pay-service";
+
+
+//
+// =Static pages: no controller
+// --------------------------------------------------
+@import "pages/staticpage";
+
+
+
+//
+// =Apply style ONLY on IE
+// --------------------------------------------------
+@import "ie/style";
+
+//
+// =Message pages: message
+// --------------------------------------------------
+@import "pages/message";
+
+//
+// =Timeline pages: timeline
+// --------------------------------------------------
+@import "pages/timeline";
+
+//
+// =Trophy pages: trophy
+// --------------------------------------------------
+@import "pages/trophy";
+
+//
+// =Report pages: report
+// --------------------------------------------------
+@import "pages/report";

@@ -1,0 +1,71 @@
+<!--{content_for name="page_styles"}-->
+<link href="/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet"
+      type="text/css"/>
+<link href="/assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css"/>
+<link href="/assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+<!--{/content_for}-->
+
+<!--{content_for name="page_plugins"}-->
+<script src="/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.ja.min.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>
+<!--{/content_for}-->
+
+<!--{content_for name="page_scripts"}-->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#submitForm').on('click', function(e) {
+            var role_id = $("input[name=role_id]:checked").val();
+            var name = $("#name").val() ? ':'+$("#name").val() : 'df';
+            var login_id = $("#login_id").val() ? $("#login_id").val() : 'fd';
+
+            var role_name = '';
+            role_name = (role_id == 1) ? "企画権限" : "営業権限";
+            $(".modal-body #role_modal").html(role_name);
+            $(".modal-body #name_modal").html($("#name").val());
+            $(".modal-body #login_id_modal").html($("#login_id").val());
+        });
+        $("#modalSubmit").click(function () {
+            $("#form").submit();
+        });
+        $("#back").click(function () {
+            window.location.href = '/admin/index';
+        });
+
+    });
+</script>
+
+<!--{/content_for}-->
+<!-- Modal -->
+<div id="details-modal" class="modal fade" tabindex="-1" data-width="760">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title"><!--{$title}--></h4>
+    </div>
+    <div class="modal-body">
+        <div class="table-scrollable">
+            <table class="table table-hover text-left">
+                <tr>
+                    <th width="12%" class="active">権限</th>
+                    <td id="role_modal"></td>
+                </tr>
+                <tr>
+                    <th class="active">ユーザー名</th>
+                    <td id="name_modal"></td>
+                </tr>
+                <tr>
+                    <th class="active">ログインID</th>
+                    <td id="login_id_modal"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="text-center">
+            <button type="button" data-dismiss="modal" class="btn btn-lg grey-salsa">キャンセル</button>
+            <button id="modalSubmit" type="button" class="btn btn-lg green">完了</button>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,48 @@
+<div class="play-page my-team">
+    <div class="bg-shining-yellow">
+        <div class="bg-inner">
+
+            <div class="container">
+                <div class="content-frame-designed-corner">
+                    <div class="frame-inner">
+                        <div class="head"></div>
+                        <div class="middle">
+                            <div class="team-detail text-center">
+                                <div class="team-detail-inner">
+                                    <p class="txt1 text-left">まだこのドリルをもっていないチームメンバーがいるよ。チーム全員がドリルを持っているとクエストができるよ。<br>「このドリルを詳しく見る」ボタンから、ドリルをコインで手に入れたり、友達にシェアすることができるよ。</p>
+                                </div>
+                                <a href="/deck/<!--{$deck_id}-->" class="btn btn-outline btn-yellow back-link">このドリルを詳しく見る</a>
+                            </div>
+                            <div class="clearfix"></div>
+
+                            <ul class="friend-list list-unstyled">
+                                <!--{foreach from=$members key=key item=member}-->
+                                <li>
+                                    <div class="list-item height" href="/play/select_team/<!--{$group.id|escape|default:''}-->">
+                                        <div class="thumb">
+                                            <img src="/images/avatar/<!--{if $member.avatar_id == 0}-->2<!--{else}--><!--{$member.avatar_id}--><!--{/if}-->.png" class="img-responsive">
+                                        </div>
+                                        <div class="name pd2">
+                                            <span class="text"><!--{$member.nickname|escape|default:'ニックネームなし'}--></span>
+
+                                        </div>
+                                        <div class="action"><span class="id"><!--{if !empty($member.id)}--><small>GET！</small><!--{else}-->未入手<!--{/if}--></span></div>
+                                    </div>
+                                </li>
+                                <!--{/foreach}-->
+                            </ul>
+
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="text-center">
+                    <a href="/play/select_drill" class="btn btn-outline back-link">戻る</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+/*
+* Edit avatar
+*/
+.row-edit-avatar {
+  > div {
+    margin-bottom: 30px;
+  }
+}
+
+/*
+* Search textbook
+*/
+.textbook-search-page {
+  @media (max-width: $screen-xs-max) {
+    .input-group {
+      width: 100%;
+
+      .input-group-btn {
+        padding: 0 12px;
+        display: block;
+        width: 100%;
+        margin: 10px 0 30px;
+      }
+    }
+  }
+}
+
+/*
+* Fix bug: can not click image to change avatar in IE 11
+*/
+.avatar-radio {
+  label {
+    display: inline-block !important;
+    position: relative;
+    span {
+      text-indent: -9999px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      text-align: left;
+    }
+    input {
+      @include opacity(0);
+    }
+    img {
+      pointer-events: none;
+      &.selected {
+        display: none;
+      }
+    }
+  }
+}

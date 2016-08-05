@@ -1,0 +1,143 @@
+.tweet-buttons {
+  display: none;
+  border: 3px solid #6ecbe6;
+  border-radius: 5px;
+  background-color: $c-white;
+  width: 124px;
+  padding: 20px 15px 10px;
+  .h2 {
+    font-size: 20px;
+    color: $c-green-border;
+    margin-top: 0;
+    font-weight: 700;
+  }
+  .h3 {
+    margin-top: 0;
+    text-align: center;
+    color: #da202e;
+    border-bottom: 1px solid #52bede;
+    padding-bottom: 10px;
+    span {
+      display: block;
+      font-size: 18px;
+    }
+    .bold {
+      font-size: 25px;
+      font-weight: 700;
+    }
+  }
+  ul {
+    margin-bottom: 0;
+    text-align: center;
+  }
+  li {
+    position: relative;
+  }
+  .count {
+    position: absolute;
+    display: block;
+    border: 2px solid $c-white;
+    color: $c-white;
+    font-size: 15px;
+    background-color: #da202e;
+    border-radius: 50%;
+    height: 27px;
+    line-height: 23px;
+    min-width: 27px;
+    text-align: center;
+    padding: 0 3px;
+    font-weight: 700;
+    bottom: 0;
+    right: 0;
+  }
+  .btn-link {
+    &.on-click {
+      pointer-events: none;
+      -webkit-animation: tweetButtonOnClick 0.5s ease 1;
+      animation: tweetButtonOnClick 0.5s ease 1;
+    }
+    @keyframes tweetButtonOnClick {
+      0% {
+        @include transform(scale(1, 1));
+      }
+      50% {
+        @include transform(scale(1.1, 1.1));
+      }
+    }
+    @-webkit-keyframes tweetButtonOnClick {
+      0% {
+        @include transform(scale(1, 1));
+      }
+      50% {
+        @include transform(scale(1.1, 1.1));
+      }
+    }
+  }
+  @media (max-width: $screen-xs-max) {
+    padding: 10px 10px 5px;
+    .h3 {
+      span {
+        font-size: 14px;
+      }
+      .bold {
+        font-size: 20px;
+      }
+    }
+    .count {
+      font-size: 12px;
+      height: 20px;
+      min-width: 20px;
+      line-height: 16px;
+    }
+    .btn-link {
+      padding: 0;
+    }
+    .btn-link img {
+      max-width: 60px;
+      width: 100%;
+    }
+  }
+  @media (max-width: $screen-xs-max) {
+    .modal-ranking & {
+      .btn-link img {
+        max-width: 50px;
+      }
+    }
+  }
+}
+
+.tweet-buttons-horizontal {
+  width: auto;
+  display: table;
+  @include clearfix;
+  .h3 {
+    display: table-cell;
+    vertical-align: middle;
+    padding-bottom: 0;
+    border-bottom: 0;
+    border-right: 1px solid #52bede;
+    padding-right: 10px;
+    text-align: left;
+  }
+  ul {
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 10px;
+  }
+  li {
+    float: left;
+  }
+}
+
+.tweet-buttons-block {
+  .h3,
+  ul {
+    display: block;
+  }
+  .modal & {
+    display: table !important;
+    @media (max-width: $screen-xs-max) {
+      display: none !important;
+    }
+  }
+}

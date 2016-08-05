@@ -1,0 +1,81 @@
+<div class="play-page room battle-page">
+    <div class="bg-shining-yellow">
+        <div class="bg-inner" id="drill-screen">
+
+            <div class="container">
+                <div class="content-frame-designed-corner with-ribbon-title">
+                    <div class="frame-inner">
+                        <div class="layer"></div>
+                        <div class="head"></div>
+                        <div class="middle">
+                            <!--{if !empty($room)}-->
+                            <h1 class="ribbon-img-title">チームバトルルーム</h1>
+                            <p class="frame-title"><!--{$room.group_name|escape|default:''}--></p>
+
+                            <!--title 1-->
+                            <p class="frame-title bg-frame"><span class="txt">バトル終了日時</span><!--{$room.end_time|escape|default:''}--></p>
+
+                            <!--room-->
+                            <div class="list-team-battle">
+                                <span class="txt-vs">VS</span>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <p class="team-title"><!--{$room.group_name|escape|default:'チーム名チーム名'}--></p>
+                                        <p class="team-scort"><!--{$room.group_score|escape|default:''}--><span class="arow">点</span></p>
+                                    </li>
+                                    <li>
+                                        <p class="team-title"><!--{$room.target_group_name|escape|default:'チーム名チーム名'}--></p>
+                                        <p class="team-scort"><!--{$room.target_group_score|escape|default:''}--><span class="arow">点</span></p>
+                                    </li>
+                                </ul>
+                                <p class="battle-txt"><!--{$room.created_at|escape|default:""}--> バトル終了時間</p>
+
+                            </div>
+                            <!--{/if}-->
+
+                            <!--list button-->
+                            <ul class="list-inline text-center">
+                                <li><a href="/play/team/battle" class="btn btn-yellow btn-lg">チームバトルトップへ</a></li>
+                               <li><a href="/play/select_drill" class="btn btn-yellow btn-lg">攻撃スタート</a></li>
+                            </ul>
+
+                            <!--title 2-->
+                            <p class="frame-title bg-frame text-two">スコア加算履歴</p>
+
+                            <!--list-member-->
+                            <!--{if !empty($members)}-->
+                            <ul class="list-member list-unstyled">
+                                <!--{foreach from=$members.items key=key item=member name=i}-->
+                                <li>
+                                    <div class="col-left">
+                                        <img src="/images/avatar/5.png" class="img-responsive">
+                                        <span class="name"><!--{$member.nickname|escape|default:''}--></span>
+                                        <div class="clearfix"></div>
+                                        <p class="desc"><!--{$member.stage_name|escape|default:'ターゲット中学英単語1800レベル 1(400語)'}--></p>
+                                    </div>
+                                    <div class="col-right">
+                                        <p class="time"><!--{$member.created_at|escape|default:''}--></p>
+                                        <p class="team-scort"><!--{$member.score|escape|default:''}--><span class="arow">点</span></p>
+                                    </div>
+                                </li>
+                                <!--{/foreach}-->
+                            </ul>
+                            <!--{/if}-->
+                            <div class="text-center">
+                                <a href="/play/team/battle/history" class="btn btn-yellow btn-lg">もっと見る</a>
+                            </div>
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="text-center">
+                    <a href="/play/team/battle" class="btn btn-outline back-link">チームバトルトップへ</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

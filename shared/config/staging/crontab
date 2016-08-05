@@ -1,0 +1,19 @@
+MAILTO=alert+schooltv@interest-marketing.net
+
+# Reset the user power daily
+0 0 * * * CODEIGNITER_ENV=staging php /home/schooltv/application/current/tools/ci.php power/refund_user_power > /dev/null 2>&1
+
+# Import textbook for test on staging
+0 0 * * * CODEIGNITER_ENV=staging php /home/schooltv/application/current/tools/ci.php import/textbooks > /dev/null 2>&1
+
+# MonthlyPayment Auto purchase at 26
+0 0 26,2,10 * * CODEIGNITER_ENV=staging php /home/schooltv/application/current/tools/ci.php monthly_payment/auto_update > /dev/null 2>&1
+
+# MonthlyPayment Auto turn off contract at 1st
+0 0 1 * * CODEIGNITER_ENV=staging php /home/schooltv/application/current/tools/ci.php monthly_payment/auto_turn_off_contract > /dev/null 2>&1
+
+# MonthlyPayment Auto send mail when pending plan and user can not play drill
+0 0 11 * * CODEIGNITER_ENV=staging php /home/schooltv/application/current/tools/ci.php monthly_payment/auto_send_mail_at_10th_pending > /dev/null 2>&1
+
+# MonthlyPayment Send mail when user expired of free plan
+0 1 * * * CODEIGNITER_ENV=staging php /home/schooltv/application/current/tools/ci.php monthly_payment/auto_send_email_free_plan_expired > /dev/null 2>&1

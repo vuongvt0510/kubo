@@ -1,0 +1,37 @@
+<ul class="deck-list list-unstyled">
+    <!--{if !empty($decks)}-->
+    <!--{foreach from=$decks key=key item=deck}-->
+    <li class="item">
+
+        <!--{*
+        link varies
+        DB10 → VS10
+        FD10 → DK10 (attention)
+        DB100 → VS10
+
+        TP10 → DK10
+        MY10 → DK10
+        DK10 → DK10
+        MS30 → DK10
+        SA10 → DK10
+        SA20 → DK10
+
+        *}-->
+        <a class="content" href="/<!--{if isset($href)}--><!--{$href}--><!--{/if}--><!--{$deck.id}-->">
+            <div class="cell-sp first">
+                <div class="thumb x-img-liquid"><!--{* TODO: .x-img-liquid -> need js plugin to adjust aspect ratio, if the sever image is not fixed *}-->
+                    <img src="<!--{image_link key=$deck.image_key|escape|default:''}-->" class="img-cover-center img-responsive" alt="" width="120" height="120">
+                </div>
+            </div>
+            <div class="cell-sp">
+                <div class="description">
+                    <p class="title x-ellipsis"><!--{$deck.name|escape}--></p>
+                    <div class="subject bg-<!--{$deck.subject.color|escape}-->"><!--{$deck.subject.short_name|escape}--></div>
+                </div>
+            </div>
+        </a>
+    </li>
+    <!--{/foreach}-->
+    <!--{/if}-->
+</ul>
+

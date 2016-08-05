@@ -1,0 +1,54 @@
+<nav class="pagination-wrap clearfix">
+    <div class="pull-left mt10">
+        <!--{if $pagination.total != 0}-->
+        <label class="form-control-static"><!--{$pagination.total|escape|default:'0'}--> 件中
+            <!--{$pagination.offset|escape|default:'0'}-->~
+            <!--{$pagination.limit|escape|default:'0'}--> 件を表示</label>
+        <!--{/if}-->
+    </div>
+    <!--{if !empty($pagination) && $pagination.total > $pagination.items_per_page}-->
+    <div class="pull-right">
+        <ul class="pagination no-margin">
+            <li <!--{if $pagination.page - 1 <= 0}--> class="disabled" <!--{/if}-->>
+
+            <a href="<!--{if $pagination.page - 1 <= 0}--> javascript:;<!--{else}-->?<!--{if !empty($pagination.search)}--><!--{$pagination.search}-->&<!--{/if}-->p=<!--{$pagination.page - 1}--><!--{/if}-->">
+                前
+            </a>
+            </li>
+            <!--{if $pagination.page - $pagination.adj > 1}-->
+            <li>
+                <a href="?<!--{if !empty($pagination.search)}--><!--{$pagination.search}-->&<!--{/if}-->p=1"> 1 </a>
+            </li>
+            <!--{/if}-->
+
+            <!--{if $pagination.page - $pagination.adj > 1}-->
+            <li><a href="javascript:;">...</a></li>
+            <!--{/if}-->
+
+            <!--{for $p=($pagination.min_display) to $pagination.max_display}-->
+            <!--{if $p > 0}-->
+            <li <!--{if $pagination.page == $p}--> class="active" <!--{/if}-->>
+            <a href="<!--{if $pagination.page != $p}-->?<!--{if !empty($pagination.search)}--><!--{$pagination.search}-->&<!--{/if}-->p=<!--{$p}--><!--{else}-->javascript:;<!--{/if}-->"> <!--{$p}--> </a>
+            </li>
+            <!--{/if}-->
+            <!--{/for}-->
+
+            <!--{if $pagination.page + $pagination.adj < $pagination.total_page}-->
+            <li><a href="javascript:;">...</a></li>
+            <!--{/if}-->
+
+            <!--{if $pagination.page + $pagination.adj < $pagination.total_page}-->
+            <li>
+                <a href="?<!--{if !empty($pagination.search)}--><!--{$pagination.search}-->&<!--{/if}-->p=<!--{$pagination.total_page}-->"> <!--{$pagination.total_page}--> </a>
+            </li>
+            <!--{/if}-->
+
+            <li <!--{if $pagination.page + 1 > $pagination.total_page}--> class="disabled" <!--{/if}-->>
+            <a href="<!--{if $pagination.page + 1 > $pagination.total_page}--> javascript:;<!--{else}-->?<!--{if !empty($pagination.search)}--><!--{$pagination.search}-->&<!--{/if}-->p=<!--{$pagination.page + 1}--><!--{/if}-->">
+                次
+            </a>
+            </li>
+        </ul>
+    </div>
+    <!--{/if}-->
+</nav>

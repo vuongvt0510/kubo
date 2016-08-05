@@ -1,0 +1,54 @@
+<ul class="stage-list list-unstyled stage-list-status">
+    <!--{if !empty($stages)}-->
+    <!--{foreach from=$stages key=key item=stage name=i}-->
+    <li class="item">
+        <!--{if isset($href)}-->
+        <a class="item-inner clearfix no-underline" href="/<!--{$href|escape|default:''}--><!--{$stage.id|escape|default:''}-->" data-stage="<!--{$stage.id|escape|default:''}-->">
+        <!--{else}-->
+        <div class="item-inner clearfix">
+        <!--{/if}-->
+            <!--<div class="left" style="width:100%; border-bottom: 1px solid #1b6abd;">-->
+            <div class="left">
+                <span class="pull-left label">ステージ<!--{$stage.order|escape|default:'1'}--></span>
+                <div class="stage-title x-ellipsis"><!--{$stage.name|escape|default:''}--></div>
+            </div>
+            <div class="clearfix row">
+                <div class="col-xs-12 col-sm-6 pr5 pl5">
+                    <div class="col-yellow">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-5 stage-icon trophy stage-text">ハイスコア</div>
+                            <div class="col-xs-6 col-md-7 text-right stage-text c-red-dark pl5"> <!--{if isset($stage.highest_score)}--><span class="bold"><!--{$stage.highest_score|escape|default:'-'}--></span><small>点</small><!--{else}--><small>- 点</small><!--{/if}--></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-5 stage-icon pen stage-text">正解数</div>
+                            <div class="col-xs-6 col-md-7 text-right stage-text c-red-dark pl5"><!--{if isset($stage.total_questions) && $stage.total_questions > 0}--><span class="c-red-dark"><span class="bold"><!--{$stage.correct_answer|escape|default:''}--></span>問</span>/<small><!--{$stage.total_questions|escape|default:''}-->問中</small><!--{else}--><small>- 問</small><!--{/if}-->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 pl5 pr5">
+                    <div class="col-yellow">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-5 stage-icon game stage-text">プレイ回数</div>
+                            <div class="col-xs-6 col-md-7 text-right stage-text c-red-dark pl5"> <!--{if isset($stage.total_time) && $stage.total_time > 0}--><span class="bold"><!--{$stage.total_time|escape|default:''}--></span><small>回</small><!--{else}--><small>- 回</small><!--{/if}--></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-5 stage-icon clock stage-text">プレイ時間</div>
+                            <div class="col-xs-6 col-md-7 text-right stage-text c-red-dark pl5"><!--{if isset($stage.total_time) && $stage.total_time > 0}--><span class="bold"><!--{(int) ($stage.total_second/60)|escape|default:''}--></span><small>分</small><!--{else}--><small>- 分</small><!--{/if}-->
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        <!--{if isset($href)}-->
+        </a>
+        <!--{else}-->
+        </div>
+        <!--{/if}-->
+    </li>
+    <!--{/foreach}-->
+    <!--{/if}-->
+</ul>

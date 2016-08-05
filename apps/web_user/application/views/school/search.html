@@ -1,0 +1,84 @@
+<!--{*
+$student_has_no_grade
+this is for the student users imported from old site.
+because some of them doesn't have any grade,
+but in this site, it's gonna be error without any grade.
+*}-->
+
+<div class="bg-triangle">
+    <div class="container">
+        <div class="page-title">
+            <div class="container text-center">
+                <p class="h1"><!--{if isset($student_has_no_grade)}-->学年<!--{else}-->学校<!--{/if}-->設定</p>
+
+                <p class="caption">
+                    <!--{if isset($student_has_no_grade)}-->
+                    学年を設定するとスクールTVの動画コンテンツをご利用いただけるようになります<br>
+                    まずは学年を設定しよう
+                    <!--{else}-->
+                    教科書を設定するとあなたの学校の教科書に合った動画を見ることができるようになります<br>
+                    まずは学校を設定しよう
+                    <!--{/if}-->
+                </p>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <form class="content-frame form-horizontal" method="post">
+                <!--{if isset($errmsg)}-->
+                <div class="form-group">
+                    <label style="color:red;" class="col-xs-12 text-center control-label"><!--{$errmsg|escape}--></label>
+                </div>
+                <!--{/if}-->
+
+                <!--{if !isset($student_has_no_grade)}-->
+                <div class="form-group">
+                    <label class="col-sm-4 control-label text-left">学校名</label>
+
+                    <div class="col-sm-8">
+                        <!--{if isset($chosen_school.name)}-->
+                        <div class="current-value">
+                            <!--{$chosen_school.name|escape}-->
+                            <!--{if isset($chosen_school.address)}--><br><span class="small"><!--{$chosen_school.address|escape}--></span>
+                            <!--{/if}-->
+                        </div>
+                        <!--{/if}-->
+                        <a href="/school/search/postalcode<!--{if !empty($user_id)}-->/<!--{$user_id|escape|default:''}--><!--{/if}-->" class="btn btn-green btn-sm">郵便番号から検索</a>
+                        <a href="/school/search/keyword<!--{if !empty($user_id)}-->/<!--{$user_id|escape|default:''}--><!--{/if}-->" class="btn btn-green btn-sm">都道府県学校名から検索</a>
+                    </div>
+                </div>
+                <!--{/if}-->
+                <div class="form-group">
+                    <label class="col-sm-4 control-label text-left">
+                        学年
+                        <span class="c-green">【必須】</span>
+                    </label>
+
+                    <div class="col-sm-8">
+                        <!--{if !empty($grades)}-->
+                        <select name="grade_id" class="form-control">
+                            <!--{foreach $grades.all as $item}-->
+                            <option <!--{if isset($grade) and $grade == $item.id}-->selected<!--{/if}--> value="
+                            <!--{$item.id|escape}-->"><!--{$item.name|escape}--></option>
+                            <!--{/foreach}-->
+                        </select>
+                        <!--{/if}-->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <!--{if !isset($student_has_no_grade)}-->
+                    <div class="col-sm-6">
+                        <a href="/setting" class="btn btn-gray btn-block">戻る</a>
+                    </div>
+                    <!--{/if}-->
+                    <div class="col-sm-6 <!--{if isset($student_has_no_grade)}-->col-sm-push-3<!--{/if}-->">
+                        <!--{if !isset($student_has_no_grade)}-->
+                        <input type="hidden" name="update_school_id" value="<!--{$chosen_school.id|escape|default:''}-->">
+                        <!--{/if}-->
+                        <button type="submit" class="btn btn-green btn-block">設定</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

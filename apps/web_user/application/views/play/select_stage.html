@@ -1,0 +1,101 @@
+<div class="play-page my-team<!--{if $parent_check_status == TRUE}--> monthly-report<!--{/if}-->">
+    <div class="<!--{if $parent_check_status == TRUE}--> bg-triangle-blue<!--{else}--> bg-shining-yellow<!--{/if}-->">
+        <!--{if $parent_check_status == FALSE}-->
+        <div class="bg-inner">
+        <!--{/if}-->
+
+        <!--{if $parent_check_status == TRUE}-->
+        <div class="bg-white">
+            <div class="section-title-top bg-white">
+                <div class="container">
+                    <p class="h3"><span class="c-primary"><!--{$user_nickname|escape|default:'ニックネームなしさん'}-->さん</span> のドリルプレイ状況</p>
+                    <div class="bg-transparent border-light-blue">
+                        <!--{include file="partial/deck_list_line.html" decks=$deck}-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--{/if}-->
+
+        <div class="container">
+
+            <div class="<!--{if $parent_check_status == TRUE}-->bg-inner<!--{else}--> content-frame-designed-corner<!--{/if}-->">
+                <div class="<!--{if $parent_check_status == TRUE}-->content-frame bg-transparent report-frame<!--{else}--> frame-inner<!--{/if}-->">
+
+                    <!--{if $parent_check_status == FALSE}-->
+                    <div class="head"></div>
+                    <!--{/if}-->
+                    <div class="middle<!--{if $parent_check_status == TRUE}--> mt20<!--{/if}-->">
+                        <!--{if isset($group_name)}-->
+                        <p class="frame-title mgbt10">クエストを選ぼう</p>
+                        <div class="team-detail text-center">
+                            <div class="team-detail-inner">
+                                <p class="txt1">プレイするチーム</p>
+                                <p class="txt2"><!--{$group_name|escape|default:''}--></p>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <!--{else if $parent_check_status == FALSE}-->
+                        <p class="frame-title">プレイするステージを選ぼう！</p>
+                        <!--{/if}-->
+
+                        <!--{if $parent_check_status == FALSE}-->
+                        <!--{include file="partial/deck_list_line.html" decks=$deck}-->
+
+                        <hr>
+                        <!--{/if}-->
+
+                        <!--{if $parent_check_status == TRUE}-->
+                        <!--{include file="partial/stage_status_list.html" stages=$stages href='play/select_stage/'}-->
+                        <!--{else}-->
+                        <!--{include file="partial/stage_list.html" stages=$stages href='play/select_stage/'}-->
+                        <!--{/if}-->
+                    </div>
+                    <div class="foot"></div>
+                </div>
+                <!--{if $parent_check_status == FALSE}-->
+                </div>
+                <!--{/if}-->
+
+                <!--{if $parent_check_status == TRUE}--><div class="divider dashed white"></div><!--{else}--><hr><!--{/if}-->
+
+                <div class="text-center">
+                    <!--{if $is_trial}-->
+                    <a href="/deck/<!--{$deck_id|escape|default:''}-->" class="btn btn-outline back-link">戻る</a>
+                    <!--{else}-->
+                    <a href="/play/select_drill" class="btn btn-outline back-link"><!--{if $parent_check_status == TRUE}-->ドリル選択へ戻る<!--{else}-->戻る<!--{/if}--></a>
+                    <!--{/if}-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--{include file="partial/modal/confirm_duplicate_stage.html"}-->
+
+<!--{content_for name="headjs"}-->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("div.item-inner").on("click", function() {
+            var stage_id = parseInt($(this).attr("data-stage"));
+            $.ajax({
+                type: "POST",
+                url: '/play/check_duplicate_stage',
+                data: {
+                    stage_id: parseInt(stage_id)
+                },
+                dataType: "JSON"
+            }).done(function(res) {
+                if (res.success && !res.result.is_duplicated_stage) {
+                    window.location.href = '/play/team_battle_play';
+                } else {
+                    $("#ConfirmDuplicateStage").modal({
+                        show: true,
+                        backdrop: 'static'
+                    });
+                }
+            });
+        });
+    });
+</script>
+<!--{/content_for}-->

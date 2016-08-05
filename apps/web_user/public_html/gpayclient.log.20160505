@@ -1,0 +1,8 @@
+2016/03/21 11:31:31 SearchCard [ERROR]: プロトコルタイプとのデータの送受信に失敗しました。 : Unknown SSL protocol error in connection to pt01.mul-pay.jp:443 
+2016/03/21 11:34:41 SearchCard [ERROR]: プロトコルタイプとのデータの送受信に失敗しました。 : Unknown SSL protocol error in connection to pt01.mul-pay.jp:443 
+2016/03/21 11:44:55 SearchCard [ERROR]: プロトコルタイプとのデータの送受信に失敗しました。 : Unknown SSL protocol error in connection to pt01.mul-pay.jp:443 
+2016/03/21 11:46:35 SearchCard [ERROR]: プロトコルタイプとのデータの送受信に失敗しました。 : Unknown SSL protocol error in connection to pt01.mul-pay.jp:443 
+2016/03/21 11:47:39 SearchMember [ERROR]: プロトコルタイプとのデータの送受信に失敗しました。 : Unknown SSL protocol error in connection to pt01.mul-pay.jp:443 
+2016/03/21 11:47:40 SaveMember [ERROR]: プロトコルタイプとのデータの送受信に失敗しました。 : Unknown SSL protocol error in connection to pt01.mul-pay.jp:443 
+2016/03/21 11:51:20 SearchMember [ERROR]: プロトコルタイプとのデータの送受信に失敗しました。 : Unknown SSL protocol error in connection to pt01.mul-pay.jp:443 
+2016/03/21 11:51:21 SaveMember [ERROR]: プロトコルタイプとのデータの送受信に失敗しました。 : Unknown SSL protocol error in connection to pt01.mul-pay.jp:443 

@@ -1,0 +1,233 @@
+<div class="bg-triangle list-team">
+    <div class="container">
+
+        <!--{if $device_type == "SP"}-->
+        <div class="visible-xs content-timeline mb10 ">
+            <div class="top-bg-xs">
+                <a href="/message" alt="back" class="btn-back"></a>
+                <span class="title-xs">送信先選択</span>
+            </div>
+
+        </div>
+        <!--{else}-->
+        <div class="hidden-xs">
+            <div class="page-title">
+                <p class="h1">送信先選択</p>
+                <p class="caption">メッセージを送信する相手を選択してください</p>
+            </div>
+        </div>
+        <!--{/if}-->
+        <div class="content-frame relation message-frame">
+            <ul class="tab list-unstyled" role="tablist">
+                <!--{if $primary_type != parent}-->
+                <li class="active">
+                    <a href="#message_all" role="tab" data-toggle="tab">すべて</a>
+                </li>
+                <!--{/if}-->
+                <li>
+                    <a href="#message_family" role="tab" data-toggle="tab">家族</a>
+                </li>
+                <!--{if $primary_type != parent}-->
+                <li>
+                    <a href="#message_friend" role="tab" data-toggle="tab">友達</a>
+                </li>
+                <li>
+                    <a href="#message_team" role="tab" data-toggle="tab">チーム</a>
+                </li>
+                <!--{/if}-->
+            </ul>
+
+            <div class="tab-content">
+                <div id="message_all" class="tab-pane active">
+                    <!--{if !empty($family_group['items'])}-->
+                    <p class="title-tab">家族グループから選ぶ</p>
+                    <div class="list-friend-item">
+                        <ul class="friend-list list-unstyled">
+                            <!--{foreach from=$family_group['items'] key=key item=item}-->
+                            <li>
+                                <a href="/message/chat_room/<!--{$item.group_id|escape|default:''}-->">
+                                    <div class="thumb">
+                                        <img src="/images/avatar/<!--{$item.group_avatar|escape|default:'family'}-->.png" class="img-responsive avatar">
+                                    </div>
+                                    <div class="name padding1">
+                                        <span class="text"><!--{$item.name|escape|default:'ニックネームなし'}--></span>
+                                    </div>
+                                    <span class="icon-disible"></span>
+                                </a>
+                            </li>
+                            <!--{/foreach}-->
+                        </ul>
+                    </div>
+                    <!--{/if}-->
+
+                    <!--{if !empty($family['items'])}-->
+                    <p class="title-tab bg-blue-first">家族から選ぶ</p>
+                    <div class="list-friend-item">
+                        <ul class="friend-list list-unstyled">
+                            <!--{foreach from=$family['items'] key=key item=item}-->
+                            <li>
+                                <a href="/message/chat/<!--{$item.user_id|escape|default:''}-->">
+                                    <div class="thumb">
+                                        <img src="/images/avatar/<!--{if $item.avatar_id == 0}--><!--{if $item.primary_type == 'parent'}-->12<!--{else}-->2<!--{/if}--><!--{else}--><!--{$item.avatar_id}--><!--{/if}-->.png" alt="<!--{$item.nickname|escape|default:'ニックネームなし'}-->" class="img-responsive avatar">
+                                    </div>
+                                    <div class="name padding1">
+                                        <span class="text"><!--{$item.nickname|escape|default:'ニックネームなし'}--></span>
+                                    </div>
+                                    <span class="icon-disible"></span>
+                                </a>
+                            </li>
+                            <!--{/foreach}-->
+                        </ul>
+                    </div>
+                    <!--{/if}-->
+
+                    <!--{if $primary_type != parent}-->
+                    <!--{if !empty($friend['items'])}-->
+                    <p class="title-tab">友達から選ぶ</p>
+                    <div  class="list-friend-item">
+                        <ul class="friend-list list-unstyled">
+                            <!--{foreach from=$friend['items'] key=key item=item}-->
+                            <li>
+                                <a href="/message/chat/<!--{$item.user_id|escape|default:''}-->">
+                                    <div class="thumb">
+                                        <img src="/images/avatar/<!--{if $item.avatar_id == 0}--><!--{if $item.primary_type == 'parent'}-->12<!--{else}-->2<!--{/if}--><!--{else}--><!--{$item.avatar_id}--><!--{/if}-->.png" alt="<!--{$item.nickname|escape|default:'ニックネームなし'}-->" class="img-responsive avatar">
+                                    </div>
+                                    <div class="name padding1">
+                                        <span class="text"><!--{$item.nickname|escape|default:'ニックネームなし'}--></span>
+                                    </div>
+                                    <span class="icon-disible"></span>
+                                </a>
+                            </li>
+                            <!--{/foreach}-->
+                        </ul>
+                    </div>
+                    <!--{/if}-->
+                    <!--{/if}-->
+
+                    <!--{if $primary_type != parent}-->
+                    <!--{if !empty($team['items'])}-->
+                    <p class="title-tab">チームから選ぶ</p>
+                    <div class="list-friend-item">
+                        <ul class="friend-list list-unstyled">
+                            <!--{foreach from=$team['items'] key=key item=item}-->
+                            <li>
+                                <a href="/message/chat_room/<!--{$item.group_id|escape|default:''}-->">
+                                    <div class="thumb">
+                                        <img src="/images/avatar/<!--{$item.group_avatar|escape|default:'team'}-->.png" alt="<!--{$item.name|escape|default:'ニックネームなし'}-->" class="img-responsive avatar">
+                                    </div>
+                                    <div class="name padding1">
+                                        <span class="text"><!--{$item.name|escape|default:'ニックネームなし'}--></span>
+                                    </div>
+                                    <span class="icon-disible"></span>
+                                </a>
+                            </li>
+                            <!--{/foreach}-->
+                        </ul>
+                    </div>
+                    <!--{/if}-->
+                    <!--{/if}-->
+
+                </div>
+
+                <div id="message_family" class="tab-pane ">
+                    <!--{if !empty($family_group['items'])}-->
+                    <p class="title-tab">家族グループから選ぶ</p>
+                    <div class="list-friend-item">
+                        <ul class="friend-list list-unstyled">
+                            <!--{foreach from=$family_group['items'] key=key item=item}-->
+                            <li>
+                                <a href="/message/chat_room/<!--{$item.group_id|escape|default:''}-->">
+                                    <div class="thumb">
+                                        <img src="/images/avatar/<!--{$item.group_avatar|escape|default:'family'}-->.png" alt="<!--{$item.name|escape|default:'ニックネームなし'}-->" class="img-responsive avatar">
+                                    </div>
+                                    <div class="name padding1">
+                                        <span class="text"><!--{$item.name|escape|default:'ニックネームなし'}--></span>
+                                    </div>
+                                    <span class="icon-disible"></span>
+                                </a>
+                            </li>
+                            <!--{/foreach}-->
+                        </ul>
+                    </div>
+                    <!--{/if}-->
+
+                    <!--{if !empty($family['items'])}-->
+                    <p class="title-tab bg-blue-first">家族から選ぶ</p>
+                    <div class="list-friend-item">
+                        <ul class="friend-list list-unstyled">
+                            <!--{foreach from=$family['items'] key=key item=item}-->
+                            <li>
+                                <a href="/message/chat/<!--{$item.user_id|escape|default:''}-->">
+                                    <div class="thumb">
+                                        <img src="/images/avatar/<!--{if $item.avatar_id == 0}--><!--{if $item.primary_type == 'parent'}-->12<!--{else}-->2<!--{/if}--><!--{else}--><!--{$item.avatar_id}--><!--{/if}-->.png" class="img-responsive avatar">
+                                    </div>
+                                    <div class="name padding1">
+                                        <span class="text"><!--{$item.nickname|escape|default:'ニックネームなし'}--></span>
+                                    </div>
+                                    <span class="icon-disible"></span>
+                                </a>
+                            </li>
+                            <!--{/foreach}-->
+                        </ul>
+                    </div>
+                    <!--{else}-->
+                    <!--{include file="partial/no_item.html" message="メッセージ機能を利用するには家族グループに参加する必要があります"}-->
+                    <!--{/if}-->
+                </div>
+
+                <div id="message_friend" class="tab-pane">
+                    <!--{if !empty($friend['items'])}-->
+                    <p class="title-tab">友達から選ぶ</p>
+                    <div class="list-friend-item">
+                        <ul class="friend-list list-unstyled">
+                            <!--{foreach from=$friend['items'] key=key item=item}-->
+                            <li>
+                                <a href="/message/chat/<!--{$item.user_id|escape|default:''}-->">
+                                    <div class="thumb">
+                                        <img src="/images/avatar/<!--{if $item.avatar_id == 0}--><!--{if $item.primary_type == 'parent'}-->12<!--{else}-->2<!--{/if}--><!--{else}--><!--{$item.avatar_id}--><!--{/if}-->.png" class="img-responsive avatar">
+                                    </div>
+                                    <div class="name padding1">
+                                        <span class="text"><!--{$item.nickname|escape|default:'ニックネームなし'}--></span>
+                                    </div>
+                                    <span class="icon-disible"></span>
+                                </a>
+                            </li>
+                            <!--{/foreach}-->
+                        </ul>
+                    </div>
+                    <!--{else}-->
+                    <!--{include file="partial/no_item.html" message="メッセージ機能を利用するには友達が必要です"}-->
+                    <!--{/if}-->
+                </div>
+
+                <!--{if $primary_type != parent}-->
+                <div id="message_team" class="tab-pane">
+                    <!--{if !empty($team['items'])}-->
+                    <p class="title-tab">チームから選ぶ</p>
+                    <div class="list-friend-item">
+                        <ul class="friend-list list-unstyled">
+                            <!--{foreach from=$team['items'] key=key item=item}-->
+                            <li>
+                                <a href="/message/chat_room/<!--{$item.group_id|escape|default:''}-->">
+                                    <div class="thumb">
+                                        <img src="/images/avatar/<!--{$item.group_avatar|escape|default:'team'}-->.png" class="img-responsive avatar">
+                                    </div>
+                                    <div class="name padding1">
+                                        <span class="text"><!--{$item.name|escape|default:'ニックネームなし'}--></span>
+                                    </div>
+                                    <span class="icon-disible"></span>
+                                </a>
+                            </li>
+                            <!--{/foreach}-->
+                        </ul>
+                    </div>
+                    <!--{else}-->
+                    <!--{include file="partial/no_item.html" message="メッセージ機能を利用するには友達が必要です"}-->
+                    <!--{/if}-->
+                </div>
+
+                <!--{/if}-->
+            </div>
+        </div>
+    </div>
+</div>

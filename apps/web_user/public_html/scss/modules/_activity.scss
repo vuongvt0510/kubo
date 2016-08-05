@@ -1,0 +1,232 @@
+.activity-content {
+  background-color: $c-white;
+  .head {
+    display: table;
+    width: 100%;
+    padding: 15px 30px;
+    border-bottom: 1px solid #ebebeb;
+    .thumb {
+      display: table-cell;
+      vertical-align: middle;
+      width: 1%;
+      img {
+        max-width: 75px;
+      }
+    }
+    .user-name {
+      display: table-cell;
+      vertical-align: middle;
+      font-size: 24px;
+      color: #38454f;
+      font-weight: 700;
+      text-align: left;
+      padding-left: 20px;
+      padding-right: 10px;
+      width: 72%;
+    }
+    .time {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: right;
+      font-size: 13px;
+      color: #878e9a;
+      width: 26%;
+    }
+  }
+  .content {
+    padding: 30px 0;
+    display: table;
+    width: 100%;
+    .trophy-image {
+      display: table-cell;
+      vertical-align: middle;
+      padding-left: 30px;
+      padding-right: 15px;
+      width: 1%;
+      img{
+        width: 100px;
+        height: 100px;
+        @include cover-center;
+        border-radius: 5px;
+        @media (max-width: $screen-sm-max) {
+          width: 80px;
+          height: 80px;
+        }
+      }
+    }
+    .content-cell {
+      display: table-cell;
+      vertical-align: middle;
+      padding-right: 30px;
+      .title{
+        font-size: 20px;
+        @media (max-width: $screen-sm-max) {
+          font-size: 17px;
+        }
+      }
+      .desc{
+        font-size: 18px;
+        @media (max-width: $screen-sm-max) {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+  .bg-lbl{
+    background-color: $c-white;
+    padding: 5px 14px;
+    border-radius: 16px;
+    //&:hover, &:focus, &:active, &:disabled{
+    //  .el-icons{
+    //    color: $c-gray;
+    //  }
+    //  span{
+    //    color: $c-gray;
+    //  }
+    //  .el-comment:before{
+    //    background: url('../images/icons/ic-cm-grey.png') no-repeat;
+    //  }
+    //}
+  }
+  .current-good{
+    padding-right: 10px;
+  }
+  .current-comment{
+    padding-left: 20px;
+    position: relative;
+    &:before {
+      content:'';
+      background: url('../images/icons/ic-cm-navy.png') no-repeat;
+      width: 19px;
+      height: 15px;
+      left:-1px;
+      top: 0px;
+      position: absolute;
+    }
+
+  }
+  .foot {
+    background-color: #6dcbe5;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.15) inset;
+    padding: 10px 30px 8px;
+
+    a {
+      color: $c-white;
+      text-transform: uppercase;
+      font-size: 14px;
+      display: inline-block;
+      + a {
+        margin-left: 10px;
+      }
+      .el-comment{
+        padding-left: 20px;
+        position: relative;
+        &:before {
+          content:'';
+          background: url('../images/icons/ic-cm-blue.png') no-repeat;
+          width: 19px;
+          height: 15px;
+          left:-1px;
+          top: 0px;
+          position: absolute;
+        }
+      }
+    }
+    .active{
+      span.el-icons{
+        color: $c-red-dark;
+      }
+    }
+    .disable{
+      background-color: $c-yellow;
+    }
+
+
+  }
+  @media (max-width: $screen-xs-max) {
+    .head {
+      padding: 10px;
+      .thumb img {
+        width: 45px;
+        height: 40px;
+        object-fit: cover;
+      }
+      .user-name {
+        padding-left: 10px;
+        font-size: 14px;
+      }
+      .time {
+        font-size: 10px;
+      }
+    }
+    .content {
+      padding: 10px 0;
+      .trophy-image {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+      .content-cell {
+        padding-right: 15px;
+        font-size: 13px;
+      }
+      .title {
+        margin: 0;
+      }
+      .desc {
+        font-size: 12px;
+        margin: 0;
+      }
+      .current-good,
+      .current-comment {
+        font-size: 10px;
+        .el-heart {
+          &:before {
+            font-size: 13px;
+          }
+        }
+      }
+    }
+    .foot {
+      padding: 5px 15px 5px;
+
+      a {
+        float: left;
+        font-size: 12px;
+        background: #fff;
+        color: #6DCBE5;
+        padding: 2px 8px;
+        border-radius: 12px;
+
+        + a {
+          margin-left: 5px;
+        }
+        .el-heart{
+          &:before {
+            font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.activity-list {
+  margin-top: 35px;
+  margin-bottom: 40px;
+  @media (max-width: $screen-xs-max) {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    li{
+      position: relative !important;
+      top: inherit !important;
+      left: inherit !important;
+    }
+  }
+  .activity-content {
+    margin-bottom: 20px;
+
+    @media (max-width: $screen-xs-max) {
+      margin-bottom: 5px;
+    }
+  }
+}

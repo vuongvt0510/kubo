@@ -1,0 +1,195 @@
+<%
+  require 'json'
+  begin
+    options = JSON.parse(ARGV[0], {symbolize_names: true})
+  rescue
+    options = {}
+  end
+%>
+<% if options[:cloudwatch][:metrics].has_key?(:ec2_memory_utilization) or
+  options[:cloudwatch][:metrics].has_key?(:ec2_disk_utilization)
+ %>
+packages:
+  yum:
+    perl-Switch: []
+    perl-Sys-Syslog: []
+    perl-LWP-Protocol-https: []
+
+sources: 
+  /opt/cloudwatch: http://ec2-downloads.s3.amazonaws.com/cloudwatch-samples/CloudWatchMonitoringScripts-v1.1.0.zip
+ 
+container_commands:
+  01-setupcron:
+    command: |
+      echo '*/5 * * * * root perl /opt/cloudwatch/aws-scripts-mon/mon-put-instance-data.pl `{"Fn::GetOptionSetting" : { "OptionName" : "CloudWatchMetrics", "DefaultValue" : "--mem-util --mem-used --mem-avail --disk-space-util --disk-space-used --disk-space-avail --disk-path=/ --auto-scaling" }}` >> /dev/null 2>&1' > /etc/cron.d/cloudwatch
+  02-changeperm:
+    command: chmod 644 /etc/cron.d/cloudwatch
+  03-changeperm:
+    command: chmod u+x /opt/cloudwatch/aws-scripts-mon/mon-put-instance-data.pl
+<% end %>
+
+Resources:
+  CloudWatchAlarmTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      Subscription:
+        - Endpoint:
+            Fn::GetOptionSetting:
+              OptionName: CloudWatchAlarmEmail
+              DefaultValue: "alert+schooltv@interest-marketing.net"
+          Protocol: email
+
+  <% if options[:cloudwatch][:metrics].has_key?(:elb_healthy_host_count) %>
+  ELBHealthyHostCountAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: { "Fn::Join": ["", [{ "Ref" : "AWSEBEnvironmentName" }, ": ELB no healthy backend hosts." ]]}
+      Namespace: AWS/ELB
+      MetricName: HealthyHostCount
+      Dimensions:
+        - Name: LoadBalancerName
+          Value : { "Ref" : "AWSEBLoadBalancer" }
+      Statistic: Average
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: <%= options[:cloudwatch][:metrics][:elb_healthy_host_count] %>
+      ComparisonOperator: LessThanThreshold
+      AlarmActions:
+        - Ref: CloudWatchAlarmTopic
+      OKActions:
+        - Ref: CloudWatchAlarmTopic
+      InsufficientDataActions:
+        - Ref: CloudWatchAlarmTopic
+  <% end %>
+  <% if options[:cloudwatch][:metrics].has_key?(:elb_latency) %>
+  ELBLatencyAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: { "Fn::Join" : ["", [{ "Ref" : "AWSEBEnvironmentName" }, ": HIGH ELB latency." ]]}
+      Namespace: AWS/ELB
+      MetricName: Latency
+      Dimensions:
+        - Name: LoadBalancerName
+          Value : { "Ref" : "AWSEBLoadBalancer" }
+      Statistic: Average
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: <%= options[:cloudwatch][:metrics][:elb_latency] %>
+      ComparisonOperator: GreaterThanThreshold
+      AlarmActions:
+        - Ref: CloudWatchAlarmTopic
+      OKActions:
+        - Ref: CloudWatchAlarmTopic
+  <% end %>
+  <% if options[:cloudwatch][:metrics].has_key?(:elb_http_5xx) %>
+  ELBHTTP5xxAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: { "Fn::Join" : ["", [{ "Ref" : "AWSEBEnvironmentName" }, ": HIGH ELB backend HTTP 5xx error rate." ]]}
+      Namespace: AWS/ELB
+      MetricName: HTTPCode_Backend_5XX
+      Dimensions:
+        - Name: LoadBalancerName
+          Value : { "Ref" : "AWSEBLoadBalancer" }
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: <%= options[:cloudwatch][:metrics][:elb_http_5xx] %>
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      AlarmActions:
+        - Ref: CloudWatchAlarmTopic
+      OKActions:
+        - Ref: CloudWatchAlarmTopic
+  <% end %>
+  <% if options[:cloudwatch][:metrics].has_key?(:ec2_cpu_utilization) %>
+  EC2CPUUtilizationAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: { "Fn::Join" : ["", [{ "Ref" : "AWSEBEnvironmentName" }, ": Web Server CPUUtilization." ]]}
+      Namespace: AWS/EC2
+      MetricName: CPUUtilization
+      Dimensions:
+        - Name: AutoScalingGroupName
+          Value: { "Ref" : "AWSEBAutoScalingGroup" }
+      Statistic: Average
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: <%= options[:cloudwatch][:metrics][:ec2_cpu_utilization] %>
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      AlarmActions:
+        - Ref: CloudWatchAlarmTopic
+      OKActions:
+        - Ref: CloudWatchAlarmTopic
+      InsufficientDataActions:
+        - Ref: CloudWatchAlarmTopic
+  <% end %>
+  <% if options[:cloudwatch][:metrics].has_key?(:ec2_memory_utilization) %>
+  EC2MemoryUtilizationAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: { "Fn::Join" : ["", [{ "Ref" : "AWSEBEnvironmentName" }, ": Web Server MemoryUtilization." ]]}
+      Namespace: "System/Linux"
+      MetricName: MemoryUtilization 
+      Dimensions:
+        - Name: AutoScalingGroupName
+          Value : { "Ref" : "AWSEBAutoScalingGroup" }
+      Statistic: Average
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: <%= options[:cloudwatch][:metrics][:ec2_memory_utilization] %>
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      AlarmActions:
+        - Ref: CloudWatchAlarmTopic
+      OKActions:
+        - Ref: CloudWatchAlarmTopic
+      InsufficientDataActions:
+        - Ref: CloudWatchAlarmTopic
+  <% end %>
+  <% if options[:cloudwatch][:metrics].has_key?(:ec2_disk_utilization) %>
+  EC2DiskSpaceUtilizationAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: { "Fn::Join" : ["", [{ "Ref" : "AWSEBEnvironmentName" }, ": Web Server Disk Space Utilization." ]]}
+      Namespace: "System/Linux"
+      MetricName: DiskSpaceUtilization 
+      Dimensions:
+        - Name: AutoScalingGroupName
+          Value : { "Ref" : "AWSEBAutoScalingGroup" }
+        - Name: MountPath
+          Value: "/"
+        - Name: Filesystem
+          Value: "/dev/xvda1"
+      Statistic: Average
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: <%= options[:cloudwatch][:metrics][:ec2_disk_utilization] %>
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      AlarmActions:
+        - Ref: CloudWatchAlarmTopic
+      OKActions:
+        - Ref: CloudWatchAlarmTopic
+      InsufficientDataActions:
+        - Ref: CloudWatchAlarmTopic
+  <% end %>
+  <% if options[:cloudwatch][:metrics].has_key?(:ec2_status_check_failed) %>
+  EC2StatusCheckfailedAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: { "Fn::Join" : ["", [{ "Ref" : "AWSEBEnvironmentName" }, ": Web Server Status check." ]]}
+      Namespace: AWS/EC2
+      MetricName: StatusCheckFailed
+      Dimensions:
+        - Name: AutoScalingGroupName
+          Value : { "Ref" : "AWSEBAutoScalingGroup" }
+      Statistic: Average
+      Period: 60
+      EvaluationPeriods: 1
+      Threshold: 1
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      AlarmActions:
+        - Ref: CloudWatchAlarmTopic
+      OKActions:
+        - Ref: CloudWatchAlarmTopic
+      InsufficientDataActions:
+        - Ref: CloudWatchAlarmTopic
+  <% end %>

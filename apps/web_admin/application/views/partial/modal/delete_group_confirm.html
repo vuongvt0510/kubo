@@ -1,0 +1,56 @@
+<!-- Modal delete confirmation-->
+<div id="delete-group-modal" class="modal fade modal-scroll" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">グループから削除</h4>
+            </div>
+            <form action="/user_group/remove_user_group" method="post">
+                <div class="modal-body">
+                    <p>このユーザーを削除しますか？</p>
+                    <div class="table-scrollable">
+                        <table class="table table-hover table-align-middle">
+                            <tr>
+                                <th width="12%" class="active">ユーザーID</th>
+                                <td id="delete_group_id"></td>
+                            </tr>
+                            <tr>
+                                <th width="12%" class="active">ログインID</th>
+                                <td id="delete_group_login_id"></td>
+                            </tr>
+                            <tr>
+                                <th class="active">名前</th>
+                                <td id="delete_group_nickname"></td>
+                            </tr>
+                            <tr>
+                                <th class="active">メールアドレス</th>
+                                <td id="delete_group_email"></td>
+                            </tr>
+                            <tr>
+                                <th class="active">ユーザー種別</th>
+                                <td id="delete_group_primary_type" ></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <p>このユーザーを削除するグループを確認してください</p>
+                    <div class="table-scrollable">
+                        <table id="list_members" class="table table-hover table-align-middle">
+                        </table>
+                    </div>
+                </div>
+                <input type="hidden" name="user_site" value="<!--{$user_detail.id|escape|default:''}-->">
+                <div class="modal-footer">
+                    <div class="text-center">
+                        <button type="button" data-dismiss="modal" aria-hidden="true" class="btn btn-lg default" >キャンセル</button>
+                        <button type="submit" class="btn btn-lg red" >削除</button>
+                    </div>
+                    <span class="loading-icon loading-send"></span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+

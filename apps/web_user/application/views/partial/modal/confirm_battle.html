@@ -1,0 +1,33 @@
+<div class="modal fade" id="modalConfirmBattle" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    このチームと バトルしますか?
+                </div>
+            </div>
+            <div class="modal-body text-center">
+                <p style="font-size: 16px;">チームバトルに勝利すると チームメンバー全員に +1 ラビポイント</p>
+            </div>
+            <div class="modal-footer modal-footer-btngroup text-center">
+                <a href="/play/team/battle" class="btn btn-gray">キャンセル</a>
+                <a href="#" id="startBattle" class="btn btn-green">スタート</a>
+            </div>
+        </div>
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--{content_for name="headjs"}-->
+<script type="text/javascript">
+    (function () {
+        $(document).ready(function() {
+            $("#startBattle").on("click", function() {
+                $("#modalConfirmBattle" ).modal('hide');
+                $("#modalStartBattle" ).modal({
+                    show: true,
+                    backdrop: 'static'
+                });
+            });
+        });
+    })();
+</script>
+<!--{/content_for}-->

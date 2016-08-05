@@ -1,0 +1,30 @@
+<!-- Modal Points -->
+<div class="modal fade" id="modalPoint" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content yellow">
+            <div class="modal-header">
+                <h4 class="modal-title yellow">ポイントGET!</h4>
+            </div>
+            <div class="modal-body text-center">
+                <p id="point_title" class="point-name"><!--{$get_point.title_modal|escape|default:''}--></p>
+                <p class="point"><span id="point_number" class="num"><!--{$get_point.base_point|escape|default:'0' * $get_point.campaign|escape|default:'0'}--></span>&nbsp;ポイント</p>
+            </div>
+            <div class="modal-footer">
+                <div class="col-sm-6 col-sm-push-3">
+                    <button id="getPoint_close" type="button" class="btn btn-green btn-block">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--{if !isset($point_modals)}-->
+<!--{content_for name="headjs"}-->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#getPoint_close').on('click', function(){
+            $('#modalPoint').modal('hide');
+        });
+    });
+</script>
+<!--{/content_for}-->
+<!--{/if}-->

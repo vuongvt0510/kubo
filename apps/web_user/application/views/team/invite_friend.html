@@ -1,0 +1,87 @@
+<div class="friend-page friend-index list-team">
+    <div class="bg-triangle">
+        <div class="container">
+            <div class="page-title">
+                <div class="container text-center">
+                    <p class="h1">チームへの招待</p>
+                    <p class="caption">招待する友達を選択してください</p>
+                </div>
+            </div>
+            <div class="main-content">
+                <form class="content-frame form-horizontal" method="post">
+                    <div class="bg-triangle-blue head text-center">
+                        <p class="h4">選択中のチーム: <span class="team-title"><!--{$group.group_name|escape|default:''}--></span>
+                        <!--<div class="update"><a href="/team/&lt;!&ndash;{$group_id|escape|default:''}&ndash;&gt;/update">チーム名を編集</a></div>-->
+                    </div>
+                    <div class="form-group">
+                        <!--{if isset($errmsg)}-->
+                        <span class="errors"><!--{$errmsg|escape}--></span>
+                        <!--{/if}-->
+                        <!--{if !empty($list_friends)}-->
+                        <ul class="friend-list list-unstyled">
+                            <!--{foreach from=$list_friends item=friend}-->
+
+                            <li>
+
+                                <div class="thumb">
+                                    <img src="/images/avatar/<!--{if $friend.avatar_id == 0}-->2<!--{else}--><!--{$friend.avatar_id}--><!--{/if}-->.png" alt="" class="img-responsive avatar">
+                                </div>
+                                <div class="name <!--{if $friend.user_id}-->padding1<!--{else}-->padding2<!--{/if}-->">
+                                    <span class="text"><!--{$friend.nickname|escape|default:'ニックネームなし'}--></span>
+                                </div>
+                                <!--{if $friend.user_id}-->
+                                <span class="note">参加中</span>
+                                <label class="check disabled">
+                                    <i class="icon"></i>
+                                    <input type="checkbox" name="user_id[]" value="<!--{$friend.id|escape}-->" disabled>
+                                </label>
+                                <!--{else}-->
+                                <label class="check">
+                                    <i class="icon"></i>
+                                    <input type="checkbox" name="user_id[]" value="<!--{$friend.id|escape}-->">
+                                </label>
+                                <!--{/if}-->
+
+                            </li>
+                            <!--{/foreach}-->
+                        </ul>
+                        <!--{else}-->
+                        <!--{include file="partial/no_item.html" message="表示できる友達はいません\nスクールTVに参加している友達とつながろう"}-->
+                        <!--{/if}-->
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <a href="/team/" class="btn btn-gray btn-block">キャンセル</a>
+                            </div>
+                            <div class="col-sm-6 ">
+                                <button type="submit" class="btn btn-green btn-block">招待メッセージを送信</button>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="form-group social-login">
+                            <p class="h4 bold text-center">スクールTVの会員でない友達を招待する</p>
+                            <div class="form-group">
+                                <div class="col-sm-6 col-sm-push-3">
+                                    <div class="row">
+                                        <a href="/team/<!--{$group_id|escape}-->/invite_new_user" class="btn btn-green btn-block">新しいユーザーを招待</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--{content_for name="headjs"}-->
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        $("label.check").click(function(){
+            $(this).toggleClass("checked");
+        });
+
+    });
+</script>
+<!--{/content_for}-->

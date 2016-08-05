@@ -1,0 +1,112 @@
+<div class="bg-triangle">
+    <div class="container">
+        <div class="page-title hidden-xs">
+            <p class="h1">メッセージ</p>
+        </div>
+        <div class="main-content">
+            <div class="content-frame content-frame-polygon-bg content-timeline content-share">
+                <!—{if $device_type=="SP"}—>
+                <div class="visible-xs">
+                    <div class="top-bg-xs polygon-bg">
+                        <a href="/message" alt="back" class="btn-back"></a>
+                        <span class="title-xs"><!--{$room_name|escape|default:'ニックネームなし'}-->にメッセージを送信</span>
+                    </div>
+                </div>
+                <!—{else}—>
+                <div class="hidden-xs">
+                    <div class="polygon-bg">
+                        <img src="/images/background/content-frame-polygon.png" alt="polygon" class="img-responsive">
+                        <div class="polygon-bg">
+                            <img src="/images/background/content-frame-polygon.png" alt="polygon" class="img-responsive">
+                            <p class="h3 bold title"><!--{$room_name|escape|default:'ニックネームなし'}-->にメッセージを送信</p>
+                        </div>
+                    </div>
+                </div>
+                <!—{/if}-->
+                <div class="clearfix"></div>
+                <!--{if $is_group}-->
+                <div class="btn-messGroup text-center">
+                    <a href="/message/<!--{$room_id|escape|default:''}-->/group_members" alt="back" class="btn-back btn btn-white">メンバーを見る</a>
+                </div>
+                <!--{/if}-->
+                <div class="message-list">
+                    <button id="show_more" type="button" class="btn btn-sm btn-more" style="display: none;" >もっと見る<div class="ripple-container"></div></button>
+                    <ul class="list-unstyled messages x-dynamic-load">
+                        <!--{foreach from=$list_message item=item}-->
+                        <li class="item clearfix">
+                            <div class="row">
+                                <div class="pull-left avatar-col">
+                                    <img src="/images/avatar/<!--{if $item.avatar_id == 0}--><!--{if $item.primary_type == 'parent'}-->12<!--{else}-->2<!--{/if}--><!--{else}--><!--{$item.avatar_id}--><!--{/if}-->.png" alt="avatar" class="avatar img-responsive" >
+                                </div>
+                                <div class="message">
+                                    <p class="user-name"><!--{$item.nickname|escape|default:'ニックネームなし'}--></p>
+                                    <!--{if $item.message}-->
+                                    <p class="message-bubble"><!--{$item.message|nl2br|default:''}-->
+                                    <!--{/if}-->
+                                        <!--{if !empty($item.deck)}-->
+                                        <ul class="deck-list-line list-unstyled">
+                                            <li class="item">
+                                                <a class="item-inner" href="/deck/<!--{$item.deck.id|escape|default:''}-->">
+                                                    <div class="left">
+                                                        <div class="thumb x-img-liquid">
+                                                            <img src="<!--{image_link key=$item.deck.image_key|escape|default:''}-->" class="img-responsive" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="right text-left">
+                                                        <p style="color: black;" title="<!--{$item.deck.name|escape|default:''}-->"><!--{$item.deck.name|escape|default:''}--></p>
+                                                        <div class="subject bg-<!--{$item.deck.subject.color|escape|default:''}-->"><!--{$item.deck.subject.short_name|escape|default:''}--></div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <!--{/if}-->
+                                        <span class="date c-blue-light common-time" data-time="<!--{$item.created_at|escape|default:''}-->">
+                                               <!--{common_time datetime=$item.created_at|escape|default:''}-->
+                                        </span>
+                                    <!--{if $item.message}-->
+                                    </p>
+                                    <!--{/if}-->
+                                </div>
+                            </div>
+                        </li>
+                        <!--{/foreach}-->
+                    </ul>
+                </div>
+            </div>
+            <form id="submit" class="form-message form-border clearfix <!--{if isset($share_deck)}-->form-share<!--{/if}-->" method="post" >
+                <!--{if $status == TRUE}-->
+                <!--{include file="partial/comment_form.html"}-->
+                <!--{else}-->
+                <p class="text-center" style="color: #fff; line-height: 90px; font-size: 18px">このユーザーは退会しました</p>
+                <!--{/if}-->
+            </form>
+        </div>
+    </div>
+</div>
+<!--{include file="partial/modal/group_message.html"}-->
+
+<!--{content_for name="headjs"}-->
+<script src="/js/ST.Message.js"></script>
+<script>
+    $(document).ready(function () {
+        new ST.Message({
+            avatar: '<!--{$current_user.avatar_id|escape|default:""}-->',
+            nickname: '<!--{$current_user.nickname|escape|default:""}-->',
+            current_user_id: '<!--{$current_user.id|escape|default:""}-->',
+            room_id: '<!--{$room_id|escape|default:""}-->',
+            last_time_request: '<!--{$last_time|escape|default:""}-->',
+            oldest_created_at: "<!--{$oldest_created_at|escape|default:''}-->",
+            has_oldest_message: "<!--{$has_oldest_message|default:'true'}-->"
+        });
+
+        var $box = $('.top-bg-xs');
+        $box.children().each(function(){
+            if ($box.width() < $(this).width()) {
+                $(this).wrap('<marquee scrolldelay="150">');
+            }
+        });
+
+    });
+</script>
+
+<!--{/content_for}-->

@@ -1,0 +1,29 @@
+<div class="modal fade" id="modalCantGetDeck" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button id="cancel-close" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-header">
+                <div class="modal-title">
+                    入手確認
+                </div>
+            </div>
+            <div class="modal-body text-center">
+                <p class="modal-basic-tt" style="color:red;">コインが足りないため入手できませんでした</p>
+                <div class="modal-basic-boxgrey">
+                    <p class="text-center"><!--{$deck.name|escape|default:''}--></p>
+                    <p class="text-center fz18"><!--{$deck.coin|escape|default:''}-->コイン</p>
+                </div>
+                <p class="modal-basic-tt" style="margin-bottom: 0;margin-top: 30px;">保護者の方にコインを購入してもらおう</p>
+            </div>
+            <div class="modal-footer modal-footer-btngroup text-center">
+                <a href="/deck/<!--{$deck.id|escape|default:''}-->" class="btn btn-gray">戻る</a>
+                <!--{*
+                    button for asking parent to purchase coin, after 4/4
+                *}-->
+                <a href="/coin/ask_parent?deck_id=<!--{$deck.id}-->" class="btn btn-light-blue">コインをおねだり</a>
+            </div>
+        </div>
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

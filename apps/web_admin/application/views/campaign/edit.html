@@ -1,0 +1,113 @@
+<!-- BEGIN PAGE TITLE-->
+<div class="page-title-wrap">
+    <h3 class="page-title"><i class="icon-share"></i> キャンペーンコード編集</h3>
+</div>
+<!-- END PAGE TITLE-->
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-body">
+                <form id="campaignForm" class="form-horizontal" method="post">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-3 col-lg-2 control-label">キャンペーン名</label>
+
+                            <div class="col-md-9 col-lg-10 form-group">
+                                <input id="name" name="name" type="text" class="form-control margin-bottom-10" value="<!--{$post.name|escape|default:$campaign.name}-->" placeholder="キャンペーン名" <!--{if strtotime($campaign.started_at) < strtotime("now") }-->disabled style="border:none;"<!--{/if}-->>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 col-lg-2 control-label">キャンペーンコード</label>
+
+                            <div class="form-group col-md-9 col-lg-10">
+                                <input id="code" name="code" type="text" class="form-control margin-bottom-10" value="<!--{$post.code|escape|default:$campaign.code}-->" placeholder="キャンペーンコード" <!--{if strtotime($campaign.started_at) < strtotime("now") }-->disabled style="border:none;"<!--{/if}-->>
+                                <p class="small">※半角英数字のみ</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 col-lg-2 control-label">キャンペーン期間</label>
+
+                            <div class="col-md-9 col-lg-10 form-group">
+                                <div class="row">
+                                    <div class="col-lg-6 gutter-10">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group date date-picker" data-date-format="yyyy-mm-dd"
+                                                     data-date-viewmode="years">
+                                                    <input <!--{if strtotime($campaign.started_at) < strtotime("now") }-->disabled<!--{/if}--> value="<!--{if $post.from_date != ''}--><!--{date('Y/m/d', strtotime($post.from_date))}--><!--{else}--><!--{date('Y/m/d', strtotime($campaign.from_date))}--><!--{/if}-->" id="from_date" name="from_date" type="text" class="form-control">
+
+                                                    <div class="input-group-btn">
+                                                        <button class="btn default" type="button">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 margin-bottom-10">
+                                                <select <!--{if strtotime($campaign.started_at) < strtotime("now") }-->disabled<!--{/if}--> id="from_hour" name="from_hour" class="form-control">
+                                                    <!--{for $i=0 to 23}-->
+                                                    <option <!--{if sprintf('%02d',$i) == $post.from_hour|default:$campaign.from_hour|default:''}-->selected<!--{/if}--> value="<!--{sprintf('%02d',$i)}-->"><!--{sprintf('%02d',$i)}--></option>
+                                                    <!--{/for}-->
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2 margin-bottom-10">
+                                                <select <!--{if strtotime($campaign.started_at) < strtotime("now") }-->disabled<!--{/if}--> id="from_minute" name="from_minute" class="form-control">
+                                                    <!--{for $i=0 to 59}-->
+                                                    <option <!--{if sprintf('%02d',$i) == $post.from_minute|default:$campaign.from_minute|default:''}-->selected<!--{/if}--> value="<!--{sprintf('%02d',$i)}-->"><!--{sprintf('%02d',$i)}--></option>
+                                                    <!--{/for}-->
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2 margin-bottom-10">
+                                                <label class="control-label">から</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 gutter-10">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group date date-picker" data-date-format="yyyy-mm-dd"
+                                                     data-date-viewmode="years">
+                                                    <input value="<!--{if $post.ended_at != ''}--><!--{date('Y/m/d', strtotime($post.ended_at))}--><!--{elseif $campaign.ended_at != ''}--><!--{date('Y/m/d', strtotime($campaign.ended_at))}--><!--{/if}-->" id="to_date" name="ended_at" type="text" class="form-control">
+
+                                                    <div class="input-group-btn">
+                                                        <button class="btn default" type="button">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 margin-bottom-10">
+                                                <select id="to_hour" name="to_hour" class="form-control">
+                                                    <!--{for $i=0 to 23}-->
+                                                    <option <!--{if sprintf('%02d',$i) == $post.to_hour|default:$campaign.to_hour|default:'' }-->selected<!--{/if}--> value="<!--{sprintf('%02d',$i)}-->"><!--{sprintf('%02d',$i)}--></option>
+                                                    <!--{/for}-->
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2 margin-bottom-10">
+                                                <select id="to_minute" name="to_minute" class="form-control">
+                                                    <!--{for $i=0 to 59}-->
+                                                    <option <!--{if sprintf('%02d',$i) == $post.to_minute|default:$campaign.to_minute|default:''}-->selected<!--{/if}--> value="<!--{sprintf('%02d',$i)}-->"><!--{sprintf('%02d',$i)}--></option>
+                                                    <!--{/for}-->
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2 margin-bottom-10">
+                                                <label class="control-label">まで</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions text-right">
+                        <a href="/campaign" type="button" class="btn btn-lg grey-salsa">キャンセル</a>
+                        <a id="submitForm"   type="submit" class="btn btn-lg green">更新</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--{include file="campaign/modal_partial.html" text='キャンペーンコード編集'}-->

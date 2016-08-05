@@ -1,0 +1,227 @@
+.ranking-list {
+  counter-reset: section;
+  margin-bottom: -30px;
+  li {
+    display: table;
+    width: 100%;
+    position: relative;
+    padding: 18px 15px 18px 125px;
+    &:before {
+      counter-increment: section;
+      content: counter(section);
+      font-size: 24px;
+      font-weight: 700;
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      @include transform(translateY(-50%));
+      width: 52px;
+      height: 47px;
+      display: table-cell;
+      line-height: 58px;
+      text-align: center;
+    }
+    &.no-auto {
+      //border-top: 1px solid #b7b7b7;
+      //background-color: #e9f1fc;
+      &:before {
+        content: attr(data-number);
+      }
+    }
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3) {
+      &:before {
+        color: #f0a907;
+        background-image: url('../images/icons/ranking-top.png');
+      }
+    }
+    + li {
+      border-top: 1px dashed #b7b7b7;
+    }
+    .avatar,
+    .title,
+    .score {
+      display: table-cell;
+      vertical-align: middle;
+      font-size: 24px;
+      font-weight: 700;
+      @media (min-width: $screen-sm-min) {
+        min-width: 100px;
+      }
+    }
+    .avatar {
+      width: 100px;
+      padding-right: 10px;
+    }
+    .score {
+      text-align: right;
+    }
+
+    .friend-icon {
+      position: absolute;
+      top: 50%;
+      right: 38px;
+      width: 32px;
+      margin-top: -14px;
+    }
+  }
+  .hexagon {
+    @include hexagon(76px, none, #23ab97);
+  }
+  @media (max-width: $screen-sm-max) {
+    li {
+      padding: 18px 15px 18px 65px;
+      &:before {
+        transform: translateY(-50%) scale(0.6, 0.6);
+        -webkit-transform: translateY(-50%) scale(0.6, 0.6);
+        -ms-transform: translateY(-50%) scale(0.6, 0.6);
+        -moz-transform: translateY(-50%) scale(0.6, 0.6);
+        left: -10px;
+      }
+      .avatar {
+        width: 60px;
+      }
+      .avatar,
+      .title,
+      .score {
+        font-size: 14px;
+      }
+    }
+    .hexagon {
+      @include hexagon(50px, url(http://placekitten.com/g/250), #23ab97);
+    }
+  }
+  @media (max-width: $screen-xs-max) {
+    li {
+      padding: 8px 0px 8px 55px;
+      .avatar {
+        width: 60px;
+        padding-right: 10px;
+        img {
+          width: 50px;
+        }
+      }
+      .friend-icon {
+        width: 20px;
+        margin-top: -9px;
+        right: 17px;
+      }
+    }
+  }
+
+  // RK10
+  &.list-stage {
+    li {
+      padding: 0;
+    }
+    a {
+      position: relative;
+      display: block;
+      height: 120px;
+      padding: 20px 20px 20px 100px;
+    }
+    a:hover {
+      text-decoration: none;
+    }
+    .avatar-box,
+    .description {
+      display: table-cell;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .description {
+      padding-left: 40px;
+      padding-right: 40px;
+      padding-top: 37px;
+    }
+    .avatar-box {
+      width: 90px;
+    }
+    .avatar {
+      width: 90px;
+    }
+    .name {
+      color: #878e9a;
+      font-size: 14px;
+      margin: 0 0 3px;
+      word-break: break-all;
+    }
+    .score {
+      display: block;
+      color: #2d3940;
+      font-size: 24px;
+      text-align: left;
+      margin: 0 0 5px;
+
+      .num {
+        font-size: 32px;
+      }
+    }
+    .deck-name {
+      color: #2d3940;
+      font-size: 18px;
+      margin: 0 0 5px;
+    }
+    .subject-name {
+      display: inline-block;
+      width: 60px;
+      height: 20px;
+      color: #fff;
+      text-align: center;
+      padding: 3px 0;
+      border-radius: 10px;
+    }
+    .el-icons {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      font-size: 24px;
+      color: #000;
+      margin-top: -12px;
+    }
+    .p-t-3{
+      padding-top: 3px!important;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      a {
+        height: auto;
+        padding: 10px 10px 10px 40px;
+      }
+      .avatar-box,
+      .avatar {
+        width: 50px;
+      }
+      .description {
+        padding-left: 10px;
+        padding-right: 25px;
+      }
+      .name {
+        font-size: 12px;
+      }
+      .score {
+        font-size: 12px;
+
+        .num {
+          font-size: 24px;
+        }
+      }
+      .deck-name {
+        font-size: 12px;
+      }
+      .subject-name {
+        width: 50px;
+        height: 17px;
+        padding: 3px 0;
+        font-size: 10px;
+      }
+      .el-icons {
+        right: 0;
+        font-size: 16px;
+        margin-top: -8px;
+      }
+    }
+
+  }
+}

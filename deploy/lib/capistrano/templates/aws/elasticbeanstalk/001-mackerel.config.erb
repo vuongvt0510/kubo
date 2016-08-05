@@ -1,0 +1,74 @@
+<%
+  require 'json'
+
+  begin
+    options = JSON.parse(ARGV[0], {symbolize_names: true})
+  rescue
+    options = {}
+  end
+%>
+files:
+  "/etc/mackerel-agent/mackerel-agent.conf":
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      apikey = "<%= options[:mackerel][:apikey] %>"
+      <% if options[:mackerel].has_key?(:plugins) %>
+      <% if options[:mackerel][:plugins].include?('apache') %>
+      [plugin.metrics.apache2]
+      command = "/usr/local/bin/mackerel-plugin-apache2 -p 1080"
+      <% end %>
+      <% if options[:mackerel][:plugins].include?('linux') %>
+      [plugin.metrics.linux]
+      command = "/usr/local/bin/mackerel-plugin-linux"
+      <% end %>
+      <% end %>
+
+  <% if options[:mackerel][:plugins].include?('apache') %>
+  "/etc/httpd/conf.d/server-status.conf":
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      Listen 1080
+      <VirtualHost _default_:1080>
+        DocumentRoot /var/www/html
+        <Location /server-status>
+          SetHandler server-status
+          Order deny,allow
+          Deny from all
+          Allow from 127.0.0.1 ::1
+        </Location>
+      </VirtualHost>
+  <% end %>
+
+  "/opt/elasticbeanstalk/hooks/appdeploy/enact/80_setup_mackerel_agent.sh":
+    owner: root
+    group: root
+    mode: "0755"
+    content: |
+      ### mackerel-agent install script
+      ### see: https://mackerel.io/assets/files/scripts/setup-yum.sh
+      ###
+      
+      # import GPG key
+      gpgkey_path=`mktemp`
+      curl -fsS -o $gpgkey_path https://mackerel.io/assets/files/GPG-KEY-mackerel
+      rpm --import $gpgkey_path
+      rm $gpgkey_path
+      
+      # add config for mackerel yum repos
+      cat >/etc/yum.repos.d/mackerel.repo <<'EOF';
+      [mackerel]
+      name=mackerel-agent
+      baseurl=http://yum.mackerel.io/centos/$basearch
+      gpgcheck=1
+      EOF
+      
+      yum install -y --nogpgcheck mackerel-agent mackerel-agent-plugins
+      
+      service mackerel-agent restart
+      
+      chkconfig mackerel-agent on
+

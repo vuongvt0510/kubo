@@ -1,0 +1,45 @@
+<div class="play-page select-person-page">
+    <div class="bg-shining-yellow">
+        <div class="bg-inner">
+
+            <div class="container">
+                <div class="content-frame-designed-corner">
+                    <div class="frame-inner">
+                        <div class="head"></div>
+                        <div class="middle">
+
+                            <p class="frame-title">対戦するプレイヤーを選ぼう！</p>
+
+                            <!--{if $from_quest == TRUE}-->
+                            <div class="btn-area text-center">
+                                <button type="button" class="btn btn-yellow">クエストチャレンジ</button>
+                            </div>
+                            <!--{/if}-->
+
+                            <!--{include file="partial/stage_list.html" stages=$stage}-->
+
+                            <hr>
+                            <!--{if !empty($players)}-->
+                                <div id="list_players"><!--{include file="partial/match_player_list.html" players=$players href='play/select_player/'}--></div>
+                            <!--{else}-->
+                                <div id="list_players"><!--{include file="partial/no_item.html" message="まだ購入したドリルはありません"}--></div>
+                            <!--{/if}-->
+
+                            <div class="btn-area text-center">
+                                <a href="/play/select_player" id="change-players" class="btn btn-yellow btn-lg">対戦相手を変える</a>
+                            </div>
+
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="text-center">
+                    <a href="/play/<!--{if $from_quest == TRUE}-->quest_detail<!--{else}-->select_stage<!--{/if}-->" class="btn btn-outline back-link">戻る</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

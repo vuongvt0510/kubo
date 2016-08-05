@@ -1,0 +1,42 @@
+<div class="friend-page friend-index list-team">
+    <div class="bg-triangle">
+        <div class="container">
+            <div class="page-title">
+                <div class="container text-center">
+                    <p class="h1">メンバー一覧</p>
+                    <!--<p class="caption">招待する友達を選択してください</p>-->
+                </div>
+            </div>
+            <div class="main-content">
+                <form class="content-frame form-horizontal" method="post">
+                    <div class="bg-triangle-blue head text-center">
+                        <p class="h4"><!--{$group_name|escape|default:'aa'}--></p>
+                    </div>
+                    <div class="form-group">
+                        <ul class="friend-list list-unstyled">
+                            <!--{foreach from=$members key=key item=item}-->
+                            <li>
+                                <div class="thumb">
+                                    <img src="/images/avatar/<!--{if $item.avatar == 0}--><!--{if $item.primary_type == 'parent'}-->12<!--{else}-->2<!--{/if}--><!--{else}--><!--{$item.avatar}--><!--{/if}-->.png" alt="">
+                                </div>
+                                <div class="name">
+                                    <span class="text"><!--{$item.nickname|escape|default:'ニックネームなし'}--></span>
+                                </div>
+                            </li>
+                            <!--{/foreach}-->
+                        </ul>
+                        <div class="form-group social-login">
+                            <div class="form-group">
+                                <div class="col-sm-6 col-sm-push-3">
+                                    <div class="row">
+                                        <a href="/message/<!--{$room_id|escape}-->" class="btn btn-green btn-block">メッセージへ</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

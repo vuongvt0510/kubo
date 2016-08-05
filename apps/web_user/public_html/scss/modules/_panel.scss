@@ -1,0 +1,289 @@
+.panel {
+  border: 0 none;
+  border-radius: 0;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  background-color: transparent;
+  margin-bottom: 60px;
+  .panel-heading {
+    border-radius: 0;
+    padding: 6px 15px 6px 85px;
+    margin-bottom: 60px;
+    @include clearfix;
+  }
+  .panel-title {
+    color: $c-white;
+    font-weight: 700;
+    font-size: 27px;
+    float: left;
+  }
+  .panel-image {
+    position: absolute;
+    top: 50%;
+    margin-top: -38px;
+    left: 5px;
+    .hex-icon{
+      width: 197%;
+      height: 115%;
+      position: absolute;
+      top: -7%;
+      right: -46%;
+    }
+  }
+  .panel-action {
+    float: right;
+    .btn {
+      margin: 4px 0 0;
+    }
+  }
+  .panel-body {
+    padding: 0;
+  }
+}
+.panel-blue {
+  .panel-heading {
+    position: relative;
+    background-color: #65c7e4;
+    .panel-title {
+      padding: 0;
+    }
+    .hexagon {
+      @include hexagon(76px, url(http://placekitten.com/g/250), #3cb5d8);
+    }
+  }
+}
+.panel-pink-linear-gradient {
+  .panel-heading {
+    position: relative;
+    background-image: -webkit-linear-gradient(left, #da3051, #ee375a); /* For Safari 5.1 to 6.0 */
+    background-image: -o-linear-gradient(right, #da3051, #ee375a); /* For Opera 11.1 to 12.0 */
+    background-image: -moz-linear-gradient(right, #da3051, #ee375a); /* For Firefox 3.6 to 15 */
+    background-image: linear-gradient(to right, #da3051, #ee375a); /* Standard syntax */
+    background-color: #ee375a;
+    .panel-title {
+      padding: 0;
+    }
+    .hexagon {
+      @include hexagon(76px, url(http://placekitten.com/g/250), #d52f4f);
+    }
+    .btn {
+      color: #fe5e5e;
+      border-color: #e57171;
+    }
+  }
+}
+.panel-blue-linear-gradient {
+  .panel-heading {
+    position: relative;
+    background-image: -webkit-linear-gradient(left, #0776bd, #0ca0e2); /* For Safari 5.1 to 6.0 */
+    background-image: -o-linear-gradient(right, #0776bd, #0ca0e2); /* For Opera 11.1 to 12.0 */
+    background-image: -moz-linear-gradient(right, #0776bd, #0ca0e2); /* For Firefox 3.6 to 15 */
+    background-image: linear-gradient(to right, #0776bd, #0ca0e2); /* Standard syntax */
+    background-color: #0ca0e2;
+    .panel-title {
+      padding: 0;
+    }
+    .hexagon {
+      @include hexagon(76px, url(http://placekitten.com/g/250), #0379ad);
+    }
+    .btn {
+      color: #248ebe;
+      border-color: #0a91cb;
+    }
+  }
+}
+.panel-violet-linear-gradient {
+  .panel-heading {
+    position: relative;
+    background-image: -webkit-linear-gradient(left, #4689e4, #729bf3); /* For Safari 5.1 to 6.0 */
+    background-image: -o-linear-gradient(right, #4689e4, #729bf3); /* For Opera 11.1 to 12.0 */
+    background-image: -moz-linear-gradient(right, #4689e4, #729bf3); /* For Firefox 3.6 to 15 */
+    background-image: linear-gradient(to right, #4689e4, #729bf3); /* Standard syntax */
+    background-color: #729bf3;
+    .panel-title {
+      padding: 0;
+    }
+    .hexagon {
+      @include hexagon(76px, url(http://placekitten.com/g/250), #4689e4);
+    }
+    .btn {
+      color: #5285fa;
+      border-color: #668bdb;
+    }
+  }
+}
+.panel-orange-linear-gradient {
+  .panel-heading {
+    position: relative;
+    background-image: -webkit-linear-gradient(left, #ee6700, #ff9000); /* For Safari 5.1 to 6.0 */
+    background-image: -o-linear-gradient(right, #ee6700, #ff9000); /* For Opera 11.1 to 12.0 */
+    background-image: -moz-linear-gradient(right, #ee6700, #ff9000); /* For Firefox 3.6 to 15 */
+    background-image: linear-gradient(to right, #ee6700, #ff9000); /* Standard syntax */
+    background-color: #ff9000;
+    .panel-title {
+      padding: 0;
+    }
+    .hexagon {
+      @include hexagon(76px, url(http://placekitten.com/g/250), #ee6700);
+    }
+    .btn {
+      color: #ff8f00;
+      border-color: #e48100;
+    }
+  }
+}
+.panel-yellow-linear-gradient {
+  .panel-heading {
+    position: relative;
+    background-image: -webkit-linear-gradient(left, #f1bb00, #ffd800); /* For Safari 5.1 to 6.0 */
+    background-image: -o-linear-gradient(right, #f1bb00, #ffd800); /* For Opera 11.1 to 12.0 */
+    background-image: -moz-linear-gradient(right, #f1bb00, #ffd800); /* For Firefox 3.6 to 15 */
+    background-image: linear-gradient(to right, #f1bb00, #ffd800); /* Standard syntax */
+    background-color: #ffd800;
+    .panel-title {
+      padding: 0;
+    }
+    .hexagon {
+      @include hexagon(76px, url(http://placekitten.com/g/250), #f1bb00);
+    }
+    .btn {
+      color: #ffa700;
+      border-color: #e4c200;
+    }
+  }
+}
+.panel-light-pink-linear-gradient {
+  .panel-heading {
+    position: relative;
+    background-image: -webkit-linear-gradient(left, #ff5e5e, #ff7e7e); /* For Safari 5.1 to 6.0 */
+    background-image: -o-linear-gradient(right, #ff5e5e, #ff7e7e); /* For Opera 11.1 to 12.0 */
+    background-image: -moz-linear-gradient(right, #ff5e5e, #ff7e7e); /* For Firefox 3.6 to 15 */
+    background-image: linear-gradient(to right, #ff5e5e, #ff7e7e); /* Standard syntax */
+    background-color: #ff7e7e;
+    .panel-title {
+      padding: 0;
+    }
+    .hexagon {
+      @include hexagon(76px, url(http://placekitten.com/g/250), #ff5e5e);
+    }
+    .btn {
+      color: #fe5e5e;
+      border-color: #e57171;
+    }
+  }
+}
+.panel-brown-linear-gradient {
+  .panel-heading {
+    position: relative;
+    background-image: -webkit-linear-gradient(left, #d8a84c, #e9c785); /* For Safari 5.1 to 6.0 */
+    background-image: -o-linear-gradient(right, #d8a84c, #e9c785); /* For Opera 11.1 to 12.0 */
+    background-image: -moz-linear-gradient(right, #d8a84c, #e9c785); /* For Firefox 3.6 to 15 */
+    background-image: linear-gradient(to right, #d8a84c, #e9c785); /* Standard syntax */
+    background-color: #e9c785;
+    .panel-title {
+      padding: 0;
+    }
+    .hexagon {
+      @include hexagon(76px, url(http://placekitten.com/g/250), #d8a84c);
+    }
+    .btn {
+      color: #d6a74b;
+      border-color: #d1b377;
+    }
+  }
+}
+.panel-light-blue-linear-gradient {
+  .panel-heading {
+    position: relative;
+    background-image: -webkit-linear-gradient(left, #3cadf4, #5be2fc); /* For Safari 5.1 to 6.0 */
+    background-image: -o-linear-gradient(right, #3cadf4, #5be2fc); /* For Opera 11.1 to 12.0 */
+    background-image: -moz-linear-gradient(right, #3cadf4, #5be2fc); /* For Firefox 3.6 to 15 */
+    background-image: linear-gradient(to right, #3cadf4, #5be2fc); /* Standard syntax */
+    background-color: #5be2fc;
+    .panel-title {
+      padding: 0;
+    }
+    .hexagon {
+      @include hexagon(76px, url(http://placekitten.com/g/250), #3cadf4);
+    }
+    .btn {
+      color: #2dc8e4;
+      border-color: #53cbe3;
+    }
+  }
+}
+.panel-green-linear-gradient {
+  .panel-heading {
+    position: relative;
+    background-image: -webkit-linear-gradient(left, #08cd82, #71e9bb); /* For Safari 5.1 to 6.0 */
+    background-image: -o-linear-gradient(right, #08cd82, #71e9bb); /* For Opera 11.1 to 12.0 */
+    background-image: -moz-linear-gradient(right, #08cd82, #71e9bb); /* For Firefox 3.6 to 15 */
+    background-image: linear-gradient(to right, #08cd82, #71e9bb); /* Standard syntax */
+    background-color: #71e9bb;
+    .panel-title {
+      padding: 0;
+    }
+    .hexagon {
+      @include hexagon(76px, url(http://placekitten.com/g/250), #08cd82);
+    }
+    .btn {
+      color: #4ce8a7;
+      border-color: #30d696;
+    }
+  }
+}
+
+@media (max-width: $screen-xs-max) {
+  .panel {
+    margin-bottom: 25px;
+    .panel-heading {
+      padding-right: 10px;
+      padding-top: 2px;
+      padding-bottom: 2px;
+      padding-left: 50px;
+      margin-bottom: 20px;
+      .panel-image {
+        margin-top: -23px;
+      }
+      .panel-title {
+        font-size: 14px;
+        line-height: 26px;
+      }
+      .panel-action {
+        .btn {
+          font-size: 10px;
+          margin-top: 3px;
+          line-height: 1;
+          padding: 3px 10px;
+        }
+      }
+    }
+  }
+  .panel-blue .panel-heading .hexagon {
+    @include hexagon(47px, url(http://placekitten.com/g/250), #3cb5d8);
+  }
+  .panel-pink-linear-gradient .panel-heading .hexagon {
+    @include hexagon(47px, url(http://placekitten.com/g/250), #d52f4f);
+  }
+  .panel-blue-linear-gradient .panel-heading .hexagon {
+    @include hexagon(47px, url(http://placekitten.com/g/250), #0379ad);
+  }
+  .panel-orange-linear-gradient .panel-heading .hexagon {
+    @include hexagon(47px, url(http://placekitten.com/g/250), #ee6700);
+  }
+  .panel-yellow-linear-gradient .panel-heading .hexagon {
+    @include hexagon(47px, url(http://placekitten.com/g/250), #f1bb00);
+  }
+  .panel-light-pink-linear-gradient .panel-heading .hexagon {
+    @include hexagon(47px, url(http://placekitten.com/g/250), #ff5e5e);
+  }
+  .panel-brown-linear-gradient .panel-heading .hexagon {
+    @include hexagon(47px, url(http://placekitten.com/g/250), #d8a84c);
+  }
+  .panel-light-blue-linear-gradient .panel-heading .hexagon {
+    @include hexagon(47px, url(http://placekitten.com/g/250), #3cadf4);
+  }
+  .panel-green-linear-gradient .panel-heading .hexagon {
+    @include hexagon(47px, url(http://placekitten.com/g/250), #08cd82);
+  }
+}

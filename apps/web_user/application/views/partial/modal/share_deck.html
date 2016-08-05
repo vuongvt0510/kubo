@@ -1,0 +1,108 @@
+<div class="modal fade" id="modalShare" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-header">
+                <h4 class="modal-title">このドリルをシェアする</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <a class="btn btn-block btn-green" href="/message/friend_list?deck_id=<!--{$deck_id}-->">メッセージでシェア</a>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <!--{*
+                       <input type="hidden" id="input-url" value="<!--{$site_url|cat:'/deck/'}--><!--{$deck_id|default:''}-->">
+                        *}-->
+                        <a class="btn btn-block btn-green btn-copy" href="javascript:;" data-clipboard-text="<!--{$site_url|cat:'/deck/'}--><!--{$deck_id|default:''}-->">URLをコピー</a>
+
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <a class="btn btn-block btn-gray" data-dismiss="modal" >キャンセル</a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--{content_for name="headjs"}-->
+<script src="../dist/clipboard.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        // copy to clipboard
+
+        // check UA
+        function GetIEVersion() {
+            var sAgent = window.navigator.userAgent;
+            var Idx = sAgent.indexOf("MSIE");
+
+            // If IE, return version number.
+            if (Idx > 0) {
+                return parseInt(sAgent.substring(Idx+ 5, sAgent.indexOf(".", Idx)));
+            }
+            // If IE 11 then look for Updated user agent string.
+            else if (!!navigator.userAgent.match(/Trident\/7\./)) {
+                return 11;
+            }else{
+                return 0; //It is not IE
+            }
+        }
+
+        if (GetIEVersion() > 0 && GetIEVersion() <= 10){
+
+            $('.btn-copy').on('click', function() {
+                $("#modalShare").modal("hide");
+                var msg = window.prompt("URLをコピーしてください", location.href);
+            });
+
+        }else {
+            if (navigator.vendor.indexOf("Apple")==0 && /\sSafari\//.test(navigator.userAgent)) {
+                var isSafari = true;
+            } else {
+                var isSafari = false;
+            }
+
+            var userAgent = window.navigator.userAgent.toLowerCase();
+            if( userAgent.match(/(msie|MSIE)/) || userAgent.match(/(T|t)rident/) ) {
+                var isIE = true;
+            } else {
+                var isIE = false;
+            }
+
+            if (isSafari || isIE) {
+                $('.btn-copy').on('click', function() {
+                    $("#modalShare").modal("hide");
+                    var msg = window.prompt("URLをコピーしてください", location.href);
+                });
+                return;
+            }
+            // browser: chrome, firefox
+            var clipboard = new Clipboard('.btn-copy');
+
+            clipboard.on('success', function(e) {
+                $("#modalShare").modal("hide");
+                alert("URLをコピーしました");
+                e.clearSelection();
+            });
+            clipboard.on('error', function(e) {
+                $("#modalShare").modal("hide");
+                var msg = window.prompt("URLをコピーしてください", location.href);
+            });
+        }
+        //$("#input-url").val(location.href);
+
+
+        // safari
+//        if (navigator.vendor.indexOf("Apple")==0 && /\sSafari\//.test(navigator.userAgent)) {
+//            $('.btn-copy').on('click', function() {
+//                $("#modalShare").modal("hide");
+//                var msg = window.prompt("URLをコピーしてください", location.href);
+//            });
+//        }
+    })
+</script>
+<!--{/content_for}-->

@@ -1,0 +1,161 @@
+<div class="page-sidebar-wrapper">
+    <!-- BEGIN SIDEBAR -->
+    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+    <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+    <div class="page-sidebar navbar-collapse collapse">
+        <!-- BEGIN SIDEBAR MENU -->
+        <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+        <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+        <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+        <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+        <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+        <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+        <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true"
+            data-slide-speed="200">
+            <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+            <li class="sidebar-toggler-wrapper hide">
+                <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                <div class="sidebar-toggler"></div>
+                <!-- END SIDEBAR TOGGLER BUTTON -->
+            </li>
+            <li class="heading">
+                <h3 class="uppercase">メニュー</h3>
+            </li>
+
+            <!--{assign var=li_active value=''}-->
+            <!--{if isset($menu_active)}-->
+            <!--{assign var=li_active value=$menu_active}-->
+            <!--{/if}-->
+
+            <!--{*
+            <li class="nav-item <!--{if $li_active == 'li_home'}-->active<!--{/if}-->">
+                <a href="/" class="nav-link">
+                    <i class="icon-home"></i>
+                    <span class="title">管理トップ</span>
+                </a>
+            </li>
+            *}-->
+            
+            <li class="nav-item start <!--{if $li_active == 'li_news_list' || $li_active == 'li_news_create'}-->active<!--{/if}-->">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-bell"></i>
+                    <span class="title">お知らせ</span>
+                    <!--{if $li_active == 'li_news_list' || $li_active == 'li_news_create'}-->
+                    <span class="selected"></span>
+                    <!--{/if}-->
+                    <span class="arrow <!--{if $li_active == 'li_news_list' || $li_active == 'li_news_create'}-->open<!--{/if}-->"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item start <!--{if $li_active == 'li_news_list'}-->active<!--{/if}-->">
+                        <a href="/news" class="nav-link ">
+                            <span class="title">お知らせ一覧</span>
+                        </a>
+                    </li>
+                    <!--{if $current_user->has_permission('NEWS_CREATE')}-->
+                    <li class="nav-item start <!--{if $li_active == 'li_news_create'}-->active<!--{/if}-->">
+                        <a href="/news/add" class="nav-link ">
+                            <span class="title">新規作成</span>
+                        </a>
+                    </li>
+                    <!--{/if}-->
+                </ul>
+            </li>
+
+            <!--{if $current_user->has_permission('USER_LIST')}-->
+            <li class="nav-item <!--{if $li_active == 'li_user'}-->active<!--{/if}-->">
+                <a href="/user/search" class="nav-link">
+                    <i class="icon-user"></i>
+                    <span class="title">ユーザー検索</span>
+                    <!--{if $li_active == 'li_user'}-->
+                    <span class="selected"></span>
+                    <!--{/if}-->
+                </a>
+            </li>
+            <!--{/if}-->
+
+            <!--{if $current_user->has_permission('POINT_EXCHANGE_LIST')}-->
+            <li class="nav-item <!--{if $li_active == 'li_point_exchange'}-->active<!--{/if}-->">
+                <a href="/point" class="nav-link">
+                    <i class="icon-badge"></i>
+                    <span class="title">ポイント交換</span>
+                    <!--{if $li_active == 'li_point_exchange'}-->
+                    <span class="selected"></span>
+                    <!--{/if}-->
+                </a>
+            </li>
+            <!--{/if}-->
+
+            <li class="nav-item <!--{if $li_active == 'li_group_search'}-->active<!--{/if}-->">
+                <a href="/group/search" class="nav-link">
+                    <i class="icon-users"></i>
+                    <span class="title">家族グループ／チーム</span>
+                    <!--{if $li_active == 'li_group_search'}-->
+                    <span class="selected"></span>
+                    <!--{/if}-->
+                </a>
+            </li>
+
+            <li class="nav-item <!--{if $li_active == 'li_coin_purchase'}-->active<!--{/if}-->">
+                <a href="/coin/search_purchase" class="nav-link">
+                    <i class="fa fa-database"></i>
+                    <span class="title">コイン購入履歴</span>
+                    <!--{if $li_active == 'li_coin_purchase'}-->
+                    <span class="selected"></span>
+                    <!--{/if}-->
+                </a>
+            </li>
+
+            <li class="nav-item <!--{if $li_active == 'li_coin_usage'}-->active<!--{/if}-->">
+                <a href="/coin/search_usage" class="nav-link">
+                    <i class="fa fa-database"></i>
+                    <span class="title">コイン利用履歴</span>
+                    <!--{if $li_active == 'li_coin_usage'}-->
+                    <span class="selected"></span>
+                    <!--{/if}-->
+                </a>
+            </li>
+
+            <li class="nav-item <!--{if $li_active == 'li_admin_user'}-->active<!--{/if}-->">
+                <a href="/admin" class="nav-link">
+                    <i class="fa fa-user-secret"></i>
+                    <span class="title">アカウント管理</span>
+                    <!--{if $li_active == 'li_admin_user'}-->
+                    <span class="selected"></span>
+                    <!--{/if}-->
+                </a>
+            </li>
+
+            <li class="nav-item <!--{if $li_active == 'li_campaign_list'}-->active<!--{/if}-->">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-share"></i>
+                    <span class="title">紹介・キャンペーン</span>
+                    <!--{if $li_active == 'li_searchcampaign'}-->
+                    <span class="selected"></span>
+                    <!--{/if}-->
+                    <span class="arrow <!--{if $li_active == 'li_searchtv' || $li_active == 'li_searchintroduction' || $li_active == 'li_searchcampaign'}-->open<!--{/if}-->""></span>
+                </a>
+                <ul class="sub-menu">
+                    <!--{if $current_user->has_permission('CAMPAIGN_CODE_LIST')}-->
+                    <li class="nav-item start <!--{if $li_active == 'li_campaign_list'}-->active<!--{/if}-->">
+                        <a href="/campaign" class="nav-link ">
+                            <span class="title">キャンペーンコード管理</span>
+                        </a>
+                    </li>
+                    <!--{/if}-->
+                </ul>
+            </li>
+            <li class="nav-item <!--{if $li_active == 'li_logout'}-->active<!--{/if}-->">
+                <a href="/logout" class="nav-link">
+                    <i class="icon-logout"></i>
+                    <span class="title">ログアウト</span>
+                    <!--{if $li_active == 'li_logout'}-->
+                    <span class="selected"></span>
+                    <!--{/if}-->
+                </a>
+            </li>
+        </ul>
+        <!-- END SIDEBAR MENU -->
+        <!-- END SIDEBAR MENU -->
+    </div>
+    <!-- END SIDEBAR -->
+</div>

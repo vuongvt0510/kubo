@@ -1,0 +1,78 @@
+<div class="bg-triangle">
+    <div class="container">
+        <div class="page-title">
+            <p class="h1">購入</p>
+            <p class="caption">購入するコインを選択してください</p>
+        </div>
+        <div class="main-content">
+            <div class="content-frame">
+
+                <form class="form-horizontal" method="post">
+                    <!--{if isset($errmsg)}-->
+                    <div class="form-group">
+                        <label style="color:red;" class="col-xs-12 control-label text-center"><!--{$errmsg|escape}--></label>
+                    </div>
+                    <!--{/if}-->
+                    <div class="form-group row">
+                        <label class="col-sm-4 control-label text-left">
+                            購入するコイン
+                        </label>
+                        <div class="col-sm-8" >
+                            <select name="coin" id="expired_year" class="form-control">]
+                                <option value="">選択してください</option>
+                                <!--{foreach from=$list_coins item=item }-->
+                                <option value="<!--{$item.coin|escape}-->" <!--{if $post.coin|default:'' == $item.coin}-->selected<!--{/if}-->><!--{$item.coin|escape}-->コイン（<!--{$item.price|escape}-->円)</option>
+                                <!--{/foreach}-->
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col-sm-4 control-label text-left">カード情報</label>
+                        <div class="col-sm-5 text-left" >
+                            <p class="h4"><!--{$credit_card.card_type|escape|default:''}-->　<!--{$credit_card.card_number|escape|default:''}--></p>
+                            <!--{*
+                            this card holder name is removed from the spec
+                            <p class="h4"><!--{$credit_card.holder_name|escape|default:''}--></p>
+                            *}-->
+                            <p class="h4">有効期限： <!--{$credit_card.expire|escape|default:''}--></p>
+                        </div>
+                        <div class="col-sm-3 text-left" >
+                            <a class="btn btn-green btn-right-arrow col-md-12" href="/credit_card/register/?redirect=<!--{$params_register_url|escape}-->">変更</a>
+                        </div>
+                    </div>
+                    <div class="divider dashed"></div>
+
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-2">
+                            <a class="btn btn-gray btn-block col-md-12" href="/coin/<!--{$user.id|escape|default:''}-->">キャンセル</a>
+                        </div>
+                        <div class="col-md-4">
+                            <button id="submit_purchase" class="btn btn-green btn-block col-md-12" type="submit">購入</button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div style="display: none;" class="loading-wrap"></div>
+
+<!--{content_for name="headjs"}-->
+<script type="text/javascript">
+    (function () {
+
+        $(document).ready(function() {
+
+            $("#submit_purchase").on("click", function() {
+                $(this).disabled = true;
+                $(".loading-wrap").show();
+            });
+
+        });
+    })();
+
+</script>
+<!--{/content_for}-->

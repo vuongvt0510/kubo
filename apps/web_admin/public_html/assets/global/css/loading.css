@@ -1,0 +1,30 @@
+.wrapper-loading {
+  position: relative;
+  height: 33px;
+  margin: 0px 0px 10px 0px; }
+
+.loading-icon {
+  background-color: rgba(255, 255, 255, 0.8);
+  background-image: url(../img/loading-spinner-blue.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 33px;
+  z-index: 2000; }
+
+.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  display: none; }
+
+.loading-send {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  display: none; }

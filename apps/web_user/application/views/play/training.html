@@ -1,0 +1,107 @@
+<div class="play-page play-match-page">
+    <div class="bg-shining-yellow">
+        <div class="bg-inner" id="drill-screen">
+
+            <div class="container">
+                <div class="content-frame-designed-corner with-ribbon-title">
+                    <div class="frame-inner">
+                        <div class="layer"></div>
+                        <div class="head"></div>
+                        <div class="middle">
+                            <h1 class="ribbon-img-title"><img src="/images/play/training-title.png" alt="トレーニング"></h1>
+                            <!--{if $from_quest == TRUE}-->
+                            <div class="btn-area text-center">
+                                <button type="button" class="btn btn-yellow">クエストチャレンジ</button>
+                            </div>
+                            <p class="frame-title">
+                                <!--{$quest_desciption|default:''}-->
+                            </p>
+                            <!--{else}-->
+                            <!--{if $is_trial}-->
+                            <p class="frame-title">
+                                早速ドリルをはじめよう！
+                            </p>
+                            <!--{else}-->
+                            <p class="frame-title">
+                                トレーニングをするとパワーをためることができるよ！<br>
+                                パワーをためると、バトルができるようになるよ！
+                            </p>
+                            <div class="info-area">
+                                <div class="item-name">トレーニングをしてGET!</div>
+                                <div class="point-box">
+                                    <span class="icon icon-carrot"></span>
+                                    <span class="text">パワー</span>
+                                    <div class="point pull-right">
+                                        + <span class="num"><!--{$point|dummy:10}--></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--{/if}-->
+                            <!--{/if}-->
+                            <!--{include file="partial/stage_list.html" stages=$stage}-->
+
+                            <div class="btn-area text-center">
+                                <button id="training-start-play" class="btn btn-yellow btn-lg">スタート</button>
+                            </div>
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="text-center">
+                    <!--{if $is_trial}-->
+                    <a href="/play/select_stage" class="btn btn-outline back-link">戻る</a>
+                    <!--{else if $from_quest == TRUE}-->
+                    <a href="/play/quest_detail" class="btn btn-outline back-link">戻る</a>
+                    <!--{else}-->
+                    <a href="/play/select_drill" class="btn btn-outline back-link">戻る</a>
+                    <!--{/if}-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--{content_for name="modal"}-->
+<!--{include file="partial/modal/interest.html"}-->
+<!--{include file="partial/modal/result_training.html"}-->
+<!--{include file="partial/modal/tutorial.html"}-->
+<!--{include file="partial/modal/score.html"}-->
+<div style="z-index: 1000;" class="modal fade" id="modalDrill-disable" tabindex="-2" role="dialog"></div>
+<!--{/content_for}-->
+
+<!--{content_for name="headjs"}-->
+<script src="/js/drill_stage/STV.DrillScreen.js"></script>
+<script src="/js/drill_stage/STV.DrillScreen.Stage.js"></script>
+<script src="/js/drill_stage/STV.DrillScreen.Base.Stage.js"></script>
+<script src="/js/drill_stage/STV.DrillScreen.Progress.js"></script>
+
+<!--suppress JSUnresolvedVariable -->
+
+<script type="text/javascript">
+(function () {
+    $(document).ready(function() {
+        var obj = new STV.DrillScreen.Stage({
+            drillObject: <!--{$questions|@json_encode|default:"{}"}-->
+        });
+
+        $("#training-start-play").on("click", function() {
+            $("#modalDrill-disable").modal({
+                backdrop: 'static'
+            });
+            // Run Drill Stage
+            obj.launch();
+
+            // play sound
+            var sd = $('.x-sound-drill');
+            sd[0].currentTime = 0;
+            sd[0].play();
+        });
+    });
+})();
+
+</script>
+<!--{/content_for}-->

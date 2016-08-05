@@ -1,0 +1,91 @@
+<div class="pay-service-page pay-service-index">
+    <div class="bg-triangle">
+        <div class="container">
+            <div class="page-title">
+                <p class="h1">スクールTV Plus</p>
+            </div>
+            <div class="main-content">
+                <div class="content-frame">
+                    <div class="contract-status">
+                        <p class="student-name"><!--{$contract.nickname|escape|default:$contract.login_id}--></p>
+
+                        <!--{if $contract.status == 'under_contract'}-->
+                        <p class="status">スクールTV Plus：<span class="status-name">契約中</span></p>
+                        <p class="exp">月額有料プランをご利用できます</p>
+                        <!--{else if $contract.status == 'pending'}--><!--{* there is some problem with credit card *}-->
+                        <p class="status">スクールTV Plus：<span class="status-name">更新停止</span></p>
+                        <p class="exp"><!--{if !$is_expired}-->今月のスクールTV Plusのお支払いが正常に完了していません。<br>保護者の方に確認をしてもらいましょう。
+                            <!--{else}-->
+                            今月のスクールTV Plusのお支払いが正常に完了していません。（現在月額有料プランはご利用いただけません。）<br>
+                            保護者の方に確認をしてもらいましょう。<br>
+                            お支払いが正常に完了しない場合、今月25日をもって自動解約となります。<br>
+                            <!--{/if}--></p>
+                        <!--{else if $contract.status == 'canceling'}--><!--{*quit using this paied service*}-->
+                        <p class="status">スクールTV Plus：<span class="status-name">解約(月末まで有効)</span></p>
+                        <p class="exp">スクールTV Plusを解約しました<br>
+                            お支払い済みの期間は、月額有料プランを引き続きお使いいただけます。</p>
+                        <!--{else}-->
+                        <p class="status">スクールTV Plus：<span class="status-name">未契約</span></p>
+                        <p class="exp">プランに申込みたい場合は <br>
+                            保護者の方に知らせて契約してもらおう
+                            </p>
+                        <!--{/if}-->
+
+                    </div>
+
+                    <div class="divider dashed"></div>
+
+                    <!--{if !$has_parent }-->
+                    <div class="explanation-area clearfix">
+                        <div class="mb30">
+                            <p class="h4 bold text-center mb5">STEP1</p>
+                            <p class="text-center">保護者の方もスクールTVの会員になろう</p>
+                        </div>
+                        <div class="mb30">
+                            <p class="h4 bold text-center mb5">STEP2</p>
+                            <p class="text-center">保護者の方と家族グループを作ろう</p>
+                        </div>
+                        <div>
+                            <p class="h4 bold text-center mb5">STEP3</p>
+                            <p class="text-center">保護者の方がスクールTVにログインして、<br>きみのダッシュボードから契約ができます</p>
+                        </div>
+
+                    </div>
+                    <!--{/if}-->
+
+                    <div class="row">
+                        <div class="col-sm-6 <!--{if !($has_parent && in_array($contract.status, ['free', 'not_contract'])) }-->col-sm-offset-3<!--{/if}-->">
+                            <a href="/dashboard/<!--{$contract.user_id|escape}-->" class="btn btn-gray btn-block">戻る</a>
+                        </div>
+                        <!--{if $has_parent && in_array($contract.status, ['free', 'not_contract']) }-->
+                        <div class="col-sm-6">
+                            <form method="post">
+                                <input type="hidden" name="action" value="ask_parent">
+                                <button type="submit" class="btn btn-green btn-block"><!--{if !$is_ask_pay_service}-->保護者の方に知らせる<!--{else}-->保護者の方に知らせました<!--{/if}--></button>
+                            </form>
+                        </div>
+                        <!--{/if}-->
+                    </div>
+                    <div class="explanation-area clearfix">
+                        <p class="h4 bold text-center">スクールTV有料プランとは？</p>
+                        <div class="row">
+                            <div class="col-md-2 col-sm-3 col-xs-4 col-md-offset-0 col-sm-offset-0 col-xs-offset-4">
+                                <img src="/images/rabi-balloon/rabi-smile.png" alt="Rabi" class="img-responsive">
+                            </div>
+                            <div class="explanation-text col-md-10 col-sm-9 col-xs-12">
+
+                                <p>動画のレッスン中の質問が、選択式になってパワーアップするよ！</p>
+                                <p>画面を操作して答えるから、動画を見るだけよりも、
+                                    楽しく学ぶことができるよ！</p>
+                                <p>※月額<!--{$amount}-->円の有料プランです。</p>
+                                <p>※動画によっては、選択式の質問がない場合があります。</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

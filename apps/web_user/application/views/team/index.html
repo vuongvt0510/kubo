@@ -1,0 +1,111 @@
+<div class="group-setting-page list-team">
+    <div class="bg-triangle">
+        <div class="container">
+            <div class="page-title">
+                <div class="container text-center">
+                    <p class="h1">チームに招待</p>
+                    <p class="caption">
+                        チームに招待すると <br>
+                        友達と一緒に学習することができます<br>
+                        どのチームに追加しますか？<br>
+                    </p>
+                </div>
+            </div>
+            <div class="main-content team">
+                <!--{if !empty($list_groups)}-->
+                <div class="row clearfix">
+                    <div id="my-gallery-container">
+                    <!--{foreach from=$list_groups key=key item=group}-->
+                        <div class="item">
+                            <a href="/team/<!--{$group.id|escape|default:''}-->">
+                                <div class="group-box">
+                                    <div class="group-id"><!--{$group.id|escape|default:''}--></div>
+                                    <dl class="group-info dl-horizontal">
+                                        <dt class="group-name-dt">チーム名</dt>
+                                        <dd class="group-name"><!--{$group.name|escape|default:''}--></dd>
+                                        <dt>作成日時</dt>
+                                        <dd><!--{date('Y年m月d日',strtotime($group.created_at|escape|default:''))}--></dd>
+                                        <dt>作成者</dt>
+                                        <dd>
+                                            <span class="role-label green">子ども</span>
+                                            <!--{if empty($group.owner.email_verified)}--><span>メール未認証</span><!--{/if}-->
+                                            <span class="owner-nickname"><!--{$group.owner.nickname|escape|default:'ニックネームなし'}--></span>
+                                            <span class="owner-id">(ID: <!--{$group.owner.login_id|escape|default:''}-->)</span>
+                                        </dd>
+                                    </dl>
+                                    <ul class="member-list list-unstyled">
+                                        <!--{foreach from=$group.members key=key item=member}-->
+                                        <li class="item">
+                                            <div class="cell first">
+                                                <img class="thumb" src="/images/avatar/<!--{if $member.avatar_id == 0}--><!--{if $member.primary_type == 'parent'}-->12<!--{else}-->2<!--{/if}--><!--{else}--><!--{$member.avatar_id}--><!--{/if}-->.png" alt="">
+                                            </div>
+                                            <div class="cell second">
+                                            <span class="role-label green">子ども</span>
+                                            </div>
+                                            <div class="cell third">
+                                                <span class="member-name"><!--{$member.nickname|escape|default:'ニックネームなし'}--></span><br>
+                                                <span class="member-id">ID: <!--{$member.login_id|escape|default:''}--></span>
+                                                <!--{if empty($member.email_verified)}--><small>メール未認証</small><!--{/if}-->
+                                            </div>
+                                        </li>
+                                        <!--{/foreach}-->
+                                    </ul>
+                                </div>
+                            </a>
+                    </div>
+                    <!--{/foreach}-->
+                </div>
+
+            </div>
+            <!--{else}-->
+            <div class="row clearfix">
+                <!--{include file="partial/no_item.html" message="参加しているチームはありません<br>以下のボタンから￼新しいチームを作成して招待することができます。"}-->
+            </div>
+            <!--{/if}-->
+
+            <div class="btn-area text-center">
+                <!--{if $total_team}-->
+                <!--{include file="partial/modal/confim_group_team.html"}-->
+                <div class="btn-area-lg text-center">
+                    <a class="btn btn-light-blue" href="#" id="confirmGroupTeam">新しいチーム作成</a>
+                </div>
+                <!--{else}-->
+                <div class="btn-area-lg text-center">
+                    <a class="btn btn-light-blue" href="/team/create">新しいチーム作成</a>
+                </div>
+                <!--{/if}-->
+                <div class="divider dashed gray"></div>
+                <div class="col-sm-6 col-sm-push-3">
+                    <a class="btn btn-gray btn-block" href="/setting">プロフィール編集に戻る</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!--{content_for name="headjs"}-->
+<script src="/third_party/masonry/dist/mp.mansory.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#my-gallery-container").mpmansory({
+            childrenClass: 'item',
+            breakpoints: {
+                lg: 6,
+                md: 6,
+                sm: 6,
+                xs: 12
+            },
+            onload: function ( items ) {
+                return true;
+            }
+        });
+
+        $("#confirmGroupTeam").on("click", function() {
+            $("#ConfirmGroupteam").modal('show');
+        });
+
+    });
+
+</script>
+<!--{/content_for}-->

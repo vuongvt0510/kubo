@@ -1,0 +1,25 @@
+<div class="modal fade" id="Quest-started" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button id="cancel-close" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-header">
+                <div class="modal-title">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="modal-body text-center">
+                <p style="font-size: 16px;">
+                    クエストスタート！<br>
+                    チームのみんなで力を合わせて<br>
+                    クリアしよう！
+                </p>
+            </div>
+            <div class="modal-footer modal-footer-btngroup text-center">
+                <a href="/play/quest_detail/<!--{$quest.drill_type|escape|default:''}-->" class="btn btn-green"><!--{if $quest.drill_type == 'battle'}-->バトルスタート<!--{else}-->トレーニングスタート<!--{/if}--></a>
+                <a href="/play/quest_detail" class="btn btn-green">クエスト詳細へ戻る</a>
+            </div>
+        </div>
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

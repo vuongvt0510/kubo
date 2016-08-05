@@ -1,0 +1,112 @@
+<div class="coin-page">
+    <div class="bg-triangle">
+        <div class="container">
+            <div class="page-title">
+                <p class="h1">ラビポイントを交換</p>
+            </div>
+            <div class="main-content">
+                <div class="content-frame form-horizontal">
+                    <!--{if !empty($user)}-->
+                    <div class="bg-triangle-blue head text-center">
+                        <span class="title">
+                            <span class="name"><!--{$user.nickname|escape|default:$user.login_id}-->のラビポイント</span>
+                        </span>
+                    </div>
+                    <div class="current-coin">
+                        <img src="/images/icons/rabbi-point.png" alt="">
+                        <span class="num"><!--{$user.point|number_format|escape|default:''}--></span>ポイント
+                    </div>
+                    <!--{/if}-->
+
+                    <div class="coin-area">
+                        <div class="purchase-coin-area col-md-12">
+                            <h4 class="text-center mg0">ポイント交換について</h4>
+                            <hr>
+                            <h4 class="text-center">獲得したラビポイントは、「ネットマイル」に交換することができます。</h4>
+                            <p class="text-center">「ネットマイル」を貯めると、ギフト券や航空マイレージなどに</p>
+                            <p class="text-center">さらに交換することができます。</p>
+                            <div class="row">
+                                <div class="btn-sp col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                                    <a class="btn btn-green btn-block" href="http://www.netmile.co.jp/ctrl/user/index.do" target="_blank">ネットマイルのページを見る</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="exchange-rate text-center">
+                                <p><b>交換レート</b></p>
+                                <div class="col-md-6 col-sm-6 col-xs-6 color1">
+                                    <p class="text-center">ラビポイント</p>
+                                    <div class="exchange-box">
+                                        <img src="/images/icons/rabbi-point.png" class="img-responsive">
+                                        <span class="num"><!--{$min_point|escape|default:''}--></span>
+                                        <span class="txt">ラビポイント</span>
+                                    </div>
+                                    <span class="icon-convert"></span>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 color2">
+                                    <p class="text-center">ネットマイル</p>
+                                    <div class="exchange-box">
+                                        <img src="/images/icons/netmine.png" class="img-responsive">
+                                        <span class="num"><!--{$min_mile|escape|default:''}--></span>
+                                        <span class="txt">マイル</span>
+                                    </div>
+                                </div>
+                                <!--{if $is_parent}-->
+                                <div class="mgt20 btn-sp col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                                    <button class="btn btn-outline btn-yellow btn-block check_limit_exchange">ネットマイルに交換</button>
+                                </div>
+                                <!--{/if}-->
+                            </div>
+                        </div>
+
+                        <div class="purchase-coin-area col-md-12">
+                            <h4 class="text-center">「ラビポイント」から「ネットマイル｣への交換は、保護者の方のみができます。</h4>
+                            <!--{if !$is_parent}-->
+                            <p class="text-center">ポイントの交換をしたい場合には、保護者の方に頼もう！</p>
+                            <!--{/if}-->
+                            <div class="row">
+                                <div class="btn-sp col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                                    <a class="btn btn-green btn-block" href="/faq" target="_blank">ポイント交換の方法はこちら</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                        <a class="btn btn-gray btn-block" href="/rabipoint">ポイントを確認へ戻る</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--{include file="partial/modal/limit_exchange_point.html"}-->
+
+<!--{content_for name="headjs"}-->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.check_limit_exchange').on('click', function() {
+            $.ajax({
+                type: 'POST',
+                url: '/rabipoint/check_limit',
+                data: {},
+                dataType: 'JSON'
+            }).done(function(res) {
+                if (res.result.is_limited) {
+                    // show modal
+                    $( '#limitExchangePoint' ).modal({
+                        show: true,
+                        backdrop: 'static'
+                    });
+                } else {
+                    // redirect
+                    window.location.href = '/rabipoint/execute/'+ <!--{$user_id|escape|default:''}-->
+                }
+            });
+        });
+    });
+</script>
+<!--{/content_for}-->

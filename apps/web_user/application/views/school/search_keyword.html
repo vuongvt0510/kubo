@@ -1,0 +1,133 @@
+<div class="bg-triangle">
+    <div class="container">
+        <div class="page-title">
+            <p class="h1">都道府県・学校名から検索</p>
+            <p class="caption">お住まいの都道府県・市町村を選択してください</p>
+        </div>
+
+        <div class="main-content">
+            <div class="content-frame">
+                <form class="form-horizontal" method="post">
+                    <div class="form-group">
+                        <!--{if isset($chosen_school.name)}-->
+                        <label class="col-sm-4 control-label text-left">選択中の学校</label>
+                        <div class="col-sm-8">
+                            <div class="current-value">
+                                <!--{$chosen_school.name|escape}-->
+                                <!--{if isset($chosen_school.address)}--><br><span class="small"><!--{$chosen_school.address|escape}--></span><!--{/if}-->
+                            </div>
+                        </div>
+                        <!--{/if}-->
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label text-left">
+                            都道府県
+                            <span class="c-green">【必須】</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <select name="pref_id" id="pref_select" class="form-control">
+                                <option value="">選択してください</option>
+                                <!--{foreach $prefs as $pref}-->
+                                <option <!--{if isset($post.pref_id) and $post.pref_id == $pref.id}-->selected<!--{/if}--> value="<!--{$pref.id|escape}-->"><!--{$pref.name|escape}--></option>
+                                <!--{/foreach}-->
+                            </select>
+                            <span class="small">学校名が見つからない場合は<a href="/school/search/postalcode/<!--{$user_id|escape|default:''}-->">郵便番号検索</a>もお試しください</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label text-left">
+                            市区町村
+                            <span class="c-green">【必須】</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <select name="area_id" id="area_select" class="form-control">
+                                <option value="">選択してください</option>
+                                <!--{foreach $areas as $area}-->
+                                <option <!--{if isset($post.area_id) and $post.area_id == $area.id}-->selected<!--{/if}--> value="<!--{$area.id|escape}-->"><!--{$area.name|escape}--></option>
+                                <!--{/foreach}-->
+                            </select>
+                            <span class="small">学校名が見つからない場合は<a href="/school/search/postalcode/<!--{$user_id|escape|default:''}-->">郵便番号検索</a>もお試しください</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label text-left">学校名</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="school_name" class="form-control" value="<!--{$post.school_name|escape|default:''}-->" placeholder="学校名を入力">
+                            <span class="small">学校名は入力しなくても検索できます</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <a href="/school/search/<!--{$user_id|escape|default:''}-->" class="btn btn-gray btn-block">戻る</a>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-green btn-block">検索</button>
+                        </div>
+                    </div>
+                </form>
+                <!--{if isset($list_schools)}-->
+                <form class="form-horizontal" method="post">
+                    <div class="result-box">
+                        <!--{foreach $list_schools as $key => $item}-->
+                        <div class="form-group">
+                            <div class="radio radio-primary">
+                                <label>
+                                    <input <!--{if $key == 0}-->checked<!--{/if}--> type="radio" name="school_id" id="optionsRadios1" value="<!--{$item.id|escape|default:''}-->">
+                                    <b><!--{$item.name|escape|default:''}--></b>
+
+                                    <p class="small"><!--{$item.address|escape|default:''}--></p>
+                                </label>
+                            </div>
+                        </div>
+                        <!--{foreachelse}-->
+                        <!--{include file="partial/no_item.html" message="お探しの学校名が見つかりませんでした<br>入力内容をお確かめください<br><br><small>学校名が見つからない場合は<a href='/school/search/postalcode'>郵便番号検索</a>もお試しください</small>"}-->
+                        <!--{/foreach}-->
+                    </div>
+                    <!--{if !empty($list_schools)}-->
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <a href="/setting" class="btn btn-gray btn-block">戻る</a>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-green btn-block">この学校に決定</button>
+                        </div>
+                    </div>
+                    <!--{/if}-->
+                </form>
+                <!--{/if}-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--{content_for name="headjs"}-->
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $('#pref_select').on('change', function() {
+            var pref_id = $(this).val();
+
+            $('#area_select').attr('disabled', true);
+            $.ajax({
+                method: 'POST',
+                url: '/school/get_list_areas',
+                data: {
+                    pref_id: pref_id
+                },
+                dataType: 'json'
+            }).done(function(res) {
+                var areas_list = res.items;
+
+                $('#area_select').attr('disabled', false);
+                $('#area_select').html("<option value=''>選択してください</option>");
+                $('#area_select').html();
+
+                for(var i = 0; i < areas_list.length; i++) {
+                    $('#area_select').append(
+                            '<option value="'+areas_list[i]['id']+'">' + areas_list[i]['name'] + '</option>'
+                    );
+                }
+            });
+        });
+    });
+</script>
+<!--{/content_for}-->

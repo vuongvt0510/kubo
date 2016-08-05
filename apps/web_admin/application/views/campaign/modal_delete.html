@@ -1,0 +1,77 @@
+
+<!--{content_for name="page_scripts"}-->
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $('.delete-campaign').on('click', function(e) {
+            var el = $(this);
+            var id = el.data('campaign_id');
+            $.ajax({
+                method: 'POST',
+                url: '/campaign/get_detail',
+                data: {id: id},
+                dataType: 'json'
+            }).done(function(res) {
+                var campaign_detail = res.result;
+                campaign_detail['ended_at'] = (campaign_detail['ended_at'] == null) ? '' : campaign_detail['ended_at'];
+                $(".modal-body #code_modal").html(campaign_detail['code']);
+                $(".modal-body #name_modal").html(campaign_detail['name']);
+                $(".modal-body #public_date_modal").html(campaign_detail['started_at']+' 〜 ' + campaign_detail['ended_at']);
+                $("#campaign_id").val(campaign_detail['id']);
+                $("#delete-modal").modal({
+                    backdrop: 'static'
+                });
+            });
+
+        });
+
+        $('#modalSubmit').on('click', function(e) {
+            var id = $("#campaign_id").val();
+            $.ajax({
+                method: 'POST',
+                url: '/campaign/delete',
+                data: {id: id},
+                dataType: 'json'
+            }).done(function(res) {
+                if (res == true) {
+                    $("#delete-modal").modal('hide');
+                    location.reload();
+                }
+            });
+        });
+    });
+</script>
+<!--{/content_for}-->
+
+<!-- Modal -->
+<div id="delete-modal" class="modal fade" tabindex="-1" data-width="760">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">キャンペーンコード削除</h4>
+    </div>
+    <div class="modal-body">
+        <div class="table-scrollable text-left">
+            <table class="table table-hover">
+                <tr>
+                    <th width="12%" class="active">キャンペーン名</th>
+                    <td id="name_modal"></td>
+                </tr>
+                <tr>
+                    <th class="active">キャンペーンコード</th>
+                    <td id="code_modal"></td>
+                </tr>
+                <tr>
+                    <th class="active">キャンペーン期間</th>
+                    <td id="public_date_modal"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="text-center">
+            <button type="button" data-dismiss="modal" class="btn btn-lg grey-salsa">キャンセル</button>
+            <button id="modalSubmit" type="button" class="btn btn-lg red">削除</button>
+            <input type="hidden" name="campaign_id" value="" id="campaign_id">
+        </div>
+    </div>
+</div>

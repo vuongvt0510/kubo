@@ -1,0 +1,507 @@
+<div class="video-detail-page">
+    <div class="video-banner">
+        <div id="drill-screen" class="container">
+
+            <div class="video-banner-wrapper">
+
+                <!--{if !empty($al_video.brightcove_id)}-->
+                <div id="alVideo" style="display: block; position: relative; max-width: 100%;"><div style="padding-top: 56.25%;">
+                    <div class="x-pageRefresh btn-pageRefresh"><i class="btn-pageRefresh-reload"></i>もう一度見る</div>
+                    <video data-account="4660716964001" data-video-id="<!--{$al_video.brightcove_id|escape}-->" autoplay data-player="5566f27e-4a1f-4265-9ac2-e1f12c1b9850" data-embed="default" class="video-js" controls="" style="width: 100%; height: 100%; position: absolute; top: 0px; bottom: 0px; right: 0px; left: 0px;" id="myExperience_al"></video>
+                    <script src="//players.brightcove.net/4660716964001/5566f27e-4a1f-4265-9ac2-e1f12c1b9850_default/index.min.js"></script></div></div>
+                <!--{/if}-->
+
+                <!--{if !empty($videos[$chapter.deck_id].brightcove_id)}-->
+                <div id="mainVideo" style="display: <!--{if empty($al_video.brightcove_id)}-->block<!--{else}-->none<!--{/if}-->; position: relative; max-width: 100%;"><div style="padding-top: 56.25%;">
+                    <div class="x-pageRefresh btn-pageRefresh"><i class="btn-pageRefresh-reload"></i>もう一度見る</div>
+                    <video data-account="4660716964001" data-video-id="<!--{$videos[$chapter.deck_id].brightcove_id|escape}-->" data-player="5566f27e-4a1f-4265-9ac2-e1f12c1b9850" data-embed="default" class="video-js" controls="" <!--{if empty($al_video.brightcove_id)}-->autoplay<!--{/if}--> style="width: 100%; height: 100%; position: absolute; top: 0px; bottom: 0px; right: 0px; left: 0px;" id="myExperience"></video>
+                    <script src="//players.brightcove.net/4660716964001/5566f27e-4a1f-4265-9ac2-e1f12c1b9850_default/index.min.js"></script></div></div>
+                <!--{else}-->
+                    <div style="width: 100%; height: 180px;">
+                        <p style="color: #FFF; margin-top: 150px;">ビデオがまだ準備されていません</p>
+                    </div>
+                <!--{/if}-->
+
+            </div>
+
+            <!--{if !empty($videos[$chapter.deck_id].brightcove_id)}-->
+            <div class="tweet-buttons">
+                <p class="h3" title="ラビボタン">
+                    <img src="/images/icons/tweet-title.png" alt="ラビボタン" class="img-responsive middle-auto">
+                </p>
+                <ul class="list-unstyled">
+                    <li>
+                        <button class="btn-link" id="1">
+                            <img src="/images/icons/tweet-understand-completely.png" alt="Understand completely" class="img-resonsive">
+                        </button>
+                        <span class="count">0</span>
+                    </li>
+                    <li>
+                        <button class="btn-link" id="2">
+                            <img src="/images/icons/tweet-cannot-understand.png" alt="Cannot understand" class="img-resonsive">
+                        </button>
+                        <span class="count">0</span>
+                    </li>
+                    <li>
+                        <button class="btn-link" id="3">
+                            <img src="/images/icons/tweet-understand-well.png" alt="Understand well" class="img-resonsive">
+                        </button>
+                        <span class="count">0</span>
+                    </li>
+                    <li>
+                        <button class="btn-link" id="4">
+                            <img src="/images/icons/tweet-interesting.png" alt="Interesting" class="img-resonsive">
+                        </button>
+                        <span class="count">0</span>
+                    </li>
+                </ul>
+            </div>
+            <!--{/if}-->
+
+            <!--{include file="partial/modal/tutorial.html"}-->
+        </div>
+    </div>
+
+    <!--{if !empty($next_chapter) && isset($current_user)}-->
+    <div class="bg-triangle-blue next-video" style="display: none">
+        <div class="container">
+            <!--{include file="partial/video_content_list.html" chapters=[$next_chapter] videos=$videos textbook=$textbook done=$done in_progress=$in_progress}-->
+        </div>
+    </div>
+    <!--{/if}-->
+
+    <div class="main-content">
+        <div class="container">
+            <div class="video-information">
+                <h1 class="description-box clearfix" style="margin: 0;">
+                    <div class="h1"><!--{$chapter.name|escape|strip|default:'--'}--></div>
+                    <div class="unit-and-chapter"><!--{$chapter.chapter_name|escape|default:'-'}--></div>
+                    <div class="subject"><span class="bold"><!--{$textbook.subject.name|escape|default:'--'}--></span></div>
+                </h1>
+
+                <ul class="list-unstyled points-list orange">
+                    <li>
+                        <!--{$chapter.description|escape|nl2br|default:'-'}-->
+                    </li>
+                </ul>
+
+                <div class="current-progress orange">
+                    <div class="progress-wrapper">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-warning active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>
+                        </div>
+                        <div class="progress-text clearfix">
+                            <div class="pull-left"><!--{$chapter.name|escape|default:'--'}--></div>
+                            <div class="pull-right"><!--{$next_chapter.name|escape|default:'--'}--></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sub-content bg-triangle">
+            <div class="container">
+                <div class="panel panel-blue">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <div class="panel-image">
+                                <div class="hexagon-img">
+                                    <img src="/images/panel/other-chapters.png" alt="">
+                                </div>
+                            </div>
+                            この教科書のその他の動画
+                        </div>
+                        <div class="panel-action">
+                            <a href="/s/<!--{$textbook.subject.id|escape}-->/<!--{$textbook.textbook.id|escape}-->">
+                                <button type="button" class="btn btn-sm btn-outline btn-blue btn-circle white-bg">
+                                    <i class="el-icons el-angle-right"></i>
+                                    もっと見る
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="video-boxes-wrapper">
+                            <!--{if !empty($chapter_list)}-->
+                            <!--{include file="partial/video_carousel_list.html" chapters=$chapter_list videos=$videos subject_name=$textbook.subject.short_name subject_color=$textbook.subject.color subject_type=$textbook.subject.type}-->
+                            <!--{/if}-->
+                        </div>
+                    </div>
+                </div>
+
+                <!--{if !empty($current_user) && !empty($most_viewer_video)}-->
+                <div class="panel panel-blue-linear-gradient">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <div class="panel-image">
+                                <div class="hexagon-img">
+                                    <img src="/images/panel/popular-videos.png" alt="">
+                                </div>
+                            </div>
+                            あなたにおすすめの人気の動画
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="video-boxes-wrapper">
+                            <!--{include file="partial/video_carousel_list.html" chapters=$most_viewer_video subject_is_mixed=TRUE subject_color="blue" subject_type="" subject_name=""}-->
+                        </div>
+                    </div>
+                </div>
+                <!--{/if}-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--{content_for name="modal"}-->
+<!--{include file="partial/modal/interest.html"}-->
+<!--{include file="partial/modal/point_video.html"}-->
+<!--{/content_for}-->
+
+
+<!--{content_for name="headjs"}-->
+<script src="/js/drill/STV.DrillScreen.js"></script>
+<script src="/js/drill/STV.DrillScreen.Base.js"></script>
+<script src="/js/drill/STV.DrillScreen.Progress.js"></script>
+
+<!-- including brightcove experience js -->
+<script src="https://sadmin.brightcove.com/js/BrightcoveExperiences.js"></script>
+
+<!--suppress JSUnresolvedVariable -->
+<!--{if !empty($videos[$chapter.deck_id].brightcove_id)}-->
+<script type="text/javascript">
+    var myTemplateLoaded, onTemplateReady;
+    var player, modVP, modExp, modCon, previousVideoID = 0, currentVideo;
+    var timeToUpdate = 0;
+    var video_progress = '<!--{$video_progress.second|default:0}-->';
+    var update_time_count = '<!--{$video_progress.second|default:0}-->';
+    var isAlVideo = <!--{if !empty($al_video.brightcove_id)}-->true<!--{else}-->false<!--{/if}-->;
+
+    (function () {
+
+        var obj = new STV.DrillScreen({
+            drillObject: <!--{$questions|@json_encode|default:"{}"}-->
+        });
+
+        var objUser = new STV.DrillScreen.Base({
+            currentUser: '<!--{$current_user.id|default:"1"}-->',
+        });
+
+        var bootMainVideo = function () {
+
+            var video = videojs('myExperience');
+            var alreadyEnded = false;
+            var duration = 0;
+
+            if(isAlVideo){
+                setTimeout(_.bind(function () {
+                    video.play();
+                }, this), 0);
+            }
+
+            var progress = new STV.DrillScreen.Progress({
+                videoID: '<!--{$videos[$chapter.deck_id].id|escape}-->',
+                cookieFlag : <!--{if isset($current_user)}-->false<!--{else}-->true<!--{/if}-->
+            });
+
+            // Get the rabi count
+            //EL_STAGE1-1627 ラビボタンのデータの持ち方と表示のされ方 | Spec changes in tweet function
+            /*$.ajax({
+                url: '/video/get_rabbit_count',
+                method: 'post',
+                data: {'video_id': <!--{$video_id}-->},
+                success: function (data) {
+                    if (Object.keys(data).length > 0) {
+                        data = data['items'];
+                        for (var i in data) {
+                            $('#' + data[i]['button_id']).parent('li').find('.count').html(data[i]['count']);
+                        }
+                    }
+                }
+            });*/
+
+            // Video action
+            if(video_progress > 0) {
+                video.currentTime(video_progress);
+            } else {
+                /**
+                 * pause video when showing modal
+                 */
+                // hide modal modalDrill-interest on mobile
+                if (Modernizr.touch || Modernizr.isios) {
+                    progress.update_view_count();
+                } else {
+                    var target = $('#modalDrill-interest');
+
+                    setTimeout(_.bind(function () {
+                        target.modal('show');
+                    }, this), 600);
+
+                    target.on('shown.bs.modal', function () {
+                        video.pause(true);
+                    });
+                    target.on('hidden.bs.modal', function () {
+                        // update video view count
+                        progress.update_view_count();
+                        video.play();
+                    });
+                    // end pause video when showing modal
+                }
+            }
+
+
+
+            video.on('loadeddata', function (e) {
+                progress.updateProgress(video_progress, video.duration(), '.progress-bar');
+                $('.tweet-buttons').fadeIn();
+            });
+
+            video.on('play', function (e) {
+                $('.tweet-buttons').fadeIn();
+            });
+            video.on('pause', function (e) {
+                $('.tweet-buttons').fadeOut();
+            });
+
+            video.on('seeking', function (e) {
+                update_time_count = video.currentTime();
+            });
+
+            video.on('timeupdate', function (e) {
+
+                <!--{if isset($current_user) and $current_user.primary_type == 'student'}-->
+                if (video.currentTime() > update_time_count + 5) {
+                    update_time_count = video.currentTime();
+
+                    $.ajax({
+                        type: "POST",
+                        url: '/video/update_video_count_second',
+                        dataType: 'json'
+                    }).done(function (res) {
+                        if (res.submit) {
+
+                            if (res.result.trophy) {
+                                $("#get_trophy_image").prop('src', '/image/show/'+res.result.trophy.image_key);
+                                $('#get_trophy_title').html(res.result.trophy.name);
+                                $('#get_trophy_description').html(res.result.trophy.description);
+                                $('#modalGetTrophy').modal();
+                                video.pause();
+                            }
+
+                        }
+                    });
+                }
+                <!--{/if}-->
+
+                var time = video.currentTime();
+
+                progress.updateProgress(time, video.duration(), '.progress-bar');
+
+                if (video.duration() > 0) {
+                    duration = video.duration();
+                }
+
+                if (duration != 0 && time > duration - 5) {
+                    endFunc();
+
+                    // show button reload page and hide control bar
+                    $('.x-pageRefresh').addClass('buttonShow');
+                    $('.vjs-control-bar').hide();
+
+                } else {
+                    obj.launch(time, video);
+                    var scores = [];
+                    var drillResults = obj.drillResults;
+                    var have_questions = 0;
+                    var learning_history_id = <!--{$learning_history_id|default:'null'}-->;
+
+                    // Read the score
+                    for (var i = 0; i < drillResults.length; i++) {
+                        scores.push(drillResults[i]);
+                    }
+
+                    <!--{if !empty($questions)}-->
+                    have_questions = 1;
+                    <!--{/if}-->
+
+                    progress.update(time, 0, duration, scores, have_questions, learning_history_id);
+
+                    // show button reload page and hide control bar
+                    $('.x-pageRefresh').removeClass('buttonShow');
+                    $('.vjs-control-bar').show();
+                }
+            });
+
+            video.errors({
+                "errors": {
+                    "1": {
+                        "headline": "通信エラー",
+                        "type": "ネットワークが接続されていません",
+                        "message": "ネットワークが接続されていません。ネットワークをつないだ環境で再度ご覧ください。"
+                    },
+                    "2": {
+                        "headline": "通信エラー",
+                        "type": "ネットワークが接続されていません",
+                        "message": "ネットワークが接続されていません。ネットワークをつないだ環境で再度ご覧ください。"
+                    },
+                    "3": {
+                        "headline": "通信エラー",
+                        "type": "ネットワークが接続されていません",
+                        "message": "ネットワークが接続されていません。ネットワークをつないだ環境で再度ご覧ください。"
+                    },
+                    "4": {
+                        "headline": "通信エラー",
+                        "type": "ネットワークが接続されていません",
+                        "message": "ネットワークが接続されていません。ネットワークをつないだ環境で再度ご覧ください。"
+                    },
+                    "5": {
+                        "headline": "通信エラー",
+                        "type": "ネットワークが接続されていません`",
+                        "message": "ネットワークが接続されていません。ネットワークをつないだ環境で再度ご覧ください。"
+                    }
+                }
+            });
+
+            var endFunc = function () {
+                if (alreadyEnded) {
+                    return;
+                }
+
+                var scores = [];
+                var drillResults = obj.drillResults;
+                var have_questions = 0;
+                var learning_history_id = <!--{$learning_history_id|default:'null'}-->;
+
+                // Read the score
+                for (var i = 0; i < drillResults.length; i++) {
+                    scores.push(drillResults[i]);
+                }
+
+                <!--{if !empty($questions)}-->
+                    have_questions = 1;
+                <!--{/if}-->
+
+                $.when(progress.update(0, 1, duration, scores, have_questions, learning_history_id)).then(function(status) {
+                    if(status == 'done'){
+                        <!--{if !empty($questions)}-->
+                        if (progress.isTrophy == false && progress.isPoint == false) {
+                            obj.create_score('<!--{$videos[$chapter.deck_id].id|escape}-->');
+                        }
+
+                        if (progress.isTrophy == true && progress.isPoint == false) {
+                            $('#modalGetTrophy').on('hidden.bs.modal', _.bind(function(){
+                                obj.create_score('<!--{$videos[$chapter.deck_id].id|escape}-->');
+                            }, obj));
+                        }
+
+                        if (progress.isPoint == true) {
+                            $('#modalPointVideo').on('hidden.bs.modal', _.bind(function(){
+                                obj.create_score('<!--{$videos[$chapter.deck_id].id|escape}-->');
+                            }, obj));
+                        }
+
+                        <!--{/if}-->
+                    }
+                });
+
+                alreadyEnded = true;
+
+                <!--{if !empty($questions)}-->
+
+                // play sound
+                var sd = $('.x-sound-ranking');
+                sd[0].currentTime = 0;
+                sd[0].play();
+                <!--{/if}-->
+
+                if($('.next-video') != undefined) {
+                    $('.next-video').show('buttonShow');
+                }
+            };
+            video.on('ended', endFunc);
+
+            $('body').on('click', '#drill-screen .tweet-buttons .btn-link', function (event){
+                var $current = $(this);
+                var $text = $current.closest('li').find('.count');
+                var number = parseInt($text.html());
+                var button_id = $current.attr('id');
+                var second = Math.round(video.currentTime());
+
+                if(button_id === undefined) {
+                    button_id = $current.attr('button-id');
+                }
+
+                $current.addClass('on-click');
+                // play sound
+                var sd = $('.x-sound-inside');
+                sd[0].currentTime = 0;
+                sd[0].play();
+
+                // Save data
+                $.ajax({
+                    url: '/video/update_rabbit_count',
+                    method: 'post',
+                    data: {'video_id': <!--{$video_id}-->, 'button_id': button_id, 'second': second},
+                    success: function (data) {
+                        $text.html(++number);
+                        $current.removeClass('on-click');
+                    },
+                    error: function (e) {
+                        $current.removeClass('on-click');
+                    }
+                });
+            });
+        };
+
+        var bootActiveVideo = function () {
+            var duration = 0;
+            var video = videojs('myExperience_al');
+
+            video.on('timeupdate', function (e) {
+                var time = video.currentTime();
+
+                if (video.duration() > 0) {
+                    duration = video.duration();
+                }
+
+                if (duration != 0 && time > duration - 1) {
+                    endFunc();
+                }
+            });
+
+            var endFunc = function () {
+                $.cookie('alvideo_seen', 1);
+
+                video = null;
+                $('#alVideo').remove();
+
+                $('#mainVideo').show();
+                $('.tweet-buttons').css('visibility', 'visible');
+                bootMainVideo();
+            };
+        };
+
+        $(document).ready(function () {
+            if (!isAlVideo) {
+                $('.tweet-buttons').css('visibility', 'visible');
+                bootMainVideo();
+            } else {
+                bootActiveVideo();
+                $('.tweet-buttons').css('visibility', 'hidden');
+            }
+        });
+
+
+    })();
+
+</script>
+<!--{/if}-->
+
+<script type="text/javascript">
+    var __GTM_Video = {
+        title: '<!--{$chapter.name|escape|default:""}-->',
+        chapter: '<!--{$chapter.chapter_name|escape|default:""}-->',
+        subject: '<!--{$textbook.subject.name|escape|default:""}-->'
+    };
+</script>
+
+<!--{/content_for}-->

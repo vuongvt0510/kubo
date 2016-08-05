@@ -1,0 +1,83 @@
+<div class="play-page my-team<!--{if $parent_check_status == TRUE}--> monthly-report<!--{/if}-->">
+    <div class="<!--{if $parent_check_status == TRUE}--> bg-triangle-blue<!--{else}--> bg-shining-yellow<!--{/if}-->">
+        <!--{if $parent_check_status == FALSE}-->
+        <div class="bg-inner">
+        <!--{/if}-->
+
+        <!--{if $parent_check_status == TRUE}-->
+        <div class="bg-white">
+
+            <div class="section-title-top bg-white">
+                <div class="container">
+                    <p class="h3"><span class="c-primary"><!--{$user_nickname|escape|default:'ニックネームなし'}-->さん</span> のドリルプレイ状況</p>
+                    <a href="/play/monthly_report/<!--{$user_id|escape|default:''}-->" title="スクールTV ドリル　プレイ時間" class="no-underline">
+                        <div class="bg-white">
+                            <div class="header text-center">
+                                <img src="/images/icons/learning.png" alt="icons" class="" height="28" width="33">
+                                <span class="title c-green-dark bold">スクールTV ドリルプレイ時間</span>
+                            </div>
+                            <div class="block-time text-center">
+                                <p class="bg-gray h3 bold">今月: <span><!--{if floor($playing_monthly_report.this_month / 3600) != 0}--><!--{floor($playing_monthly_report.this_month / 3600)|escape}--></span>時間<span><!--{/if}--><!--{floor($playing_monthly_report.this_month / 60 % 60)|escape|default:'0'}--></span>分</p>
+                                <p class="small"> (先月: <span><!--{if floor($playing_monthly_report.last_month / 3600) != 0}--><!--{floor($playing_monthly_report.last_month / 3600)|escape}--></span>時間<span><!--{/if}--><!--{floor($playing_monthly_report.last_month / 60 % 60)|escape|default:'0'}--></span>分)</p>
+                            </div>
+                            <div class="block-right">
+                                <span>さらに過去のプレイ時間を見る</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--{/if}-->
+
+        <div class="container">
+            <div class="<!--{if $parent_check_status == TRUE}--> bg-inner<!--{else}--> content-frame-designed-corner<!--{/if}-->">
+                <div class="<!--{if $parent_check_status == TRUE}--> content-frame bg-transparent report-frame<!--{else}--> frame-inner<!--{/if}-->">
+
+                    <!--{if $parent_check_status == FALSE}-->
+                    <div class="head"></div>
+                    <!--{/if}-->
+                    <div class="middle">
+                        <!--{if isset($group_name)}-->
+                        <p class="frame-title mgbt10">クエストを選ぼう</p>
+                        <div class="team-detail text-center">
+                            <div class="team-detail-inner">
+                                <p class="txt1">プレイするチーム</p>
+                                <p class="txt2"><!--{$group_name|escape|default:''}--></p>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <!--{else if $parent_check_status == FALSE}-->
+                        <p class="frame-title">プレイするドリルを選ぼう！</p>
+                        <!--{/if}-->
+
+                        <!--{if !empty($subjects)}-->
+                        <!--{foreach $subjects as $subject}-->
+                        <h3 class="title-yellow-bg<!--{if $parent_check_status == TRUE}--> mb20-sm<!--{/if}-->"><!--{$subject.category.title|escape|default:''}--></h3>
+                        <ul class="deck-list-line list-unstyled selected<!--{if $parent_check_status == TRUE}--> mb50-sm<!--{/if}-->">
+                            <!--{if !empty($subject.decks)}-->
+                            <!--{include file="partial/deck_list_line.html" decks=$subject.decks href='play/select_drill/'}-->
+                            <!--{/if}-->
+                        </ul>
+                        <!--{/foreach}-->
+                        <!--{else}-->
+                        <!--{include file="partial/no_item.html" message="ドリルをまだ持っていません\nまずはトップページからドリルを選んで、ドリルを入手しよう！"}-->
+                        <!--{/if}-->
+
+                    </div>
+                    <div class="foot"></div>
+                <!--{if $parent_check_status == FALSE}-->
+                </div>
+                <!--{/if}-->
+
+                </div>
+
+                <!--{if $parent_check_status == TRUE}--><div class="divider dashed white"></div><!--{else}--><hr><!--{/if}-->
+
+                <div class="text-center">
+                    <a href="<!--{if $parent_check_status == TRUE}-->/dashboard<!--{else}-->/play<!--{/if}-->" class="btn btn-outline back-link"><!--{if $parent_check_status == TRUE}-->ダッシュボードへ戻る<!--{else}-->戻る<!--{/if}--></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

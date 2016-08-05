@@ -1,0 +1,27 @@
+<div class="modal fade" id="modalDrill-cancel" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button id="cancel-close" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-header">
+                <div class="modal-title">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="modal-body text-center">
+                <p style="font-size: 16px;">リタイアしますか？</p>
+            </div>
+            <div class="modal-footer modal-footer-btngroup text-center">
+                <!--{if $is_trial}-->
+                <a href="/deck/<!--{$deck_id|escape|default:''}-->" class="btn btn-gray">リタイア</a>
+                <!--{else if $from_quest == TRUE}-->
+                <a href="/play/quest_detail" class="btn btn-gray">リタイア</a>
+                <!--{else}-->
+                <a href="/play" class="btn btn-gray">リタイア</a>
+                <!--{/if}-->
+                <button id="modalCancel-cancel" type="button" class="btn btn-green" data-dismiss="modal">続ける</button>
+            </div>
+        </div>
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

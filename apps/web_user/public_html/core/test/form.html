@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+    <title>Form sample</title>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Test form sample</h1>
+        <p>Same use of Bootstrap general form setting, you can set class="form-cancel" to confirm cancel form to exit.<br>
+        When you give errorObject to AppCore.Form, it shows error accoding to Bootstrap form error style.
+        </p>
+
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputFile">File input</label>
+                <input type="file" id="exampleInputFile">
+                <p class="help-block">Example block-level help text here.</p>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> Check me out
+                </label>
+            </div>
+            <button type="submit" class="btn btn-submit">Submit</button>
+            <a href="/top" class="form-cancel">Cancel</a>
+        </form>
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!--should be unify into one js-->
+    <script src="/third_party/util/sprintf/dist/sprintf.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js"></script>
+
+    <script src="/base/Base.js"></script>
+    <script src="/form/Form.js"></script>
+
+    <script type="text/javascript">
+        AppCore.Config.baseUrl = '';
+
+        (function () {
+
+            $(document).ready(function () {
+                new AppCore.Form({
+                    el: $('form'), // You can set form tag (root) for Backbone
+                    errorObject: {} // Error object from Controller (Structure is according to CI Core)
+
+                    //errorObject: $.parseJSON('<!--{$error|@json_encode|default:"{}"}-->')
+                    // Sample how you can set from PHP Controller
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

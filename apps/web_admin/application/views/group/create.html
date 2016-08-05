@@ -1,0 +1,45 @@
+<div class="page-title"> 新しいグループを作成</div>
+<!-- END PAGE TITLE-->
+
+<div class="btn-group btn-group-devided margin-bottom-20">
+    <a href="" onclick='window.history.back();' id="previous" class="btn btn-lg yellow-lemon btn-icon-lg"><i class="fa fa-arrow-circle-o-left"></i>ユーザー詳細へ戻る</a>
+</div>
+<!-- END PAGE HEADER-->
+<form method="post" id="form_create-group" class="form-horizontal">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="portlet light">
+                <div class="portlet-body">
+                    <div class="form-body">
+                        <p style="margin: 20px 0 30px;">新しいグループの設定をしてください</p>
+                        
+                        <!--{if isset($errmsg)}--><div class="form-group"><p style="color:red;"><!--{$errmsg|escape}--></p></div><!--{/if}-->
+                        <div class="form-group">
+                            <label class="col-md-3 col-lg-2 control-label">グループ名</label>
+                            <div class="col-md-9 col-lg-10 form-group">
+                                <input type="text" name="group_name" id="group_name" class="form-control margin-bottom-10" placeholder="グループ名" value="<!--{$post.group_name|escape|default:''}-->">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 col-lg-2 control-label pt0">グループ種別</label>
+
+                            <label class="radio-inline p0">
+                                <input name="primary_type"  value="family" type="radio" <!--{if !isset($post)}--> checked<!--{/if}--> <!--{if isset($post) && $post.primary_type == 'family'}--> checked<!--{/if}-->> 家族グループ
+                            </label>
+                            <label class="radio-inline p0">
+                                <input name="primary_type"  value="friend" type="radio" <!--{if isset($post) && $post.primary_type == 'friend'}--> checked<!--{/if}--> <!--{if $user_detail.primary_type == 'parent'}-->disabled<!--{/if}-->> チーム
+                            </label>
+
+                        </div>
+
+                        <div class="form-actions text-right">
+                            <button type="button" id="submitForm" href="#details-modal" data-toggle="modal" class="btn btn-lg green">新しいグループを作成</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<!--{include file="group/modal_partial.html"}-->

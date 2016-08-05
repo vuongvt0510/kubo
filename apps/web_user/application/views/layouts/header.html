@@ -1,0 +1,179 @@
+<header id="header" class="clearfix">
+    <div class="container-main">
+        <div class="container">
+            <div class="logo">
+                <!--{if !empty($current_user) }-->
+                    <!--{if $current_user.primary_type == 'parent' && empty($students_switch)}-->
+                         <a href="<!--{$site_url|cat:'/?grade_id='}--><!--{$current_grade.id|escape}-->#content" class="logo-link"><img src="/images/logo.png" alt="logo" class="img-responsive" width="200"></a>
+                    <!--{else}-->
+                        <a href="<!--{if isset($current_user)}-->/profile/detail<!--{else}-->/<!--{/if}-->" class="logo-link">
+                            <img src="/images/logo.png" alt="logo" class="img-responsive" width="200">
+                        </a>
+                    <!--{/if}-->
+                <!--{else}-->
+                    <a href="<!--{$site_url|cat:'/?grade_id='}--><!--{$current_grade.id|escape}-->#content" class="logo-link"><img src="/images/logo.png" alt="logo" class="img-responsive" width="200"></a>
+                <!--{/if}-->
+            </div>
+            <div class="menu-head <!--{if isset($current_user)}--> logged-in <!--{/if}-->">
+                <!--{if !isset($student_has_no_grade)}-->
+                <div class="hidden-xs hidden-sm">
+                    <!--{include file="layouts/header_menu_pc.html"}-->
+                </div>
+                <!--{/if}-->
+
+                <!--{if !empty($current_user)}-->
+                <ul class="menu-user list-unstyled cleafix<!--{if $current_user.primary_type == 'student'}--> student<!--{/if}-->">
+                    <li class="user-name">
+                        <div class="btn-group mt0 mb0 ">
+                            <!--{if $current_user.primary_type == 'student'}-->
+                            <a type="button"
+                               class="dropdown-toggle"
+                               data-toggle="dropdown"
+                               aria-haspopup="true"
+                               href="javascript;"
+                               aria-expanded="false">
+                                <span class="ellipsis"><!--{$current_user.current_student_grade.name|escape|default:'学年未設定'}--></span>
+                            <!--{/if}-->
+                                <span class="ellipsis"><!--{$current_user.nickname|escape|default:'ニックネームなし'}--></span>
+                            <!--{if $current_user.primary_type == 'student'}-->
+                            </a>
+                            <!--{/if}-->
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="/textbook">教科書を変更</a></li>
+                                <li><a href="/school/search">学校を変更</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="btn-group mt0 mb0">
+                            <a type="button"
+                               class="dropdown-toggle bold"
+                               data-toggle="dropdown"
+                               aria-haspopup="true"
+                               href="javascript;"
+                               aria-expanded="false">
+
+                                <img class="avatar" src="/images/avatar/<!--{if $current_user.avatar_id == 0}--><!--{if $current_user.primary_type == 'parent'}-->12<!--{else}-->2<!--{/if}--><!--{else}--><!--{$current_user.avatar_id}--><!--{/if}-->.png" alt="" width="90" height="78">
+
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <!--{if $current_user.primary_type == 'parent' && count($current_user.members) == 1}-->
+                                <!--{else}-->
+                                <li><a href="/profile/detail">自分の設定に合った動画を見る</a></li>
+                                <!--{/if}-->
+                                <li><a href="/setting">プロフィール編集</a></li>
+                                <li><a href="/news">お知らせ</a></li>
+                                <li><a href="/login/logout">ログアウト</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <!--{/if}-->
+            </div>
+        </div>
+        <!--{if !isset($student_has_no_grade)}-->
+        <div class="visible-xs visible-sm">
+            <!--{include file="layouts/header_menu_sp.html"}-->
+        </div>
+        <!--{/if}-->
+    </div>
+
+    <!--{if !empty($get_point)}-->
+    <!--{content_for name="modal"}-->
+    <!--{include file="partial/modal/point.html" point=$get_point}-->
+    <!--{/content_for}-->
+    <!--{else}-->
+    <!--{content_for name="modal"}-->
+    <!--{include file="partial/modal/point.html"}-->
+    <!--{/content_for}-->
+    <!--{/if}-->
+
+    <!--{if isset($get_trophy.image_key)}-->
+    <!--{content_for name="modal"}-->
+    <!--{include file="partial/modal/get_trophy.html" trophy=$get_trophy}-->
+    <!--{/content_for}-->
+    <!--{else}-->
+    <!--{content_for name="modal"}-->
+    <!--{include file="partial/modal/get_trophy.html"}-->
+    <!--{/content_for}-->
+    <!--{/if}-->
+
+    <!--{if isset($flash_message)}-->
+    <div class="notification complete-action">
+        <div class="container">
+            <div class="notification-text">
+                <span class="bold"><!--{$flash_message}--></span>
+            </div>
+        </div>
+    </div>
+    <!--{/if}-->
+    <!--{content_yield name='headerTitle'}-->
+</header>
+
+<!--{if isset($get_trophy.image_key) && empty($get_point)}-->
+<!--{content_for name="headjs"}-->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#modalGetTrophy').modal();
+    });
+</script>
+<!--{/content_for}-->
+<!--{/if}-->
+
+<!--{if !empty($get_point) && !isset($get_trophy.image_key)}-->
+<!--{content_for name="headjs"}-->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#modalPoint').modal();
+    });
+</script>
+<!--{/content_for}-->
+<!--{/if}-->
+
+<!--{if !empty($get_point) && isset($get_trophy.image_key)}-->
+<!--{content_for name="headjs"}-->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#modalGetTrophy').modal();
+        $('#modalGetTrophy').on('hidden.bs.modal', function(){
+            $('#modalPoint').modal();
+        });
+    });
+</script>
+<!--{/content_for}-->
+<!--{/if}-->
+
+<!--{if isset($point_modals)}-->
+<!--{content_for name="headjs"}-->
+<script src="/js/ST.PointModals.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var showNickname = false;
+        <!--{if !empty($current_user) && empty($current_user.nickname)}-->
+        showNickname = true;
+        <!--{/if}-->
+        var modals = new ST.PointModals({
+            modals: <!--{$point_modals.result.items|@json_encode|default:"{}"}-->,
+            showNickname: showNickname
+        });
+
+        modals.showModal();
+    });
+</script>
+<!--{/content_for}-->
+<!--{/if}-->
+
+<!--{if !empty($current_user) && $current_user.primary_type == 'parent'}-->
+<!--{content_for name="headjs"}-->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.switch_student').on('change', function(e) {
+            $this = $(this);
+            var url = "<!--{site_url('top/switch_student')}-->";
+            if($this.val()){url += '/?user_id=' + $this.val() + '&redirect=' + "<!--{uri_string()}-->";}
+            window.location.href = url ;
+        });
+    });
+</script>
+<!--{/content_for}-->
+<!--{/if}-->

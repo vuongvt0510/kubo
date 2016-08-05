@@ -1,0 +1,39 @@
+<div class="modal fade" id="modalHighScore" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-result">
+        <div class="modal-content">
+            <button type="button" class="close-score close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-body">
+
+                <div class="content-frame-designed-corner with-ribbon-title">
+                    <div class="frame-inner">
+                        <div class="layer"></div>
+                        <div class="head"></div>
+                        <div class="middle">
+                            <div class="rt-score-wrap">
+                                <div class="mb10 rt-titleimg rt-titlematch">
+                                    <img src="/images/modal/high-score.png" alt="はじめての対戦">
+                                    <p class="rt-score">
+                                        <span class="high-good-score"><!--{$score|dummy:"1,090"}--></span>点
+                                    </p>
+                                    <span>おめでとう！</span>
+                                </div>
+                                <ul class="mb20 rt-addmorescore">
+                                    <li>
+                                        <div class="rt-ico rt-ico-point">ラビポイント</div>
+                                        <div class="rt-point">+ <span class="high-score-rabipoint"><!--{$score|dummy:"0000"}--></span></div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="rt-button-group">
+                                <a class="btn btn-outline btn-yellow close-score" href="#">閉じる</a>
+                            </div>
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

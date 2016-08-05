@@ -1,0 +1,93 @@
+<div class="play-page play-index-page">
+    <div class="bg-shining-yellow">
+        <div class="bg-inner">
+            <div class="container">
+                <div class="user-info">
+                    <p class="user-name"><!--{$nickname|escape|default:''}--></p>
+                    <img class="thumb" src="/images/avatar/<!--{if $avatar == 0}--><!--{if $is_student == FALSE}-->12<!--{else}-->2<!--{/if}--><!--{else}--><!--{$avatar}--><!--{/if}-->.png" alt="">
+                    <!--{if $is_student == TRUE}-->
+                    <div class="rabi-point">
+                        <span class="icon icon-point"></span>
+                        <p class="text">ラビポイント</p>
+                        <div class="point"><!--{$rabi_point|escape|number_format|default:'0'}--></div>
+                    </div>
+            
+                    <div class="power-indicator">
+                        <div class="max-score">
+                            <div class="score bold"><span class="num"><!--{$power.max_power|default:0}--></span> </br> <span class="text">MAX</span></div>
+                            <img src="/images/icons/ic-score-rabi.png" alt="" class="illust">
+                        </div>
+                        <div class="indicator-box clearfix">
+                            <p class="text">あなたの<br>パワー</p>
+                            <div class="progress-wrapper">
+                                <div class="progress">
+                                    <div class="progress-bar" style="width:<!--{if ($power.max_power > 0)}--><!--{$power.current_power*100/$power.max_power|default:0}--><!--{else}-->0<!--{/if}-->%;"></div>
+                                </div>
+                                <div class="current-power" style="left:<!--{if ($power.max_power > 0)}--><!--{$power.current_power*100/$power.max_power|default:0}--><!--{else}-->0<!--{/if}-->%;">
+                                    <div class="num"><!--{$power.current_power|escape|number_format|default:0}--></div>
+                                    パワー
+                                </div>
+                            </div>
+                        </div>
+                        <!--{*
+                        <p class="exp">ハイスコアを出したりチーム対戦で勝つとパワーを40まで貯めることができるよ！</p>
+                        *}-->
+                    </div>
+                    <!--{/if}-->
+                </div>
+
+                <p class="user-status">ハイスコアを出したりチーム対戦で勝つとパワーを100まで貯めることができるよ！</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-triangle-blue">
+        <div class="container">
+            <div class="action-area">
+                <!--{if isset($deck)}-->
+                <p class="title">プレイするドリル</p>
+                <!--{include file="partial/deck_list_line.html" decks=$deck}-->
+                <!--{/if}-->
+                <p class="title">ひとりでプレイ</p>
+            </div>
+
+            <div class="list-btn-area">
+
+                <!--{if ($is_student) && $power.current_power > 0}-->
+                <div class="btn-area clearfix threeBtn">
+                    <a href="/play/<!--{$deck_id|default:''}-->?type=memorize" class="btn btn-yellow">
+                        <img src="/images/play/btn-memozire.png" class="img-responsive"/>
+                    </a>
+                    <a href="/play/<!--{$deck_id|default:''}-->?type=training" class="btn btn-yellow i-earn-power pdt18">
+                        <img src="/images/play/btn-power.png" class="img-responsive"/>
+                    </a>
+                    <a href="/play/<!--{$deck_id|default:''}-->?type=battle" class="btn btn-yellow i-battle pdt18 mgtl">
+                        <img src="/images/play/btn-battle.png" class="img-responsive"/>
+                    </a>
+                </div>
+                <!--{else}-->
+
+                <div class="btn-area clearfix threeBtn ">
+                    <a href="/play/<!--{$deck_id|default:''}-->?type=memorize" class="btn btn-yellow">
+                        <img src="/images/play/btn-memozire.png" class="img-responsive"/>
+                    </a>
+                    <a href="/play/<!--{$deck_id|default:''}-->?type=training" class="btn btn-yellow pdt18">
+                        <img src="/images/play/btn-power.png" class="img-responsive"/>
+                    </a>
+                </div>
+                <!--{/if}-->
+                
+                <!-- <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 clearfix ">
+                    <a href="/play/team" class="btn btn-blue-custom">チームで白熱プレイするならこちら</a>
+                </div> 
+                <div class="col-md-12 pd40">
+                    <a href="#" class="btn btn-brown-custom">バナーエリア</a>
+                </div> -->
+            </div>
+            <hr>
+            <div class="text-center">
+                <a href="javascript:history.back()" class="btn btn-outline back-link">戻る</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<!--{if $pagination.total > $pagination.items_per_page}-->
+<nav class="<!--{if isset($custom)}--><!--{$custom|escape|default:''}--><!--{else}-->container<!--{/if}-->">
+    <ul class="pagination">
+        <!--{$total_page = ceil($pagination.total/$pagination.items_per_page)}-->
+
+        <!--{if $pagination.page > 1}-->
+        <li class="active">
+            <a class="prev" href="<!--{page_link name=p page=$pagination.page-1}-->" aria-label="Previous">
+                <span aria-hidden="true">前へ</span>
+            </a>
+        </li>
+        <!--{/if}-->
+
+        <!--{if $pagination.page < 4}-->
+            <!--{$start = 1 }-->
+            <!--{$end = 5 }-->
+        <!--{else if $pagination.page == $total_page - 1 }-->
+            <!--{$start = (int)$pagination.page - 3}-->
+            <!--{$end = (int)$pagination.page + 1 }-->
+        <!--{else if $pagination.page == $total_page }-->
+        <!--{$start = (int)$pagination.page - 4}-->
+        <!--{$end = (int)$pagination.page}-->
+        <!--{else}-->
+            <!--{$start = (int)$pagination.page - 2 }-->
+            <!--{$end =  $pagination.page + 2 }-->
+        <!--{/if}-->
+
+        <!--{for $page = $start to $end }-->
+        <!--{if  $page <= $total_page}-->
+        <li <!--{if $page == $pagination.page}--> class="disabled"  <!--{/if}--> > <a href=" <!--{page_link name=p page=$page}-->"><!--{$page}--></a></li>
+        <!--{/if}-->
+        <!--{/for}-->
+
+        <!--{if $pagination.page < $total_page}-->
+        <li>
+            <a class="next" href="<!--{page_link name=p page=$pagination.page+1}-->" aria-label="Next">
+                <span aria-hidden="true">次へ</span>
+            </a>
+        </li>
+        <!--{/if}-->
+
+    </ul>
+</nav>
+<!--{/if}-->

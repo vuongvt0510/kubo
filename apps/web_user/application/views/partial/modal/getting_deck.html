@@ -1,0 +1,25 @@
+<div class="modal fade" id="modalGetDeck" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button id="cancel-close" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-header">
+                <div class="modal-title">
+                    入手確認
+                </div>
+            </div>
+            <div class="modal-body text-center">
+                <p class="modal-basic-tt">このドリルを入手しますか？</p>
+                <div class="modal-basic-boxgrey">
+                    <p class="text-center"><!--{$deck.name|escape|default:'1'}--></p>
+                    <p class="text-center fz18"><!--{$deck.coin|escape|default:'1'}-->コイン</p>
+                </div>
+            </div>
+            <div class="modal-footer modal-footer-btngroup text-center">
+                <a href="/deck/<!--{$deck.id|escape|default:''}-->" class="btn btn-gray">キャンセル</a>
+                <button id="modalGetting-deck" type="button" class="btn btn-green" data-dismiss="modal">入手</button>
+            </div>
+        </div>
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

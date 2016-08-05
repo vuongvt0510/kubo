@@ -1,0 +1,110 @@
+<!-- BEGIN PAGE TITLE-->
+<div class="page-title-wrap">
+    <h3 class="page-title"> <i class="icon-bell"></i> お知らせ作成</h3>
+</div>
+<!-- END PAGE TITLE-->
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-body">
+                <form id="newsForm" class="form-horizontal" method="post">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-3 col-lg-2 control-label">件名</label>
+                            <div class="col-md-9 col-lg-10 mb15 form-group">
+                                <input id="title" name="title" type="text" class="form-control margin-bottom-10" value="<!--{$post.title|escape|default:''}-->" placeholder="件名">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 col-lg-2 control-label">本文</label>
+                            <div class="form-group col-md-9 col-lg-10 mb15">
+                                <textarea id="content" name="content" cols="30" rows="10" class="form-control margin-bottom-10" placeholder="本文を入力してください"><!--{$post.content|escape|default:''}--></textarea>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 col-lg-2 control-label">公開期間</label>
+                            <div class="form-group col-md-9 col-lg-10 mb15">
+                                <div class="row">
+                                    <div class="col-lg-6 gutter-10">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group date date-picker" data-date-format="yyyy-mm-dd"
+                                                     data-date-viewmode="years">
+                                                    <input id="from_date" name="started_at" type="text" class="form-control" value="<!--{$post.started_at|escape|default:''}-->" >
+
+                                                    <div class="input-group-btn">
+                                                        <button class="btn default" type="button">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 margin-bottom-10">
+                                                <select id="from_hour" name="from_hour" class="form-control">
+                                                    <!--{for $i=0 to 23}-->
+                                                    <option value="<!--{sprintf('%02d',$i)}-->" <!--{if $post.from_hour|default:0 == $i}-->selected<!--{/if}-->><!--{sprintf('%02d',$i)}--></option>
+                                                    <!--{/for}-->
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2 margin-bottom-10">
+                                                <select id="from_minute" name="from_minute" class="form-control">
+                                                    <!--{for $i=0 to 59}-->
+                                                    <option value="<!--{sprintf('%02d',$i)}-->" <!--{if $post.from_minute|default:0 == $i}-->selected<!--{/if}-->><!--{sprintf('%02d',$i)}--></option>
+                                                    <!--{/for}-->
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2 margin-bottom-10">
+                                                <label class="control-label">から</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 gutter-10">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group date date-picker" data-date-format="yyyy-mm-dd"
+                                                     data-date-viewmode="years">
+                                                    <input id="to_date" name="ended_at" type="text" class="form-control" value="<!--{$post.to_date|escape|default:''}-->">
+
+                                                    <div class="input-group-btn">
+                                                        <button class="btn default" type="button">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 margin-bottom-10">
+                                                <select id="to_hour" name="to_hour" class="form-control">
+                                                    <!--{for $i=0 to 23}-->
+                                                    <option value="<!--{sprintf('%02d',$i)}-->" <!--{if $post.to_hour|default:0 == $i}-->selected<!--{/if}-->><!--{sprintf('%02d',$i)}--></option>
+                                                    <!--{/for}-->
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2 margin-bottom-10">
+                                                <select id="to_minute" name="to_minute" class="form-control">
+                                                    <!--{for $i=0 to 59}-->
+                                                    <option value="<!--{sprintf('%02d',$i)}-->" <!--{if $post.to_minute|default:0 == $i}-->selected<!--{/if}-->><!--{sprintf('%02d',$i)}--></option>
+                                                    <!--{/for}-->
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2 margin-bottom-10">
+                                                <label class="control-label">まで</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions text-right">
+                        <a href="/news" type="button" class="btn btn-lg grey-salsa">キャンセル</a>
+                        <a id="submitForm" type="button" class="btn btn-lg green">投稿</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--{include file="news/modal_partial.html"}-->

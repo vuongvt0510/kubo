@@ -1,0 +1,25 @@
+<div class="monthly-report">
+    <div class="main-content bg-triangle-blue">
+        <div class="section-title-top bg-white">
+            <div class="container">
+                <p class="h3"><span class="c-primary"><!--{$user_nickname|escape|default:'ニックネームなし'}-->さん</span> のスクールTV動画視聴時間</p>
+            </div>
+        </div>
+        <div class="container bg-inner">
+            <div class="content-frame bg-transparent report-frame">
+                <ul class="border-list">
+                    <!--{foreach from=$monthly_report key=key item=report}-->
+                    <li class="blue-dark-border">
+                        <span class="date"><!--{date('Y年m月',strtotime($key))|escape|default:''}--></span>
+                        <span class="time pull-right c-navy"><!--{if floor($report / 3600) != 0}--><!--{floor($report / 3600)|escape}-->時間<!--{/if}--><!--{floor($report / 60 % 60)|escape|default:'0'}-->分</span>
+                    </li>
+                    <!--{/foreach}-->
+                </ul>
+            </div>
+            <div class="divider dashed white"></div>
+            <div class="text-center">
+                <a href="/dashboard" class="btn btn-outline back-link mt20">ダッシュボードへ戻る</a>
+            </div>
+        </div>
+    </div>
+</div>

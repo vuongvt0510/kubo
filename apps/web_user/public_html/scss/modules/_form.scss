@@ -1,0 +1,336 @@
+//*----------------------------------------
+//  Form elements
+//
+//  you can define form elements styles in this file.
+//
+//
+//  this site is based on
+//  bootstrap (http://getbootstrap.com/)
+//  /scss/_custom-bootstrap.scss
+//  /scss/_custom-variables.scss
+//
+//  and bootstrap-material-design (http://fezvrasta.github.io/bootstrap-material-design/)
+//  /scss/_custom-boosstrap-material-design.scss
+//  /scss/_custom-ripples.scss
+//-----------------------------------------*/
+
+input {
+  &::-webkit-input-placeholder {
+    line-height: normal
+  }
+  &::-moz-placeholder {
+    line-height: normal
+  }
+  &:-ms-input-placeholder {
+    line-height: normal
+  }
+}
+
+.form-horizontal {
+  margin-bottom: 100px;
+
+  .content-frame & {
+    margin-bottom: 0;
+  }
+
+  label.control-label {
+    line-height: 1.5;
+    display: block;
+    font-size: 18px;
+    color: $c-text-color;
+    font-weight: 700;
+    &.text-left {
+      text-align: left;
+    }
+    &.text-center {
+      text-align: center;
+    }
+    @media (min-width: $screen-sm) {
+      padding-top: 8px;
+    }
+    //@media (max-width: $screen-xs-max) {
+    //  margin-bottom: 20px;
+    //}
+  }
+
+  // show current value in form (next to the control-label)
+  .current-value {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 18px;
+    color: #2d3940;
+    font-weight: bold;
+    padding-top: 9px;
+    padding-bottom: 9px;
+
+    .small {
+      font-size: 14px;
+    }
+  }
+}
+
+.radiocheckbox-img-wrap {
+  margin-bottom: 20px;
+  text-align: center;
+  .radiocheckbox-img {
+    margin-top: 10px;
+    img {
+      max-width: 100%;
+    }
+  }
+}
+
+// search result (SC20, SC30)
+.result-box {
+  height: 490px;
+  overflow-y: scroll;
+  padding: 15px 40px;
+  border: 1px solid #d2d2d2;
+
+  .radio {
+    label {
+      text-align: left;
+    }
+  }
+
+  .no-item {
+    height: 100%;
+
+    .box {
+      height: auto;
+      padding-top: 60px;
+    }
+  }
+}
+
+.form-caption {
+  font-size: 20px;
+  color: $c-text-color;
+  margin-top: 0;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.form-group {
+  @include clearfix;
+}
+
+// when you try to use selectbox.form-control, .form-group is appended with material-design js automatically
+.selectbox-parent {
+  .form-group {
+    margin: 0;
+  }
+}
+
+.form-steps {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  margin-bottom: 15px;
+  @media (max-width: $screen-sm-max) {
+    margin-bottom: 0;
+  }
+  ul {
+    @include clearfix;
+    counter-reset: section;
+    display: inline-block;
+  }
+  li {
+    width: 130px;
+    height: 130px;
+    border: 5px solid #82d9ed;
+    border-radius: 50%;
+    background-color: $c-white;
+    text-align: center;
+    float: left;
+    color: #3e8093;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    position: relative;
+    padding-top: 65px;
+    line-height: 18px;
+    &:before {
+      content: 'Step';
+      color: #24a6cc;
+      font-size: 10px;
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      @include transform(translateX(-50%));
+    }
+    &:after {
+      counter-increment: section;
+      content: counter(section);
+      font-family: Arial, sans-serif;
+      color: #24a6cc;
+      font-size: 38px;
+      position: absolute;
+      top: 28px;
+      left: 50%;
+      @include transform(translateX(-50%));
+    }
+    &:nth-child(2),
+    &:nth-child(3) {
+      padding-top: 60px;
+    }
+    &.active {
+      border: 5px solid #e2e036;
+      background-color: #fffd3b;
+    }
+    + li {
+      margin-left: 50px;
+    }
+    @media (max-width: $screen-sm-max) {
+      + li {
+        margin-left: 20px;
+      }
+    }
+    @media (max-width: $screen-xs-max) {
+      margin-bottom: 20px;
+      width: 106px;
+      height: 106px;
+      font-size: 13px;
+      line-height: 13px;
+      padding-top: 60px;
+      &:nth-child(3) {
+        clear: both;
+        margin-left: 0;
+      }
+      &:nth-child(2),
+      &:nth-child(3) {
+        padding-top: 55px;
+      }
+    }
+  }
+}
+
+.form-title {
+  @media (max-width: $screen-xs-max) {
+    .h2 {
+      font-size: 20px;
+    }
+    .h4 {
+      font-size: 16px;
+    }
+  }
+}
+
+.links-group {
+  font-size: 14px;
+  margin-top: -20px;
+  margin-bottom: -10px;
+  li {
+    padding: 0 15px;
+    display: inline-block;
+  }
+}
+
+.select-box {
+  position: relative;
+  &:before,
+  &:after {
+    content: '';
+    display: block !important;
+    position: absolute;
+    width: 0;
+    height: 0;
+    right: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+  }
+  &:before {
+    border-bottom: 10px solid #333;
+    top: 0;
+  }
+  &:after {
+    border-top: 10px solid #333;
+    top: 15px;
+  }
+}
+
+/*.avatar-radio {
+  -webkit-touch-callout: none; !* iOS Safari *!
+  -webkit-user-select: none; !* Chrome/Safari/Opera *!
+  -khtml-user-select: none; !* Konqueror *!
+  -moz-user-select: none; !* Firefox *!
+  -ms-user-select: none; !* IE/Edge *!
+  user-select: none;
+
+  input[type="radio"] {
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    &:checked + img {
+      display: none;
+    }
+    &:checked + img + img.selected {
+      display: block !important;
+    }
+  }
+
+  label {
+    display: inline-block;
+    img {
+      pointer-events: none;
+    }
+  }
+  .selected {
+    display: none;
+  }
+}*/
+
+.toggleShowPassword {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  float: right;
+  height: 0;
+  width: 0;
+  z-index: 2;
+  @extend .glyphicon;
+  @extend .glyphicon-eye-open;
+  &:before {
+    position: absolute;
+    bottom: -25px;
+    right: 0;
+  }
+}
+//Comment/Message form
+.form-message{
+  .message-block{
+    padding: 0px 7px 0px 0px;
+  }
+  .button-block{
+    padding: 0px;
+    height: 88px;
+    @media (max-width: $screen-xs-max) {
+      height: 44px;
+    }
+  }
+  .message-area{
+    height: 88px;
+    border: none;
+    resize: none;
+    border-radius: 4px;
+  }
+  .btn-send{
+    background-color: $c-yellow !important;
+    height: 100%;
+    padding: 3px 9px;
+    border: 3px solid #a0d8e8 !important;
+    margin: 0px;
+    width: 100%;
+    @media (max-width: $screen-xs-max) {
+      font-size: 13px;
+    }
+
+  }
+  .message-area{
+    width: 100%;
+    padding: 10px;
+    @media (max-width: $screen-xs-max) {
+      height: 44px;
+    }
+  }
+}

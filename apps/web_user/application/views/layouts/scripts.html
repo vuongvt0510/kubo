@@ -1,0 +1,71 @@
+<script>
+    var BUSSINESS_TIME = '<!--{business_date('Y-m-d H:i:s')}-->';
+    var IS_LOGGED_IN = <!--{if !empty($current_user)}-->true<!--{else}-->false<!--{/if}-->;
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/core/third_party/jquery.min.js"><\/script>')</script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+<script src="/third_party/jquery.dotdotdot.min.js"></script>
+<script src="/third_party/owl-carousel/owl.carousel.min.js"></script>
+<script src="/third_party/slick/slick.min.js"></script>
+<script src="/dist/core.js"></script>
+<script src="/dist/material.js"></script>
+<script src="/dist/app.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js"></script>
+<script src="/third_party/jquery.cookie-1.4.1.min.js"></script>
+
+
+<script src="/core/base/Base.js"></script>
+<!--{if isset($load_form_js) || isset($form_errors)}-->
+<script src="/core/form/Form.js"></script>
+<!--{/if}-->
+<script src="/js/ST.Base.js"></script>
+
+<script type="text/javascript">
+    var DEVICE_TYPE = <!--{$device_type|json_encode}-->;
+    (function () {
+        $(document).ready(function () {
+            new ST.Base({
+                el: $('body')
+            });
+        });
+    })();
+</script>
+
+<!--{if isset($form_errors) && (!isset($load_form_js) || (isset($load_form_js) && $load_form_js === TRUE) )}-->
+<script type="text/javascript">
+    (function () {
+        $(document).ready(function () {
+            var form = new AppCore.Form({
+                el: $('form'),
+                errorObject: $.parseJSON('<!--{$form_errors|json_encode|default:"{}"}-->')
+            });
+        });
+    })();
+</script>
+<!--{/if}-->
+
+<!--{* Set LD JSON Website data *}-->
+<script type="application/ld+json">
+    <!--{sd_website data=$meta}-->
+</script>
+
+<!--{* Set LD JSON Video data *}-->
+<!--{if !empty($meta.video_info)}-->
+<script type="application/ld+json">
+    <!--{sd_video data=$meta.video_info}-->
+</script>
+<!--{/if}-->
+
+<!--{* Set LD JSON Breadcrumb *}-->
+<!--{if !empty($meta.breadcrumb)}-->
+<script type="application/ld+json">
+    <!--{sd_breadcrumb data=$meta.breadcrumb}-->
+</script>
+<!--{/if}-->
+
+<!--{* end Set LD JSON *}-->

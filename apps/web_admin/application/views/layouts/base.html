@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="ja" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]>
+<html lang="ja" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="ja">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <!--{include file='layouts/html_head.html'}-->
+</head>
+<!-- END HEAD -->
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-sidebar-fixed page-container-bg-solid page-content-white <!--{content_yield name='classbody'}-->">
+
+<!-- BEGIN HEADER -->
+<!--{include file="layouts/header.html"}-->
+<!-- END HEADER -->
+
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+    <!-- BEGIN SIDEBAR -->
+    <!--{include file="layouts/sidebar.html"}-->
+    <!-- END SIDEBAR -->
+
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <!-- BEGIN CONTENT BODY -->
+        <div class="page-content">
+
+            <!-- BEGIN PAGE BAR -->
+            <!--{*include file="partial/breadcrumbs.html" breadcrumb=$breadcrumb login_at=''*}-->
+            <!-- END PAGE BAR -->
+
+            <!--{if isset($flash_message)}-->
+            <div class="alert alert-success text-center">
+                <span class="bold"><!--{$flash_message}--></span>
+            </div>
+            <!--{/if}-->
+            <!--{content_yield name='main'}-->
+        </div>
+        <!-- END CONTENT BODY -->
+    </div>
+    <!-- END CONTENT -->
+</div>
+<!-- END CONTAINER -->
+
+<!-- BEGIN FOOTER -->
+<!--{include file="layouts/footer.html"}-->
+<!-- END FOOTER -->
+
+<!-- BEGIN SCRIPTS -->
+<!--{include file='layouts/scripts.html'}-->
+<!-- END SCRIPTS -->
+
+</body>
+</html>

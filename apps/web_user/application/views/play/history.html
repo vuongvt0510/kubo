@@ -1,0 +1,49 @@
+<div class="play-page history-page battle-page">
+    <div class="bg-shining-yellow">
+        <div class="bg-inner" id="drill-screen">
+            <div class="container">
+                <div class="content-frame-designed-corner with-ribbon-title">
+                    <div class="frame-inner">
+                        <div class="layer"></div>
+                        <div class="head"></div>
+                        <div class="middle">
+                            <p class="frame-title">これまでのチームバトル</p>
+                            <hr>
+                            <!--{if !empty($histories)}-->
+                            <!--{foreach from=$histories.items key=key item=room name=i}-->
+
+                            <div class="list-team-battle">
+                                <p class="frame-title bg-frame"><!--{$room.result|escape|default:""}--></p>
+                                <span class="txt-vs">VS</span>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <p class="team-title"><!--{$room.group_name|escape|default:""}--></p>
+                                        <p class="team-scort active"><!--{$room.group_score|escape|default:""}--> <span class="arow">点</span></p>
+                                    </li>
+                                    <li>
+                                        <p class="team-title"><!--{$room.target_group_name|escape|default:""}--></p>
+                                        <p class="team-scort active"><!--{$room.target_group_score|escape|default:""}--> <span class="arow">点</span></p>
+                                    </li>
+                                </ul>
+                                <p class="battle-txt text-center"><!--{$room.end_time|escape|default:""}--></p>
+                            </div>
+                            <!--{/foreach}-->
+                            <!--{/if}-->
+                            <div class="text-center">
+                                <a href="/play/team/battle/history" class="btn btn-yellow btn-lg">もっと見る</a>
+                            </div>
+                        </div>
+
+                        <div class="foot"></div>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="text-center">
+                    <a href="/play/team/battle" class="btn btn-outline back-link">チームバトルトップへ</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

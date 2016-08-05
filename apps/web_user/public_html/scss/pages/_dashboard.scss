@@ -1,0 +1,833 @@
+.dashboard-page {
+  .h115 {
+    height: 115px;
+    @media (max-width: $screen-xs-max) {
+      display: none;
+    }
+  }
+  // user dashboard
+  .user-dashboard {
+    padding: 40px 0 30px;
+
+    @media (max-width: $screen-xs-max) {
+      padding: 10px 0 0;
+    }
+
+    .left {
+      float: left;
+      width: 240px;
+
+      @media (max-width: $screen-xs-max) {
+        float: none;
+        width: 100%;
+      }
+
+      .avatar {
+        width: 190px;
+        margin-left: auto;
+        margin-right: auto;
+
+        @media (max-width: $screen-xs-max) {
+          width: 130px;
+        }
+      }
+      .ranking {
+        display: block;
+        width: 241px;
+        height: 65px;
+        background: url('/images/background/avatar-caption.png') left top no-repeat;
+        background-size: 100% auto;
+        margin-top: -25px;
+        position: relative;
+        text-align: center;
+        padding-top: 2px;
+
+        @media (max-width: $screen-xs-max) {
+          width: 160px;
+          height: 45px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        p {
+          color: $c-white;
+          font-size: 12px;
+
+          @media (max-width: $screen-xs-max) {
+            font-size: 10px;
+          }
+          &.bold {
+            font-size: 14px;
+            margin-bottom: -4px;
+
+            @media (max-width: $screen-xs-max) {
+              font-size: 10px;
+            }
+            .point {
+              font-size: 28px;
+
+              @media (max-width: $screen-xs-max) {
+                font-size: 16px;
+              }
+            }
+          }
+        }
+      }
+      .name {
+        font-weight: 700;
+        font-size: 28px;
+        color: #344870;
+        text-align: center;
+        margin-top: 4px;
+        word-break: break-all;
+        @media (max-width: $screen-xs-max) {
+          font-size: 20px;
+          margin: 0;
+        }
+      }
+      .btn {
+        padding-left: 20px;
+        padding-right: 30px;
+        font-weight: 600;
+        span {
+          position: relative;
+        }
+        @media (max-width: $screen-xs-max) {
+          font-size: 10px;
+          width: 213px;
+          height: 30px;
+          padding: 2px 0;
+          margin: 5px auto 0;
+        }
+      }
+      .btn-navy {
+        background-color: #3c79cf;
+        border: 0 none;
+        border-right: 2px solid #2d67b8;
+        border-bottom: 2px solid #2d67b8;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .btn-navy-border {
+        border: 2px solid $c-navy;
+        color: $c-navy;
+        font-size: 16px;
+      }
+      .btn-friend {
+        span {
+          &:before {
+            content: "";
+            background: url("../images/icons/db-add-friend.png") no-repeat;
+            position: absolute;
+            left: -27px;
+            top: -1px;
+            width: 19px;
+            height: 19px;
+            @media (max-width: $screen-xs-max) {
+              left: -23px;
+              top: -4px;
+              width: 19px;
+              height: 19px;
+            }
+          }
+        }
+      }
+      .btn-unfriend {
+        position: relative;
+        &:before {
+          content: "";
+          background: url("../images/icons/db-remove-friend.png") no-repeat;
+          position: absolute;
+          left: 47px;
+          top: 12px;
+          width: 19px;
+          height: 19px;
+          @media (max-width: $screen-xs-max) {
+            left: 41px;
+            top: 4px;
+          }
+        }
+        @media (max-width: $screen-xs-max) {
+          padding-bottom: 27px;
+        }
+      }
+    }
+
+    .right {
+      float: left;
+      width: 780px;
+      padding-left: 30px;
+
+      @media (max-width: $screen-md-max) {
+        width: 700px;
+      }
+      @media (max-width: $screen-sm-max) {
+        width: 480px;
+      }
+      @media (max-width: $screen-xs-max) {
+        width: auto;
+        padding: 0;
+        margin: 15px -15px -6px -15px;
+      }
+
+      .btn-group-1 {
+        padding-top: 25px;
+
+        @media (max-width: $screen-xs-max) {
+          padding: 15px 20px;
+
+          .col-xs-6 {
+            padding: 0 5px;
+          }
+        }
+        .btn {
+          height: 72px;
+          vertical-align: middle;
+          line-height: 72px;
+          border-bottom: 2px solid #d7d51c;
+          border-right: 2px solid #d7d51c;
+          @media (max-width: $screen-md-max) and (min-width: $screen-sm-max) {
+            padding: 9px 20px 10px;
+          }
+          @media (max-width: $screen-xs-max) {
+            width: 100%;
+            height: 65px;
+            padding: 9px 0;
+            margin: -4px auto 0;
+            line-height: 65px;
+            font-size: 15px;
+          }
+        }
+        .btn-image{
+          padding: 0;
+          position: relative;
+          span{
+            display: inline-block;
+            vertical-align: middle;
+            color: $c-navy;
+            font-weight: bold;
+            padding-bottom: 5px;
+            line-height: 1.3;
+            font-size: 22px;
+            @media (max-width: $screen-xs-max) {
+              font-size: 17px;
+            }
+          }
+          .controller{
+            margin-left: -10%;
+            margin-right: 3%;
+            margin-bottom: 8px;
+            @media (max-width: $screen-xs-max) {
+              margin-left: -5%;
+              width: 50px;
+              height: auto;
+            }
+          }
+          &:after{
+            color: $c-navy;
+            font-size: 30px;
+          }
+        }
+      }
+      .divider {
+        margin: 30px 0;
+
+        @media (max-width: $screen-xs-max) {
+          display: none;
+        }
+      }
+      .counter-group {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+        margin-bottom: 30px;
+
+        @media (max-width: $screen-xs-max) {
+          background: #6ecbe6;
+          padding: 10px;
+          margin: 0;
+        }
+
+        .cell {
+          display: table-cell;
+          vertical-align: top;
+
+          @media (max-width: $screen-xs-max) {
+            text-align: center;
+          }
+        }
+        .first {
+          width: 23%;
+          @media (max-width: $screen-sm-max) {
+            width: 35%;
+          }
+        }
+        .second {
+          width: 42%;
+          @media (max-width: $screen-sm-max) {
+            width: 36%;
+          }
+        }
+
+        img {
+          float: left;
+
+          @media (max-width: $screen-xs-max) {
+            float: none;
+            display: block;
+            margin: 0 auto;
+            height: 22px;
+          }
+        }
+        p {
+          float: left;
+          color: #344870;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 30px;
+          margin-bottom: 0;
+
+          @media (max-width: $screen-xs-max) {
+            font-size: 10px;
+            line-height: 1;
+            float: none;
+            text-align: center;
+            margin: 5px 0 8px;
+          }
+
+          .point {
+            margin-left: 10px;
+            font-size: 25px;
+
+            @media (max-width: $screen-xs-max) {
+              font-size: 18px;
+              display: block;
+              margin: 0 0 3px;
+            }
+          }
+        }
+        .btn {
+          margin-top: 0;
+          margin-bottom: 0;
+          margin-left: 10px;
+          font-size: 14px;
+          background-color: $c-navy;
+          border: 0 none;
+          border-right: 2px solid #21304f;
+          border-bottom: 2px solid #21304f;
+
+          @media (max-width: $screen-xs-max) {
+            font-size: 10px;
+            padding: 4px 8px;
+            margin: 0 auto;
+            width: auto;
+            height: auto;
+            line-height: 1;
+          }
+        }
+      }
+      .points {
+        width: 86%;
+        display: inline-block;
+        padding-right: 10px;
+
+        @media (max-width: $screen-sm-max) {
+          width: 100%;
+          margin: 0px;
+          padding: 0px;
+        }
+        @media (max-width: $screen-xs-max) {
+          margin: 0;
+          width: 100%;
+          .col-xs-6 {
+            padding: 0;
+          }
+          .col-xs-12 {
+            padding: 0; // after 4/4, open other function, remove this
+          }
+        }
+        .col-point, .col-coin {
+          padding: 0px 5px;
+          @media (max-width: $screen-xs-max) {
+            padding: 0px;
+          }
+
+          a {
+            display: block;
+            &:hover {
+              text-decoration: none;
+            }
+          }
+        }
+        .item {
+          height: 70px;
+          background-color: #fffd3c;
+          color: $c-navy;
+          border-radius: 5px;
+          padding: 13px 5px;
+          text-align: center;
+          @media (max-width: $screen-md-max) {
+            height: 64px;
+
+          }
+          @media (max-width: $screen-sm-max) {
+            margin-bottom: 20px;
+          }
+
+          @media (max-width: $screen-xs-max) {
+            height: auto;
+            border-radius: 0;
+            margin: 0;
+            padding: 10px;
+            &.first {
+              border-right: 1px solid #6bc6e1;
+            }
+          }
+
+          img {
+            width: 48px;
+            height: auto;
+            position: relative;
+            top: -10px;
+
+            @media (max-width: $screen-xs-max) {
+              width: 40px;
+              top: 0;
+            }
+          }
+          .text {
+            margin-bottom: 0;
+            font-weight: 700;
+            font-size: 14px;
+
+            @media (max-width: $screen-md-max) {
+              font-size: 12px;
+            }
+            @media (max-width: $screen-xs-max) {
+              font-size: 10px;
+              line-height: 1;
+              display: block;
+              text-align: center;
+            }
+            .point {
+              font-size: 33px;
+
+              @media (max-width: $screen-md-max) {
+                font-size: 30px;
+              }
+
+              @media (max-width: $screen-xs-max) {
+                font-size: 27px;
+                display: block;
+                margin-top: 5px;
+                margin-bottom: 5px;
+              }
+            }
+
+          }
+        }
+      }
+      .col-purchase {
+        width: 16%;
+        display: inline-block;
+        @media (max-width: $screen-sm-max) {
+          width: 100%;
+          display: block;
+        }
+        @media (max-width: $screen-xs-max) {
+          display: block;
+          width: 90%;
+          margin: auto;
+        }
+      }
+      .purchase-btn {
+        float: right;
+        display: block;
+        width: 100px;
+        height: 70px;
+        color: $c-navy;
+        text-align: center;
+        font-size: 12px;
+        padding: 5px 0;
+        border: 3px solid $c-navy;
+        border-radius: 5px;
+        @media (max-width: $screen-md-max) {
+          height: 64px;
+
+        }
+        @media (max-width: $screen-md-max) {
+          width: 100%;
+        }
+        @media (max-width: $screen-xs-max) {
+          float: none;
+          width: 290px;
+          margin: 10px auto 15px;
+          height: 55px;
+          img {
+            display: inline;
+          }
+        }
+
+        img {
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+
+  // trophy
+  .trophy-area {
+    padding: 15px 0;
+
+    @media (max-width: $screen-xs-max) {
+      padding: 15px 0 15px;
+      background-color: #e7e6e4;
+    }
+
+    .trophy-list {
+      margin: 0;
+      li {
+        float: left;
+        .trophy-img {
+          width: 128px;
+          height: 128px;
+          margin-right: 10px;
+          @media (max-width: $screen-xs-max) {
+            margin: 0px 5px;
+            width: 60px;
+            height: 60px;
+          }
+        }
+        @media (max-width: $screen-xs-max) {
+          img {
+            width: 60px;
+          }
+        }
+      }
+
+      .counter {
+        position: relative;
+        img {
+          margin-top: 10px;
+          margin-right: 10px;
+          width: 128px;
+          height: 111px;
+          @media (max-width: $screen-xs-max) {
+            margin: 4px 0px 0px 0px;
+            width: 60px;
+            height: auto;
+          }
+        }
+        .text {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 124px;
+          height: 64px;
+          color: #fff;
+          font-size: 16px;
+          text-align: center;
+          line-height: 1;
+          margin: auto;
+
+          @media (max-width: $screen-xs-max) {
+            width: 60px;
+            height: 30px;
+            font-size: 10px;
+            line-height: 1;
+          }
+
+          .total {
+            display: block;
+            font-size: 38px;
+
+            @media (max-width: $screen-xs-max) {
+              font-size: 20px;
+            }
+          }
+        }
+      }
+
+      .owl-controls{
+        @media (max-width: $screen-xs-max){
+          width: 110%;
+          margin-top: 0;
+        }
+      }
+    }
+
+  }
+  .trophy-list-wrap {
+    position: relative;
+
+    @media (max-width: $screen-xs-max) {
+      margin-right: -15px;
+    }
+
+    .trophy-list-fixed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+
+      .counter {
+        .text {
+          background: url('/images/trophy/counter.png') no-repeat center center;
+          position: relative;
+          width: 124px;
+          height: 127px;
+          text-align: center;
+          color: #ffffff;
+          @media (max-width: 425px) {
+            background-size: 100%;
+            margin-top: 0px;
+            left: 0px;
+            width: 78px;
+            height: 78px;
+            font-size: 14px;
+          }
+          @media (max-width: 375px) {
+            width: 68px;
+            height: 69px;
+            font-size: 12px;
+          }
+          @media (max-width: 320px) {
+            width: 55px;
+            height: 56px;
+            font-size: 10px;
+          }
+          .total {
+            display: block;
+            font-weight: bold;
+            font-size: 38px;
+            line-height: 1;
+            padding-top: 35px;
+            @media (max-width: 425px) {
+              font-size: 22px;
+              padding-top: 20px;
+            }
+            @media (max-width: 320px) {
+              font-size: 20px;
+              padding-top: 15px;
+            }
+          }
+        }
+        a {
+          display: block;
+          img{
+            width:100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+    .trophy-list-ct {
+      width: 100%;
+      padding-left: 148px;
+      @media (max-width: $screen-xs-max) {
+        padding-left: 140px;
+      }
+      @media (max-width: 425px) {
+        padding-left: 80px;
+      }
+      @media (max-width: 375px) {
+        padding-left: 70px;
+      }
+      @media (max-width: 320px) {
+        padding-left: 58px;
+      }
+      .item-wrapper {
+        a {
+          display: block;
+          text-align: center;
+          @media (max-width: 425px) {
+            width: 78px;
+            height: 78px;
+            margin-top: 1px;
+          }
+          @media (max-width: 375px) {
+            width: 68px;
+            height: 68px;
+          }
+          @media (max-width: 320px) {
+            width: 55px;
+            height: 55px;
+          }
+          img{
+            @media (max-width: 425px) {
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    .owl-theme .owl-controls .owl-buttons {
+      @media (max-width: $screen-xs-max) {
+        display: none;
+      }
+      .owl-next {
+        position: absolute;
+        top: 50%;
+        right: -40px;
+        margin-top: -12px;
+      }
+      .owl-prev {
+        position: absolute;
+        top: 50%;
+        left: -190px;
+        margin-top: -12px;
+      }
+    }
+  }
+
+  // deck area
+  .deck-area {
+    padding: 30px 0;
+    color: #fff;
+
+    @media (max-width: $screen-xs-max) {
+      padding: 15px 0;
+    }
+
+    .drill-title {
+      color: #fff;
+      font-size: 24px;
+      text-align: center;
+      margin: 0 0 20px;
+
+      @media (max-width: $screen-xs-max) {
+        font-size: 18px;
+        margin: 0 0 10px;
+      }
+
+      .img-responsive {
+        margin: 0 auto 10px;
+
+        @media (max-width: $screen-xs-max) {
+          width: 24px;
+        }
+      }
+    }
+
+    .view-more {
+      float: right;
+      border-color: #53cbe3;
+      margin-top: -60px;
+
+      @media (max-width: $screen-xs-max) {
+        width: auto;
+        font-size: 10px;
+        padding: 6px 10px;
+        line-height: 1;
+        margin-top: -34px;
+      }
+    }
+  }
+
+  // activity area
+  .activity-area {
+    padding: 60px 0 80px;
+
+    @media (max-width: $screen-xs-max) {
+      padding: 0;
+    }
+
+    .title-light-blue-bg,
+    .title-green-bg {
+      margin-left: 10px;
+      margin-right: 10px;
+      @media (max-width: $screen-xs-max) {
+        margin: 0 -15px 15px;
+      }
+      .view-more {
+        float: right;
+        width: auto;
+        font-size: 10px;
+        padding: 4px 8px;
+        margin-top: -1px;
+        line-height: 1;
+        @media (max-width: $screen-xs-max) {
+          margin-top: -3px;
+        }
+      }
+    }
+
+    .title-light-blue-bg {
+      .view-more {
+        border-color: #53cbe3;
+      }
+    }
+    .title-green-bg {
+      .view-more {
+        color: #30d696;
+        border-color: #30d696;
+      }
+    }
+  }
+
+  //custom-class
+  .mgb15{
+    @media (max-width: $screen-xs-max) {
+      margin-bottom: 15px !important;
+    }
+  }
+  .pdb0{
+    @media (max-width: $screen-xs-max) {
+      padding-bottom: 0 !important;
+    }
+  }
+  .pdt0{
+    padding-top: 0 !important;
+  }
+  .col-sp{
+    @media (max-width: $screen-xs-max) {
+      width: 80%;
+      margin: 0 auto;
+      display: block;
+      float: none;
+    }
+    @media (max-width: 425px) {
+      width: 100%;
+    }
+  }
+
+  //new learning history
+  //db10
+  .learning-list{
+    @media (min-width: $screen-sm-min) {
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+  }
+  .learning-content{
+    border-radius: 4px;
+    border-width: 4px;
+    padding: 15px;
+    @media (max-width: $screen-xs-max) {
+      border-left: solid #6ecbe6;
+      border-right: solid #6ecbe6;
+    }
+  }
+}
+.block-time{
+  .p3{
+    padding: 3px;
+  }
+  .bg-gray{
+    padding: 7px;
+    border-radius: 6px;
+    background-color: $c-light-gray;
+    margin: 0px 0 10px 0;
+    @media (max-width: $screen-xs-max) {
+      margin: 0;
+    }
+    @media (min-width: $screen-sm-min) {
+      margin: 0px 0 10px 0;
+    }
+    &.small{
+      font-size: 13px;
+    }
+  }
+}

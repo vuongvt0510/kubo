@@ -1,0 +1,63 @@
+<div class="pay-service-page pay-service-index">
+    <div class="bg-triangle">
+        <div class="container">
+            <div class="page-title">
+                <p class="h1">スクールTV Plus 解約</p>
+                <p class="caption">スクールTV Plusを解約しますか?</p>
+            </div>
+            <div class="main-content">
+                <div class="content-frame">
+                    <div class="contract-status">
+                        <p class="student">お子さま</p>
+                        <p class="student-name"><!--{$contract.nickname|escape|default:'ニックネームなし'}--></p>
+                        <!--{if $contract.status == 'under_contract'}-->
+                        <p class="status">スクールTV Plus：<span class="status-name">契約中</span></p>
+                        <!--{else if $contract.status == 'pending'}--><!--{* there is some problem with credit card *}-->
+                        <p class="status">スクールTV Plus：<span class="status-name">更新停止</span></p>
+                        <!--{else if $contract.status == 'canceling'}--><!--{*quit using this paied service*}-->
+                        <p class="status">スクールTV Plus：<span class="status-name">解約(月末まで有効)</span></p>
+                        <!--{else}-->
+                        <p class="status">スクールTV Plus：<span class="status-name">未契約</span></p>
+                        <!--{/if}-->
+
+                    </div>
+                    <div class="divider dashed"></div>
+
+                    <div class="explanation-area clearfix">
+                        <div class="row">
+                            <div class="explanation-text">
+                                <p>この作業を取り消す事はできません。<br>
+                                    ※解約後、翌月末まではスクールTV Plusのサービスをご利用いただけます。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a href="/pay_service/<!--{$contract.user_id|escape}-->" class="btn btn-gray btn-block">戻る</a>
+                            </div>
+                            <div class="col-sm-6">
+                                    <input type="hidden" name="action" value="cancel">
+                                    <button id="submit_cancel" class="btn btn-green btn-block" type="submit">解約</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="display: none;" class="loading-wrap"></div>
+
+<!--{content_for name="headjs"}-->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#submit_cancel").on("click", function() {
+            $(this).disabled = true;
+            $(".loading-wrap").show();
+        });
+    });
+</script>
+<!--{/content_for}-->

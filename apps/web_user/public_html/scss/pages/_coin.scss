@@ -1,0 +1,762 @@
+.breacrumb{
+  padding: 25px 5px 10px;
+  @media(max-width: $screen-sm-max){
+    padding: 8px 5px;
+  }
+  ul{
+    margin-bottom: 0;
+    li{
+      padding:0;
+      &:after{
+        content: '>';
+        font-size: 20px;
+        margin-left: 7px;
+        color: #2d3940;
+      }
+      a{
+        color: #5aa4b9;
+      }
+      &:last-child{
+        &:after{
+          content: none;
+        }
+        a{
+          color: #2d3940;
+        }
+      }
+    }
+  }
+}
+
+.coin-page {
+
+  .content-frame {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 40px;
+    .head {
+      height: 120px;
+      padding: 35px;
+      .title {
+        font-size: 24px;
+        font-weight: bold;
+        .name {
+          font-size: 28px;
+        }
+      }
+    }
+
+    @media (max-width: $screen-xs-max) {
+      padding-left: 0;
+      padding-right: 0;
+
+      .head {
+        height: auto;
+        padding: 24px 24px 45px;
+        margin: -25px 0 0;
+
+        .title {
+          font-size: 16px;
+
+          .name {
+            font-size: 22px;
+          }
+        }
+      }
+    }
+  }
+
+  .current-coin {
+    width: 410px;
+    height: 66px;
+    color: #00bf9d;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    background: #fff;
+    padding: 5px 0;
+    border: 5px solid #82d9ed;
+    border-radius: 33px;
+    margin: -83px auto 40px;
+
+    .num {
+      font-size: 48px;
+    }
+
+    img {
+      vertical-align: top;
+      width: 44px;
+      margin: 2px 5px 0 0;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      width: 100%;
+      height: 60px;
+      font-size: 16px;
+      padding: 9px 0;
+      margin: -30px 0 10px;
+
+      .num {
+        font-size: 32px;
+      }
+
+      img {
+        width: 32px;
+        margin-top: -2px;
+      }
+    }
+  }
+
+  .tab {
+    margin-bottom: 30px;
+
+    @media (max-width: $screen-xs-max) {
+      margin-bottom: 15px;
+      padding:0 10px;
+    }
+  }
+
+  .coin-list {
+    li {
+      display: table;
+      width: 100%;
+      min-height: 115px;
+      border-bottom: 1px dashed #b7b7b7;
+    }
+    .thumb,
+    .description {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    .thumb {
+      width: 125px;
+      padding: 15px 0;
+      text-align: center;
+
+      .avatar {
+        width: 90px;
+        margin: 0 auto;
+      }
+      .coin {
+        width: 60px;
+      }
+    }
+    .description {
+      padding-left: 15px;
+      position: relative;
+    }
+
+    .person {
+      color: #878e9a;
+      font-size: 20px;
+      margin: 10px 0 5px;
+      padding: 0 180px 0 0;
+    }
+    .coin-get,
+    .coin-spend {
+      color: #2d3940;
+      font-size: 20px;
+      margin: 0 0 5px;
+      padding: 0 180px 0 0;
+      @media (max-width: $screen-xs-max) {
+        padding: 0px 150px 0 0;
+        font-size: 16px;
+      }
+      @media (max-width: 360px) {
+        padding: 0px 85px 0 0;
+        font-size: 14px;
+      }
+    }
+    .deck-name {
+      color: #2d3940;
+      font-size: 14px;
+      margin: 0 0 5px;
+      padding: 0 180px 0 0;
+      @media (max-width: $screen-xs-max) {
+        padding: 0px 150px 0 0;
+        font-size: 12px
+      }
+      @media (max-width: 360px) {
+        padding: 0px 85px 0 0;
+        font-size: 8px
+      }
+    }
+    .time {
+      position: absolute;
+      top: 40%;
+      right: 20px;
+      color: #878e9a;
+      font-size: 14px;
+      @media (max-width: $screen-xs-max) {
+        font-size: 12px;
+        right: 10px;
+      }
+      @media (max-width: 360px) {
+        width: 30%;
+        right: 0;
+      }
+    }
+
+    @media (max-width: $screen-xs-max) {
+      li {
+        height: 85px;
+      }
+      .thumb {
+        width: 65px;
+
+        .avatar {
+          width: 50px;
+        }
+
+        .coin-image {
+          width: 80%;
+          margin: 0 auto;
+        }
+      }
+      .description {
+        padding-left: 5px;
+      }
+      .person {
+        font-size: 12px;
+        margin: 0;
+      }
+      .deck-name {
+        margin: 0 0 2px;
+      }
+      .time {
+        font-size: 10px;
+      }
+    }
+  }
+
+  .tab-content{
+
+    @media (max-width: $screen-xs-max) {
+      padding: 0 10px;
+    }
+  }
+
+  .coin-area {
+    display: block;
+    overflow: hidden;
+    margin-top: -10px;
+    @media (max-width: $screen-xs-max) {
+      padding-top: 20px;
+    }
+    h4{
+      display: block;
+      clear: both;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 24px;
+      margin: 0 0 20px;
+      color: #2d3940;
+      @media (max-width: $screen-xs-max) {
+        font-size: 14px;
+        margin: 0 0 15px;
+      }
+    }
+    p{
+      display: block;
+      clear: both;
+      word-wrap: break-word;
+      overflow: hidden;
+      margin-bottom: 5px;
+      color:#2d3940;
+      .link{
+        text-decoration: underline;
+        &:hover{
+          text-decoration: none;
+        }
+      }
+      @media (max-width: $screen-xs-max) {
+        font-size: 12px;
+      }
+    }
+
+    .exchange-rate{
+      display: block;
+      overflow: hidden;
+      padding: 20px 0;
+      background-color: #f4f4f4;
+      margin: 25px auto 30px;
+      border: 2px solid #e2e5e8;
+      @media (max-width: $screen-xs-max) {
+        margin: 20px auto 25px;
+      }
+      .exchange-box{
+        display: block;
+        position: relative;
+        width: 94%;
+        margin: 0 auto;
+        background-color: #fff;
+        border-radius: 5px;
+        border: 2px solid;
+        padding: 10px 5px 10px 45px;
+        .num{
+          font-weight: bold;
+          font-size: 36px;
+          font-family: arial;
+          @media (max-width: $screen-sm-max) {
+            font-size: 26px;
+          }
+          @media (max-width: 620px) {
+            font-size: 24px;
+          }
+          @media (max-width: 580px) {
+            font-size: 22px;
+          }
+        }
+        .txt{
+          font-size: 20px;
+          @media (max-width: $screen-sm-max) {
+            font-size: 12px;
+          }
+          @media (max-width: 620px) {
+            font-size: 10px;
+          }
+          @media (max-width: 460px) {
+            display: block;
+          }
+        }
+      }
+      //COLOR1
+      .color1{
+        .exchange-box {
+          border-color: #00bf9d;
+          @media (max-width: 580px) {
+            padding-left: 42px;
+          }
+          @media (max-width: 480px){
+            padding-left: 5px;
+          }
+        }
+        .num, .txt, p{
+          color: #00bf9d;
+        }
+        img{
+          width: 46px;
+          position: absolute;
+          top: 13px;
+          left: 15px;
+          @media (max-width: $screen-sm-max) {
+            width: 40px;
+            top: 10px;
+          }
+          @media (max-width: 620px) {
+            top: 8px;
+          }
+          @media (max-width: 580px) {
+            left: 5px;
+            width:36px;
+          }
+          @media (max-width: 480px) {
+            position: relative;
+            top: 0;
+            left: 0;
+            display: block;
+            margin: 0 auto;
+          }
+        }
+      }
+      //COLOR2
+      .color2{
+        .exchange-box {
+          border-color: #0d70d0;
+          padding: 10px 5px 10px 125px;
+          @media (max-width: $screen-sm-max) {
+            padding-left: 97px;
+          }
+          @media (max-width: 580px) {
+            padding-left: 80px;
+          }
+          @media (max-width: 480px){
+            padding-left: 5px;
+            padding-top: 15px;
+          }
+
+        }
+        .num, .txt, p {
+          color: #0d70d0;
+        }
+        img {
+          position: absolute;
+          top: 19px;
+          left: 15px;
+          @media (max-width: $screen-sm-max) {
+            width: 90px;
+            top: 16px;
+          }
+          @media (max-width: 580px) {
+            width: 73px;
+            left: 5px;
+          }
+          @media (max-width: 480px) {
+            position: relative;
+            width:auto;
+            top: 0;
+            left: 0;
+            display: block;
+            margin: 0 auto;
+          }
+        }
+      }
+      .icon-convert{
+        position: absolute;
+        background: url("/images/icons/convert.png") no-repeat;
+        width: 19px;
+        height: 22px;
+        top: 50%;
+        right: -10px;;
+      }
+
+      .exchange-form{
+
+        .form-label{
+          float: left;
+          width: 22%;
+          text-align: left;
+          font-size: 18px;
+          margin-top: 7px;
+          color: #2d3940;
+          @media (max-width: $screen-sm-max) {
+            width: 32%;
+          }
+          @media (max-width: 580px) {
+            width: 35%;
+            font-size: 12px;
+            margin-top: 10px;
+          }
+        }
+        .form-group{
+          float: left;
+          width: 78%;
+          margin: 0;
+          @media (max-width: $screen-sm-max) {
+            width: 68%;
+          }
+          @media (max-width: 580px) {
+            width: 65%;
+            input{
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+
+    .select-option {
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      margin-bottom: 0;
+      .exchange-form{
+        display: block;
+        float: left;
+        width: 100%;
+        @media (max-width: $screen-xs-max) {
+          padding: 0;
+        }
+
+        .form-label{
+          float: left;
+          width: 22%;
+          text-align: left;
+          font-size: 18px;
+          margin-top: 7px;
+          color: #2d3940;
+          @media (max-width: $screen-sm-max) {
+            width: 30%;
+          }
+        }
+        .form-group{
+          position: relative;
+          float: left;
+          width: 78%;
+          margin: 0;
+          @media (max-width: $screen-sm-max) {
+            width: 70%;
+          }
+          @media (max-width: $screen-xs-max) {
+            width: 100%;
+            padding-bottom: 0;
+          }
+          select {
+            cursor: pointer;
+            font-size: 20px;
+            padding: 0 0 12px;
+            min-height: 50px;
+            color: #000;
+            ouline: none;
+            @media (max-width: 640px) {
+              font-size: 14px;
+              padding: 0 12px 0 0;
+              min-height: 40px;
+              margin-bottom: 0;
+            }
+          }
+          &:after {
+            position: absolute;
+            top: 4px;
+            right: 5px;
+            content: " ";
+            display: table;
+            width: 14px;
+            height: 30px;
+            background: url("/images/icons/select.png") no-repeat center center;
+            @media (max-width: 640px) {
+              width:8px;
+              right: 0;
+              background-size: 100%;
+            }
+          }
+        }
+        .hidden-xs{
+          @media (max-width: $screen-xs-max) {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .pdLR40{
+      padding-left: 40px;
+      padding-right: 40px;
+      @media (max-width: $screen-sm-max) {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+    .mgLR40{
+      margin-left: -40px;
+      margin-right: -40px;
+      @media (max-width: $screen-sm-max) {
+        margin-left: -20px;
+        margin-right: -20px;
+      }
+    }
+  }
+  .btn-sp{
+    @media(max-width: 480px) {
+      width: 100%;
+      margin: 0;
+    }
+  }
+  hr{
+    border-top: 1px dashed #000;
+    margin: 25px 0;
+    float: left;
+    width: 100%;
+    @media(max-width: $screen-xs-max) {
+      margin: 20px 0;
+    }
+  }
+  .padTop30{
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+  }
+  .padTop22{
+    @media(max-width: $screen-xs-max) {
+      padding-top: 22px !important;
+    }
+  }
+
+}
+.rabbi-page{
+
+  .content-frame{
+    padding: 94px 94px 50px;
+    @media(max-width: $screen-md-max){
+      padding: 50px;
+    }
+    @media(max-width: $screen-xs-max) {
+      padding: 25px 0px 15px;
+    }
+  }
+  .tab{
+    margin-bottom: 15px;
+  }
+  .coin-list{
+    li{
+      &.rabbi-icon{
+        .description {
+          padding: 10px 20px 10px 95px;
+          background: url(/images/icons/rabbi-point.png) no-repeat 20px center;
+          @media(max-width: $screen-xs-max) {
+            background-size: 40px;
+            background-position: 10px center;
+            padding: 10px 20px 10px 70px;
+          }
+          @media(max-width: 500px) {
+            background-size: 32px;
+            background-position: 5px center;
+            padding: 10px 20px 10px 48px;
+          }
+        }
+      }
+      min-height: 90px;
+      &:last-child{
+        border-bottom: 0;
+      }
+      @media(max-width: $screen-xs-max) {
+        min-height: 80px;
+      }
+      @media(max-width: 500px) {
+        min-height: auto;
+      }
+      .description{
+        .person{
+          color: #2d3940;
+          font-size: 20px;
+          margin-top:0px;
+          margin-bottom: 0;
+          @media(max-width: $screen-xs-max) {
+            font-size: 16px;
+            padding-right: 125px;
+          }
+          @media(max-width: 500px) {
+            font-size: 14px;
+            padding-right: 100px;
+          }
+          @media(max-width: 360px) {
+            padding-right: 50px;
+          }
+        }
+        .how-much{
+          margin: 0;
+          color: #878e9a;
+          @media(max-width: $screen-xs-max) {
+            font-size: 12px;
+            padding-right: 125px;
+          }
+          @media(max-width: 500px) {
+            font-size: 8px;
+            padding-right: 100px;
+          }
+          @media(max-width: 360px) {
+            padding-right: 50px;
+          }
+        }
+        .time{
+          font-weight: normal;
+          @media(max-width: $screen-xs-max) {
+            font-size: 12px;
+            right: 10px;
+          }
+          @media(max-width: 500px) {
+            font-size: 10px;
+            right: 5px;
+            top: 44%;
+          }
+          @media(max-width: 360px) {
+            width: 30%;
+            top: 28px;
+          }
+        }
+      }
+    }
+  }
+  .custom{
+    margin: 20px 0 30px;
+    font-weight: normal;
+    @media(max-width: $screen-xs-max) {
+      margin: 10px 0 20px;
+    }
+  }
+  .review{
+    li{
+      .text-wait{
+        color: #3d79cf!important;
+      }
+      .text-error{
+        color: #00bf9d!important;
+      }
+      .text-done{
+        color: #db5941!important;;
+      }
+      .text-reject{
+        color: #7f7f7f!important;
+      }
+
+    }
+  }
+  .rabbi-icon{
+    .text-blue{
+      color: $c-blue !important;
+    }
+    .text-red{
+      color: $c-red-dark !important;
+    }
+    .text-green{
+      color: $c-green !important;
+    }
+  }
+
+}
+.result-exchange{
+  .title-text{
+    font-size: 28px;
+    color: #2d3940;
+    @media(max-width: $screen-xs-max){
+      margin: 0;
+      font-size: 22px;
+    }
+  }
+  .list-text{
+    display: block;
+    margin-bottom: 0;
+    padding: 20px 70px 0;
+    @media(max-width: $screen-sm-max){
+      padding: 20px 20px 0;
+    }
+    @media(max-width: $screen-xs-max){
+      padding: 20px 10px 0;
+    }
+    li{
+      font-size: 14px;
+      color: #2d3940;
+      margin-bottom: 5px;
+    }
+  }
+}
+.coin-pasword-container{
+  .form-horizontal{
+    margin-bottom: 20px;
+  }
+  .description{
+    margin-top: 15px;
+  }
+}
+
+.line-height-26{
+  line-height: 26px;
+}
+
+.marBottom20{
+  margin-bottom: 20px!important;
+}
+
+.mgb10{
+  margin: 0 0 20px!important;
+}
+.mg0{
+  margin: 0!important;
+}
+.mgb5{
+  margin-bottom: 5px!important;
+  @media(max-width: $screen-xs-max){
+    margin: 0!important;
+  }
+}
+.mgt20{
+  margin-top: 20px!important;
+}
+.h70{
+  @media(max-width: $screen-xs-max) {
+    height: 70px!important;
+  }
+}
+#select_pack::-ms-expand {
+  display: none;
+}

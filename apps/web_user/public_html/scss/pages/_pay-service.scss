@@ -1,0 +1,221 @@
+.pay-service-page {
+  // MC10
+  &.pay-service-index {
+    .contract-status {
+      text-align: center;
+      font-weight: bold;
+
+      .student {
+        color: #2d3940;
+        font-size: 18px;
+        margin: 0;
+      }
+      .student-name {
+        color: #3e8093;
+        font-size: 28px;
+      }
+      .status {
+        color: #2d3940;
+        font-size: 18px;
+
+        .status-name {
+          color: #3e8093;
+        }
+      }
+      .exp {
+        text-align: center;
+        font-weight: normal;
+      }
+    }
+    .divider {
+      margin: 30px 0;
+    }
+
+    .explanation-area {
+      margin-bottom: 40px;
+      margin-top: 20px;
+      @media (max-width: $screen-xs-max) {
+        margin-bottom: 20px;
+      }
+      .bold{
+        margin-bottom: 20px ;
+      }
+      .cancel {
+        margin-top: 50px;
+
+        @media (max-width: $screen-xs-max) {
+          margin-top: 20px;
+        }
+      }
+
+      .explanation-text{
+        padding: 20px 0 0 20px;
+        @media (max-width: $screen-xs-max) {
+          padding: 20px 0 0 10px;
+        }
+      }
+    }
+  }
+
+  // MC30
+  &.pay-service-purchase {
+    .price {
+      color: #2d3940;
+      font-size: 18px;
+      text-align: center;
+      padding: 6px 0;
+      background: #f4f4f4;
+      border: 2px solid #e2e5e8;
+      margin: 0 0 30px;
+    }
+
+    // CC30
+    label.control-label {
+      padding-left: 0;
+      font-size: 16px;
+    }
+  }
+}
+//MC70
+.pay-service-about{
+  .content-frame{
+    @media (min-width: $screen-sm-max) {
+      padding-bottom: 120px;
+      padding-top: 55px;
+    }
+    @media (max-width: $screen-xs-max) {
+      padding-bottom: 40px;
+      padding-top: 20px;
+    }
+  }
+  .bg-shining-yellow{
+    height: 280px;
+    @media (max-width: $screen-xs-max) {
+      height: 242px;
+    }
+    .h2{
+      font-size: 26px;
+      margin: 10px;
+      line-height: 1.8;
+
+      @media (max-width: $screen-xs-max) {
+        font-size: 17px;
+        margin: 10px;
+        line-height: 1.6;
+      }
+    }
+  }
+  .title{
+    @media (max-width: $screen-xs-max) {
+      text-align: center;
+    }
+  }
+  .rabi{
+    @media (max-width: $screen-sm-max) {
+      left: -13px !important;
+    }
+    @media (max-width: $screen-xs-max) {
+      width: 77px !important;
+      height: 78px !important;
+      bottom: 12px !important;
+      left: -23px !important;
+    }
+  }
+  .balloon{
+    @media (max-width: $screen-xs-max) {
+      padding-top: 25px !important;
+    }
+  }
+  .urchin{
+    position: absolute;
+    background: url('../images/icons/ic-urchin-top.png') no-repeat;
+    width: 119px;
+    height: 112px;
+    bottom: 84px;
+    right:20px;
+    @media (max-width: $screen-sm-max) {
+      bottom: 34px;
+      right: -43px;
+    }
+    @media (max-width: $screen-xs-max) {
+      bottom: 12px;
+      right: -19px;
+      height: 44px;
+      width: 60px;
+      background-size: 95%;
+    }
+  }
+  .link{
+    @media (max-width: $screen-sm-max) {
+      margin-bottom: 40px;
+    }
+  }
+  .h2{
+    color: $c-white;
+    line-height: 2;
+    margin: 30px;
+    @media (max-width: $screen-sm-max) {
+      line-height: 1.6;
+      margin: 16px;
+    }
+    @media (max-width: $screen-xs-max) {
+      font-size: 20px;
+      margin: 15px;
+      line-height: 1.5;
+    }
+  }
+  .child.content-frame{
+    padding: 40px;
+    margin: 20px 0px;
+    .item{
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+    @media (max-width: $screen-xs-max) {
+      padding: 20px 10px;
+    }
+  }
+  .child-content{
+    margin-left: 60px;
+    position: relative;
+    &:before{
+      position: absolute;
+      left: -37px;
+      content: "";
+      background: url("../images/icons/ic-urchin-left.png") no-repeat;
+      width: 91px;
+      height: 82px;
+      z-index: 111;
+      bottom: 0px;
+    }
+    @media (max-width: $screen-sm-max) {
+      margin-left: 0px;
+    }
+  }
+  .child-item {
+    height: auto;
+    img {
+      width: 100%;
+      background: $c-gray;
+      @include cover-center;
+      @media (max-width: $screen-xs-max) {
+        width: 95%;
+      }
+    }
+    @media (max-width: $screen-sm-max) {
+      margin-bottom: 7px;
+    }
+  }
+  .btn-center{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 20px;
+    margin: auto;
+  }
+  .abt-list{
+    @media (max-width: $screen-sm-max) {
+     padding-left: 10px;
+    }
+  }
+}

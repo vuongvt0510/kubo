@@ -1,0 +1,187 @@
+<div class="play-page select-request my-team detail-quest">
+    <div class="bg-shining-yellow">
+        <div class="bg-inner">
+
+            <div class="container">
+                <div class="content-frame-designed-corner">
+                    <div class="frame-inner">
+                        <div class="head"></div>
+                        <div class="middle">
+
+                            <p class="frame-title mgbt10">クエストを選ぼう</p>
+
+                            <div class="team-detail text-center">
+                                <div class="team-detail-inner">
+                                    <p class="txt1">プレイするチ〡ム</p>
+                                    <p class="txt2">チ〡ム名チ〡ム名<!--{$group_name|escape|default:''}--></p>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+
+                            <!--{include file="partial/deck_list_line.html" decks=$deck}-->
+                            <!--{include file="partial/stage_list.html" stages=$stage}-->
+
+                            <!--Button-->
+                            <div class="btn-area text-center">
+                                <button type="button" class="btn btn-yellow">
+                                    <!--{if $quest.status == 'open'}-->
+                                    チャレンジ可能
+                                    <!--{/if}-->
+                                    <!--{if $quest.status == 'progress'}-->
+                                    クエスト中
+                                    <!--{/if}-->
+                                    <!--{if $quest.status == 'failed'}-->
+                                    クエストに失敗しました
+                                    <!--{/if}-->
+                                    <!--{if $quest.status == 'success'}-->
+                                    クエストクリア！
+                                    <!--{/if}-->
+                                </button>
+                            </div>
+
+                            <!--list-rabi-->
+                            <ul class="friend-list list-rabi list-unstyled">
+                                <li>
+                                    <p href="#" class="txt-rabi"><!--{$quest.title|escape|default:''}--></p>
+                                </li>
+                                <li>
+                                    <p href="#" class="txt-rabi"><!--{$quest.description|escape|default:''}--></p>
+                                </li>
+                                <li>
+                                    <p href="#" class="txt-rabi">クエストをクリアで<br>チ〡ムメンバ〡全員にラビポイント+{n}</p>
+                                </li>
+                            </ul>
+
+                            <!--Button-->
+                            <!--{if $quest.status == 'open'}-->
+                            <div class="btn-area text-center">
+                                <button id="start-quest" type="button" class="btn btn-yellow">クエストスタート</button>
+                            </div>
+                            <!--{/if}-->
+
+                            <!--{if $quest.status == 'progress'}-->
+                            <div class="btn-area text-center">
+                                <p class="fs20"><!--{$quest.created_at|escape|default:''}--> クエストスタート</p>
+                                <!--{if $quest.type == 'average'}-->
+                                <p class="fs20">チーム平均点<br>
+                                    <!--{$average|escape|default:''}-->点
+                                </p>
+                                <!--{/if}-->
+                                <!--{if $current_user_done == TRUE}-->
+                                <p class="fs20">お疲れ様！チームメンバーを応援しよう！</p>
+                                <!--{else}-->
+                                <!--{if $quest.drill_type == 'battle'}-->
+                                <a id="start-match" href="/play/quest_detail/<!--{$quest.drill_type|escape|default:''}-->" class="btn btn-yellow">トレーニングスタート</a>
+                                <!--{else}-->
+                                <a id="start-training" href="/play/quest_detail/<!--{$quest.drill_type|escape|default:''}-->" class="btn btn-yellow">バトルスタート</a>
+                                <!--{/if}-->
+                                <!--{/if}-->
+                            </div>
+                            <!--{/if}-->
+
+                            <!--{if $quest.status == 'failed'}-->
+                            <div class="btn-area text-center">
+                                <p class="fs20"><!--{$quest.started_time|escape|default:''}--> クエストスタート</p>
+                                <!--{if $quest.type == 'average'}-->
+                                <p class="fs20">チーム平均点<br>
+                                    <!--{$average|escape|default:''}-->点
+                                </p>
+                                <!--{/if}-->
+                                <button id="start-quest" type="button" class="btn btn-yellow">クエストスタート</button>
+                            </div>
+                            <!--{/if}-->
+
+                            <!--{if $quest.status == 'success'}-->
+                            <div class="btn-area text-center">
+                                <p class="fs20"><!--{$quest.started_time|escape|default:''}--> クエストスタート</p>
+                                <!--{if $quest.type == 'average'}-->
+                                <p class="fs20">チーム平均点<br>
+                                    <!--{$average|escape|default:''}-->点
+                                </p>
+                                <!--{/if}-->
+                            </div>
+                            <!--{/if}-->
+
+                            <!--list-member-->
+                            <ul class="friend-list list-unstyled">
+                                <!--{foreach from=$members key=key item=member}-->
+                                <li>
+                                    <div class="list-item height">
+                                        <div class="thumb">
+                                            <img src="/images/avatar/<!--{if $member.avatar_id == 0}-->2<!--{else}--><!--{$member.avatar_id}--><!--{/if}-->.png" class="img-responsive">
+                                        </div>
+                                        <div class="name pd2">
+                                            <span class="text"><!--{$member.nickname|escape|default:'ニックネームなし'}--></span>
+                                        </div>
+                                        <!--{if $member.status == 'progress'}-->
+                                        <!--{if !isset($member.current_user)}-->
+                                        <div class="status">
+                                            <a href="#">応援する</a>
+                                        </div>
+                                        <!--{/if}-->
+                                        <!--{else}-->
+                                        <!--{if $quest.type == 'average'}-->
+                                        <div class="status">
+                                            <span class="status-txt">完了!</span>
+                                            <span class="status-time"><!--{$member.updated_at|escape|default:''}--></span>
+                                        </div>
+                                        <!--{else}-->
+                                        <div class="status">
+                                            <span class="status-txt">クリア!</span>
+                                            <span class="status-time"><!--{$member.updated_at|escape|default:''}--></span>
+                                        </div>
+                                        <!--{/if}-->
+                                        <!--{/if}-->
+                                    </div>
+                                </li>
+                                <!--{/foreach}-->
+                            </ul>
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="text-center">
+                    <a href="/play/select_quest" class="btn btn-outline back-link">クエスト選択へ戻る</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--{content_for name="modal"}-->
+<!--{include file="partial/modal/confirm_start.html"}-->
+<!--{include file="partial/modal/quest_started.html"}-->
+<!--{/content_for}-->
+
+<!--{content_for name="headjs"}-->
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $("#start-quest").on("click", function() {
+            $("#Quest-confirm_start").modal({
+                backdrop: 'static'
+            });
+        });
+
+        $("#modal-start_quest").on("click", function() {
+            $("#Quest-confirm_start").modal('hide');
+
+            $.ajax({
+                method: "POST",
+                url: "/play/start_quest",
+                data: {
+                    quest_id: <!--{$quest.quest_id|escape|default:''}-->
+                },
+                dataType: 'json'
+            });
+
+            $("#Quest-started").modal({
+                backdrop: 'static'
+            });
+        });
+    });
+</script>
+<!--{/content_for}-->

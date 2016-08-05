@@ -1,0 +1,31 @@
+<div class="modal fade" id="delete-friend-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button id="cancel-close" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-header">
+                <div class="modal-title">
+                    友達の解除
+                </div>
+                <div class="modal-basic-title">
+                    友達から解除しますか?<br>
+                </div>
+            </div>
+            <div class="modal-body text-center clearfix">
+                <p>友達から解除すると友達のダッシュボードが見れなくなります。<br>
+                    <small>※一度解除しても、また友達登録ができます。</small>
+                </p>
+                <img class="avatar" src="/images/avatar/<!--{if $user_info.avatar == 0}-->2<!--{else}--><!--{$user_info.avatar}--><!--{/if}-->.png" alt="">
+                <div class="friend-name"><!--{$user_info.nickname|escape|default:''}--></div>
+            </div>
+            <div class="modal-footer modal-footer-btngroup text-center">
+                <form action="/friend/delete" method="POST">
+                    <input type="hidden" name="user_id" value="<!--{$user_info.id|escape|default:''}-->">
+                    <button type="button" class="btn btn-gray" data-dismiss="modal">キャンセル</button>
+                    <button type="submit" class="btn btn-green">友達から解除</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

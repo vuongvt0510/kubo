@@ -1,0 +1,65 @@
+<div class="bg-triangle">
+    <div class="container">
+        <div class="page-title">
+            <div class="container text-center">
+                <p class="h1">チームの管理</p>
+                <p class="caption">
+                    チームへの招待などの管理ができます
+                </p>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="content-frame">
+                <div class="bg-triangle-blue head text-center">
+                    <span class="h4">選択中のチーム: <!--{$group_name|escape|default:''}--></span>
+                </div>
+                <!--{if $maximum != TRUE}-->
+                <div class="form-group mt0">
+                    <p class="h4 bold text-center">
+                        友達をチームに招待する
+                    </p>
+                    <div class="col-sm-6 col-sm-push-3">
+                        <div class="row">
+                            <a href="/team/<!--{$group_id|escape|default:''}-->/invite_friend/" class="btn btn-green btn-block">友達を招待</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <!--{/if}-->
+
+                <div class="form-group">
+                    <p class="h4 bold text-center">
+                        チーム名を編集する
+                    </p>
+                    <div class="col-sm-6 col-sm-push-3">
+                        <div class="row">
+                            <a href="/team/<!--{$group_id|escape|default:''}-->/update" class="btn btn-green btn-block">チーム名を編集</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="form-group">
+                    <p class="h4 bold text-center">
+                        チームから抜ける
+                    </p>
+                    <div class="col-sm-6 col-sm-push-3">
+                        <div class="row">
+                            <a href="/team/<!--{$group_id|escape|default:''}-->/leave" class="btn btn-green btn-block">チームから抜ける</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+                <div class="form-group">
+                    <div class="col-sm-6 col-sm-push-3">
+                        <div class="row">
+                            <a href="/team" class="btn btn-gray btn-block">チーム選択に戻る</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

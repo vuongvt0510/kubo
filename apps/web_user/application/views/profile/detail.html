@@ -1,0 +1,235 @@
+<!--{content_for name="headerTitle"}-->
+
+<!--{if isset($current_user) && !$current_user.email_verified}-->
+<div class="notification recommend-action">
+    <div class="container">
+        <div class="notification-text">
+            <a class="bold" href="/register/re_send_email">スクールTVからのメールを確認して、メールアドレス認証を完了してください
+                認証するとこのお知らせは消えます</a>
+        </div>
+    </div>
+</div>
+<!--{/if}-->
+
+<!--{if isset($current_user) && ($current_user.primary_type == 'student') }-->
+    <!--{if !isset($current_user.current_school)}-->
+    <div class="notification recommend-action">
+        <div class="container">
+            <div class="notification-text">
+                <a class="bold" href="/school/search">学校を登録すると、授業にそった動画を見ることができるよ
+                    いますぐ登録しよう
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--{/if}-->
+<!--{/if}-->
+
+<!--{* PR10 is removed from 4/4 release *}-->
+<!--{*if isset($current_user) && ($current_user.primary_type == 'student') && empty($current_user.in_group)}-->
+<div class="notification recommend-action">
+    <div class="container">
+        <div class="notification-text">
+            <a class="bold" href="/group_setting/add_parent">お家の方にもスクールTVに登録してもらおう！</a>
+        </div>
+    </div>
+</div>
+<!--{/if*}-->
+
+<!--{if isset($current_user) && ($current_user.primary_type == 'parent') && empty($current_user.in_group)}-->
+<div class="notification recommend-action">
+    <div class="container">
+        <div class="notification-text">
+            <a class="bold" href="/group_setting/family">お子さんの登録が未完了です。まずは家族グループを作成しましょう！</a>
+        </div>
+    </div>
+</div>
+<!--{/if}-->
+
+<!--{if !empty($user_contract) && $user_contract.status == 'free'}-->
+<div class="notification recommend-action">
+    <div class="container">
+        <div class="notification-text">
+            <a href="/pay_service/about"><span class="bold">新規会員登録の無料特典は、30日以内！スクールTV Plus会員になってずっと楽しくレッスンしよう！</a>
+        </div>
+    </div>
+</div>
+<!--{/if}-->
+
+<!--{if !empty($header_news)}-->
+<div class="notification news">
+    <div class="container">
+        <div class="notification-text">
+            <a href="/news/detail/<!--{$header_news.id|escape}-->"><span class="bold"><!--{$header_news.title|escape|default:''}--></span>&nbsp;<!--{$header_news.started_at|escape|default:''|date_format:'%Y年%m月%d日'}--></a>
+        </div>
+    </div>
+</div>
+<!--{/if}-->
+
+<div class="header-title">
+    <div class="container">
+        <p class="h1">
+            <span class="bold"><!--{$grade_name|escape|default:'--'}--></span> の動画を表示
+        </p>
+    </div>
+</div>
+
+<!--{/content_for}-->
+
+<div class="profile-detail-page">
+
+    <div class="bg-gray" style="padding: 20px 0;">
+        <div class="container">
+            <!--{if !empty($decks)}-->
+            <a href="/deck/<!--{$decks[0].id}-->" style="display:block;margin-bottom:5px;">
+                <img class="img-responsive hidden-xs" src="/images/banner/201605/to_dk_pc.png" alt="基礎単語をマスターしよう！ 高校出る順ターゲット 中学英単語 1800 LEVEL1">
+                <img class="img-responsive center-block visible-xs" src="/images/banner/201605/to_dk_sp.png" alt="">
+            </a>
+            <!--{/if}-->
+        </div>
+    </div>
+
+    <!--{if !empty($video_progress)}-->
+    <div class="bg-gray learning-videos">
+        <div class="container">
+            <div class="panel panel-pink-linear-gradient">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <div class="panel-image">
+                            <div class="hexagon-img">
+                                <img src="/images/panel/learning-videos.png" alt="">
+                            </div>
+                        </div>
+                        学習中の動画
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="video-boxes-wrapper">
+                        <!--{include file="partial/video_carousel_list.html"
+                        chapters=$video_progress
+                        subject_is_mixed=TRUE
+                        list_in_progress=TRUE
+                        subject_color=""
+                        subject_type=""
+                        subject_name=""
+                        videos_status = $videos_status
+                        }-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--{/if}-->
+    <div class="main-content bg-triangle">
+        <div class="container">
+
+            <div class="clearfix mb30">
+                <a href="/about" class="btn btn-sm btn-circle white-bg pull-right">
+                    <i class="el-icons el-angle-right"></i>
+                    ALパートとは?
+                </a>
+            </div>
+
+            <!--{if !empty($most_viewer_video)}-->
+                <div class="panel panel-blue-linear-gradient">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <div class="panel-image">
+                                <div class="hexagon-img">
+                                    <img src="/images/panel/popular-videos.png" alt="">
+                                </div>
+                            </div>
+                            おすすめの人気動画
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="video-boxes-wrapper">
+                            <!--{include file="partial/video_carousel_list.html" chapters=$most_viewer_video subject_is_mixed=TRUE subject_color="" subject_type="" subject_name=""}-->
+                        </div>
+                    </div>
+                </div>
+            <!--{/if}-->
+
+            <!--{foreach from=$textbooks item=item}-->
+                <!--{if isset($chapters[$item.textbook.id])}-->
+                    <div class="panel panel-<!--{$item.subject.color|escape}-->-linear-gradient">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <div class="panel-image">
+                                    <div class="hexagon-img">
+                                        <img src="/images/panel/<!--{$item.subject.type|escape|default:'math'}-->.png" alt="">
+                                    </div>
+                                </div>
+                                <!--{$item.subject.short_name|escape|default:''}-->
+                            </div>
+                            <div class="panel-action">
+                                <a href="/s/<!--{$item.subject.type|escape|default:'-'}-->/<!--{$item.textbook.id|escape|default:'--'}-->">
+                                    <button type="button" class="btn btn-sm btn-circle white-bg">
+                                        <i class="el-icons el-angle-right"></i>
+                                        もっと見る
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="video-boxes-wrapper">
+                                <!--{include file="partial/video_carousel_list.html" chapters=$chapters[$item.textbook.id] videos=$videos subject_name=$item.subject.short_name subject_color=$item.subject.color subject_type=$item.subject.type}-->
+                            </div>
+                        </div>
+                    </div>
+                <!--{/if}-->
+            <!--{/foreach}-->
+        </div>
+    </div>
+
+    <!--{if !empty($decks)}-->
+    <div class="drill-section bg-light-yellow">
+        <div class="container">
+            <h4 class="title-yellow-bg clearfix">
+                <span class="text">ドリルを購入する</span>
+                <a class="pull-right" href="/station/">
+                    <button type="button" class="btn btn-sm btn-circle white-bg">
+                        <i class="el-icons el-angle-right"></i>
+                        すべてのドリルを見る
+                    </button>
+                </a>
+            </h4>
+            <!--{include file="partial/deck_list.html" decks=$decks href='deck/'}-->
+        </div>
+    </div>
+    <!--{/if}-->
+
+    <div class="bg-triangle-blue search-items-by">
+        <div class="container">
+            <ul class="list-unstyled">
+                <li class="search-group by-subject">
+                    <i class="el-icons el-book"></i>
+                    <p class="h3">教科から探す</p>
+                    <div class="available-search">
+                        <!--{foreach from=$subject_list item=item}-->
+                        <a href="/s/<!--{$item.subject.type|escape}-->/<!--{$item.textbook.id|escape}-->">
+                            <span class="bg-subject bg-<!--{$item.subject.color|escape}-->"><!--{$item.subject.short_name|escape}--></span>
+                            <br>
+                            <i class="el-icons el-angle-down"></i>
+                        </a>
+                        <!--{/foreach}-->
+                    </div>
+                </li>
+                <li class="search-group by-grade">
+                    <i class="el-icons el-user3"></i>
+                    <p class="h3">学年から探す</p>
+                    <div class="available-search">
+                        <!--{foreach from=$grade_list item=item}-->
+                        <a href="/?grade_id=<!--{$item.id|escape|default:0}-->#content"><span><!--{$item.name|escape|default:'--'}--></span><br><i class="el-icons el-angle-down"></i></a>
+                        <!--{/foreach}-->
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<!--{content_for name="modal"}-->
+<!--{include file="partial/modal/campaign_201605.html"}-->
+<!--{/content_for}-->

@@ -1,0 +1,48 @@
+<div class="play-page play-match-page battle-page">
+    <div class="bg-shining-yellow">
+        <div class="bg-inner" id="drill-screen">
+
+            <div class="container">
+                <div class="content-frame-designed-corner with-ribbon-title">
+                    <div class="frame-inner">
+                        <div class="layer"></div>
+                        <div class="head"></div>
+                        <div class="middle">
+                            <p class="rt-score">チームバトル勝利！</p>
+                            <hr>
+                            <p class="frame-title">全員にラビポイントGet！　+1</p>
+                            <p class="frame-title">ラビポイント付与済み</p>
+                            <!--{if !empty($result)}-->
+                            <div class="list-team-battle">
+                                <span class="txt-vs">VS</span>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <p class="team-title text-left"><!--{$result.group_name|escape|default:''}--></p>
+                                        <p class="team-scort"><!--{$result.group_score|escape|default:''}--><span class="arow">点</span></p>
+                                    </li>
+                                    <li>
+                                        <p class="team-title text-left"><!--{$result.target_group_name|escape|default:''}--></p>
+                                        <p class="team-scort"><!--{$result.target_group_score|escape|default:''}--><span class="arow">点</span></p>
+                                    </li>
+                                </ul>
+                                <p class="battle-txt text-center"></p>
+                            </div>
+                            <div class="text-center">
+                                <a href="/play/team/battle" class="btn btn-yellow btn-lg">チームバトルトップへ</a>
+                            </div>
+                            <!--{/if}-->
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="text-center">
+                    <a href="/play/team/battle" class="btn btn-outline back-link">閉じる</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

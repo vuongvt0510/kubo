@@ -1,0 +1,227 @@
+.faq-page{
+  .mg-bottom-50{
+    margin-bottom: 50px;
+  }
+  .mg-50{
+    margin-top:50px;
+    margin-bottom:50px;
+  }
+  .list-qa{
+    margin-top:25px;
+    li{
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  }
+  .list-ol{
+    li{
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+  }
+  .bg-square{
+    line-height: 50px;
+    text-align: center;
+    .character{
+      font-size: 1.8em;
+    }
+  }
+  .bg-q{
+    @include object-size(50px, 50px, $c-primary);
+    color: $c-white;
+  }
+  .bg-a{
+    @include object-size(50px, 50px, $c-yellow);
+    color: $c-green-dark;
+  }
+  .list-children{
+    padding-left:25px;
+  }
+}
+// how to use pageframe
+.htu-frame{
+
+  background: $c-yellow-light url("../images/background/bg-shining.jpg") no-repeat left top;
+  .rabi-balloon-wrapper{
+    height: 415px;
+    @media (max-width: $screen-sm) {
+      height: 385px;
+    }
+    @media (max-width: 991px) {
+      height: 340px;
+    }
+    @media (min-width: 481px) and (max-width: 767px){
+      height: 272px;
+    }
+    .title{
+      font-size: 30px;
+      @media (max-width: 991px) {
+        font-size: 24px;
+      }
+      @media (max-width: $screen-xs-max) {
+        min-height: 52px;
+      }
+    }
+    .rabi-balloon{
+      .rabi{
+        left: 0px;
+        top: 133px;
+        width: 155px;
+        left: 50px;
+        @media (max-width: $screen-sm-max){
+          top: 115px;
+          width: 91px;
+        }
+        //@media (max-width: $screen-sm-max) {
+        //  width: 87px;
+        //  left: 5%;
+        //  top: 33%;
+        //}
+        @media (max-width: $screen-xs-max) {
+          width: 58px;
+          top: 34%;
+          left: 10px;
+        }
+
+
+      }
+      p{
+        @media (max-width: 991px){
+          line-height: 1.2;
+          font-size: 14px;
+        }
+      }
+      .balloon {
+        margin-top: 0px;
+        padding-top: 70px;
+        width: 713px;
+        ul {
+          margin-left: 17%;
+          margin-bottom: 15px;
+
+          @media (max-width: $screen-xs-max) {
+            margin-left: 60px;
+          }
+        }
+        @media (max-width: $screen-sm-max) {
+          background-color: rgba(255,255,255,0.8);
+          background-image: none;
+          height: 380px;
+        }
+        @media (max-width: 991px){
+          width: 608px;
+          margin-right: 0px;
+        }
+        @media (max-width: $screen-xs-max) {
+          width: inherit;
+          padding-top: 44px;
+          height: 80%;
+        }
+        @media (min-width: 481px) and (max-width: 767px){
+          width: inherit;
+          height: 268px;
+        }
+      }
+    }
+  }
+  .htu-items{
+    margin-top: 20px;
+    .htu-item{
+      margin-bottom: 10px;
+      img{
+        background-color: $c-gray;
+        width: 100%;
+        height: auto;
+        object-fit:cover;
+        margin: auto;
+        object-position: center;
+        @media (max-width: $screen-xs-max) {
+          width: 68%;
+        }
+      }
+    }
+  }
+  .line-height-72{
+    line-height: 72px;
+  }
+  .h2{
+    line-height: 1.5em;
+  }
+  .h4 {
+    line-height: 1.4em;
+  }
+}
+.rule-page{
+  .chapter{
+    font-size: 26px;
+    line-height: 1.6;
+    margin: 0 0 25px;
+  }
+  .sec{
+    margin-bottom: 60px;
+  }
+  .description{
+    line-height: 1.8;
+  }
+  .sec-title{
+    font-size: 24px;
+    line-height: 1.4;
+    margin: 0 0 20px;
+  }
+  .list-parent{
+    margin-top: 20px;
+    padding-left: 20px;
+    li{
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+  }
+  .list-children{
+    list-style-type: lower-alpha;
+    margin-top: 10px;
+    padding-left: 20px;
+
+    &.decimal {
+      list-style-type: decimal;
+    }
+
+    li {
+      line-height: 1.6;
+      margin-bottom: 5px;
+    }
+
+    .list-children{
+      margin-top: 5px;
+    }
+  }
+}
+.td-left{
+  width: 40%;
+  background-color: $c-gray;
+  color: $c-white;
+}
+.td-right{
+  width: 60%;
+  background-color: $c-white;
+}
+.ot7-page{
+  .td-left {
+    @extend .td-left;
+  }
+  .td-right {
+    @extend .td-right;
+  }
+}
+.attention-page{
+  .td-left {
+    @extend .td-left;
+  }
+  .td-right {
+    @extend .td-right;
+  }
+}
+.ot-frame{
+  padding: 0px;
+  position: relative;
+  margin-bottom: 100px;
+}

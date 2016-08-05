@@ -1,0 +1,676 @@
+<!--{content_for name="page_styles"}-->
+<link href="/assets/pages/css/profile.min.css" rel="stylesheet" type="text/css"/>
+
+<link href="/assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+<!--{/content_for}-->
+
+<!--{content_for name="page_plugins"}-->
+<script src="/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>
+<!--{/content_for}-->
+
+<!--{content_for name="page_scripts"}-->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#search").click(function() {
+            var postal_code = $("#postal_code").val();
+            $.ajax({
+                type:"POST",
+                url: "/school/search_by_postal_code",
+                data: { postal_code: postal_code },
+                dataType:"json",
+                success: function(res) {
+                    var html = '';
+
+                    if (res.postal_code) {
+                        // If !validate
+                        $("#postal_code_error").html(res.postal_code);
+                        $("#postal_code_error").show();
+
+                    } else {
+                        var result = res.result;
+                        $("#postal_code_error").hide();
+                        if (result.length > 0) {
+                            html += '<div class="scroller"  data-rail-visible="1">';
+                            html += '<div class="radio-list container">';
+
+                            $.each(result, function (key, item) {
+
+                                html += '<label class="radio-btn">';
+                                html += '<input type="radio" name="school_zipcode" value="' + item.id + '" />';
+                                html += '<div class="radio-text">';
+                                html += '<b>' + item.name + ' </b><div>' + item.address + '</div>';
+                                html += '</div>';
+                                html += '</label>';
+
+                            });
+                            html += '</div>';
+                            html += '</div>';
+                        }
+                        else {
+                            html = '<p class="text-danger text-center">学校名が見つかりませんでした。<br>郵便番号を確認してもう一度検索してください。</p>';
+                        }
+                    }
+                    // show data result in view
+                    $("#result").html(html);
+                }
+            });
+        });
+
+
+        $('#prefecture').on('change',function () {
+            var prefecture_id  = $(this).val();
+            if (prefecture_id == 0 ) {
+                //hide result
+                $("#result3").hide();
+                var html = "";
+                html += '<option value="0">選択してください';
+                html += "</option>";
+                $("#district").html(html);
+            }
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: "/school/get_list_area",
+                    data:{ "prefecture_id" : prefecture_id },
+                    dataType: 'json',
+                    success: function(data) {
+                        var html = '';
+
+                        $.each(data, function (key, item) {
+                            html += '<option value="' + item.id + '">';
+                            html += item.name;
+                            html += "</option>";
+                        });
+                        $("#district").html(html);
+                    }
+                })
+            }
+        });
+
+        $("#district").css('border', 'solid 1px #c2cad8');
+        $("#prefecture").css('border', 'solid 1px #c2cad8');
+        $("#error_prefecture").hide();
+        $("#search_name").click(function(){
+            var pres_id = $("#prefecture").val();
+            if (pres_id == 0) {
+                // change color when validate
+                $("#prefecture").css('border', 'solid 1px red');
+                $("#error_prefecture").show();
+            }
+            else {
+                $("#prefecture").css('border', 'solid 1px #c2cad8');
+                $("#error_prefecture").hide();
+                var area_id = $("#district").val();
+                var school_name = $("#school_name").val();
+                $.ajax({
+                    type:"POST",
+                    url: "/school/search_name_address",
+                    data:{ "pres_id" : pres_id, "area_id" : area_id, "school_name" : school_name },
+                    dataType:"json",
+                    success : function(data) {
+                        var html = "";
+                        if (data.length > 0) {
+                            html += '<div class="scroller"  data-rail-visible="1">';
+                            html += '<div class="radio-list container">';
+                            $.each(data,function(key, item) {
+
+                                html += '<label class="radio-btn">';
+                                html += '<input name="school_name" type="radio" value="'+item.id+'">';
+                                html += '<div class="radio-text">';
+                                html += '<b>' + item.name + ' </b><div>' + item.address + '</div>';
+                                html += '</div>';
+                                html += '</label>';
+                            });
+                            html += '</div>';
+                            html += '</div>';
+                        }
+                        else  {
+                            html = '<p class="text-danger text-center">学校名が見つかりませんでした。<br>都道府県・市町村が正しいか確認してもう一度検索してください。</p>';
+                        }
+                        $("#result3").html(html);
+                        $("#result3").show();
+                    }
+                });
+            }
+        });
+
+        // clear data when close modal
+        $('#search_zip_code_modal').on('hidden', function () {
+            document.location.reload();
+        });
+        $('#search_school_name_modal').on('hidden', function () {
+            document.location.reload();
+        });
+
+        $("#delele_modal").click(function(){
+            $('#delete-modal').modal({
+                show: false,
+                backdrop: 'static'
+            });
+        });
+
+        $(".delele_group_modal").click(function(){
+            // show loading
+            $('.loading-send').show();
+            // Ajax
+            $.ajax({
+                type: 'POST',
+                url: '/user_group/user_group_remove',
+                data: {
+                    'user_id' : $(this).attr('data-user-id'),
+                    'group_id': $(this).attr('data-group-id')
+                },
+                success: _.bind(function(res) {
+                    $('#delete_group_id').html(res.result.user.id);
+                    $('#delete_group_login_id').html(res.result.user.login_id);
+                    $('#delete_group_nickname').html(res.result.user.nickname ? res.result.user.nickname : 'ニックネームなし');
+                    $('#delete_group_email').html(res.result.user.email);
+                    $('#delete_group_primary_type').html(res.result.user.primary_type == 'parent' ? '保護者' : '子' );
+
+                    $('#list_members').html('');
+
+                    // Group detail
+                    var html = '';
+
+                    var text1 = res.result.group_type == 'family' ? '家族グループID' : '友達グループID';
+                    var text2 = res.result.group_type == 'family' ? '家族一覧' : 'メンバー';
+
+                    html += '<tr>';
+                    html += '<th class="active">'+text1+'</th>';
+                    html += '<td>' + res.result.group_id + ' ( ' + res.result.group_name + ' )' + '</td>';
+                    html += '</tr>';
+                    html += '<tr >';
+                    html += '<th rowspan="'+res.result.members.length + 1+'" class="active">'+text2+'</th>';
+                    html += '</tr>';
+
+                    $(res.result.members).each(function (key, entry) {
+                        var nickname = entry.nickname ? entry.nickname : 'ニックネームなし';
+                        html += '<tr>';
+                        html += '<td>ID ';
+                        html += entry.id + ': ';
+                        html += entry.login_id + '[' + nickname + '] ';
+                        entry.primary_type = entry.primary_type == 'parent' ? '保護者' : '子';
+                        html += '<span class="label label-sm label-primary">' + entry.primary_type + '</span>';
+                        if ((entry.status != 'active') && (entry.status != 'suspended')){
+                            html += '<span class="ml5 label label-sm label-warning">未承認</span>';
+                        }
+                        html += '</td></tr>'
+                    });
+
+                    html += '<input type="hidden" name="user_id" value="'+res.result.user.id+'" >';
+                    html += '<input type="hidden" name="group_id" value="'+res.result.group_id+'" >';
+
+                    $('#list_members').html(html);
+                    $('.loading-send').hide();
+                }, this)
+            });
+
+            $('#delete-group-modal').modal({
+                show: true,
+                backdrop: 'static'
+            });
+        });
+
+        $("#search_zip_code_modal").click(function(){
+            $('#search-zipcode-modal').modal({
+                show: true,
+                backdrop: 'static'
+            });
+        });
+
+        $("#search_school_name_modal").click(function(){
+            $('#search-school-name-modal').modal({
+                show: true,
+                backdrop: 'static'
+            });
+        });
+
+        // clear data when close modal
+        $("#update_school_grade_name").click(function(){
+            var school_id = $('input[name=school_name]:checked').val();
+
+            var grade_id = $('#grade_name').val();
+
+            if (!school_id) {
+                school_id = $('#school_id_name').val();
+            }
+
+            $.ajax({
+                type:"POST",
+                url: "/school/update",
+                data:{ "grade_id" : grade_id, "school_id" : school_id, 'user_id' : <!--{$user_detail.id|escape|default:''}-->},
+                dataType:"json",
+                success : function(data) {
+                    if (data == false) {
+                        $("#err_msg_name").show();
+                    } else {
+                        document.location.reload();
+                    }
+                }
+            });
+        });
+
+        $("#update_school_grade_zipcode").click(function(){
+            var school_id = $('input[name=school_zipcode]:checked').val();
+
+            var grade_id = $('#grade_zipcode').val();
+
+            if (!school_id) {
+                school_id = $('#school_id_zipcode').val();
+            }
+
+            $.ajax({
+                type:"POST",
+                url: "/school/update",
+                data:{ "grade_id" : grade_id, "school_id" : school_id, 'user_id' : <!--{$user_detail.id|escape|default:''}-->},
+                dataType:"json",
+                success : function(data) {
+                    if (data == false) {
+                        $("#err_msg_zipcode").show();
+                    } else {
+                        document.location.reload();
+                    }
+                }
+            });
+        });
+        $(document).on("keypress", "form", function(event) {
+            return event.keyCode != 13;
+        });
+    })
+
+</script>
+<!--{/content_for}-->
+
+<!-- BEGIN PAGE TITLE-->
+<h3 class="page-title"> <i class="icon-user"></i> ユーザーの詳細 </h3>
+<!-- END PAGE TITLE-->
+<div class="btn-group btn-group-devided margin-bottom-20">
+    <button type="button" onclick="history.back();" class="btn btn-lg yellow-lemon btn-icon-lg"><i class="fa fa-arrow-circle-o-left"></i> 戻る</button>
+</div>
+<!-- END PAGE HEADER-->
+<div class="row">
+    <div class="col-md-12">
+        <!-- PORTLET MAIN -->
+        <div class="portlet light profile-sidebar-portlet bordered" style="padding-bottom: 30px!important;">
+            <div class="container-fluid">
+                <!-- SIDEBAR USERPIC -->
+                <div class="profile-userpic">
+                    <div class="thumb">
+                        <img src="/images/avatar/<!--{if $user_detail.avatar_id == 0}--><!--{if $user_detail.primary_type == 'parent'}-->12<!--{else}-->2<!--{/if}--><!--{else}--><!--{$user_detail.avatar_id}--><!--{/if}-->.png" class="img-responsive avatar" alt="avatar" width="100" height="100">
+                    </div>
+                </div>
+                <!-- END SIDEBAR USERPIC -->
+                <!-- SIDEBAR USER TITLE -->
+                <div class="profile-userinfo mt10">
+                    <div class="profile-usertitle-name"><!--{$user_detail.nickname|escape|default:'ニックネームなし'}--> <span class="label label-primary"><!--{if $user_detail.primary_type == 'parent'}-->保護者<!--{else}-->子<!--{/if}--></span></div>
+                    <div class="profile-desc-text">
+                        <!--{$user_detail.login_id|escape|default:''}--> (ID: <!--{$user_detail.id|escape|default:''}-->)
+                    </div>
+                    <!-- SIDEBAR BUTTONS -->
+                    <!--{if $user_detail.status == 'active'}-->
+                        <!--{if $current_user->has_permission('USER_UPDATE')}-->
+                    <div class="profile-userbuttons">
+                        <a href="/user/edit/<!--{$user_detail.id|escape|default:''}-->" class="btn blue btn-lg">編集</a>
+                        <a href="#delete-modal" id="delele_modal" data-toggle="modal"  class="btn red btn-lg">退会</a>
+                    </div>
+                        <!--{/if}-->
+                    <!--{elseif $user_detail.status == 'suspended'}-->
+                    <div class="profile-usertitle-name font-red mt10">このユーザーは退会済みです</div>
+                    <!--{else}-->
+                    <div class="profile-usertitle-name font-red mt10">このユーザーは未承認です</div>
+                    <!--{/if}-->
+                    <!-- END SIDEBAR BUTTONS -->
+                </div>
+                <!-- END SIDEBAR USER TITLE -->
+
+            </div>
+
+
+        </div>
+        <!-- END PORTLET MAIN -->
+        <!-- BEGIN PROFILE CONTENT -->
+        <div class="profile-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN PORTLET -->
+                    <div class="portlet light bordered">
+                        <!--{if $user_detail.primary_type != 'parent'}-->
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <i class="icon-graduation"></i>
+                                <span class="caption-subject bold uppercase">学校情報</span>
+                            </div>
+                        </div>
+                        <!--{/if}-->
+                        <div class="portlet-body">
+                            <div class="table-scrollable table-scrollable-borderless">
+                                <table class="table table-light">
+                                    <tbody>
+                                    <!--{if $user_detail.primary_type == 'student'}-->
+                                    <tr>
+                                        <td width="20%">
+                                            <b>学年</b>
+                                        </td>
+                                        <td colspan="2"><!--{$user_detail.current_grade.name|escape|default:''}--></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>スクールTV Plus月額会員</b>
+                                        </td>
+                                        <td><!--{if $contract == 'under_contract'}-->
+                                            契約中
+                                            <!--{elseif $contract == 'pending'}-->
+                                            更新停止
+                                            <!--{elseif $contract == 'canceling'}-->
+                                            解約
+                                            <!--{elseif $contract == 'not_contract'}-->
+                                            解約済み
+                                            <!--{else}-->
+                                            未契約
+                                            <!--{/if}-->
+                                        </td>
+                                        <td class="text-right"><a href="/contract/history/<!--{$user_detail.id|escape|default:''}-->" class="btn green"><i class="icon-credit-card"></i> 決済履歴</a></td>
+                                    </tr>
+                                    <!--{/if}-->
+                                    <tr>
+                                        <td width="20%">
+                                            <b>メールアドレス</b>
+                                        </td>
+                                        <td colspan="2"><!--{$user_detail.email|escape|default:''}--></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>性別</b>
+                                        </td>
+                                        <td colspan="2"> <!--{if $user_detail.gender == 'male'}-->男<!--{else}-->女<!--{/if}--></td>
+                                    </tr>
+                                    <!--{if $user_detail.primary_type == 'student'}-->
+                                    <tr>
+                                        <td>
+                                            <b>所属学校</b>
+                                        </td>
+
+                                        <!--{if !empty($user_detail.current_school) }--> <td style="padding-right:0"><!--{$user_detail.current_school.name|escape|default:''}--></br> (<!--{$user_detail.current_school.address|escape|default:''}-->)</td>
+                                        <!--{/if}-->
+                                        <td <!--{if empty($user_detail.current_school) }-->colspan="2" <!--{else}-->class="text-right"<!--{/if}-->>
+
+                                        <!--{if $current_user->has_permission('USER_UPDATE') && $user_detail.status == 'active'}-->
+                                        <button type="button" id="search_zip_code_modal" class="btn btn-lg blue mt15"><i class="icon-magnifier"></i> 郵便番号から検索</button>
+                                        <button type="button" id="search_school_name_modal" class="btn btn-lg blue mt15 ml0"><i class="icon-magnifier"></i> 都道府県学校名から検索</button>
+                                        </td>
+                                        <!--{/if}-->
+                                    </tr>
+                                    <!--{/if}-->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END PORTLET -->
+                </div>
+                <div class="col-md-12">
+                    <!-- BEGIN PORTLET -->
+                    <div class="portlet light bordered">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <i class="icon-note"></i>
+                                <span class="caption-subject bold uppercase">登録</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="table-scrollable table-scrollable-borderless">
+                                <table class="table table-light">
+                                    <tbody>
+                                    <tr>
+                                        <td width="20%">
+                                            <b>フォルスクラブ紹介コード</b>
+                                        </td>
+                                        <td> <!--{$promotion_code|escape|default:'-'}--></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%">
+                                            <b>キャンペーンコード</b>
+                                        </td>
+                                        <td> <!--{$campaign_code|escape|default:'-'}--></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>登録日時</b>
+                                        </td>
+                                        <td><!--{if $user_detail.created_at != ''}--><!--{date('Y/m/d H:i', strtotime($user_detail.created_at))}--><!--{/if}--></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>紹介者ユーザーID</b>
+                                        </td>
+                                        <td> <!--{$inviter.id|escape|default:'-'}--></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>紹介者ログインID</b>
+                                        </td>
+                                        <td> <!--{$inviter.login_id|escape|default:'-'}--></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END PORTLET -->
+                    <!--{if $user_detail.primary_type == 'student'}-->
+                    <!-- POINT -->
+                    <div class="portlet light bordered">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <i class="icon-wallet"></i>
+                                <span class="caption-subject bold uppercase">コイン・ラビポイント</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="table-scrollable table-scrollable-borderless">
+                                <table class="table table-light">
+                                    <tbody>
+                                    <tr>
+                                        <td width="20%">
+                                            <b>保持コイン数</b>
+                                        </td>
+                                        <td colspan="2"> <!--{$user_detail.current_coin|escape|number_format|default:'0'}--></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>保持ラビポイント数</b>
+                                        </td>
+                                        <td> <!--{$current_point|escape|number_format|default:''}--></td>
+                                        <td class="text-right"><a href="/rabipoint/<!--{$user_detail.id|default:''}-->" class="btn green"><i class="icon-badge"></i>  ラビポイント獲得履歴</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>獲得ラビポイント累計</b>
+                                        </td>
+                                        <td> <!--{$total_point|escape|number_format|default:''}--></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END POINT -->
+                    <!--{/if}-->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN PORTLET -->
+                    <div class="portlet light bordered">
+                        <div class="portlet-title tabbable-line">
+                            <div class="caption caption-md">
+                                <i class="icon-users"></i>
+                                <span class="caption-subject bold uppercase">グループ</span>
+                            </div>
+                            <div style="float: right;" class="caption caption-md">
+                                <!--{if $current_user->has_permission('USER_UPDATE_GROUP') && $user_detail.status == 'active'}-->
+                                <a href="/group/create/<!--{$user_detail.id|escape|default:''}-->" class="btn blue btn-lg">
+                                    <i class="fa fa-plus"></i>
+                                    新しいグループの作成
+                                </a>
+                                <!--{/if}-->
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <!--BEGIN TABS-->
+                            <!--{if ($family != null)}-->
+                            <!--{foreach from=$family key=key item=item}-->
+                            <div class="portlet light bordered">
+                                <div class="table-scrollable table-scrollable-borderless">
+                                    <table class="table table-light">
+                                        <tbody>
+                                        <tr>
+                                            <td width="15%">
+                                                <b>家族グループID</b>
+                                            </td>
+                                            <td><div class="pull-left"><!--{$item.id|escape|default:''}--> | <span class="team-name font-blue-chambray"> <!--{$item.name|escape|default:''}--></span></div> <div class="pull-right">
+                                                <!--{if $current_user->has_permission('USER_UPDATE_GROUP')}-->
+                                                <a href="/user_group/group_detail/<!--{$item.id|escape|default:''}-->" class="btn green"><i class="icon-user-follow"></i>  グループに追加</a>
+                                                <!--{/if}-->
+                                            </div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <b>メンバー</b>
+                                            </td>
+                                            <td>
+                                                <ul class="general-item-list list-unstyled">
+                                                    <!--{if !empty($item.owner)}-->
+                                                    <li class="item">
+                                                        <div class="item-head">
+                                                            <div class="item-details">
+                                                                <img class="item-pic fit-cover" src="/images/avatar/<!--{if $item.owner.avatar_id == 0}--><!--{if $item.owner.primary_type == 'parent'}-->12<!--{else}-->2<!--{/if}--><!--{else}--><!--{$item.owner.avatar_id}--><!--{/if}-->.png" avatar">
+                                                                <a href="/user/detail/<!--{$item.owner.user_id|escape|default:''}-->" class="item-name primary-link">ID <!--{$item.owner.user_id|escape|default:''}--> : <!--{$item.owner.login_id|escape|default:''}-->  |
+                                                                    <!--{$item.owner.nickname|escape|default:'ニックネームなし'}-->
+                                                                </a>
+                                                                <span class="label label-sm label-primary"> <!--{if $item.owner.primary_type == 'parent'}-->保護者<!--{else}-->子<!--{/if}--> </span>
+                                                                <!--{if (($item.owner.status != 'active') && ($item.owner.status != 'suspended'))}--> <span class="ml5 label label-sm label-warning">未承認</span><!--{/if}-->
+                                                            </div>
+                                                            <span class="item-status" style="margin-top: -7px;">
+                                                                <!--{if $current_user->has_permission('USER_UPDATE')}-->
+                                                                <button type="button" data-group-id="<!--{$item.id|escape|default:''}-->" data-user-id="<!--{$item.owner.user_id|escape|default:''}-->" class="btn red pull-right delele_group_modal"><i class="icon-user-unfollow"></i>  グループから外す</button>
+                                                                <!--{/if}-->
+                                                            </span>
+                                                        </div>
+                                                    </li>
+                                                    <!--{/if}-->
+                                                    <!--{foreach from=$item.members key=k item=member}-->
+                                                    <li class="item">
+                                                        <div class="item-head">
+                                                            <div class="item-details">
+                                                                <img class="item-pic fit-cover" src="/images/avatar/<!--{if $member.avatar_id == 0}--><!--{if $member.primary_type == 'parent'}-->12<!--{else}-->2<!--{/if}--><!--{else}--><!--{$member.avatar_id}--><!--{/if}-->.png" avatar">
+                                                                <a href="/user/detail/<!--{$member.user_id|default:''}-->" class="item-name primary-link">ID <!--{$member.user_id|escape|default:''}--> : <!--{$member.login_id|escape|default:''}--> |
+                                                                    <!--{$member.nickname|escape|default:'ニックネームなし'}-->
+                                                                </a>
+                                                                <span class="label label-sm label-primary"> <!--{if $member.primary_type == 'parent'}-->保護者<!--{else}-->子<!--{/if}--> </span>
+                                                                <!--{if (($member.status != 'active') && ($member.status != 'suspended'))}--> <span class="ml5 label label-sm label-warning">未承認</span><!--{/if}-->
+                                                            </div>
+                                                            <span class="item-status" style="margin-top: -7px;">
+                                                                <!--{if $current_user->has_permission('USER_UPDATE_GROUP')}-->
+                                                                <button type="button" data-group-id="<!--{$item.id|escape|default:''}-->" data-user-id="<!--{$member.user_id|escape|default:''}-->" class="btn red pull-right delele_group_modal"><i class="icon-user-unfollow"></i> グループから外す</button>
+                                                                <!--{/if}-->
+                                                            </span>
+                                                        </div>
+                                                    </li>
+                                                    <!--{/foreach}-->
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!--{/foreach}-->
+                            <!--{foreach from=$friend key=key item=item}-->
+                            <div class="portlet light bordered">
+                                <div class="table-scrollable table-scrollable-borderless">
+                                    <table class="table table-light">
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <b>友達グループID</b>
+                                            </td>
+                                            <td><div class="pull-left"><!--{$item.id|escape|default:''}--> | <span class="team-name font-blue-chambray"> <!--{$item.name|escape|default:''}--> </span></div> <div class="pull-right">
+                                                <!--{if $current_user->has_permission('USER_UPDATE_GROUP')}-->
+                                                <a href="/user_group/group_detail/<!--{$item.id|escape|default:''}-->" class="btn green"><i class="icon-user-follow"></i> グループに追加</a>
+                                                <!--{/if}-->
+                                            </div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <b>メンバー</b>
+                                            </td>
+                                            <td>
+                                                <ul class="general-item-list list-unstyled">
+                                                    <!--{if !empty($item.owner)}-->
+                                                    <li class="item">
+                                                        <div class="item-head">
+                                                            <div class="item-details">
+                                                                <img class="item-pic fit-cover" src="/images/avatar/<!--{if $item.owner.avatar_id == 0}--><!--{if $item.owner.primary_type == 'parent'}-->12<!--{else}-->2<!--{/if}--><!--{else}--><!--{$item.owner.avatar_id}--><!--{/if}-->.png">
+                                                                <a href="/user/detail/<!--{$item.owner.user_id|escape|default:''}-->" class="item-name primary-link">ID <!--{$item.owner.user_id|escape|default:''}--> : <!--{$item.owner.login_id|escape|default:''}-->  |
+                                                                    <!--{$item.owner.nickname|escape|default:'ニックネームなし'}-->
+                                                                </a>
+                                                                <span class="label label-sm label-primary"> <!--{if $item.owner.primary_type == 'parent'}-->保護者<!--{else}-->子<!--{/if}--> </span>
+                                                                <!--{if (($item.owner.status != 'active') && ($item.owner.status != 'suspended'))}--> <span class="ml5 label label-sm label-warning">未承認</span><!--{/if}-->
+                                                            </div>
+                                                            <span class="item-status" style="margin-top: -7px;">
+                                                                <!--{if $current_user->has_permission('USER_UPDATE_GROUP')}-->
+                                                                <button type="button" data-group-id="<!--{$item.id|escape|default:''}-->" data-user-id="<!--{$item.owner.user_id|escape|default:''}-->" class="btn red pull-right delele_group_modal"><i class="icon-user-unfollow"></i> グループから外す</button>
+                                                                <!--{/if}-->
+                                                            </span>
+                                                        </div>
+                                                    </li>
+                                                    <!--{/if}-->
+                                                    <!--{foreach from=$item.members key=k item=member}-->
+                                                    <li class="item">
+                                                        <div class="item-head">
+                                                            <div class="item-details">
+                                                                <img class="item-pic fit-cover" src="/images/avatar/<!--{if $member.avatar_id == 0}--><!--{if $member.primary_type == 'parent'}-->12<!--{else}-->2<!--{/if}--><!--{else}--><!--{$member.avatar_id}--><!--{/if}-->.png">
+                                                                <a href="/user/detail/<!--{$member.user_id|escape|default:''}-->" class="item-name primary-link">ID <!--{$member.user_id|escape|default:''}--> : <!--{$member.login_id|escape|default:''}--> |
+                                                                    <!--{$member.nickname|escape|default:'ニックネームなし'}-->
+                                                                </a>
+                                                                <span class="label label-sm label-primary"> <!--{if $member.primary_type == 'parent'}-->保護者<!--{else}-->子<!--{/if}--> </span>
+                                                                <!--{if (($member.status != 'active') && ($member.status != 'suspended'))}--> <span class="ml5 label label-sm label-warning">未承認</span><!--{/if}-->
+                                                            </div>
+                                                            <span class="item-status" style="margin-top: -7px;">
+                                                                <!--{if $current_user->has_permission('USER_UPDATE_GROUP')}-->
+                                                                <button type="button" data-group-id="<!--{$item.id|escape|default:''}-->" data-user-id="<!--{$member.user_id|escape|default:''}-->" class="btn red pull-right delele_group_modal"><i class="icon-user-unfollow"></i> グループから外す</button>
+                                                                <!--{/if}-->
+                                                            </span>
+                                                        </div>
+                                                    </li>
+
+                                                    <!--{/foreach}-->
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!--{/foreach}-->
+                            <!--{else}-->
+                            <div class="table-empty">グループに参加していません</div>
+                            <!--{/if}-->
+                            <!--END TABS-->
+                        </div>
+                    </div>
+                    <!-- END PORTLET -->
+                </div>
+            </div>
+        </div>
+        <!-- END PROFILE CONTENT -->
+    </div>
+</div>
+
+<!--{include file='partial/modal/search_school_name.html'}-->
+<!--{include file='partial/modal/delete.html'}-->
+<!--{include file='partial/modal/delete_group_confirm.html'}-->
+<!--{include file='partial/modal/search_school_zipcode.html'}-->

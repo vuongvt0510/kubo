@@ -1,0 +1,49 @@
+<div class="bg-triangle">
+    <div class="container">
+        <div class="page-title">
+            <p class="h1">教科書設定</p>
+            <p class="caption">
+                教科書を設定するとあなたの学校の教科書に合った
+                <br>
+                動画を⾒ることができるようになります。
+            </p>
+        </div>
+        <div class="main-content">
+            <div class="content-frame">
+                <p class="h3 text-center mb30">学校で使⽤している教科書を確認してください</p>
+                <div class="settings-list">
+                    <ul class="list-unstyled">
+                        <!--{foreach from=$textbooks item=item}-->
+                        <li>
+                            <div class="name">
+                                <a class="btn btn-<!--{$item.subject.color|escape|default:'orange'}-->">
+                                    <!--{$item.subject.name|escape|default:''}-->
+                                </a>
+                            </div>
+                            <div class="description">
+                                <span class="bold">
+                                    <!--{$item.textbook.name|escape|default:''}-->
+                                </span>
+                                <br>
+                                <!--{$item.publisher.name|escape|default:''}-->
+                            </div>
+                            <div class="link">
+                                <a href="/textbook/search/<!--{$item.textbook.name|escape|default:''}-->/keyword?textbook_id=<!--{$textbook.textbook.id|escape|default:''}-->" class="btn btn-green btn-right-arrow">教科書を変更</a>
+                            </div>
+                        </li>
+                        <!--{/foreach}-->
+                    </ul>
+                </div>
+                <div class="divider dashed"></div>
+                <div class="row mt30">
+                    <div class="col-md-6">
+                        <a href="/textbook/complete?button=off" class="btn btn-gray btn-block">あとで設定</a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="/textbook/complete" class="btn btn-green btn-block">OK</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

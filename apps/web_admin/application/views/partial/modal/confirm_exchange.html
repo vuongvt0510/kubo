@@ -1,0 +1,30 @@
+<div class="modal fade" id="confirmExchangeModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <div class="modal-title">
+                    ステータス更新
+                </div>
+            </div>
+            <div class="modal-body point_exchange_body text-center">
+                <p class="h3 modal-text">全 <span class="number_select"></span> 件<br>
+                変更するステータスを選んでください
+                </p>
+                <p class="show-error text-danger"></p>
+            </div>
+            <div class="modal-footer modal-footer-btngroup">
+                <div class="text-center">
+                    <button id="cancelConfirm" class="btn btn-lg grey-salsa">キャンセル</button>
+                    <!--{if $current_user->has_permission('POINT_EXCHANGE_REJECT')}-->
+                    <button id="rejectConfirm" class="btn btn-lg red">非承認</button>
+                    <!--{/if}-->
+                    <!--{if $current_user->has_permission('POINT_EXCHANGE_ACCEPT')}-->
+                    <button id="rightConfirm" class="btn btn-lg green">承認</button>
+                    <!--{/if}-->
+                    <span class="loading-icon loading-send"></span></div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

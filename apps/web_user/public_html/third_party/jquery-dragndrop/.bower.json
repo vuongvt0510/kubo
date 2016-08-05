@@ -1,0 +1,14 @@
+{
+  "name": "jquery-dragndrop",
+  "homepage": "https://github.com/Mr21/jquery-dragndrop",
+  "_release": "3bf1e0f55d",
+  "_resolution": {
+    "type": "branch",
+    "branch": "gh-pages",
+    "commit": "3bf1e0f55d925299da725cba74a50ccdcfd6a7f8"
+  },
+  "_source": "git://github.com/Mr21/jquery-dragndrop.git",
+  "_target": "gh-pages",
+  "_originalSource": "Mr21/jquery-dragndrop",
+  "_direct": true
+}

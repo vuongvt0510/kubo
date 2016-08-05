@@ -1,0 +1,46 @@
+<!--{if !empty($chapters)}-->
+<div class="video-boxes-with-more-details">
+    <ul class="list-unstyled video-boxes">
+        <!--{foreach from=$chapters item=chapter}-->
+        <!--{if !empty($videos[$chapter.deck_id].brightcove_id)}--><!--{* hide the videos which hasn't been connected to brightcove yet *}-->
+        <li>
+            <div class="thumbnail-wrapper">
+                <a class="<!--{if empty($current_user)}-->x-limit-playing-video<!--{/if}-->" href="/v/<!--{$chapter.id|escape|default:'-'}-->">
+                    <img src="<!--{$videos[$chapter.deck_id].thumbnail_url|escape|default:'/images/video-no-image.png'}-->" alt="" class="thumbnail img-responsive">
+                </a>
+            </div>
+            <div class="details-wrapper">
+                <div class="status">
+                    <!--{if !empty($done) && in_array($videos[$chapter.deck_id].id, $done)}-->
+                        <span class="label-status done">
+                            <i class="el-icons el-reload"></i> 視聴済み
+                        </span>
+                    <!--{elseif !empty($in_progress) && in_array($videos[$chapter.deck_id].id, $in_progress)}-->
+                        <span class="label-status in-progress"><!--{* TODO unify to el-icon if possible *}-->
+                            <img src="/images/icons/listening.png" alt=""> 視聴中
+                        </span>
+                    <!--{else}-->
+                        <span class="label-status">
+                            <i class="el-icons el-headphones"></i> 未視聴
+                        </span>
+                    <!--{/if}-->
+                </div>
+
+                <!--{if !empty($textbook)}-->
+                <p class="subject"><!--{$textbook.subject.name|escape|default:'--'}--></p>
+                <!--{/if}-->
+
+                <p class="unit-and-chapter"><!--{$chapter.chapter_name|escape|default:'-'}--></p>
+                <h3 class="title"><!--{$chapter.name|escape|strip|default:'-'}--></h3>
+                <ul class="list-unstyled points-list">
+                    <li>
+                        <!--{$chapter.description|escape|nl2br|default:'-'}-->
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <!--{/if}-->
+        <!--{/foreach}-->
+    </ul>
+</div>
+<!--{/if}-->

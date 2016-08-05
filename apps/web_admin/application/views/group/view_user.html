@@ -1,0 +1,736 @@
+<!--{content_for name="page_styles"}-->
+<link href="/assets/pages/css/profile.min.css" rel="stylesheet" type="text/css"/>
+<link href="/assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css"/>
+<link href="/assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+<!--{/content_for}-->
+
+<!--{content_for name="page_plugins"}-->
+<script src="/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>
+<!--{/content_for}-->
+
+<!--{content_for name="page_scripts"}-->
+
+<!--{/content_for}-->
+
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="index.html">トップ</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href="index.html">ユーザー検索</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <span>ユーザー詳細</span>
+        </li>
+    </ul>
+</div>
+<!-- END PAGE BAR -->
+<!-- BEGIN PAGE TITLE-->
+<h3 class="page-title"><i class="icon-user"></i> ユーザー詳細</h3>
+<!-- END PAGE TITLE-->
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN PROFILE SIDEBAR -->
+        <div class="profile-sidebar">
+            <!-- PORTLET MAIN -->
+            <div class="portlet light profile-sidebar-portlet" style="padding-bottom: 30px!important;">
+                <!-- SIDEBAR USERPIC -->
+                <div class="profile-userpic">
+                    <img src="/assets/layouts/layout/img/avatar3.jpg" class="img-responsive" alt="avatar" width="100" height="100"></div>
+                <!-- END SIDEBAR USERPIC -->
+                <!-- SIDEBAR USER TITLE -->
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name"> MarcusDoe</div>
+                    <div class="profile-usertitle-job"> ヤマトタケルノミコト</div>
+                </div>
+                <!-- END SIDEBAR USER TITLE -->
+                <!-- SIDEBAR BUTTONS -->
+                <div class="profile-userbuttons">
+                    <a href="" class="btn blue btn-sm">編集</a>
+                    <a href="javascript:;" class="btn yellow-lemon btn-sm">退会</a>
+                    <a href="javascript:;" class="btn red btn-sm" data-toggle="modal" data-target="#delete-modal">退会処理</a>
+                </div>
+                <!-- END SIDEBAR BUTTONS -->
+            </div>
+            <!-- END PORTLET MAIN -->
+
+            <!-- PORTLET MAIN -->
+            <div class="portlet light ">
+                <div>
+                    <h4 class="profile-desc-title">基本情報</h4>
+                    <div class="margin-top-20 profile-desc-link">
+                        <i class="fa fa-envelope"></i>
+                        satoshi@mail.com
+                    </div>
+                    <div class="margin-top-20 profile-desc-link">
+                        <i class="fa fa-home"></i>
+                        &#12306; 1600022
+                    </div>
+                    <div class="profile-desc-link">
+
+                        東京都新宿区新宿2-3-15 大橋御苑ビル9階
+                    </div>
+                    <div class="margin-top-20 profile-desc-link">
+                        <i class="fa fa-phone"></i>
+                        0353577020
+                    </div>
+                </div>
+            </div>
+            <!-- END PORTLET MAIN -->
+        </div>
+        <!-- END BEGIN PROFILE SIDEBAR -->
+        <!-- BEGIN PROFILE CONTENT -->
+        <div class="profile-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- BEGIN PORTLET -->
+                    <div class="portlet light ">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <i class="icon-graduation"></i>
+                                <span class="caption-subject bold uppercase">学校情報</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="table-scrollable table-scrollable-borderless">
+                                <table class="table table-hover table-light">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <b>学年</b>
+                                        </td>
+                                        <td> 中学校1年</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>生年月日</b>
+                                        </td>
+                                        <td> 2015/11/11</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>性別</b>
+                                        </td>
+                                        <td> 男</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>所属学校</b>
+                                        </td>
+                                        <td>
+                                            新宿区立新宿中学校
+                                            <br>
+                                            （東京都新宿区新宿6-15-22）
+                                            <br><br>
+                                            <a href="#search-zipcode-modal" data-toggle="modal" class="btn btn-sm blue">郵便番号から検索</a>
+                                            <br><br>
+                                            <a href="#search-schoolname-modal" data-toggle="modal" class="btn btn-sm yellow-lemon">都道府県学校名から検索</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END PORTLET -->
+                </div>
+                <div class="col-md-6">
+                    <!-- BEGIN PORTLET -->
+                    <div class="portlet light ">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <i class="icon-note"></i>
+                                <span class="caption-subject bold uppercase">登録</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="table-scrollable table-scrollable-borderless">
+                                <table class="table table-hover table-light">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <b>キャンペーンコード</b>
+                                        </td>
+                                        <td> 123823jdjsfdi2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>フォルスクラブ紹介コード</b>
+                                        </td>
+                                        <td> asppkasdd</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>登録状況</b>
+                                        </td>
+                                        <td> 登録中</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>登録日時</b>
+                                        </td>
+                                        <td> 2012/02/12 11:00</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END PORTLET -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN PORTLET -->
+                    <div class="portlet light ">
+                        <div class="portlet-title tabbable-line">
+                            <div class="caption caption-md">
+                                <i class="icon-users"></i>
+                                <span class="caption-subject bold uppercase">グループ</span>
+                            </div>
+                            <div class="actions">
+
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <!--BEGIN TABS-->
+                            <div class="portlet light bordered">
+                                <div class="table-scrollable table-scrollable-borderless">
+                                    <table class="table table-hover table-light">
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <b>家族グループID</b>
+                                            </td>
+                                            <td> <span class="font-blue-madison bold pull-right" style="">ID:100923</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <b>メンバー</b>
+                                            </td>
+                                            <td>
+                                                <ul class="general-item-list list-unstyled">
+                                                    <li class="item">
+                                                        <div class="item-head">
+                                                            <div class="item-details">
+                                                                <img class="item-pic fit-cover"
+                                                                     src="/assets/layouts/layout/img/avatar1.jpg">
+                                                                <a href="" class="item-name primary-link">NickLarson |
+                                                                    <small>さとる</small>
+                                                                </a>
+                                                                <span class="item-label">satoru@mail.com</span>
+                                                            </div>
+                                                            <span class="item-status" style="margin-top: -7px;">
+                                                                <a href="/user/detail" data-toggle="modal" class="btn btn-icon-only btn-outline green">
+                                                                    <i class="fa fa-eye"></i>
+                                                                </a>
+                                                            </span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="item">
+                                                        <div class="item-head">
+                                                            <div class="item-details">
+                                                                <img class="item-pic fit-cover"
+                                                                     src="/assets/layouts/layout/img/avatar1.jpg">
+                                                                <a href="" class="item-name primary-link">NickLarson |
+                                                                    <small>さとる</small>
+                                                                </a>
+                                                                <span class="item-label">satoru@mail.com</span>
+                                                            </div>
+                                                            <span class="item-status" style="margin-top: -7px;">
+                                                                <a href="/user/detail" data-toggle="modal" class="btn btn-icon-only btn-outline green">
+                                                                    <i class="fa fa-eye"></i>
+                                                                </a>
+                                                            </span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="item">
+                                                        <div class="item-head">
+                                                            <div class="item-details">
+                                                                <img class="item-pic fit-cover"
+                                                                     src="/assets/layouts/layout/img/avatar1.jpg">
+                                                                <a href="" class="item-name primary-link">NickLarson |
+                                                                    <small>さとる</small>
+                                                                </a>
+                                                                <span class="item-label">satoru@mail.com</span>
+                                                            </div>
+                                                            <span class="item-status" style="margin-top: -7px;">
+                                                                <a href="/user/detail" data-toggle="modal" class="btn btn-icon-only btn-outline green">
+                                                                    <i class="fa fa-eye"></i>
+                                                                </a>
+                                                            </span>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="portlet light bordered">
+                                <div class="table-scrollable table-scrollable-borderless">
+                                    <table class="table table-hover table-light">
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <b>友達グループID</b>
+                                            </td>
+                                            <td> <span class="font-blue-madison bold pull-right" style="">ID:100923</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <b>メンバー</b>
+                                            </td>
+                                            <td>
+                                                <ul class="general-item-list list-unstyled">
+                                                    <li class="item">
+                                                        <div class="item-head">
+                                                            <div class="item-details">
+                                                                <img class="item-pic fit-cover"
+                                                                     src="/assets/layouts/layout/img/avatar1.jpg">
+                                                                <a href="" class="item-name primary-link">NickLarson |
+                                                                    <small>さとる</small>
+                                                                </a>
+                                                                <span class="item-label">satoru@mail.com</span>
+                                                            </div>
+                                                            <span class="item-status" style="margin-top: -7px;">
+                                                                <a href="/user/detail" data-toggle="modal" class="btn btn-icon-only btn-outline green">
+                                                                    <i class="fa fa-eye"></i>
+                                                                </a>
+                                                            </span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="item">
+                                                        <div class="item-head">
+                                                            <div class="item-details">
+                                                                <img class="item-pic fit-cover"
+                                                                     src="/assets/layouts/layout/img/avatar1.jpg">
+                                                                <a href="" class="item-name primary-link">NickLarson |
+                                                                    <small>さとる</small>
+                                                                </a>
+                                                                <span class="item-label">satoru@mail.com</span>
+                                                            </div>
+                                                            <span class="item-status" style="margin-top: -7px;">
+                                                                <a href="/user/detail" data-toggle="modal" class="btn btn-icon-only btn-outline green">
+                                                                    <i class="fa fa-eye"></i>
+                                                                </a>
+                                                            </span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="item">
+                                                        <div class="item-head">
+                                                            <div class="item-details">
+                                                                <img class="item-pic fit-cover"
+                                                                     src="/assets/layouts/layout/img/avatar1.jpg">
+                                                                <a href="" class="item-name primary-link">NickLarson |
+                                                                    <small>さとる</small>
+                                                                </a>
+                                                                <span class="item-label">satoru@mail.com</span>
+                                                            </div>
+                                                            <span class="item-status" style="margin-top: -7px;">
+                                                                <a href="/user/detail" data-toggle="modal" class="btn btn-icon-only btn-outline green">
+                                                                    <i class="fa fa-eye"></i>
+                                                                </a>
+                                                            </span>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!--END TABS-->
+                        </div>
+                    </div>
+                    <!-- END PORTLET -->
+                </div>
+            </div>
+        </div>
+        <!-- END PROFILE CONTENT -->
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div id="details-modal" class="modal fade modal-scroll" tabindex="-1" data-replace="true" data-width="760">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">退会処理</h4>
+    </div>
+    <div class="modal-body">
+        <p>このユーザーを退会させますか？もとに戻すことはできません</p>
+
+        <div class="table-scrollable">
+            <table class="table table-hover table-align-middle">
+                <tr>
+                    <th width="12%" class="active">ID</th>
+                    <td>satoru</td>
+                </tr>
+                <tr>
+                    <th class="active">名前</th>
+                    <td>さとる</td>
+                </tr>
+                <tr>
+                    <th class="active">メールアドレス</th>
+                    <td>satoko@mail.com</td>
+                </tr>
+                <tr>
+                    <th class="active">ユーザー種別</th>
+                    <td>子</td>
+                </tr>
+                <tr>
+                    <th class="active">郵便番号</th>
+                    <td>1600022</td>
+                </tr>
+                <tr>
+                    <th class="active">住所</th>
+                    <td>東京都新宿区新宿2-3-15 大橋御苑ビル9階</td>
+                </tr>
+                <tr>
+                    <th class="active">電話番号</th>
+                    <td>0353577020</td>
+                </tr>
+                <tr>
+                    <th class="active">性別</th>
+                    <td>男</td>
+                </tr>
+                <tr>
+                    <th class="active">生年月日</th>
+                    <td>2000/04/23</td>
+                </tr>
+                <tr>
+                    <th class="active">学年</th>
+                    <td>中学校1年</td>
+                </tr>
+                <tr>
+                    <th class="active">キャンペーンコード</th>
+                    <td>abcdefg</td>
+                </tr>
+                <tr>
+                    <th class="active">フォルスクラブ紹介コード</th>
+                    <td>1000123</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="text-center">
+            <a href="/user/edit" class="btn btn-lg grey-salsa">キャンセル</a>
+            <a href="/user" class="btn btn-lg btn-warning">退会</a>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- SC20 - Modal Seach school with zipcode-->
+<div id="search-zipcode-modal" class="modal fade modal-scroll" tabindex="-1" data-replace="true" data-width="760">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">郵便番号を入力して検索してください</h4>
+    </div>
+    <div class="modal-body">
+        <p>郵便番号を入力して検索してください</p>
+
+        <form class="form-horizontal margin-bottom-30" role="form">
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="col-md-4 col-lg-3 control-label">選択中の学校</label>
+
+                    <div class="col-md-8 col-lg-9">
+                        <p class="form-control-static">新宿区立新宿中学校</p><br>
+                        <span class="small">東京都新宿区新宿6-15-22</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 col-lg-3 control-label">郵便番号</label>
+
+                    <div class="col-md-8 col-lg-9">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <input type="text" class="form-control">
+                                            <span class="input-group-btn">
+                                                <button class="btn green" type="button"><i class="icon-magnifier font-white"></i> 検索</button>
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="help-block">入力すると学校名の候補が表示されます</span>
+                        <span class="help-block">ハイフン 「–」 を入れずに入力してください</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="scroller" style="height:260px" data-rail-visible="1">
+            <div class="radio-list">
+                <label class="radio-btn">
+                    <input type="radio" name="radio-a" value="1">
+                            <span class="text">
+                                <b>福岡教育大学附属福岡中学校</b>
+                                <div class="small">福岡県福岡市中央区西公園12-1</div>
+                            </span>
+                </label>
+                <label class="radio-btn">
+                    <input type="radio" name="radio-a" value="1">
+                            <span class="text">
+                                <b>福岡教育大学附属福岡中学校</b>
+                                <div class="small">福岡県福岡市中央区西公園12-1</div>
+                            </span>
+                </label>
+                <label class="radio-btn">
+                    <input type="radio" name="radio-a" value="1">
+                            <span class="text">
+                                <b>福岡教育大学附属福岡中学校</b>
+                                <div class="small">福岡県福岡市中央区西公園12-1</div>
+                            </span>
+                </label>
+                <label class="radio-btn">
+                    <input type="radio" name="radio-a" value="1">
+                            <span class="text">
+                                <b>福岡教育大学附属福岡中学校</b>
+                                <div class="small">福岡県福岡市中央区西公園12-1</div>
+                            </span>
+                </label>
+                <label class="radio-btn">
+                    <input type="radio" name="radio-a" value="1">
+                            <span class="text">
+                                <b>福岡教育大学附属福岡中学校</b>
+                                <div class="small">福岡県福岡市中央区西公園12-1</div>
+                            </span>
+                </label>
+                <label class="radio-btn">
+                    <input type="radio" name="radio-a" value="1">
+                            <span class="text">
+                                <b>福岡教育大学附属福岡中学校</b>
+                                <div class="small">福岡県福岡市中央区西公園12-1</div>
+                            </span>
+                </label>
+                <label class="radio-btn">
+                    <input type="radio" name="radio-a" value="1">
+                            <span class="text">
+                                <b>福岡教育大学附属福岡中学校</b>
+                                <div class="small">福岡県福岡市中央区西公園12-1</div>
+                            </span>
+                </label>
+                <label class="radio-btn">
+                    <input type="radio" name="radio-a" value="1">
+                            <span class="text">
+                                <b>福岡教育大学附属福岡中学校</b>
+                                <div class="small">福岡県福岡市中央区西公園12-1</div>
+                            </span>
+                </label>
+                <label class="radio-btn">
+                    <input type="radio" name="radio-a" value="1">
+                            <span class="text">
+                                <b>福岡教育大学附属福岡中学校</b>
+                                <div class="small">福岡県福岡市中央区西公園12-1</div>
+                            </span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="text-center">
+            <button type="button" data-dismiss="modal" class="btn btn-lg grey-salsa">この学校に決定</button>
+        </div>
+    </div>
+</div>
+
+<!-- SC30 - Modal Seach school with schoolname-->
+<div id="search-schoolname-modal" class="modal fade modal-scroll" tabindex="-1" data-replace="true" data-width="760">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">郵便番号から学校名を検索</h4>
+    </div>
+    <div class="modal-body">
+        <p>都道府県・市町村を選択してください</p>
+
+        <form class="form-horizontal margin-bottom-30" role="form">
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="col-md-4 col-lg-3 control-label">選択中の学校</label>
+
+                    <div class="col-md-8 col-lg-9">
+                        <p class="form-control-static">新宿区立新宿中学校</p><br>
+                        <span class="small">東京都新宿区新宿6-15-22</span>
+                    </div>
+                </div>
+                <div class="form-group has-error">
+                    <label class="col-md-4 col-lg-3 control-label">都道府県</label>
+
+                    <div class="col-md-8 col-lg-9">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <select name="" class="form-control">
+                                    <option value="選択してください">選択してください</option>
+                                    <option value="選択してください">選択してください</option>
+                                    <option value="選択してください">選択してください</option>
+                                    <option value="選択してください">選択してください</option>
+                                </select>
+                                <span class="help-block help-block-error">都道府県を選択してください</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group has-error">
+                    <label class="col-md-4 col-lg-3 control-label">市町村</label>
+
+                    <div class="col-md-8 col-lg-9">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <select name="" class="form-control">
+                                    <option value="選択してください">選択してください</option>
+                                    <option value="選択してください">選択してください</option>
+                                    <option value="選択してください">選択してください</option>
+                                    <option value="選択してください">選択してください</option>
+                                </select>
+                                <span class="help-block help-block-error">都道府県を選択してください</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-4 col-lg-offset-3 col-md-8 col-lg-9">
+                        学校名は入力しなくても検索できます
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 col-lg-3 control-label">学校名</label>
+
+                    <div class="col-md-8 col-lg-9">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" placeholder="学校名を入力">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn green btn-lg"><i class="icon-magnifier font-white"></i> 検索</button>
+                </div>
+            </div>
+        </form>
+        <div class="scroller" style="height:260px" data-rail-visible="1">
+            <div class="radio-list">
+                <label class="radio-btn">
+                    <input type="radio" name="radio-a" value="1">
+                            <span class="text">
+                                <b>福岡教育大学附属福岡中学校</b>
+                                <div class="small">福岡県福岡市中央区西公園12-1</div>
+                            </span>
+                </label>
+                <label class="radio-btn">
+                    <input type="radio" name="radio-a" value="1">
+                            <span class="text">
+                                <b>福岡教育大学附属福岡中学校</b>
+                                <div class="small">福岡県福岡市中央区西公園12-1</div>
+                            </span>
+                </label>
+                <label class="radio-btn">
+                    <input type="radio" name="radio-a" value="1">
+                            <span class="text">
+                                <b>福岡教育大学附属福岡中学校</b>
+                                <div class="small">福岡県福岡市中央区西公園12-1</div>
+                            </span>
+                </label>
+                <label class="radio-btn">
+                    <input type="radio" name="radio-a" value="1">
+                            <span class="text">
+                                <b>福岡教育大学附属福岡中学校</b>
+                                <div class="small">福岡県福岡市中央区西公園12-1</div>
+                            </span>
+                </label>
+                <label class="radio-btn">
+                    <input type="radio" name="radio-a" value="1">
+                            <span class="text">
+                                <b>福岡教育大学附属福岡中学校</b>
+                                <div class="small">福岡県福岡市中央区西公園12-1</div>
+                            </span>
+                </label>
+                <label class="radio-btn">
+                    <input type="radio" name="radio-a" value="1">
+                            <span class="text">
+                                <b>福岡教育大学附属福岡中学校</b>
+                                <div class="small">福岡県福岡市中央区西公園12-1</div>
+                            </span>
+                </label>
+                <label class="radio-btn">
+                    <input type="radio" name="radio-a" value="1">
+                            <span class="text">
+                                <b>福岡教育大学附属福岡中学校</b>
+                                <div class="small">福岡県福岡市中央区西公園12-1</div>
+                            </span>
+                </label>
+                <label class="radio-btn">
+                    <input type="radio" name="radio-a" value="1">
+                            <span class="text">
+                                <b>福岡教育大学附属福岡中学校</b>
+                                <div class="small">福岡県福岡市中央区西公園12-1</div>
+                            </span>
+                </label>
+                <label class="radio-btn">
+                    <input type="radio" name="radio-a" value="1">
+                            <span class="text">
+                                <b>福岡教育大学附属福岡中学校</b>
+                                <div class="small">福岡県福岡市中央区西公園12-1</div>
+                            </span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="text-center">
+            <button type="button" data-dismiss="modal" class="btn btn-lg grey-salsa">この学校に決定</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal delete confirmation-->
+<div id="delete-modal" class="modal fade modal-scroll" tabindex="-1" data-replace="true" data-width="760">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">グループから削除</h4>
+    </div>
+    <div class="modal-body">
+        <p>このユーザーを退会させますか？もとに戻すことはできません</p>
+        <div class="table-scrollable">
+            <table class="table table-hover table-align-middle">
+                <tr>
+                    <th width="12%" class="active">ID</th>
+                    <td>satoru</td>
+                </tr>
+                <tr>
+                    <th class="active">名前</th>
+                    <td>さとる</td>
+                </tr>
+                <tr>
+                    <th class="active">メールアドレス</th>
+                    <td>satoko@mail.com</td>
+                </tr>
+                <tr>
+                    <th class="active">ユーザー種別</th>
+                    <td>子</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="text-center">
+            <button type="button" data-dismiss="modal" class="btn btn-lg grey-salsa">キャンセル</button>
+            <button type="button" class="btn btn-lg green">削除</button>
+        </div>
+    </div>
+</div>
+

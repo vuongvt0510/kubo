@@ -1,0 +1,62 @@
+<div class="trophy-page">
+    <div class="bg-triangle-yellow-light">
+        <h1 class="title-triangle-yellow-bg"><!--{$user_nickname|escape|default:''}-->のバッジ</h1>
+        <p class="h4 description text-center c-normal mb30 ">ハイスコアを記録したりランキングがアップするとバッジがもらえるよ！</br>
+            たくさんバッジを集めよう！</p>
+        <div class="container">
+            <div class="main-content">
+                <div class="content-frame yellow">
+                    <!--{if !empty($trophy_items)}-->
+                    <div class="trophy-title text-center">
+                         <div class="counter">
+                             <img src="/images/trophy/counter.png" alt="trophy">
+                             <div class="text">
+                                 <span class="total"><!--{$trophy_total|escape|default:0}--></span>
+                                 バッジ
+                             </div>
+                         </div>
+                        <span class="h3"><!--{$trophy_total|escape|default:0}-->個のバッジを獲得しました</span>
+                    </div>
+                    <div class="divider dashed"></div>
+                    <ul class="trophies list-inline list-unstyled">
+                        <!--{foreach from=$trophy_items key=key item=trophy}-->
+                        <li class="trophy-item">
+                            <a href="javascript:;" data-trophy_id="<!--{$trophy.trophy_id|escape|default:''}-->" class="trophy_detail show_trophy_modal"  alt="trophy detail">
+                                <img class="trophy-img img-responsive" src="<!--{image_link key=$trophy.image_key|escape|default:'' type='small'}-->"/>
+                            </a>
+                        </li>
+                        <!--{/foreach}-->
+                    </ul>
+                    <!--{else}-->
+                    <!--{include file="partial/no_item.html" message="表示できるバッジはありません"}-->
+                    <!--{/if}-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--{content_for name="modal"}-->
+<!--{include file="partial/modal/trophy_detail.html"}-->
+<!--{/content_for}-->
+
+<!--{content_for name="headjs"}-->
+<script type="text/javascript">
+
+    $('.show_trophy_modal').on('click', function() {
+        var el = $(this);
+        $.ajax({
+            method: "POST",
+            url: "<!--{site_url('trophy')}-->/get_detail",
+            data: { trophy_id: el.data('trophy_id'), user_id: <!--{$user_id|escape|default:''}--> },
+            dataType: 'json'
+        }).done(function( res ) {
+            var trophy_detail = res;
+            $("#trophy_title").html(trophy_detail['name']);
+            $("#trophy_description").html(trophy_detail['description']);
+
+            $("#trophy_image").prop('src', "/image/show/"+trophy_detail['image_key']);
+            $('#modal-trophy-detail').modal();
+        });
+    });
+</script>
+<!--{/content_for}-->

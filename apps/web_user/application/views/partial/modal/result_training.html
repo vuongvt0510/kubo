@@ -1,0 +1,70 @@
+<div class="modal fade" id="modalDrill-resultTraining" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-result">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <div class="content-frame-designed-corner with-ribbon-title">
+                    <div class="frame-inner">
+                        <div class="layer"></div>
+                        <div class="head"></div>
+                        <div class="middle">
+                            <div class="rt-score-wrap">
+                                <p class="rt-score">
+                                    <span><!--{$score|dummy:"990"}--></span>点
+                                </p>
+                                <ul class="rt-addmorescore">
+                                    <li>
+                                        <div class="rt-ico rt-ico-point">ラビポイント</div>
+                                        <div class="rt-point">+ <span class="ico-point">5</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="rt-ico rt-ico-carrot">パワー</div>
+                                        <div class="rt-point">+ <span class="ico-carrot">5</span></div>
+                                    </li>
+                                </ul>
+                                <dl class="rt-board">
+                                    <dt>デッキの成績</dt>
+                                    <dd>
+                                        <div class="rt-board-in">
+                                            <table class="table">
+                                                <tr>
+                                                    <td>
+                                                        正解
+                                                    </td>
+                                                    <td width="80">
+                                                        <span class="correct-number"><!--{$question|dummy:"5"}--></span>/<span class="question-total"><!--{$question_total|dummy:"5"}-->問中</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        正解率
+                                                    </td>
+                                                    <td>
+                                                        <span class="correct-rate"><!--{$question|dummy:"5"}--></span>/<span><!--{$question_total|dummy:"100%"}--></span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        スピード
+                                                    </td>
+                                                    <td>
+                                                        <span class="play-speed"><!--{$speed|dummy:"10"}--></span>秒<span class="stage-time"><!--{$speed_total|dummy:"63"}--></span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="rt-button-group">
+                                <a href="/play/training"class="btn btn-outline btn-yellow">もう一度プレイ</a>
+                                <a href="/play/select_drill" class="btn btn-outline btn-yellow">ドリルを選ぶ</a>
+                            </div>
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

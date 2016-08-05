@@ -1,0 +1,606 @@
+.page-title{
+  position: relative;
+  .btn-green.btn-add{
+    position: absolute;
+    right: 5px;
+    top: 40px;
+    padding-left: 57px;
+    .txt-add{
+      position: relative;
+      &:before {
+        position: absolute;
+        left: -37px;
+        content: '';
+        background: url('../images/icons/ic_add_ms.png') no-repeat;
+        width: 31px;
+        height: 20px;
+      }
+    }
+    @media (max-width: $screen-xs-max) {
+      width: 10%;
+      right: 5px;
+      top: 21px;
+      height: 38px;
+      padding-left: 24px;
+      .txt-add{
+        &:before{
+          left: 7px;
+        }
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+
+
+}
+.icon-add{
+  &:before {
+    @media (max-width: $screen-xs-max) {
+      position: absolute;
+      right: 8px;
+      top: 9px;
+      content: '';
+      background: url('../images/icons/ic_add_ms.png') no-repeat;
+      width: 31px;
+      height: 20px;
+    }
+  }
+}
+.relation.message-frame{
+  .tab{
+    @media (max-width: $screen-xs-max){
+      margin-top: -6px;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.message-frame{
+  padding-bottom: 60px;
+  padding-top: 60px;
+  @media (max-width: $screen-xs-max) {
+    //padding: 60px 0;
+    padding: 15px 0;
+    border: none;
+    background: #fff;
+    margin: -10px -15px;
+  }
+  .tab{
+    border-bottom: 4px solid #6ecbe6;
+    margin-bottom: 20px;
+    @media (max-width: $screen-xs-max) {
+      padding: 0 5px;
+    }
+  }
+  .seen{
+    background-color: #e2f5fa;
+  }
+  .item{
+    border: none;
+    a{
+      color: transparent;
+    }
+    a.btn.btn-green{
+      color: $c-white;
+    }
+  }
+  .item-content{
+    display: table;
+    width: 100%;
+    padding: 15px 30px;
+    border-bottom: 1px dashed $c-gray;
+
+    @media (max-width: $screen-xs-max) {
+      padding: 15px 10px;
+    }
+    .left{
+      display: table-cell;
+      vertical-align: middle;
+      width: 1%;
+      img{
+        max-width: 75px;
+        @media (max-width: $screen-xs-max) {
+          max-width: 60px;
+        }
+      }
+    }
+    .center{
+      display: table-cell;
+      vertical-align: middle;
+      text-align: left;
+      padding-left: 30px;
+      @media (max-width: $screen-xs-max) {
+        padding-left: 15px;
+      }
+      .name{
+        font-size: 14px;
+        color: #878e9a;
+        @media (max-width: $screen-xs-max) {
+          font-size: 12px;
+        }
+      }
+      .message{
+        font-size: 24px;
+        font-weight: 700;
+        color: #38454f;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-all;
+        height: 28px;
+        white-space: nowrap;
+        line-height: 1.2;
+        max-width: 621px;
+        display: block;
+        @media (max-width: $screen-sm-max) {
+          max-width: 427px;
+          font-size: 17px;
+          height: 19px;
+        }
+        @media (max-width: $screen-xs-max) {
+          font-size: 16px;
+          max-width: 203px;
+          height: 18px;
+        }
+        &:hover{
+          color: #000;
+          text-decoration: none;
+        }
+      }
+
+      .time{
+        font-size: 14px;
+        color: #878e9a;
+        @media (max-width: $screen-xs-max) {
+          font-size: 12px;
+        }
+      }
+    }
+    .right{
+      display: table-cell;
+      vertical-align: middle;
+      text-align: right;
+      font-size: 25px;
+      color: $c-black;
+    }
+
+  }
+  .friend, .family, .schooltv{
+    @media (max-width: $screen-xs-max) {
+      a{
+        line-height: 1;
+        padding: 12px 0;
+      }
+    }
+  }
+  .friend-tab, .family-tab{
+    @media (max-width: $screen-xs-max) {
+      font-size: 12px;
+    }
+  }
+  .family-tab{
+    margin-left: 46px;
+    position:relative;
+    &:before{
+      content: "";
+      position: absolute;
+      left: -54px;
+      bottom: -3px;
+      background: url('../images/icons/tab_family.png') no-repeat;
+      width: 46px;
+      height: 43px;
+    }
+    @media (max-width: $screen-xs-max) {
+      margin-left: 30px;
+      &:before{
+        left: -37px;
+        bottom: -25px;
+        background-size: 60%;
+      }
+
+    }
+  }
+
+  .friend-tab{
+    margin-left: 46px;
+    position:relative;
+    &:before{
+      content: "";
+      position: absolute;
+      left: -54px;
+      bottom: -3px;
+      background: url('../images/icons/tab_friend.png') no-repeat;
+      width: 46px;
+      height: 43px;
+    }
+    @media (max-width: $screen-xs-max) {
+      margin-left: 30px;
+      &:before{
+        left: -37px;
+        bottom: -25px;
+        background-size: 60%;
+      }
+
+    }
+  }
+  .schooltv-tab{
+    margin-left: 46px;
+    position:relative;
+    &:before{
+      content: "";
+      position: absolute;
+      left: -54px;
+      bottom: -3px;
+      background: url('../images/icons/tab_schooltv.png') no-repeat;
+      width: 46px;
+      height: 43px;
+    }
+    @media (max-width: $screen-xs-max) {
+      font-size: 10px;
+      margin-left: 33px;
+      margin-right: 5px;
+      &:before{
+        width: 35px;
+        height: 33px;
+        left: -34px;
+        bottom: -13px;
+        background-size: 82%;
+      }
+    }
+  }
+  .title-tab{
+    font-size: 18px;
+    background-color: $c-green;
+    padding: 9px 20px;
+    color: $c-white;
+    margin: 0 0 15px;
+    font-weight: bold;
+    text-align: center;
+    @media (max-width: $screen-xs-max) {
+      font-size: 16px;
+    }
+  }
+
+  .bg-blue-first{
+    background-color: $c-primary;
+  }
+  .list-friend-item{
+    padding-bottom: 10px;
+    border-bottom: 3px solid $c-white;
+
+    .friend-list{
+
+      li{
+        padding: 18px 0 18px 0;
+        &:hover{
+          background-color: #e8fcf1;
+          cursor: pointer;
+          .icon-disible{
+            background: url("/images/icons/check-hover.png") no-repeat right center;
+            background-size: 100%;
+          }
+        }
+
+        a{
+          padding: 0;
+          position: static;
+          display: block;
+          background: none;
+          width: 100%;
+          height: 100%;
+          border:none;
+          cursor: pointer;
+          img{
+            width: 80%;
+            margin: 8px auto 0;
+            @media (max-width: $screen-xs-max) {
+              margin: 5px auto 0;
+            }
+          }
+          .padding1{
+            padding: 21px 0 0px 40px !important;
+            @media (max-width: $screen-xs-max) {
+              padding: 10px 0 0px 20px !important;
+            }
+          }
+          .icon-disible{
+            background: url("/images/icons/check-disabled.png") no-repeat right center;
+            background-size: 100%;
+            display: block;
+            float: right;
+            position: relative;
+            top: 26%;
+            right: 2%;
+            width: 40px;
+            height: 40px;
+            @media (max-width: $screen-xs-max) {
+              top: 23%;
+              right: 0;
+              width: 24px;
+              height: 24px;
+            }
+          }
+          .thumb, .name{
+            z-index: 11;
+          }
+        }
+
+        @media (max-width: $screen-xs-max) {
+          height: 60px;
+          padding: 10px 10px 10px 5px
+        }
+
+      }
+    }
+  }
+}
+
+
+//
+.content-frame.content-timeline{
+  @media (max-width: $screen-xs-max) {
+    padding: 0px;
+    .message-list{
+      padding: 10px 20px;
+    }
+  }
+}
+.content-timeline.content-share{
+  min-height: 380px;
+}
+.content-timeline{
+  background-color: $c-grey;
+  margin: 0;
+  padding-bottom: 0;
+
+  @media (max-width: $screen-xs-max) {
+    margin: 0 -15px;
+  }
+  .polygon-bg{
+    img{
+      position:relative;
+    }
+  }
+  .top-bg-xs{
+    background-color: $c-primary;
+    color: $c-white;
+    //height: 38px;
+    //padding-top: 4px;
+    padding: 7px 45px 10px 45px;
+    position: relative;
+    text-align:center;
+    .title-xs{
+      font-size: 17px;
+      //height: 26px;
+      //padding-top: 3px;
+      //text-overflow: ellipsis;
+      //margin-right: 10px;
+      //white-space: nowrap;
+      //overflow: hidden;
+    }
+    marquee{
+      margin-left: 45px;
+      margin-right: 10px;
+    }
+    .btn-back{
+      position: absolute;
+      left: 16px;
+      top: 8px;
+      background: url('../images/icons/ic-back.png') no-repeat;
+      width: 20px;
+      height: 20px;
+      &:hover, &:active, &:focus{
+        background: url('../images/icons/ic-back-hover.png') no-repeat;
+      }
+    }
+  }
+  .title{
+    position: absolute;
+    top: 20%;
+    margin: auto;
+    left: 0px;
+    right: 0px;
+    width: 60%;
+    height: auto;
+    color: $c-blue-text;
+    font-size: 25px;
+    text-align: center;
+    line-height: 60px;
+    background: #fff;
+    border: 5px solid $c-blue-light;
+    border-radius: 33px;
+
+  }
+  .message-list{
+    margin-top: 60px;
+    margin-bottom: 76px;
+    .btn-more{
+      width: 60%;
+      display: block;
+      margin: 0px auto 21px auto;
+      padding: 0px;
+      font-size: 13px;
+    }
+    .avatar-col{
+      width: 10%;
+      .avatar {
+        width: 63px;
+        height: auto;
+      }
+    }
+    .message{
+      margin-bottom: 25px;
+      float: right;
+      width: 88%;
+      .user-name{
+        font-size: 20px;
+        color: $c-primary;
+      }
+      .date{
+        bottom: initial;
+        width: 60%;
+        text-align: right;
+        display: block;
+        font-size: 15px;
+        @media (max-width: $screen-sm-max){
+          width: 79%;
+        }
+        @media (max-width: $screen-xs-max){
+          width: 88%;
+          font-size: 10px;
+        }
+      }
+      .deck-list-line{
+        width: 60%;
+        @media (max-width: $screen-sm-max){
+          width: 79%;
+        }
+        @media (max-width: $screen-xs-max){
+          width: 88%;
+        }
+        .item-inner{
+          border: 2px solid #1b6abd;
+          border: 2px solid #1b6abd;
+        }
+      }
+      .message-bubble{
+        height: auto;
+        width: auto;
+        max-width: 90%;
+        display: inline-block;
+        background-color: $c-white;
+        border: blue;
+        padding: 15px;
+        line-height: 1.5;
+        font-size: 20px;
+        border: 2px solid $c-blue-light;
+        border-radius: 0px 7px 7px 7px;
+        min-width: 60%;
+        position: relative;
+        word-break: break-all;
+        a.btn.btn-green{
+          display: block;
+          margin: 15px auto 0px auto;
+          width: 200px;
+        }
+        .date{
+          position: absolute;
+          right: 0px;
+          bottom: -29px;
+        }
+      }
+
+    }
+
+  }
+  .form-share{
+    height: 204px !important;
+    @media (max-width: $screen-xs-max){
+      height: 153px !important;
+    }
+    .title{
+      position: relative;
+      border: none;
+      text-align: left;
+      border-radius: 0;
+      line-height: initial;
+    }
+    .deck-list-line{
+      .item-inner{
+        border: 1px solid #888;
+      }
+    }
+  }
+
+  //.form-group{
+  //  display: inline-block;
+  //}
+
+  //responsive
+  @media (max-width: $screen-xs-max) {
+    .title{
+      width: 95%;
+      font-size: 18px;
+      line-height: 39px;
+    }
+    .message-list {
+      margin-top: 15px;
+      margin-bottom: 0;
+
+      .avatar-col {
+        width: 15%;
+        margin-right: 15px;
+        margin-left: 10px;
+      }
+      .message {
+        margin-bottom: 10px;
+        width: 76%;
+        .user-name {
+          font-size: 13px;
+          margin-bottom: 5px;
+        }
+        .message-bubble {
+          font-size: 14px;
+          padding: 11px;
+          max-width: 86%;
+          .date {
+            bottom: -20px;
+          }
+        }
+
+      }
+    }
+    //.form-message{
+    //  height: 55px;
+    //  position: fixed;
+    //}
+  }
+  //\responsive
+}
+
+.form-message{
+  //position:absolute;
+  //bottom:0px;
+  //left: 0px;
+  //right:0px;
+  //height: 100px;
+  border: 6px solid #6ecbe6;
+  background-color: #6ecbe6;
+  margin-bottom: 80px;
+
+  @media (max-width: $screen-xs-max){
+    margin: 0;
+  }
+
+  &.form-border{
+    @media (max-width: $screen-xs-max){
+      margin: 0 -15px;
+    }
+    //@media (min-width: $screen-sm){
+    //  bottom: -6px;
+    //  left: -6px;
+    //  right: -6px;
+    //}
+  }
+}
+
+// Mess Group Modal
+.btn-messGroup{
+
+  @media (min-width: 768px) {
+    //float: left;
+    //width:100%;
+    margin: 80px 0 20px;
+  }
+  @media (max-width: 767px) {
+    margin: 10px 15px 0;
+  }
+  a{
+    border: 3px solid #60C1D4 !important;
+
+    @media (min-width: 768px) {
+      width: 40%;
+    }
+  }
+}

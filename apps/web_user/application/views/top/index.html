@@ -1,0 +1,229 @@
+<div class="top-index-page">
+
+    <!--{if $hide_main_visual && !empty($current_user)}-->
+
+    <!--{content_for name="headerTitle"}-->
+    <div class="header-title">
+    </div>
+    <!--{/content_for}-->
+
+    <!--{else}-->
+    <div class="top-banner">
+        <div class="container">
+            <div class="banner-box">
+                <div class="col-md-6 banner-image">
+                    <img src="/images/top/top-banner.png" alt="" class="img-responsive hidden-xs hidden-sm">
+                    <img src="/images/top/top-banner-xs.png" alt="" class="img-responsive visible-xs visible-sm">
+                </div>
+                <div class="col-md-6 banner-text">
+                    <h1 style="margin: 0;">
+                        <div class="bg-blue">全国の 小・中 教科書に対応</div>
+                        <div class="image">
+                            <img src="/images/top/top-banner-text.png" alt="無料の動画で学んで明日手をあげたくなる" class="img-responsive hidden-xs">
+                            <img src="/images/top/top-banner-text-xs.png" alt="" class="img-responsive visible-xs">
+                        </div>
+                    </h1>
+                    <p class="h3 text-center">会員登録で便利な機能が使える！</p>
+                    <div class="button-wrapper">
+                        <a href="/register" class="btn btn-green">
+                            <i class="el-icons el-play-circle"></i>
+                            無料で会員登録
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--{/if}-->
+    <div class="main-content bg-triangle">
+        <div class="container">
+            <div class="select-change-grade">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="bold"><!--{$current_grade.name|escape|default:'--'}--></span>
+                        <span class="small">の動画を見る</span>
+                        <span class="icon">
+                            <span>えらぶ</span>
+                            <i class="el-icons el-angle-down"></i>
+                        </span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <!--{foreach from=$grade_list item=item}-->
+                        <li><a href="/?grade_id=<!--{$item.id|escape|default:0}-->#content"><!--{$item.name|escape|default:'--'}--></a></li>
+                        <!--{/foreach}-->
+                    </ul>
+                </div>
+            </div>
+
+            <div class="top-grades">
+                <ul class="list-unstyled grades-list">
+                    <!--{foreach from=$subject_list item=item}-->
+                    <li class="striped-<!--{$item.color|escape|default:''}-->">
+                        <a href="/s/<!--{$item.id|escape}-->">
+                            <span class="small"><!--{$item.rubi|escape|default:'&nbsp;'}--></span>
+                            <span><!--{$item.short_name|escape|default:''}--></span>
+                        </a>
+                    </li>
+                    <!--{/foreach}-->
+                </ul>
+            </div>
+
+            <!--{if !empty($decks)}-->
+            <a href="/deck/<!--{$decks[0].id}-->" style="display:block;margin-bottom:5px;">
+                <img class="img-responsive hidden-xs" src="/images/banner/201605/to_dk_pc.png" alt="基礎単語をマスターしよう！ 高校出る順ターゲット 中学英単語 1800 LEVEL1">
+                <img class="img-responsive center-block visible-xs" src="/images/banner/201605/to_dk_sp.png" alt="">
+            </a>
+            <!--{/if}-->
+
+            <div class="clearfix">
+                <a href="/about" class="btn btn-sm btn-circle white-bg pull-right">
+                    <i class="el-icons el-angle-right"></i>
+                    ALパートとは?
+                </a>
+            </div>
+
+            <div class="panel panel-blue-linear-gradient">
+                <!--{if !empty($most_popular)}-->
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <div class="panel-image">
+                                <div class="hexagon-img">
+                                    <img src="/images/panel/popular-videos.png" alt="">
+                                </div>
+                            </div>
+                            人気の動画
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="video-boxes-wrapper">
+                            <!--{include file="partial/video_carousel_list.html" chapters=$most_popular subject_is_mixed=TRUE subject_color="blue" subject_type="" subject_name=""}-->
+                        </div>
+                    </div>
+                <!--{/if}-->
+            </div>
+
+            <!--{foreach from=$subject_list item=item}-->
+                <!--{if isset($chapters[$item.id])}-->
+                    <div class="panel panel-<!--{$item.color|escape}-->-linear-gradient">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <div class="panel-image">
+                                    <div class="hexagon-img">
+                                        <img src="/images/panel/<!--{$item.type|escape|default:'math'}-->.png" alt="">
+                                    </div>
+                                </div>
+                                <!--{$item.short_name|escape|default:''}-->
+                            </div>
+                            <div class="panel-action">
+                                <a href="/s/<!--{$item.type|escape|default:'-'}-->/<!--{$textbooks[$item.id]|escape|default:'--'}-->">
+                                <button type="button" class="btn btn-sm btn-circle white-bg">
+                                    <i class="el-icons el-angle-right"></i>
+                                    もっと見る
+                                </button>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="video-boxes-wrapper">
+                                <!--{if $item.type == 'english'}-->
+                                    <!--{include file="partial/textbook_carousel_list.html" textbooks=$english}-->
+                                <!--{else}-->
+                                    <!--{include file="partial/video_carousel_list.html" chapters=$chapters[$item.id] videos=$videos subject_name=$item.short_name subject_color=$item.color subject_type=$item.type}-->
+                                <!--{/if}-->
+                            </div>
+                        </div>
+                    </div>
+                <!--{/if}-->
+            <!--{/foreach}-->
+        </div>
+    </div>
+    <!--{if !empty($decks)}-->
+    <div class="drill-section bg-light-yellow">
+        <div class="container">
+            <h4 class="title-yellow-bg clearfix">
+                <span class="text">ドリルを購入する</span>
+                <a class="pull-right" href="/station/">
+                    <button type="button" class="btn btn-sm btn-circle white-bg">
+                        <i class="el-icons el-angle-right"></i>
+                        すべてのドリルを見る
+                    </button>
+                </a>
+            </h4>
+            <!--{include file="partial/deck_list.html" decks=$decks href='deck/'}-->
+        </div>
+    </div>
+    <!--{/if}-->
+    <div class="bg-triangle-blue search-items-by">
+        <div class="container">
+            <ul class="list-unstyled">
+                <li class="search-group by-subject">
+                    <i class="el-icons el-book"></i>
+                    <p class="h3">教科から探す</p>
+                    <div class="available-search">
+                        <!--{foreach from=$subject_list item=item}-->
+                        <a href="/s/<!--{$item.id|escape}-->">
+                            <span class="bg-subject bg-<!--{$item.color|escape}-->"><!--{$item.short_name|escape}--></span>
+                            <br>
+                            <i class="el-icons el-angle-down"></i>
+                        </a>
+                        <!--{/foreach}-->
+                    </div>
+                </li>
+
+                <li class="search-group by-grade">
+                    <i class="el-icons el-user3"></i>
+                    <p class="h3">学年から探す</p>
+                    <div class="available-search">
+                        <!--{foreach from=$grade_list item=item}-->
+                        <a href="/?grade_id=<!--{$item.id|escape|default:0}-->#content"><span><!--{$item.name|escape|default:'--'}--></span><br><i class="el-icons el-angle-down"></i></a>
+                        <!--{/foreach}-->
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!--{content_for name="modal"}-->
+<!--{include file="partial/modal/campaign_201605.html"}-->
+<!--{/content_for}-->
+
+<!--{content_for name="plugincss"}-->
+<link rel="stylesheet" href="/third_party/qtip/jquery.qtip.min.css">
+<!--{/content_for}-->
+
+<!--{content_for name="headjs"}-->
+<script type="text/javascript" src="/third_party/qtip/jquery.qtip.min.js"></script>
+<!--{/content_for}-->
+
+
+<!--{content_for name="google_tag"}-->
+<!-- Google Code for &#12304;ITC&#12305;&#12522;&#12510;&#12540;&#12465;&#12486;&#12451;&#12531;&#12464; -->
+<!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+<script type="text/javascript">
+    /* <![CDATA[ */
+    var google_conversion_id = 949884515;
+    var google_conversion_label = "8eLCCMeXgmgQ46z4xAM";
+    var google_custom_params = window.google_tag_params;
+    var google_remarketing_only = true;
+    /* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+    <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/949884515/?value=1.00&amp;currency_code=JPY&amp;label=8eLCCMeXgmgQ46z4xAM&amp;guid=ON&amp;script=0"/>
+    </div>
+</noscript>
+
+<!-- Yahoo Code for your Target List -->
+<script type="text/javascript" language="javascript">
+    /* <![CDATA[ */
+    var yahoo_retargeting_id = 'Z5XR6SXZ8N';
+    var yahoo_retargeting_label = '';
+    var yahoo_retargeting_page_type = '';
+    var yahoo_retargeting_items = [{item_id: '', category_id: '', price: '', quantity: ''}];
+    /* ]]> */
+</script>
+<script type="text/javascript" language="javascript" src="//b92.yahoo.co.jp/js/s_retargeting.js"></script>
+<!--{/content_for}-->

@@ -1,0 +1,62 @@
+<div class="modal fade" id="modalChangeRanking" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-result">
+        <div class="modal-content">
+            <button type="button" class="close-score close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-body">
+
+                <div class="content-frame-designed-corner with-ribbon-title">
+                    <div class="frame-inner">
+                        <div class="layer"></div>
+                        <div class="head"></div>
+                        <div class="middle">
+                            <div class="rt-score-wrap">
+                                <div class="mb10 rt-titleimg rt-titlematch">
+                                    <img src="/images/modal/change-ranking-title.png" alt="はじめての対戦">
+                                    <span>おめでとう！</span>
+                                </div>
+                                <ul class="mb20 rt-addmorescore">
+                                    <li>
+                                        <div class="rt-ico rt-ico-point">ラビポイント</div>
+                                        <div class="rt-point">+ <span class="higher-rank-rabipoint"><!--{$score|dummy:"0000"}--></span></div>
+                                    </li>
+                                </ul>
+
+                                <ul class="ranking-list list-stage list-unstyled cr-list">
+                                    <li class="item no-auto winner-rank" data-number="<!--{$score|dummy:'1'}-->">
+                                        <a class="item-content up" href="#" return false; style="cursor: default">
+                                            <div class="avatar-box">
+                                                <img class="avatar winner-avatar" src="" alt="">
+                                            </div>
+                                            <div class="description">
+                                                <p class="name winner-name"><!--{$user.nickname|escape|default:''}--></p>
+                                                <p class="score"><span class="num winner-num" id="higher_ranking"><!--{$user.highest_score|escape|default:0}--></span>点</p>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li class="item no-auto loser-rank" data-number="<!--{$user.rank|escape|default:'2'}-->">
+                                        <a class="item-content down" href="#" return false; style="cursor: default">
+                                            <div class="avatar-box">
+                                                <img class="avatar loser-avatar" src="" alt="">
+                                            </div>
+                                            <div class="description">
+                                                <p class="name loser-name"><!--{$user.nickname|escape|default:''}--></p>
+                                                <p class="score"><span class="num loser-num"><!--{$user.highest_score|escape|default:0}--></span>点</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="rt-button-group" style="margin-top: 40px">
+                                <a class="btn btn-outline btn-yellow close-score" href="#">閉じる</a>
+                            </div>
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

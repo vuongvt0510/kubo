@@ -1,0 +1,134 @@
+.content-tl-detail{
+  border: none;
+  padding: 0px;
+  position: relative;
+  //min-height: 500px;
+  margin: 0;
+
+  .activity-content{
+    .head{
+      margin: 0px;
+      @media (max-width: $screen-xs-max) {
+        padding: 10px;
+      }
+    }
+  }
+  .container-comment{
+    //padding: 15px 25px 50px 25px;
+    //width: 100%;
+    //@media (max-width: 320px) {
+    //  padding: 15px 20px 50px 20px;
+    //}
+
+    .list-fav{
+      padding-left: 10px;
+      display: inline-block;
+      color: $c-green-dark;
+      font-weight: 600;
+    }
+
+    .list-comment{
+      //margin-bottom: 90px;
+      //max-height: 429px;
+      //overflow-y: auto;
+      //@media (max-width: $screen-xs-max) {
+      //  margin-bottom: 10px;
+      //  max-height: 300px;
+      //  overflow-x: hidden;
+      //}
+      .head{
+        border-top: 1px solid #ebebeb;
+        border-bottom: none;
+        padding: 10px;
+        width:100%;
+        display: block;
+        @media (max-width: 320px) {
+          padding: 10px 0;
+        }
+        .center{
+          display: block;
+          float: left;
+          text-align: left;
+          padding-left: 30px;
+          width: 75%;
+          box-sizing: border-box;
+          overflow: hidden;
+          word-wrap: break-word;
+          @media (max-width: $screen-xs-max) {
+            padding-left: 15px;
+            width:65%;
+          }
+          @media (max-width: 375px) {
+            width:60%;
+          }
+          .status{
+            font-size: 14px;
+            color: #878e9a;
+          }
+          .comment{
+            font-size: 24px;
+            font-weight: 700;
+            color: #38454f;
+            @media (max-width: $screen-xs-max) {
+              font-size: 20px;
+            }
+            @media (max-width: 425px) {
+              font-size: 18px;
+            }
+            @media (max-width: 425px) {
+              font-size: 16px;
+            }
+          }
+        }
+        .time{
+          vertical-align: top;
+          width:17%;
+          float: left;
+          display: block;
+
+          @media (max-width: $screen-xs-max) {
+            width:20%;
+          }
+          @media (max-width: 375px) {
+            width:25%;
+          }
+        }
+        .thumb{
+          display: block;
+          float: left;
+          width: 8%;
+          @media (max-width: $screen-xs-max) {
+            width: 15%;
+          }
+          img{
+            width:100%;
+            @media (max-width: $screen-xs-max) {
+              height:auto;
+            }
+          }
+        }
+      }
+
+      #list_comments{
+        width:100%;
+        padding: 15px 25px 50px 25px;
+        max-height: 300px;
+        overflow-x: hidden;
+        margin: 0;
+
+        @media (max-width: 767px) {
+          padding: 0px 15px 10px 15px;
+        }
+
+        li.item{
+          width:100%;
+
+          .activity-content{
+            display: block;
+            width:100%;
+          }
+        }
+      }
+    }
+  }
+}

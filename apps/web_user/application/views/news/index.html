@@ -1,0 +1,27 @@
+<div class="bg-triangle">
+    <div class="container">
+        <div class="page-title">
+            <p class="h1">お知らせ⼀覧</p>
+        </div>
+        <div class="main-content">
+            <div class="content-frame">
+            <!--{if !empty($list_news)}-->
+                <div class="news-list">
+                    <ul class="list-unstyled">
+                        <!--{foreach $list_news as $item}-->
+                        <li class="item clearfix">
+                            <div class="row">
+                                <a class="pull-left link col-md-9" href="/news/detail/<!--{$item.id|escape|default:''}-->"><!--{$item.title|escape|default:''}--></a>
+                                <span class="pull-right col-md-3 date-time"><!--{date('Y年m月d日',strtotime($item.started_at))|escape|default:''}--></span>
+                            </div>
+                        </li>
+                        <!--{/foreach}-->
+                    </ul>
+                </div>
+            <!--{else}-->
+                <!--{include file="partial/no_item.html" message="お知らせはありません"}-->
+            <!--{/if}-->
+            </div>
+        </div>
+    </div>
+</div>

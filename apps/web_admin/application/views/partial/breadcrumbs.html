@@ -1,0 +1,22 @@
+<div class="page-bar">
+    <!--{if isset($breadcrumb)}-->
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="/">管理トップ</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <!--{foreach from=$breadcrumb key=key item=bc name=breadcrumb}-->
+        <!--{if isset($bc.link)}-->
+        <li>
+            <a href="<!--{$bc.link}-->"><!--{$bc.name|escape}--></a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <!--{else}-->
+        <li>
+            <span><!--{$bc.name|escape}--></span>
+        </li>
+        <!--{/if}-->
+        <!--{/foreach}-->
+    </ul>
+    <!--{/if}-->
+</div>

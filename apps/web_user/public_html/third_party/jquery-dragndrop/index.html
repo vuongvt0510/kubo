@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery - dragndrop - 2.6</title>
+	<meta charset="utf-8"/>
+	<meta property="og:title"       content="jQuery - dragndrop"/>
+	<meta property="og:url"         content="https://mr21.github.io/jquery-dragndrop/"/>
+	<meta property="og:image"       content="https://mr21.github.io/jquery-dragndrop/thumbnail.jpg"/>
+	<meta property="og:description" content="jQuery-dragndrop is a script for creating a multiple dragndrop with inlines elements."/>
+	<link rel="stylesheet" href="../_/fa/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="../_/header.css"/>
+	<link rel="stylesheet" href="../jquery-selection/jquery-selection.css"/>
+	<link rel="stylesheet" href="jquery-dragndrop.css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="../_/header.js"></script>
+	<script src="../jquery-selection/jquery-selection.js"></script>
+	<script src="jquery-dragndrop.js"></script>
+	<script src="main.js"></script>
+	<style>
+	body {
+		margin: 0;
+		background: #444;
+		}
+	#dragndrop {
+		margin-top: 20px;
+		text-align: center;
+		}
+	.jqdragndrop-drop {
+		transition: background .2s ease;
+		background: rgba(0,0,0,.3);
+		}
+		.jqdragndrop-dropHover {
+			box-shadow: 0 0 20px rgba(0,0,0,.2);
+			background: rgba(0,0,0,.5);
+			}
+	</style>
+</head>
+<body>
+	<div id="header">
+		<i class="fa fa-fw fa-plug"></i>
+		<h1>jQuery - dragndrop - 2.6</h1>
+	</div>
+
+	<div id="dragndrop">
+		<div class="jqdragndrop-drop A">
+			<b class="jqselection-selectable" style="background-image:url(img/a_bug_s_life.jpg)"></b>
+			<b class="jqselection-selectable" style="background-image:url(img/brave.jpg)"></b>
+			<b class="jqselection-selectable" style="background-image:url(img/cars.jpg)"></b>
+			<b class="jqselection-selectable" style="background-image:url(img/the_incredibles.jpg)"></b>
+			<b class="jqselection-selectable" style="background-image:url(img/monsters_inc.jpg)"></b>
+			<b class="jqselection-selectable" style="background-image:url(img/finding_nemo.jpg)"></b>
+			<b class="jqselection-selectable" style="background-image:url(img/planes.jpg)"></b>
+			<b class="jqselection-selectable" style="background-image:url(img/ratatouille.jpg)"></b>
+			<b class="jqselection-selectable" style="background-image:url(img/toy_story.jpg)"></b>
+			<b class="jqselection-selectable" style="background-image:url(img/up.jpg)"></b>
+			<b class="jqselection-selectable" style="background-image:url(img/wall-e.jpg)"></b>
+		</div>
+		<div class="jqdragndrop-drop B">
+			<b class="jqselection-selectable" style="background-image:url(img/antz.jpg)"></b>
+			<b class="jqselection-selectable" style="background-image:url(img/chicken_run.jpg)"></b>
+			<b class="jqselection-selectable" style="background-image:url(img/how_to_train_your_dragon.jpg)"></b>
+			<b class="jqselection-selectable" style="background-image:url(img/kung_fu_panda.jpg)"></b>
+			<b class="jqselection-selectable" style="background-image:url(img/madagascar.jpg)"></b>
+			<b class="jqselection-selectable" style="background-image:url(img/puss_in_boots.jpg)"></b>
+			<b class="jqselection-selectable" style="background-image:url(img/rise_of_the_guardians.jpg)"></b>
+			<b class="jqselection-selectable" style="background-image:url(img/shrek.jpg)"></b>
+			<b class="jqselection-selectable" style="background-image:url(img/turbo.jpg)"></b>
+		</div>
+		<br/>
+		<div class="jqdragndrop-drop C">
+			<b class="jqselection-selectable" style="background-image:url(img/bolt.jpg)"></b>
+			<b class="jqselection-selectable" style="background-image:url(img/chicken_little.jpg)"></b>
+			<b class="jqselection-selectable" style="background-image:url(img/frozen.jpg)"></b>
+			<b class="jqselection-selectable" style="background-image:url(img/wreck-it_ralph.jpg)"></b>
+		</div>
+		<div class="jqdragndrop-drop D">
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,5032 @@
+
+Notice: Constant DB_ECM_MAIN already defined in /vagrant/shared/config/constants.php on line 61
+
+Notice: Constant DB_ECM_IMAGE already defined in /vagrant/shared/config/constants.php on line 62
+
+Notice: Constant DB_ECM_LOG already defined in /vagrant/shared/config/constants.php on line 63
+loadadddddddd responce¥n¥nloadadddddddd responce¥n¥nPHPUnit 3.7.28 by Sebastian Bergmann.
+
+Configuration read from /vagrant/apps/shared_test/tests/phpunit.xml
+
+...object(APP_Controller)#57 (26) {
+  ["layout"]=>
+  bool(false)
+  ["template_engine"]=>
+  string(6) "smarty"
+  ["before_filter"]=>
+  array(0) {
+  }
+  ["_skipped"]=>
+  bool(false)
+  ["database_config":protected]=>
+  array(2) {
+    ["db"]=>
+    string(6) "master"
+    ["dbs"]=>
+    string(5) "slave"
+  }
+  ["benchmark"]=>
+  &object(CI_Benchmark)#198 (1) {
+    ["marker"]=>
+    array(2) {
+      ["total_execution_time_start"]=>
+      string(21) "0.63953500 1385700439"
+      ["loading_time:_base_classes_start"]=>
+      string(21) "0.63956000 1385700439"
+    }
+  }
+  ["hooks"]=>
+  &object(APP_Hooks)#234 (3) {
+    ["enabled"]=>
+    bool(true)
+    ["hooks"]=>
+    array(3) {
+      ["post_controller_constructor"]=>
+      array(1) {
+        [0]=>
+        array(4) {
+          ["class"]=>
+          string(10) "APP_Filter"
+          ["function"]=>
+          string(13) "before_filter"
+          ["filename"]=>
+          string(14) "APP_Filter.php"
+          ["filepath"]=>
+          string(5) "hooks"
+        }
+      }
+      ["display_override"]=>
+      array(1) {
+        [0]=>
+        array(4) {
+          ["class"]=>
+          string(25) "APP_Mobile_display_filter"
+          ["function"]=>
+          string(15) "convert_to_sjis"
+          ["filename"]=>
+          string(29) "APP_Mobile_display_filter.php"
+          ["filepath"]=>
+          string(5) "hooks"
+        }
+      }
+      ["pre_system"]=>
+      array(1) {
+        [0]=>
+        array(4) {
+          ["class"]=>
+          string(23) "APP_Mobile_param_filter"
+          ["function"]=>
+          string(15) "convert_to_utf8"
+          ["filename"]=>
+          string(27) "APP_Mobile_param_filter.php"
+          ["filepath"]=>
+          string(5) "hooks"
+        }
+      }
+    }
+    ["in_progress"]=>
+    bool(false)
+  }
+  ["config"]=>
+  &object(APP_Config)#274 (3) {
+    ["_config_paths"]=>
+    array(3) {
+      [0]=>
+      string(51) "/vagrant/shared/third_party/RemotePushNotification/"
+      [1]=>
+      string(16) "/vagrant/shared/"
+      [2]=>
+      string(47) "/vagrant/apps/shared_test/tests/../application/"
+    }
+    ["config"]=>
+    array(46) {
+      ["base_url"]=>
+      string(17) "http://localhost/"
+      ["index_page"]=>
+      string(0) ""
+      ["uri_protocol"]=>
+      string(4) "AUTO"
+      ["url_suffix"]=>
+      string(0) ""
+      ["language"]=>
+      string(8) "japanese"
+      ["charset"]=>
+      string(5) "UTF-8"
+      ["enable_hooks"]=>
+      bool(true)
+      ["subclass_prefix"]=>
+      string(3) "MY_"
+      ["permitted_uri_chars"]=>
+      string(14) "a-z 0-9~%.:_\-"
+      ["allow_get_array"]=>
+      bool(true)
+      ["enable_query_strings"]=>
+      bool(false)
+      ["controller_trigger"]=>
+      string(1) "c"
+      ["function_trigger"]=>
+      string(1) "m"
+      ["directory_trigger"]=>
+      string(1) "d"
+      ["log_driver"]=>
+      string(7) "log4php"
+      ["log_threshold"]=>
+      int(4)
+      ["log_path"]=>
+      string(0) ""
+      ["log_date_format"]=>
+      string(11) "Y-m-d H:i:s"
+      ["cache_path"]=>
+      string(0) ""
+      ["encryption_key"]=>
+      string(14) "CpgoqMdt3wU4Wq"
+      ["sess_cookie_name"]=>
+      string(10) "ci_session"
+      ["sess_expiration"]=>
+      int(7200)
+      ["sess_expire_on_close"]=>
+      bool(false)
+      ["sess_encrypt_cookie"]=>
+      bool(false)
+      ["sess_use_database"]=>
+      bool(false)
+      ["sess_table_name"]=>
+      string(11) "ci_sessions"
+      ["sess_match_ip"]=>
+      bool(false)
+      ["sess_match_useragent"]=>
+      bool(true)
+      ["sess_time_to_update"]=>
+      int(300)
+      ["cookie_prefix"]=>
+      string(0) ""
+      ["cookie_domain"]=>
+      string(0) ""
+      ["cookie_path"]=>
+      string(1) "/"
+      ["cookie_secure"]=>
+      bool(false)
+      ["global_xss_filtering"]=>
+      bool(false)
+      ["csrf_protection"]=>
+      bool(false)
+      ["csrf_token_name"]=>
+      string(14) "csrf_test_name"
+      ["csrf_cookie_name"]=>
+      string(16) "csrf_cookie_name"
+      ["csrf_expire"]=>
+      int(7200)
+      ["compress_output"]=>
+      bool(false)
+      ["time_reference"]=>
+      string(5) "local"
+      ["rewrite_short_tags"]=>
+      bool(false)
+      ["proxy_ips"]=>
+      string(0) ""
+      ["template_engine"]=>
+      string(6) "smarty"
+      ["error_notifier_driver"]=>
+      string(14) "error_notifier"
+      ["ciu_subclass_prefix"]=>
+      string(4) "CIU_"
+      ["error_notifier"]=>
+      array(6) {
+        ["sendable"]=>
+        bool(false)
+        ["project"]=>
+        string(14) "Error notifier"
+        ["from"]=>
+        array(2) {
+          [0]=>
+          string(14) "Error notifier"
+          [1]=>
+          string(19) "example@example.com"
+        }
+        ["to"]=>
+        array(1) {
+          [0]=>
+          string(19) "example@example.com"
+        }
+        ["template_path"]=>
+        string(0) ""
+        ["masked_parameters"]=>
+        array(1) {
+          [0]=>
+          string(8) "password"
+        }
+      }
+    }
+    ["is_loaded"]=>
+    array(1) {
+      [0]=>
+      string(41) "/vagrant/shared/config/error_notifier.php"
+    }
+  }
+  ["log"]=>
+  &object(APP_Log)#16 (2) {
+    ["_dirver":protected]=>
+    string(11) "codeigniter"
+    ["_driver"]=>
+    object(APP_Log_driver_log4php)#18 (2) {
+      ["_levels":protected]=>
+      array(7) {
+        ["FATAL"]=>
+        string(1) "0"
+        ["ERROR"]=>
+        string(1) "1"
+        ["WARN"]=>
+        string(1) "1"
+        ["DEBUG"]=>
+        string(1) "2"
+        ["INFO"]=>
+        string(1) "3"
+        ["TRACE"]=>
+        string(1) "4"
+        ["ALL"]=>
+        string(1) "4"
+      }
+      ["logger"]=>
+      object(LoggerRoot)#20 (6) {
+        ["additive":"Logger":private]=>
+        bool(true)
+        ["fqcn":"Logger":private]=>
+        string(6) "Logger"
+        ["level":"Logger":private]=>
+        object(LoggerLevel)#25 (3) {
+          ["level":"LoggerLevel":private]=>
+          int(10000)
+          ["levelStr":"LoggerLevel":private]=>
+          string(5) "DEBUG"
+          ["syslogEquivalent":"LoggerLevel":private]=>
+          int(7)
+        }
+        ["name":"Logger":private]=>
+        string(4) "root"
+        ["parent":"Logger":private]=>
+        NULL
+        ["appenders":"Logger":private]=>
+        array(1) {
+          ["default"]=>
+          object(LoggerAppenderFile)#27 (10) {
+            ["locking":protected]=>
+            bool(true)
+            ["append":protected]=>
+            bool(true)
+            ["file":protected]=>
+            string(65) "/vagrant/apps/shared_test/tests/../application/logs/auto_test.log"
+            ["fp":protected]=>
+            resource(69) of type (stream)
+            ["closed":protected]=>
+            bool(false)
+            ["filter":protected]=>
+            NULL
+            ["layout":protected]=>
+            object(LoggerLayoutPattern)#29 (3) {
+              ["pattern":protected]=>
+              string(43) "%date{Y-m-d H:i:s,u} [%pid] %-5level %msg%n"
+              ["converterMap":protected]=>
+              array(46) {
+                ["c"]=>
+                string(28) "LoggerPatternConverterLogger"
+                ["lo"]=>
+                string(28) "LoggerPatternConverterLogger"
+                ["logger"]=>
+                string(28) "LoggerPatternConverterLogger"
+                ["C"]=>
+                string(27) "LoggerPatternConverterClass"
+                ["class"]=>
+                string(27) "LoggerPatternConverterClass"
+                ["cookie"]=>
+                string(28) "LoggerPatternConverterCookie"
+                ["d"]=>
+                string(26) "LoggerPatternConverterDate"
+                ["date"]=>
+                string(26) "LoggerPatternConverterDate"
+                ["e"]=>
+                string(33) "LoggerPatternConverterEnvironment"
+                ["env"]=>
+                string(33) "LoggerPatternConverterEnvironment"
+                ["ex"]=>
+                string(31) "LoggerPatternConverterThrowable"
+                ["exception"]=>
+                string(31) "LoggerPatternConverterThrowable"
+                ["throwable"]=>
+                string(31) "LoggerPatternConverterThrowable"
+                ["F"]=>
+                string(26) "LoggerPatternConverterFile"
+                ["file"]=>
+                string(26) "LoggerPatternConverterFile"
+                ["l"]=>
+                string(30) "LoggerPatternConverterLocation"
+                ["location"]=>
+                string(30) "LoggerPatternConverterLocation"
+                ["L"]=>
+                string(26) "LoggerPatternConverterLine"
+                ["line"]=>
+                string(26) "LoggerPatternConverterLine"
+                ["m"]=>
+                string(29) "LoggerPatternConverterMessage"
+                ["msg"]=>
+                string(29) "LoggerPatternConverterMessage"
+                ["message"]=>
+                string(29) "LoggerPatternConverterMessage"
+                ["M"]=>
+                string(28) "LoggerPatternConverterMethod"
+                ["method"]=>
+                string(28) "LoggerPatternConverterMethod"
+                ["n"]=>
+                string(29) "LoggerPatternConverterNewLine"
+                ["newline"]=>
+                string(29) "LoggerPatternConverterNewLine"
+                ["p"]=>
+                string(27) "LoggerPatternConverterLevel"
+                ["le"]=>
+                string(27) "LoggerPatternConverterLevel"
+                ["level"]=>
+                string(27) "LoggerPatternConverterLevel"
+                ["r"]=>
+                string(30) "LoggerPatternConverterRelative"
+                ["relative"]=>
+                string(30) "LoggerPatternConverterRelative"
+                ["req"]=>
+                string(29) "LoggerPatternConverterRequest"
+                ["request"]=>
+                string(29) "LoggerPatternConverterRequest"
+                ["s"]=>
+                string(28) "LoggerPatternConverterServer"
+                ["server"]=>
+                string(28) "LoggerPatternConverterServer"
+                ["ses"]=>
+                string(29) "LoggerPatternConverterSession"
+                ["session"]=>
+                string(29) "LoggerPatternConverterSession"
+                ["sid"]=>
+                string(31) "LoggerPatternConverterSessionID"
+                ["sessionid"]=>
+                string(31) "LoggerPatternConverterSessionID"
+                ["t"]=>
+                string(29) "LoggerPatternConverterProcess"
+                ["pid"]=>
+                string(29) "LoggerPatternConverterProcess"
+                ["process"]=>
+                string(29) "LoggerPatternConverterProcess"
+                ["x"]=>
+                string(25) "LoggerPatternConverterNDC"
+                ["ndc"]=>
+                string(25) "LoggerPatternConverterNDC"
+                ["X"]=>
+                string(25) "LoggerPatternConverterMDC"
+                ["mdc"]=>
+                string(25) "LoggerPatternConverterMDC"
+              }
+              ["head":"LoggerLayoutPattern":private]=>
+              object(LoggerPatternConverterDate)#32 (6) {
+                ["format":"LoggerPatternConverterDate":private]=>
+                string(13) "Y-m-d H:i:s,u"
+                ["specials":"LoggerPatternConverterDate":private]=>
+                array(3) {
+                  ["ISO8601"]=>
+                  string(1) "c"
+                  ["ABSOLUTE"]=>
+                  string(5) "H:i:s"
+                  ["DATE"]=>
+                  string(13) "d M Y H:i:s.u"
+                }
+                ["useLocalDate":"LoggerPatternConverterDate":private]=>
+                bool(true)
+                ["next"]=>
+                object(LoggerPatternConverterLiteral)#33 (4) {
+                  ["literalValue":"LoggerPatternConverterLiteral":private]=>
+                  string(2) " ["
+                  ["next"]=>
+                  object(LoggerPatternConverterProcess)#35 (3) {
+                    ["next"]=>
+                    object(LoggerPatternConverterLiteral)#36 (4) {
+                      ["literalValue":"LoggerPatternConverterLiteral":private]=>
+                      string(2) "] "
+                      ["next"]=>
+                      object(LoggerPatternConverterLevel)#38 (3) {
+                        ["next"]=>
+                        object(LoggerPatternConverterLiteral)#39 (4) {
+                          ["literalValue":"LoggerPatternConverterLiteral":private]=>
+                          string(1) " "
+                          ["next"]=>
+                          object(LoggerPatternConverterMessage)#41 (3) {
+                            ["next"]=>
+                            object(LoggerPatternConverterNewLine)#43 (3) {
+                              ["next"]=>
+                              NULL
+                              ["formattingInfo":protected]=>
+                              object(LoggerFormattingInfo)#42 (4) {
+                                ["min"]=>
+                                int(0)
+                                ["max"]=>
+                                int(9223372036854775807)
+                                ["padLeft"]=>
+                                bool(true)
+                                ["trimLeft"]=>
+                                bool(false)
+                              }
+                              ["option":protected]=>
+                              string(0) ""
+                            }
+                            ["formattingInfo":protected]=>
+                            object(LoggerFormattingInfo)#40 (4) {
+                              ["min"]=>
+                              int(0)
+                              ["max"]=>
+                              int(9223372036854775807)
+                              ["padLeft"]=>
+                              bool(true)
+                              ["trimLeft"]=>
+                              bool(false)
+                            }
+                            ["option":protected]=>
+                            string(0) ""
+                          }
+                          ["formattingInfo":protected]=>
+                          NULL
+                          ["option":protected]=>
+                          NULL
+                        }
+                        ["formattingInfo":protected]=>
+                        object(LoggerFormattingInfo)#37 (4) {
+                          ["min"]=>
+                          int(5)
+                          ["max"]=>
+                          int(9223372036854775807)
+                          ["padLeft"]=>
+                          bool(false)
+                          ["trimLeft"]=>
+                          bool(false)
+                        }
+                        ["option":protected]=>
+                        string(0) ""
+                      }
+                      ["formattingInfo":protected]=>
+                      NULL
+                      ["option":protected]=>
+                      NULL
+                    }
+                    ["formattingInfo":protected]=>
+                    object(LoggerFormattingInfo)#34 (4) {
+                      ["min"]=>
+                      int(0)
+                      ["max"]=>
+                      int(9223372036854775807)
+                      ["padLeft"]=>
+                      bool(true)
+                      ["trimLeft"]=>
+                      bool(false)
+                    }
+                    ["option":protected]=>
+                    string(0) ""
+                  }
+                  ["formattingInfo":protected]=>
+                  NULL
+                  ["option":protected]=>
+                  NULL
+                }
+                ["formattingInfo":protected]=>
+                object(LoggerFormattingInfo)#31 (4) {
+                  ["min"]=>
+                  int(0)
+                  ["max"]=>
+                  int(9223372036854775807)
+                  ["padLeft"]=>
+                  bool(true)
+                  ["trimLeft"]=>
+                  bool(false)
+                }
+                ["option":protected]=>
+                string(13) "Y-m-d H:i:s,u"
+              }
+            }
+            ["name":protected]=>
+            string(7) "default"
+            ["threshold":protected]=>
+            NULL
+            ["requiresLayout":protected]=>
+            bool(true)
+          }
+        }
+      }
+    }
+  }
+  ["exceptions"]=>
+  &object(CIU_Exceptions)#30 (7) {
+    ["action"]=>
+    NULL
+    ["severity"]=>
+    NULL
+    ["message"]=>
+    NULL
+    ["filename"]=>
+    NULL
+    ["line"]=>
+    NULL
+    ["ob_level"]=>
+    int(0)
+    ["levels"]=>
+    array(12) {
+      [1]=>
+      string(5) "Error"
+      [2]=>
+      string(7) "Warning"
+      [4]=>
+      string(13) "Parsing Error"
+      [8]=>
+      string(6) "Notice"
+      [16]=>
+      string(10) "Core Error"
+      [32]=>
+      string(12) "Core Warning"
+      [64]=>
+      string(13) "Compile Error"
+      [128]=>
+      string(15) "Compile Warning"
+      [256]=>
+      string(10) "User Error"
+      [512]=>
+      string(12) "User Warning"
+      [1024]=>
+      string(11) "User Notice"
+      [2048]=>
+      string(14) "Runtime Notice"
+    }
+  }
+  ["utf8"]=>
+  &object(CI_Utf8)#15 (0) {
+  }
+  ["uri"]=>
+  &object(APP_URI)#14 (6) {
+    ["extension"]=>
+    string(4) "html"
+    ["keyval"]=>
+    array(0) {
+    }
+    ["uri_string"]=>
+    NULL
+    ["segments"]=>
+    array(0) {
+    }
+    ["rsegments"]=>
+    array(0) {
+    }
+    ["config"]=>
+    object(APP_Config)#197 (3) {
+      ["_config_paths"]=>
+      array(3) {
+        [0]=>
+        string(51) "/vagrant/shared/third_party/RemotePushNotification/"
+        [1]=>
+        string(16) "/vagrant/shared/"
+        [2]=>
+        string(47) "/vagrant/apps/shared_test/tests/../application/"
+      }
+      ["config"]=>
+      array(46) {
+        ["base_url"]=>
+        string(17) "http://localhost/"
+        ["index_page"]=>
+        string(0) ""
+        ["uri_protocol"]=>
+        string(4) "AUTO"
+        ["url_suffix"]=>
+        string(0) ""
+        ["language"]=>
+        string(8) "japanese"
+        ["charset"]=>
+        string(5) "UTF-8"
+        ["enable_hooks"]=>
+        bool(true)
+        ["subclass_prefix"]=>
+        string(3) "MY_"
+        ["permitted_uri_chars"]=>
+        string(14) "a-z 0-9~%.:_\-"
+        ["allow_get_array"]=>
+        bool(true)
+        ["enable_query_strings"]=>
+        bool(false)
+        ["controller_trigger"]=>
+        string(1) "c"
+        ["function_trigger"]=>
+        string(1) "m"
+        ["directory_trigger"]=>
+        string(1) "d"
+        ["log_driver"]=>
+        string(7) "log4php"
+        ["log_threshold"]=>
+        int(4)
+        ["log_path"]=>
+        string(0) ""
+        ["log_date_format"]=>
+        string(11) "Y-m-d H:i:s"
+        ["cache_path"]=>
+        string(0) ""
+        ["encryption_key"]=>
+        string(14) "CpgoqMdt3wU4Wq"
+        ["sess_cookie_name"]=>
+        string(10) "ci_session"
+        ["sess_expiration"]=>
+        int(7200)
+        ["sess_expire_on_close"]=>
+        bool(false)
+        ["sess_encrypt_cookie"]=>
+        bool(false)
+        ["sess_use_database"]=>
+        bool(false)
+        ["sess_table_name"]=>
+        string(11) "ci_sessions"
+        ["sess_match_ip"]=>
+        bool(false)
+        ["sess_match_useragent"]=>
+        bool(true)
+        ["sess_time_to_update"]=>
+        int(300)
+        ["cookie_prefix"]=>
+        string(0) ""
+        ["cookie_domain"]=>
+        string(0) ""
+        ["cookie_path"]=>
+        string(1) "/"
+        ["cookie_secure"]=>
+        bool(false)
+        ["global_xss_filtering"]=>
+        bool(false)
+        ["csrf_protection"]=>
+        bool(false)
+        ["csrf_token_name"]=>
+        string(14) "csrf_test_name"
+        ["csrf_cookie_name"]=>
+        string(16) "csrf_cookie_name"
+        ["csrf_expire"]=>
+        int(7200)
+        ["compress_output"]=>
+        bool(false)
+        ["time_reference"]=>
+        string(5) "local"
+        ["rewrite_short_tags"]=>
+        bool(false)
+        ["proxy_ips"]=>
+        string(0) ""
+        ["template_engine"]=>
+        string(6) "smarty"
+        ["error_notifier_driver"]=>
+        string(14) "error_notifier"
+        ["ciu_subclass_prefix"]=>
+        string(4) "CIU_"
+        ["error_notifier"]=>
+        array(6) {
+          ["sendable"]=>
+          bool(false)
+          ["project"]=>
+          string(14) "Error notifier"
+          ["from"]=>
+          array(2) {
+            [0]=>
+            string(14) "Error notifier"
+            [1]=>
+            string(19) "example@example.com"
+          }
+          ["to"]=>
+          array(1) {
+            [0]=>
+            string(19) "example@example.com"
+          }
+          ["template_path"]=>
+          string(0) ""
+          ["masked_parameters"]=>
+          array(1) {
+            [0]=>
+            string(8) "password"
+          }
+        }
+      }
+      ["is_loaded"]=>
+      array(1) {
+        [0]=>
+        string(41) "/vagrant/shared/config/error_notifier.php"
+      }
+    }
+  }
+  ["router"]=>
+  &object(APP_Router)#17 (8) {
+    ["config"]=>
+    &object(APP_Config)#233 (3) {
+      ["_config_paths"]=>
+      array(3) {
+        [0]=>
+        string(51) "/vagrant/shared/third_party/RemotePushNotification/"
+        [1]=>
+        string(16) "/vagrant/shared/"
+        [2]=>
+        string(47) "/vagrant/apps/shared_test/tests/../application/"
+      }
+      ["config"]=>
+      array(46) {
+        ["base_url"]=>
+        string(17) "http://localhost/"
+        ["index_page"]=>
+        string(0) ""
+        ["uri_protocol"]=>
+        string(4) "AUTO"
+        ["url_suffix"]=>
+        string(0) ""
+        ["language"]=>
+        string(8) "japanese"
+        ["charset"]=>
+        string(5) "UTF-8"
+        ["enable_hooks"]=>
+        bool(true)
+        ["subclass_prefix"]=>
+        string(3) "MY_"
+        ["permitted_uri_chars"]=>
+        string(14) "a-z 0-9~%.:_\-"
+        ["allow_get_array"]=>
+        bool(true)
+        ["enable_query_strings"]=>
+        bool(false)
+        ["controller_trigger"]=>
+        string(1) "c"
+        ["function_trigger"]=>
+        string(1) "m"
+        ["directory_trigger"]=>
+        string(1) "d"
+        ["log_driver"]=>
+        string(7) "log4php"
+        ["log_threshold"]=>
+        int(4)
+        ["log_path"]=>
+        string(0) ""
+        ["log_date_format"]=>
+        string(11) "Y-m-d H:i:s"
+        ["cache_path"]=>
+        string(0) ""
+        ["encryption_key"]=>
+        string(14) "CpgoqMdt3wU4Wq"
+        ["sess_cookie_name"]=>
+        string(10) "ci_session"
+        ["sess_expiration"]=>
+        int(7200)
+        ["sess_expire_on_close"]=>
+        bool(false)
+        ["sess_encrypt_cookie"]=>
+        bool(false)
+        ["sess_use_database"]=>
+        bool(false)
+        ["sess_table_name"]=>
+        string(11) "ci_sessions"
+        ["sess_match_ip"]=>
+        bool(false)
+        ["sess_match_useragent"]=>
+        bool(true)
+        ["sess_time_to_update"]=>
+        int(300)
+        ["cookie_prefix"]=>
+        string(0) ""
+        ["cookie_domain"]=>
+        string(0) ""
+        ["cookie_path"]=>
+        string(1) "/"
+        ["cookie_secure"]=>
+        bool(false)
+        ["global_xss_filtering"]=>
+        bool(false)
+        ["csrf_protection"]=>
+        bool(false)
+        ["csrf_token_name"]=>
+        string(14) "csrf_test_name"
+        ["csrf_cookie_name"]=>
+        string(16) "csrf_cookie_name"
+        ["csrf_expire"]=>
+        int(7200)
+        ["compress_output"]=>
+        bool(false)
+        ["time_reference"]=>
+        string(5) "local"
+        ["rewrite_short_tags"]=>
+        bool(false)
+        ["proxy_ips"]=>
+        string(0) ""
+        ["template_engine"]=>
+        string(6) "smarty"
+        ["error_notifier_driver"]=>
+        string(14) "error_notifier"
+        ["ciu_subclass_prefix"]=>
+        string(4) "CIU_"
+        ["error_notifier"]=>
+        array(6) {
+          ["sendable"]=>
+          bool(false)
+          ["project"]=>
+          string(14) "Error notifier"
+          ["from"]=>
+          array(2) {
+            [0]=>
+            string(14) "Error notifier"
+            [1]=>
+            string(19) "example@example.com"
+          }
+          ["to"]=>
+          array(1) {
+            [0]=>
+            string(19) "example@example.com"
+          }
+          ["template_path"]=>
+          string(0) ""
+          ["masked_parameters"]=>
+          array(1) {
+            [0]=>
+            string(8) "password"
+          }
+        }
+      }
+      ["is_loaded"]=>
+      array(1) {
+        [0]=>
+        string(41) "/vagrant/shared/config/error_notifier.php"
+      }
+    }
+    ["routes"]=>
+    array(0) {
+    }
+    ["error_routes"]=>
+    array(0) {
+    }
+    ["class"]=>
+    string(14) "APP_Controller"
+    ["method"]=>
+    string(5) "index"
+    ["directory"]=>
+    string(0) ""
+    ["default_controller"]=>
+    NULL
+    ["uri"]=>
+    object(APP_URI)#193 (6) {
+      ["extension"]=>
+      string(4) "html"
+      ["keyval"]=>
+      array(0) {
+      }
+      ["uri_string"]=>
+      NULL
+      ["segments"]=>
+      array(0) {
+      }
+      ["rsegments"]=>
+      array(0) {
+      }
+      ["config"]=>
+      &object(APP_Config)#233 (3) {
+        ["_config_paths"]=>
+        array(3) {
+          [0]=>
+          string(51) "/vagrant/shared/third_party/RemotePushNotification/"
+          [1]=>
+          string(16) "/vagrant/shared/"
+          [2]=>
+          string(47) "/vagrant/apps/shared_test/tests/../application/"
+        }
+        ["config"]=>
+        array(46) {
+          ["base_url"]=>
+          string(17) "http://localhost/"
+          ["index_page"]=>
+          string(0) ""
+          ["uri_protocol"]=>
+          string(4) "AUTO"
+          ["url_suffix"]=>
+          string(0) ""
+          ["language"]=>
+          string(8) "japanese"
+          ["charset"]=>
+          string(5) "UTF-8"
+          ["enable_hooks"]=>
+          bool(true)
+          ["subclass_prefix"]=>
+          string(3) "MY_"
+          ["permitted_uri_chars"]=>
+          string(14) "a-z 0-9~%.:_\-"
+          ["allow_get_array"]=>
+          bool(true)
+          ["enable_query_strings"]=>
+          bool(false)
+          ["controller_trigger"]=>
+          string(1) "c"
+          ["function_trigger"]=>
+          string(1) "m"
+          ["directory_trigger"]=>
+          string(1) "d"
+          ["log_driver"]=>
+          string(7) "log4php"
+          ["log_threshold"]=>
+          int(4)
+          ["log_path"]=>
+          string(0) ""
+          ["log_date_format"]=>
+          string(11) "Y-m-d H:i:s"
+          ["cache_path"]=>
+          string(0) ""
+          ["encryption_key"]=>
+          string(14) "CpgoqMdt3wU4Wq"
+          ["sess_cookie_name"]=>
+          string(10) "ci_session"
+          ["sess_expiration"]=>
+          int(7200)
+          ["sess_expire_on_close"]=>
+          bool(false)
+          ["sess_encrypt_cookie"]=>
+          bool(false)
+          ["sess_use_database"]=>
+          bool(false)
+          ["sess_table_name"]=>
+          string(11) "ci_sessions"
+          ["sess_match_ip"]=>
+          bool(false)
+          ["sess_match_useragent"]=>
+          bool(true)
+          ["sess_time_to_update"]=>
+          int(300)
+          ["cookie_prefix"]=>
+          string(0) ""
+          ["cookie_domain"]=>
+          string(0) ""
+          ["cookie_path"]=>
+          string(1) "/"
+          ["cookie_secure"]=>
+          bool(false)
+          ["global_xss_filtering"]=>
+          bool(false)
+          ["csrf_protection"]=>
+          bool(false)
+          ["csrf_token_name"]=>
+          string(14) "csrf_test_name"
+          ["csrf_cookie_name"]=>
+          string(16) "csrf_cookie_name"
+          ["csrf_expire"]=>
+          int(7200)
+          ["compress_output"]=>
+          bool(false)
+          ["time_reference"]=>
+          string(5) "local"
+          ["rewrite_short_tags"]=>
+          bool(false)
+          ["proxy_ips"]=>
+          string(0) ""
+          ["template_engine"]=>
+          string(6) "smarty"
+          ["error_notifier_driver"]=>
+          string(14) "error_notifier"
+          ["ciu_subclass_prefix"]=>
+          string(4) "CIU_"
+          ["error_notifier"]=>
+          array(6) {
+            ["sendable"]=>
+            bool(false)
+            ["project"]=>
+            string(14) "Error notifier"
+            ["from"]=>
+            array(2) {
+              [0]=>
+              string(14) "Error notifier"
+              [1]=>
+              string(19) "example@example.com"
+            }
+            ["to"]=>
+            array(1) {
+              [0]=>
+              string(19) "example@example.com"
+            }
+            ["template_path"]=>
+            string(0) ""
+            ["masked_parameters"]=>
+            array(1) {
+              [0]=>
+              string(8) "password"
+            }
+          }
+        }
+        ["is_loaded"]=>
+        array(1) {
+          [0]=>
+          string(41) "/vagrant/shared/config/error_notifier.php"
+        }
+      }
+    }
+  }
+  ["output"]=>
+  &object(CIU_Output)#23 (10) {
+    ["final_output":protected]=>
+    string(0) ""
+    ["cache_expiration":protected]=>
+    int(0)
+    ["headers":protected]=>
+    array(0) {
+    }
+    ["mime_types":protected]=>
+    array(91) {
+      ["hqx"]=>
+      string(24) "application/mac-binhex40"
+      ["cpt"]=>
+      string(26) "application/mac-compactpro"
+      ["csv"]=>
+      array(10) {
+        [0]=>
+        string(29) "text/x-comma-separated-values"
+        [1]=>
+        string(27) "text/comma-separated-values"
+        [2]=>
+        string(24) "application/octet-stream"
+        [3]=>
+        string(24) "application/vnd.ms-excel"
+        [4]=>
+        string(17) "application/x-csv"
+        [5]=>
+        string(10) "text/x-csv"
+        [6]=>
+        string(8) "text/csv"
+        [7]=>
+        string(15) "application/csv"
+        [8]=>
+        string(17) "application/excel"
+        [9]=>
+        string(23) "application/vnd.msexcel"
+      }
+      ["bin"]=>
+      string(21) "application/macbinary"
+      ["dms"]=>
+      string(24) "application/octet-stream"
+      ["lha"]=>
+      string(24) "application/octet-stream"
+      ["lzh"]=>
+      string(24) "application/octet-stream"
+      ["exe"]=>
+      array(2) {
+        [0]=>
+        string(24) "application/octet-stream"
+        [1]=>
+        string(24) "application/x-msdownload"
+      }
+      ["class"]=>
+      string(24) "application/octet-stream"
+      ["psd"]=>
+      string(23) "application/x-photoshop"
+      ["so"]=>
+      string(24) "application/octet-stream"
+      ["sea"]=>
+      string(24) "application/octet-stream"
+      ["dll"]=>
+      string(24) "application/octet-stream"
+      ["oda"]=>
+      string(15) "application/oda"
+      ["pdf"]=>
+      array(2) {
+        [0]=>
+        string(15) "application/pdf"
+        [1]=>
+        string(22) "application/x-download"
+      }
+      ["ai"]=>
+      string(22) "application/postscript"
+      ["eps"]=>
+      string(22) "application/postscript"
+      ["ps"]=>
+      string(22) "application/postscript"
+      ["smi"]=>
+      string(16) "application/smil"
+      ["smil"]=>
+      string(16) "application/smil"
+      ["mif"]=>
+      string(19) "application/vnd.mif"
+      ["xls"]=>
+      array(3) {
+        [0]=>
+        string(17) "application/excel"
+        [1]=>
+        string(24) "application/vnd.ms-excel"
+        [2]=>
+        string(19) "application/msexcel"
+      }
+      ["ppt"]=>
+      array(2) {
+        [0]=>
+        string(22) "application/powerpoint"
+        [1]=>
+        string(29) "application/vnd.ms-powerpoint"
+      }
+      ["wbxml"]=>
+      string(17) "application/wbxml"
+      ["wmlc"]=>
+      string(16) "application/wmlc"
+      ["dcr"]=>
+      string(22) "application/x-director"
+      ["dir"]=>
+      string(22) "application/x-director"
+      ["dxr"]=>
+      string(22) "application/x-director"
+      ["dvi"]=>
+      string(17) "application/x-dvi"
+      ["gtar"]=>
+      string(18) "application/x-gtar"
+      ["gz"]=>
+      string(18) "application/x-gzip"
+      ["php"]=>
+      string(23) "application/x-httpd-php"
+      ["php4"]=>
+      string(23) "application/x-httpd-php"
+      ["php3"]=>
+      string(23) "application/x-httpd-php"
+      ["phtml"]=>
+      string(23) "application/x-httpd-php"
+      ["phps"]=>
+      string(30) "application/x-httpd-php-source"
+      ["js"]=>
+      string(24) "application/x-javascript"
+      ["swf"]=>
+      string(29) "application/x-shockwave-flash"
+      ["sit"]=>
+      string(21) "application/x-stuffit"
+      ["tar"]=>
+      string(17) "application/x-tar"
+      ["tgz"]=>
+      array(2) {
+        [0]=>
+        string(17) "application/x-tar"
+        [1]=>
+        string(29) "application/x-gzip-compressed"
+      }
+      ["xhtml"]=>
+      string(21) "application/xhtml+xml"
+      ["xht"]=>
+      string(21) "application/xhtml+xml"
+      ["zip"]=>
+      array(3) {
+        [0]=>
+        string(17) "application/x-zip"
+        [1]=>
+        string(15) "application/zip"
+        [2]=>
+        string(28) "application/x-zip-compressed"
+      }
+      ["mid"]=>
+      string(10) "audio/midi"
+      ["midi"]=>
+      string(10) "audio/midi"
+      ["mpga"]=>
+      string(10) "audio/mpeg"
+      ["mp2"]=>
+      string(10) "audio/mpeg"
+      ["mp3"]=>
+      array(4) {
+        [0]=>
+        string(10) "audio/mpeg"
+        [1]=>
+        string(9) "audio/mpg"
+        [2]=>
+        string(11) "audio/mpeg3"
+        [3]=>
+        string(9) "audio/mp3"
+      }
+      ["aif"]=>
+      string(12) "audio/x-aiff"
+      ["aiff"]=>
+      string(12) "audio/x-aiff"
+      ["aifc"]=>
+      string(12) "audio/x-aiff"
+      ["ram"]=>
+      string(20) "audio/x-pn-realaudio"
+      ["rm"]=>
+      string(20) "audio/x-pn-realaudio"
+      ["rpm"]=>
+      string(27) "audio/x-pn-realaudio-plugin"
+      ["ra"]=>
+      string(17) "audio/x-realaudio"
+      ["rv"]=>
+      string(22) "video/vnd.rn-realvideo"
+      ["wav"]=>
+      string(11) "audio/x-wav"
+      ["bmp"]=>
+      string(9) "image/bmp"
+      ["gif"]=>
+      string(9) "image/gif"
+      ["jpeg"]=>
+      array(2) {
+        [0]=>
+        string(10) "image/jpeg"
+        [1]=>
+        string(11) "image/pjpeg"
+      }
+      ["jpg"]=>
+      array(2) {
+        [0]=>
+        string(10) "image/jpeg"
+        [1]=>
+        string(11) "image/pjpeg"
+      }
+      ["jpe"]=>
+      array(2) {
+        [0]=>
+        string(10) "image/jpeg"
+        [1]=>
+        string(11) "image/pjpeg"
+      }
+      ["png"]=>
+      array(2) {
+        [0]=>
+        string(9) "image/png"
+        [1]=>
+        string(11) "image/x-png"
+      }
+      ["tiff"]=>
+      string(10) "image/tiff"
+      ["tif"]=>
+      string(10) "image/tiff"
+      ["css"]=>
+      string(8) "text/css"
+      ["html"]=>
+      string(9) "text/html"
+      ["htm"]=>
+      string(9) "text/html"
+      ["shtml"]=>
+      string(9) "text/html"
+      ["txt"]=>
+      string(10) "text/plain"
+      ["text"]=>
+      string(10) "text/plain"
+      ["log"]=>
+      array(2) {
+        [0]=>
+        string(10) "text/plain"
+        [1]=>
+        string(10) "text/x-log"
+      }
+      ["rtx"]=>
+      string(13) "text/richtext"
+      ["rtf"]=>
+      string(8) "text/rtf"
+      ["xml"]=>
+      string(8) "text/xml"
+      ["xsl"]=>
+      string(8) "text/xml"
+      ["mpeg"]=>
+      string(10) "video/mpeg"
+      ["mpg"]=>
+      string(10) "video/mpeg"
+      ["mpe"]=>
+      string(10) "video/mpeg"
+      ["qt"]=>
+      string(15) "video/quicktime"
+      ["mov"]=>
+      string(15) "video/quicktime"
+      ["avi"]=>
+      string(15) "video/x-msvideo"
+      ["movie"]=>
+      string(17) "video/x-sgi-movie"
+      ["doc"]=>
+      string(18) "application/msword"
+      ["docx"]=>
+      string(71) "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      ["xlsx"]=>
+      string(65) "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      ["word"]=>
+      array(2) {
+        [0]=>
+        string(18) "application/msword"
+        [1]=>
+        string(24) "application/octet-stream"
+      }
+      ["xl"]=>
+      string(17) "application/excel"
+      ["eml"]=>
+      string(14) "message/rfc822"
+      ["json"]=>
+      array(2) {
+        [0]=>
+        string(16) "application/json"
+        [1]=>
+        string(9) "text/json"
+      }
+    }
+    ["enable_profiler":protected]=>
+    bool(false)
+    ["_zlib_oc":protected]=>
+    string(0) ""
+    ["_profiler_sections":protected]=>
+    array(0) {
+    }
+    ["parse_exec_vars":protected]=>
+    bool(true)
+    ["_ci_ob_level"]=>
+    int(0)
+    ["cookies"]=>
+    array(0) {
+    }
+  }
+  ["input"]=>
+  &object(APP_Input)#28 (9) {
+    ["ip_address"]=>
+    bool(false)
+    ["user_agent"]=>
+    bool(false)
+    ["_allow_get_array"]=>
+    bool(true)
+    ["_standardize_newlines"]=>
+    bool(true)
+    ["_enable_xss"]=>
+    bool(false)
+    ["_enable_csrf"]=>
+    bool(false)
+    ["headers":protected]=>
+    array(0) {
+    }
+    ["security"]=>
+    NULL
+    ["uni"]=>
+    object(CI_Utf8)#229 (0) {
+    }
+  }
+  ["lang"]=>
+  &object(APP_Lang)#49 (2) {
+    ["language"]=>
+    array(50) {
+      ["rescode_2000"]=>
+      string(39) "リクエストに成功しました。"
+      ["rescode_2010"]=>
+      string(30) "登録に成功しました。"
+      ["rescode_2020"]=>
+      string(42) "リクエストを受け付けました。"
+      ["rescode_4000"]=>
+      string(30) "不正なアクセスです。"
+      ["rescode_4001"]=>
+      string(45) "不正なパラメータが存在します。"
+      ["rescode_4010"]=>
+      string(30) "認証されていません。"
+      ["rescode_4030"]=>
+      string(48) "アクセスできる権限がありません。"
+      ["rescode_4040"]=>
+      string(33) "ページが存在しません。"
+      ["rescode_5010"]=>
+      string(51) "内部サーバーエラーが発生しました。"
+      ["rescode_5030"]=>
+      string(69) "現在サーバーがリクエストを受け付けていません。"
+      ["rescode_6000"]=>
+      string(50) "原因不明なDBエラーが発生しました。"
+      ["rescode_6010"]=>
+      string(41) "DB接続エラーが発生しました。"
+      ["rescode_6020"]=>
+      string(59) "DBトランザクションエラーが発生しました。"
+      ["rescode_6030"]=>
+      string(53) "DB処理にタイムアウトが発生しました。"
+      ["rescode_7000"]=>
+      string(51) "原因不明なAPIエラーが発生しました。"
+      ["rescode_7010"]=>
+      string(66) "該当のAPIを呼び出すための認証されていません。"
+      ["rescode_7020"]=>
+      string(54) "該当のAPIを呼び出す権限がありません。"
+      ["rescode_7030"]=>
+      string(51) "APIサーバーへの接続に失敗しました。"
+      ["rescode_7040"]=>
+      string(63) "APIの呼び出し回数制限をオーバーしています。"
+      ["rescode_7050"]=>
+      string(54) "APIリクエストがタイムアウトしました。"
+      ["rescode_9900"]=>
+      string(33) "原因不明なエラーです。"
+      ["required"]=>
+      string(24) "%s 欄は必須です。"
+      ["isset"]=>
+      string(36) "%s 欄は空欄にできません。"
+      ["valid_email"]=>
+      string(77) "%s 欄には正しいEmailアドレスを入力する必要があります。"
+      ["valid_emails"]=>
+      string(77) "%s 欄には正しいEmailアドレスを入力する必要があります。"
+      ["valid_url"]=>
+      string(63) "%s 欄には正しいURLを入力する必要があります。"
+      ["valid_ip"]=>
+      string(74) "%s 欄には正しいIPアドレスを入力する必要があります。"
+      ["min_length"]=>
+      string(64) "%s 欄は最低 %s 文字以上でなければなりません。"
+      ["max_length"]=>
+      string(52) "%s 欄は %s 文字を超えてはいけません。"
+      ["exact_length"]=>
+      string(52) "%s 欄は %s 文字でなければなりません。"
+      ["alpha"]=>
+      string(75) "%s 欄には、半角アルファベット以外は入力できません。"
+      ["alpha_numeric"]=>
+      string(63) "%s 欄には、半角英数字以外は入力できません。"
+      ["alpha_dash"]=>
+      string(108) "%s 欄には、半角英数字、アンダースコア(_)、ハイフン(-)以外は入力できません。"
+      ["numeric"]=>
+      string(54) "%s 欄には、数字以外は入力できません。"
+      ["is_string"]=>
+      string(57) "%s 欄には、文字列以外は入力できません。"
+      ["is_numeric"]=>
+      string(54) "%s 欄には、数値以外は入力できません。"
+      ["integer"]=>
+      string(54) "%s 欄には、整数以外は入力できません。"
+      ["regex_match"]=>
+      string(51) "%s 欄は、正しい形式ではありません。"
+      ["matches"]=>
+      string(40) "%s 欄が %s 欄と一致しません。"
+      ["is_natural"]=>
+      string(60) "%s 欄には、正の整数以外は入力できません。"
+      ["is_natural_no_zero"]=>
+      string(70) "%s 欄には、0より大きい整数以外は入力できません。"
+      ["decimal"]=>
+      string(47) "%s 欄は10進数しか入力できません。"
+      ["less_than"]=>
+      string(61) "%s 欄は %s より小さい数しか入力できません。"
+      ["greater_than"]=>
+      string(61) "%s 欄は %s より大きな数しか入力できません。"
+      ["is_boolean"]=>
+      string(57) "%s 欄には、真偽値以外は入力できません。"
+      ["valid_vague_email"]=>
+      string(77) "%s 欄には正しいEmailアドレスを入力する必要があります。"
+      ["datetime_format"]=>
+      string(57) "%s 欄には正しい日時を入力してください。"
+      ["date_format"]=>
+      string(63) "%s 欄には正しい日付を入力してくてください。"
+      ["after_current_time"]=>
+      string(60) "%s 欄には現在日時以降を入力してください。"
+      ["before_current_time"]=>
+      string(60) "%s 欄には現在日時以前を入力してください。"
+    }
+    ["is_loaded"]=>
+    array(2) {
+      [0]=>
+      string(22) "response_code_lang.php"
+      [1]=>
+      string(24) "form_validation_lang.php"
+    }
+  }
+  ["loader"]=>
+  &object(CIU_Loader)#51 (14) {
+    ["_ci_loaded_files"]=>
+    array(4) {
+      [0]=>
+      string(44) "/vagrant/shared/libraries/APP_User_agent.php"
+      [1]=>
+      string(42) "/vagrant/shared/libraries/APP_Response.php"
+      [2]=>
+      string(48) "/vagrant/shared/libraries/APP_Error_notifier.php"
+      [3]=>
+      string(45) "/vagrant/shared/libraries/API/Keyword_api.php"
+    }
+    ["content_buffers":protected]=>
+    array(0) {
+    }
+    ["content_names":"APP_Loader":private]=>
+    array(0) {
+    }
+    ["_ci_ob_level":protected]=>
+    int(0)
+    ["_ci_view_paths":protected]=>
+    array(3) {
+      ["/vagrant/shared/third_party/RemotePushNotification/views/"]=>
+      bool(true)
+      ["/vagrant/apps/shared_test/tests/../application/views/"]=>
+      bool(true)
+      ["/vagrant/shared/views/"]=>
+      bool(true)
+    }
+    ["_ci_library_paths":protected]=>
+    array(4) {
+      [0]=>
+      string(51) "/vagrant/shared/third_party/RemotePushNotification/"
+      [1]=>
+      string(47) "/vagrant/apps/shared_test/tests/../application/"
+      [2]=>
+      string(16) "/vagrant/shared/"
+      [3]=>
+      string(16) "/vagrant/system/"
+    }
+    ["_ci_model_paths":protected]=>
+    array(3) {
+      [0]=>
+      string(51) "/vagrant/shared/third_party/RemotePushNotification/"
+      [1]=>
+      string(47) "/vagrant/apps/shared_test/tests/../application/"
+      [2]=>
+      string(16) "/vagrant/shared/"
+    }
+    ["_ci_helper_paths":protected]=>
+    array(4) {
+      [0]=>
+      string(51) "/vagrant/shared/third_party/RemotePushNotification/"
+      [1]=>
+      string(47) "/vagrant/apps/shared_test/tests/../application/"
+      [2]=>
+      string(16) "/vagrant/shared/"
+      [3]=>
+      string(16) "/vagrant/system/"
+    }
+    ["_base_classes":protected]=>
+    array(12) {
+      ["benchmark"]=>
+      string(9) "Benchmark"
+      ["hooks"]=>
+      string(5) "Hooks"
+      ["config"]=>
+      string(6) "Config"
+      ["log"]=>
+      string(3) "Log"
+      ["exceptions"]=>
+      string(10) "Exceptions"
+      ["utf8"]=>
+      string(4) "Utf8"
+      ["uri"]=>
+      string(3) "URI"
+      ["router"]=>
+      string(6) "Router"
+      ["output"]=>
+      string(6) "Output"
+      ["input"]=>
+      string(5) "Input"
+      ["lang"]=>
+      string(4) "Lang"
+      ["loader"]=>
+      string(6) "Loader"
+    }
+    ["_ci_cached_vars":protected]=>
+    array(0) {
+    }
+    ["_ci_classes":protected]=>
+    array(4) {
+      ["user_agent"]=>
+      string(5) "agent"
+      ["response"]=>
+      string(8) "response"
+      ["error_notifier"]=>
+      string(15) "_error_notifier"
+      ["keyword_api"]=>
+      string(11) "keyword_api"
+    }
+    ["_ci_models":protected]=>
+    array(3) {
+      [0]=>
+      string(10) "user_model"
+      [1]=>
+      string(13) "keyword_model"
+      [2]=>
+      string(21) "popular_keyword_model"
+    }
+    ["_ci_helpers":protected]=>
+    array(4) {
+      ["common_helper"]=>
+      bool(true)
+      ["model_helper"]=>
+      bool(true)
+      ["render_helper"]=>
+      bool(true)
+      ["form_helper"]=>
+      bool(true)
+    }
+    ["_ci_varmap":protected]=>
+    array(2) {
+      ["unit_test"]=>
+      string(4) "unit"
+      ["user_agent"]=>
+      string(5) "agent"
+    }
+  }
+  ["load"]=>
+  &object(CIU_Loader)#51 (14) {
+    ["_ci_loaded_files"]=>
+    array(4) {
+      [0]=>
+      string(44) "/vagrant/shared/libraries/APP_User_agent.php"
+      [1]=>
+      string(42) "/vagrant/shared/libraries/APP_Response.php"
+      [2]=>
+      string(48) "/vagrant/shared/libraries/APP_Error_notifier.php"
+      [3]=>
+      string(45) "/vagrant/shared/libraries/API/Keyword_api.php"
+    }
+    ["content_buffers":protected]=>
+    array(0) {
+    }
+    ["content_names":"APP_Loader":private]=>
+    array(0) {
+    }
+    ["_ci_ob_level":protected]=>
+    int(0)
+    ["_ci_view_paths":protected]=>
+    array(3) {
+      ["/vagrant/shared/third_party/RemotePushNotification/views/"]=>
+      bool(true)
+      ["/vagrant/apps/shared_test/tests/../application/views/"]=>
+      bool(true)
+      ["/vagrant/shared/views/"]=>
+      bool(true)
+    }
+    ["_ci_library_paths":protected]=>
+    array(4) {
+      [0]=>
+      string(51) "/vagrant/shared/third_party/RemotePushNotification/"
+      [1]=>
+      string(47) "/vagrant/apps/shared_test/tests/../application/"
+      [2]=>
+      string(16) "/vagrant/shared/"
+      [3]=>
+      string(16) "/vagrant/system/"
+    }
+    ["_ci_model_paths":protected]=>
+    array(3) {
+      [0]=>
+      string(51) "/vagrant/shared/third_party/RemotePushNotification/"
+      [1]=>
+      string(47) "/vagrant/apps/shared_test/tests/../application/"
+      [2]=>
+      string(16) "/vagrant/shared/"
+    }
+    ["_ci_helper_paths":protected]=>
+    array(4) {
+      [0]=>
+      string(51) "/vagrant/shared/third_party/RemotePushNotification/"
+      [1]=>
+      string(47) "/vagrant/apps/shared_test/tests/../application/"
+      [2]=>
+      string(16) "/vagrant/shared/"
+      [3]=>
+      string(16) "/vagrant/system/"
+    }
+    ["_base_classes":protected]=>
+    array(12) {
+      ["benchmark"]=>
+      string(9) "Benchmark"
+      ["hooks"]=>
+      string(5) "Hooks"
+      ["config"]=>
+      string(6) "Config"
+      ["log"]=>
+      string(3) "Log"
+      ["exceptions"]=>
+      string(10) "Exceptions"
+      ["utf8"]=>
+      string(4) "Utf8"
+      ["uri"]=>
+      string(3) "URI"
+      ["router"]=>
+      string(6) "Router"
+      ["output"]=>
+      string(6) "Output"
+      ["input"]=>
+      string(5) "Input"
+      ["lang"]=>
+      string(4) "Lang"
+      ["loader"]=>
+      string(6) "Loader"
+    }
+    ["_ci_cached_vars":protected]=>
+    array(0) {
+    }
+    ["_ci_classes":protected]=>
+    array(4) {
+      ["user_agent"]=>
+      string(5) "agent"
+      ["response"]=>
+      string(8) "response"
+      ["error_notifier"]=>
+      string(15) "_error_notifier"
+      ["keyword_api"]=>
+      string(11) "keyword_api"
+    }
+    ["_ci_models":protected]=>
+    array(3) {
+      [0]=>
+      string(10) "user_model"
+      [1]=>
+      string(13) "keyword_model"
+      [2]=>
+      string(21) "popular_keyword_model"
+    }
+    ["_ci_helpers":protected]=>
+    array(4) {
+      ["common_helper"]=>
+      bool(true)
+      ["model_helper"]=>
+      bool(true)
+      ["render_helper"]=>
+      bool(true)
+      ["form_helper"]=>
+      bool(true)
+    }
+    ["_ci_varmap":protected]=>
+    array(2) {
+      ["unit_test"]=>
+      string(4) "unit"
+      ["user_agent"]=>
+      string(5) "agent"
+    }
+  }
+  ["db"]=>
+  object(CI_DB_mysql_driver)#58 (79) {
+    ["dbdriver"]=>
+    string(5) "mysql"
+    ["_escape_char"]=>
+    string(1) "`"
+    ["_like_escape_str"]=>
+    string(0) ""
+    ["_like_escape_chr"]=>
+    string(0) ""
+    ["delete_hack"]=>
+    bool(true)
+    ["_count_string"]=>
+    string(19) "SELECT COUNT(*) AS "
+    ["_random_keyword"]=>
+    string(7) " RAND()"
+    ["db_exception"]=>
+    bool(true)
+    ["found_rows"]=>
+    int(0)
+    ["ar_calc_found_rows"]=>
+    bool(false)
+    ["ar_for_update"]=>
+    bool(false)
+    ["error_number":protected]=>
+    bool(false)
+    ["error_message":protected]=>
+    bool(false)
+    ["error_query":protected]=>
+    bool(false)
+    ["ar_select"]=>
+    array(0) {
+    }
+    ["ar_distinct"]=>
+    bool(false)
+    ["ar_from"]=>
+    array(0) {
+    }
+    ["ar_join"]=>
+    array(0) {
+    }
+    ["ar_where"]=>
+    array(0) {
+    }
+    ["ar_like"]=>
+    array(0) {
+    }
+    ["ar_groupby"]=>
+    array(0) {
+    }
+    ["ar_having"]=>
+    array(0) {
+    }
+    ["ar_keys"]=>
+    array(0) {
+    }
+    ["ar_limit"]=>
+    bool(false)
+    ["ar_offset"]=>
+    bool(false)
+    ["ar_order"]=>
+    bool(false)
+    ["ar_orderby"]=>
+    array(0) {
+    }
+    ["ar_set"]=>
+    array(0) {
+    }
+    ["ar_wherein"]=>
+    array(0) {
+    }
+    ["ar_aliased_tables"]=>
+    array(0) {
+    }
+    ["ar_store_array"]=>
+    array(0) {
+    }
+    ["ar_caching"]=>
+    bool(false)
+    ["ar_cache_exists"]=>
+    array(0) {
+    }
+    ["ar_cache_select"]=>
+    array(0) {
+    }
+    ["ar_cache_from"]=>
+    array(0) {
+    }
+    ["ar_cache_join"]=>
+    array(0) {
+    }
+    ["ar_cache_where"]=>
+    array(0) {
+    }
+    ["ar_cache_like"]=>
+    array(0) {
+    }
+    ["ar_cache_groupby"]=>
+    array(0) {
+    }
+    ["ar_cache_having"]=>
+    array(0) {
+    }
+    ["ar_cache_orderby"]=>
+    array(0) {
+    }
+    ["ar_cache_set"]=>
+    array(0) {
+    }
+    ["ar_no_escape"]=>
+    array(0) {
+    }
+    ["ar_cache_no_escape"]=>
+    array(0) {
+    }
+    ["username"]=>
+    string(16) "develop_test_app"
+    ["password"]=>
+    string(16) "develop_test_app"
+    ["hostname"]=>
+    string(9) "localhost"
+    ["database"]=>
+    string(8) "ecm_main"
+    ["dbprefix"]=>
+    string(0) ""
+    ["char_set"]=>
+    string(4) "utf8"
+    ["dbcollat"]=>
+    string(15) "utf8_general_ci"
+    ["autoinit"]=>
+    bool(true)
+    ["swap_pre"]=>
+    string(0) ""
+    ["port"]=>
+    string(0) ""
+    ["pconnect"]=>
+    bool(true)
+    ["conn_id"]=>
+    resource(130) of type (mysql link persistent)
+    ["result_id"]=>
+    bool(true)
+    ["db_debug"]=>
+    bool(false)
+    ["benchmark"]=>
+    float(0.028579473495483)
+    ["query_count"]=>
+    int(28)
+    ["bind_marker"]=>
+    string(1) "?"
+    ["save_queries"]=>
+    bool(true)
+    ["queries"]=>
+    array(28) {
+      [0]=>
+      string(416) "INSERT INTO `user` (`id`, `nickname`, `image_url`, `birthday`, `gender`, `area`, `blog_url`, `post_count`, `follow_count`, `attend_count`, `like_count`, `contribution_rank`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1, 'nickname', 'http://example.com/hoge.jpg', '1988-02-01', 0, 'area', 'http://example.com/blog', 0, 2, 3, 4, 5, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [1]=>
+      string(53) "SELECT *
+FROM (`user`)
+WHERE `user`.`id` =  1
+LIMIT 1"
+      [2]=>
+      string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1001, 'keyword1', 200, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [3]=>
+      string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1002, 'keyword2', 100, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [4]=>
+      string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1003, 'keyword3', 150, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [5]=>
+      string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2001, 1001, 1, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [6]=>
+      string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2002, 1003, 2, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [7]=>
+      string(416) "INSERT INTO `user` (`id`, `nickname`, `image_url`, `birthday`, `gender`, `area`, `blog_url`, `post_count`, `follow_count`, `attend_count`, `like_count`, `contribution_rank`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1, 'nickname', 'http://example.com/hoge.jpg', '1988-02-01', 0, 'area', 'http://example.com/blog', 0, 2, 3, 4, 5, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [8]=>
+      string(53) "SELECT *
+FROM (`user`)
+WHERE `user`.`id` =  1
+LIMIT 1"
+      [9]=>
+      string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1001, 'keyword1', 200, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [10]=>
+      string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1002, 'keyword2', 100, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [11]=>
+      string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1003, 'keyword3', 150, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [12]=>
+      string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2001, 1001, 1, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [13]=>
+      string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2002, 1003, 2, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [14]=>
+      string(416) "INSERT INTO `user` (`id`, `nickname`, `image_url`, `birthday`, `gender`, `area`, `blog_url`, `post_count`, `follow_count`, `attend_count`, `like_count`, `contribution_rank`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1, 'nickname', 'http://example.com/hoge.jpg', '1988-02-01', 0, 'area', 'http://example.com/blog', 0, 2, 3, 4, 5, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [15]=>
+      string(53) "SELECT *
+FROM (`user`)
+WHERE `user`.`id` =  1
+LIMIT 1"
+      [16]=>
+      string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1001, 'keyword1', 200, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [17]=>
+      string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1002, 'keyword2', 100, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [18]=>
+      string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1003, 'keyword3', 150, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [19]=>
+      string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2001, 1001, 1, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [20]=>
+      string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2002, 1003, 2, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [21]=>
+      string(416) "INSERT INTO `user` (`id`, `nickname`, `image_url`, `birthday`, `gender`, `area`, `blog_url`, `post_count`, `follow_count`, `attend_count`, `like_count`, `contribution_rank`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1, 'nickname', 'http://example.com/hoge.jpg', '1988-02-01', 0, 'area', 'http://example.com/blog', 0, 2, 3, 4, 5, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [22]=>
+      string(53) "SELECT *
+FROM (`user`)
+WHERE `user`.`id` =  1
+LIMIT 1"
+      [23]=>
+      string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1001, 'keyword1', 200, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [24]=>
+      string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1002, 'keyword2', 100, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [25]=>
+      string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1003, 'keyword3', 150, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [26]=>
+      string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2001, 1001, 1, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      [27]=>
+      string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2002, 1003, 2, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+    }
+    ["query_times"]=>
+    array(28) {
+      [0]=>
+      float(0.0012240409851074)
+      [1]=>
+      float(0.00069808959960938)
+      [2]=>
+      float(0.0011258125305176)
+      [3]=>
+      float(0.0012240409851074)
+      [4]=>
+      float(0.0015010833740234)
+      [5]=>
+      float(0.0011661052703857)
+      [6]=>
+      float(0.00080990791320801)
+      [7]=>
+      float(0.00078105926513672)
+      [8]=>
+      float(0.00093793869018555)
+      [9]=>
+      float(0.0010240077972412)
+      [10]=>
+      float(0.00093793869018555)
+      [11]=>
+      float(0.00089406967163086)
+      [12]=>
+      float(0.0013461112976074)
+      [13]=>
+      float(0.00094914436340332)
+      [14]=>
+      float(0.0013740062713623)
+      [15]=>
+      float(0.00034403800964355)
+      [16]=>
+      float(0.0010390281677246)
+      [17]=>
+      float(0.00095200538635254)
+      [18]=>
+      float(0.00097107887268066)
+      [19]=>
+      float(0.0015521049499512)
+      [20]=>
+      float(0.00052213668823242)
+      [21]=>
+      float(0.0015199184417725)
+      [22]=>
+      float(0.00033998489379883)
+      [23]=>
+      float(0.0012428760528564)
+      [24]=>
+      float(0.00091290473937988)
+      [25]=>
+      float(0.0007631778717041)
+      [26]=>
+      float(0.001539945602417)
+      [27]=>
+      float(0.00088691711425781)
+    }
+    ["data_cache"]=>
+    array(0) {
+    }
+    ["trans_enabled"]=>
+    bool(true)
+    ["trans_strict"]=>
+    bool(true)
+    ["_trans_depth"]=>
+    int(0)
+    ["_trans_status"]=>
+    bool(true)
+    ["cache_on"]=>
+    bool(false)
+    ["cachedir"]=>
+    string(0) ""
+    ["cache_autodel"]=>
+    bool(false)
+    ["CACHE"]=>
+    NULL
+    ["_protect_identifiers"]=>
+    bool(true)
+    ["_reserved_identifiers"]=>
+    array(1) {
+      [0]=>
+      string(1) "*"
+    }
+    ["stmt_id"]=>
+    NULL
+    ["curs_id"]=>
+    NULL
+    ["limit_used"]=>
+    NULL
+    ["stricton"]=>
+    bool(false)
+  }
+  ["dbs"]=>
+  object(CI_DB_mysql_driver)#59 (79) {
+    ["dbdriver"]=>
+    string(5) "mysql"
+    ["_escape_char"]=>
+    string(1) "`"
+    ["_like_escape_str"]=>
+    string(0) ""
+    ["_like_escape_chr"]=>
+    string(0) ""
+    ["delete_hack"]=>
+    bool(true)
+    ["_count_string"]=>
+    string(19) "SELECT COUNT(*) AS "
+    ["_random_keyword"]=>
+    string(7) " RAND()"
+    ["db_exception"]=>
+    bool(true)
+    ["found_rows"]=>
+    int(2)
+    ["ar_calc_found_rows"]=>
+    bool(false)
+    ["ar_for_update"]=>
+    bool(false)
+    ["error_number":protected]=>
+    bool(false)
+    ["error_message":protected]=>
+    bool(false)
+    ["error_query":protected]=>
+    bool(false)
+    ["ar_select"]=>
+    array(0) {
+    }
+    ["ar_distinct"]=>
+    bool(false)
+    ["ar_from"]=>
+    array(0) {
+    }
+    ["ar_join"]=>
+    array(0) {
+    }
+    ["ar_where"]=>
+    array(0) {
+    }
+    ["ar_like"]=>
+    array(0) {
+    }
+    ["ar_groupby"]=>
+    array(0) {
+    }
+    ["ar_having"]=>
+    array(0) {
+    }
+    ["ar_keys"]=>
+    array(0) {
+    }
+    ["ar_limit"]=>
+    bool(false)
+    ["ar_offset"]=>
+    bool(false)
+    ["ar_order"]=>
+    bool(false)
+    ["ar_orderby"]=>
+    array(0) {
+    }
+    ["ar_set"]=>
+    array(0) {
+    }
+    ["ar_wherein"]=>
+    array(0) {
+    }
+    ["ar_aliased_tables"]=>
+    array(0) {
+    }
+    ["ar_store_array"]=>
+    array(0) {
+    }
+    ["ar_caching"]=>
+    bool(false)
+    ["ar_cache_exists"]=>
+    array(0) {
+    }
+    ["ar_cache_select"]=>
+    array(0) {
+    }
+    ["ar_cache_from"]=>
+    array(0) {
+    }
+    ["ar_cache_join"]=>
+    array(0) {
+    }
+    ["ar_cache_where"]=>
+    array(0) {
+    }
+    ["ar_cache_like"]=>
+    array(0) {
+    }
+    ["ar_cache_groupby"]=>
+    array(0) {
+    }
+    ["ar_cache_having"]=>
+    array(0) {
+    }
+    ["ar_cache_orderby"]=>
+    array(0) {
+    }
+    ["ar_cache_set"]=>
+    array(0) {
+    }
+    ["ar_no_escape"]=>
+    array(0) {
+    }
+    ["ar_cache_no_escape"]=>
+    array(0) {
+    }
+    ["username"]=>
+    string(16) "develop_test_app"
+    ["password"]=>
+    string(16) "develop_test_app"
+    ["hostname"]=>
+    string(9) "localhost"
+    ["database"]=>
+    string(8) "ecm_main"
+    ["dbprefix"]=>
+    string(0) ""
+    ["char_set"]=>
+    string(4) "utf8"
+    ["dbcollat"]=>
+    string(15) "utf8_general_ci"
+    ["autoinit"]=>
+    bool(true)
+    ["swap_pre"]=>
+    string(0) ""
+    ["port"]=>
+    string(0) ""
+    ["pconnect"]=>
+    bool(false)
+    ["conn_id"]=>
+    resource(132) of type (mysql link)
+    ["result_id"]=>
+    resource(198) of type (mysql result)
+    ["db_debug"]=>
+    bool(false)
+    ["benchmark"]=>
+    float(0.0051748752593994)
+    ["query_count"]=>
+    int(9)
+    ["bind_marker"]=>
+    string(1) "?"
+    ["save_queries"]=>
+    bool(true)
+    ["queries"]=>
+    array(9) {
+      [0]=>
+      string(24) "SHOW COLUMNS FROM `user`"
+      [1]=>
+      string(27) "SHOW COLUMNS FROM `keyword`"
+      [2]=>
+      string(35) "SHOW COLUMNS FROM `popular_keyword`"
+      [3]=>
+      string(226) "SELECT SQL_CALC_FOUND_ROWS `keyword`.*, `popular_keyword`.`id` AS popular_id, `popular_keyword`.`position`
+FROM (`popular_keyword`)
+JOIN `keyword` ON `keyword`.`id` = `popular_keyword`.`keyword_id`
+ORDER BY `position`
+LIMIT 10"
+      [4]=>
+      string(28) "SELECT FOUND_ROWS() as frows"
+      [5]=>
+      string(225) "SELECT SQL_CALC_FOUND_ROWS `keyword`.*, `popular_keyword`.`id` AS popular_id, `popular_keyword`.`position`
+FROM (`popular_keyword`)
+JOIN `keyword` ON `keyword`.`id` = `popular_keyword`.`keyword_id`
+ORDER BY `position`
+LIMIT 1"
+      [6]=>
+      string(28) "SELECT FOUND_ROWS() as frows"
+      [7]=>
+      string(229) "SELECT SQL_CALC_FOUND_ROWS `keyword`.*, `popular_keyword`.`id` AS popular_id, `popular_keyword`.`position`
+FROM (`popular_keyword`)
+JOIN `keyword` ON `keyword`.`id` = `popular_keyword`.`keyword_id`
+ORDER BY `position`
+LIMIT 1, 10"
+      [8]=>
+      string(28) "SELECT FOUND_ROWS() as frows"
+    }
+    ["query_times"]=>
+    array(9) {
+      [0]=>
+      float(0.00079584121704102)
+      [1]=>
+      float(0.00069499015808105)
+      [2]=>
+      float(0.00076913833618164)
+      [3]=>
+      float(0.00053596496582031)
+      [4]=>
+      float(0.00041604042053223)
+      [5]=>
+      float(0.00060296058654785)
+      [6]=>
+      float(0.00017094612121582)
+      [7]=>
+      float(0.0008399486541748)
+      [8]=>
+      float(0.00034904479980469)
+    }
+    ["data_cache"]=>
+    array(1) {
+      ["field_names"]=>
+      array(3) {
+        ["user"]=>
+        array(20) {
+          [0]=>
+          string(2) "id"
+          [1]=>
+          string(8) "nickname"
+          [2]=>
+          string(9) "image_url"
+          [3]=>
+          string(8) "birthday"
+          [4]=>
+          string(6) "gender"
+          [5]=>
+          string(4) "area"
+          [6]=>
+          string(12) "introduction"
+          [7]=>
+          string(8) "blog_url"
+          [8]=>
+          string(10) "post_count"
+          [9]=>
+          string(12) "follow_count"
+          [10]=>
+          string(14) "follower_count"
+          [11]=>
+          string(12) "attend_count"
+          [12]=>
+          string(10) "like_count"
+          [13]=>
+          string(17) "contribution_rank"
+          [14]=>
+          string(10) "created_at"
+          [15]=>
+          string(10) "created_by"
+          [16]=>
+          string(10) "updated_at"
+          [17]=>
+          string(10) "updated_by"
+          [18]=>
+          string(10) "deleted_at"
+          [19]=>
+          string(10) "deleted_by"
+        }
+        ["keyword"]=>
+        array(9) {
+          [0]=>
+          string(2) "id"
+          [1]=>
+          string(4) "name"
+          [2]=>
+          string(10) "used_count"
+          [3]=>
+          string(10) "created_at"
+          [4]=>
+          string(10) "created_by"
+          [5]=>
+          string(10) "updated_at"
+          [6]=>
+          string(10) "updated_by"
+          [7]=>
+          string(10) "deleted_at"
+          [8]=>
+          string(10) "deleted_by"
+        }
+        ["popular_keyword"]=>
+        array(7) {
+          [0]=>
+          string(2) "id"
+          [1]=>
+          string(10) "keyword_id"
+          [2]=>
+          string(8) "position"
+          [3]=>
+          string(10) "created_at"
+          [4]=>
+          string(10) "created_by"
+          [5]=>
+          string(10) "updated_at"
+          [6]=>
+          string(10) "updated_by"
+        }
+      }
+    }
+    ["trans_enabled"]=>
+    bool(true)
+    ["trans_strict"]=>
+    bool(true)
+    ["_trans_depth"]=>
+    int(0)
+    ["_trans_status"]=>
+    bool(true)
+    ["cache_on"]=>
+    bool(false)
+    ["cachedir"]=>
+    string(0) ""
+    ["cache_autodel"]=>
+    bool(false)
+    ["CACHE"]=>
+    NULL
+    ["_protect_identifiers"]=>
+    bool(true)
+    ["_reserved_identifiers"]=>
+    array(1) {
+      [0]=>
+      string(1) "*"
+    }
+    ["stmt_id"]=>
+    NULL
+    ["curs_id"]=>
+    NULL
+    ["limit_used"]=>
+    NULL
+    ["stricton"]=>
+    bool(false)
+  }
+  ["_error_notifier"]=>
+  object(APP_Error_notifier)#60 (8) {
+    ["project"]=>
+    string(14) "Error notifier"
+    ["from"]=>
+    array(2) {
+      [0]=>
+      string(14) "Error notifier"
+      [1]=>
+      string(19) "example@example.com"
+    }
+    ["to"]=>
+    array(1) {
+      [0]=>
+      string(19) "example@example.com"
+    }
+    ["template_path"]=>
+    NULL
+    ["default_template"]=>
+    string(314) "[Project]: {project}
+Environment: {environment}
+
+[Message]:
+{message}
+
+[Where]:
+{where}
+
+[Arguments]: {arguments}
+{name}: {value} {/arguments}
+
+[URL]:
+{request_uri}
+
+[GET]: {get}
+{name}: {value} {/get}
+
+[POST]: {post}
+{name}: {value} {/post}
+
+[SERVER]: {server}
+{name}: {value} {/server}
+
+[BACKTRACE]:
+{backtrace}
+"
+    ["masked_parameters":protected]=>
+    array(1) {
+      [0]=>
+      string(8) "password"
+    }
+    ["CI":protected]=>
+    *RECURSION*
+    ["sendable"]=>
+    bool(false)
+  }
+  ["fixture"]=>
+  &object(Fixture)#62 (0) {
+  }
+  ["user_model"]=>
+  object(User_model)#283 (25) {
+    ["record_class"]=>
+    string(11) "User_record"
+    ["database_name"]=>
+    string(8) "ecm_main"
+    ["table_name"]=>
+    string(4) "user"
+    ["primary_key"]=>
+    string(2) "id"
+    ["master_name"]=>
+    string(2) "db"
+    ["slave_name"]=>
+    string(3) "dbs"
+    ["master"]=>
+    object(CI_DB_mysql_driver)#58 (79) {
+      ["dbdriver"]=>
+      string(5) "mysql"
+      ["_escape_char"]=>
+      string(1) "`"
+      ["_like_escape_str"]=>
+      string(0) ""
+      ["_like_escape_chr"]=>
+      string(0) ""
+      ["delete_hack"]=>
+      bool(true)
+      ["_count_string"]=>
+      string(19) "SELECT COUNT(*) AS "
+      ["_random_keyword"]=>
+      string(7) " RAND()"
+      ["db_exception"]=>
+      bool(true)
+      ["found_rows"]=>
+      int(0)
+      ["ar_calc_found_rows"]=>
+      bool(false)
+      ["ar_for_update"]=>
+      bool(false)
+      ["error_number":protected]=>
+      bool(false)
+      ["error_message":protected]=>
+      bool(false)
+      ["error_query":protected]=>
+      bool(false)
+      ["ar_select"]=>
+      array(0) {
+      }
+      ["ar_distinct"]=>
+      bool(false)
+      ["ar_from"]=>
+      array(0) {
+      }
+      ["ar_join"]=>
+      array(0) {
+      }
+      ["ar_where"]=>
+      array(0) {
+      }
+      ["ar_like"]=>
+      array(0) {
+      }
+      ["ar_groupby"]=>
+      array(0) {
+      }
+      ["ar_having"]=>
+      array(0) {
+      }
+      ["ar_keys"]=>
+      array(0) {
+      }
+      ["ar_limit"]=>
+      bool(false)
+      ["ar_offset"]=>
+      bool(false)
+      ["ar_order"]=>
+      bool(false)
+      ["ar_orderby"]=>
+      array(0) {
+      }
+      ["ar_set"]=>
+      array(0) {
+      }
+      ["ar_wherein"]=>
+      array(0) {
+      }
+      ["ar_aliased_tables"]=>
+      array(0) {
+      }
+      ["ar_store_array"]=>
+      array(0) {
+      }
+      ["ar_caching"]=>
+      bool(false)
+      ["ar_cache_exists"]=>
+      array(0) {
+      }
+      ["ar_cache_select"]=>
+      array(0) {
+      }
+      ["ar_cache_from"]=>
+      array(0) {
+      }
+      ["ar_cache_join"]=>
+      array(0) {
+      }
+      ["ar_cache_where"]=>
+      array(0) {
+      }
+      ["ar_cache_like"]=>
+      array(0) {
+      }
+      ["ar_cache_groupby"]=>
+      array(0) {
+      }
+      ["ar_cache_having"]=>
+      array(0) {
+      }
+      ["ar_cache_orderby"]=>
+      array(0) {
+      }
+      ["ar_cache_set"]=>
+      array(0) {
+      }
+      ["ar_no_escape"]=>
+      array(0) {
+      }
+      ["ar_cache_no_escape"]=>
+      array(0) {
+      }
+      ["username"]=>
+      string(16) "develop_test_app"
+      ["password"]=>
+      string(16) "develop_test_app"
+      ["hostname"]=>
+      string(9) "localhost"
+      ["database"]=>
+      string(8) "ecm_main"
+      ["dbprefix"]=>
+      string(0) ""
+      ["char_set"]=>
+      string(4) "utf8"
+      ["dbcollat"]=>
+      string(15) "utf8_general_ci"
+      ["autoinit"]=>
+      bool(true)
+      ["swap_pre"]=>
+      string(0) ""
+      ["port"]=>
+      string(0) ""
+      ["pconnect"]=>
+      bool(true)
+      ["conn_id"]=>
+      resource(130) of type (mysql link persistent)
+      ["result_id"]=>
+      bool(true)
+      ["db_debug"]=>
+      bool(false)
+      ["benchmark"]=>
+      float(0.028579473495483)
+      ["query_count"]=>
+      int(28)
+      ["bind_marker"]=>
+      string(1) "?"
+      ["save_queries"]=>
+      bool(true)
+      ["queries"]=>
+      array(28) {
+        [0]=>
+        string(416) "INSERT INTO `user` (`id`, `nickname`, `image_url`, `birthday`, `gender`, `area`, `blog_url`, `post_count`, `follow_count`, `attend_count`, `like_count`, `contribution_rank`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1, 'nickname', 'http://example.com/hoge.jpg', '1988-02-01', 0, 'area', 'http://example.com/blog', 0, 2, 3, 4, 5, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [1]=>
+        string(53) "SELECT *
+FROM (`user`)
+WHERE `user`.`id` =  1
+LIMIT 1"
+        [2]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1001, 'keyword1', 200, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [3]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1002, 'keyword2', 100, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [4]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1003, 'keyword3', 150, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [5]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2001, 1001, 1, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [6]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2002, 1003, 2, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [7]=>
+        string(416) "INSERT INTO `user` (`id`, `nickname`, `image_url`, `birthday`, `gender`, `area`, `blog_url`, `post_count`, `follow_count`, `attend_count`, `like_count`, `contribution_rank`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1, 'nickname', 'http://example.com/hoge.jpg', '1988-02-01', 0, 'area', 'http://example.com/blog', 0, 2, 3, 4, 5, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [8]=>
+        string(53) "SELECT *
+FROM (`user`)
+WHERE `user`.`id` =  1
+LIMIT 1"
+        [9]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1001, 'keyword1', 200, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [10]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1002, 'keyword2', 100, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [11]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1003, 'keyword3', 150, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [12]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2001, 1001, 1, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [13]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2002, 1003, 2, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [14]=>
+        string(416) "INSERT INTO `user` (`id`, `nickname`, `image_url`, `birthday`, `gender`, `area`, `blog_url`, `post_count`, `follow_count`, `attend_count`, `like_count`, `contribution_rank`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1, 'nickname', 'http://example.com/hoge.jpg', '1988-02-01', 0, 'area', 'http://example.com/blog', 0, 2, 3, 4, 5, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [15]=>
+        string(53) "SELECT *
+FROM (`user`)
+WHERE `user`.`id` =  1
+LIMIT 1"
+        [16]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1001, 'keyword1', 200, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [17]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1002, 'keyword2', 100, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [18]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1003, 'keyword3', 150, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [19]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2001, 1001, 1, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [20]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2002, 1003, 2, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [21]=>
+        string(416) "INSERT INTO `user` (`id`, `nickname`, `image_url`, `birthday`, `gender`, `area`, `blog_url`, `post_count`, `follow_count`, `attend_count`, `like_count`, `contribution_rank`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1, 'nickname', 'http://example.com/hoge.jpg', '1988-02-01', 0, 'area', 'http://example.com/blog', 0, 2, 3, 4, 5, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [22]=>
+        string(53) "SELECT *
+FROM (`user`)
+WHERE `user`.`id` =  1
+LIMIT 1"
+        [23]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1001, 'keyword1', 200, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [24]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1002, 'keyword2', 100, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [25]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1003, 'keyword3', 150, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [26]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2001, 1001, 1, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [27]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2002, 1003, 2, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      }
+      ["query_times"]=>
+      array(28) {
+        [0]=>
+        float(0.0012240409851074)
+        [1]=>
+        float(0.00069808959960938)
+        [2]=>
+        float(0.0011258125305176)
+        [3]=>
+        float(0.0012240409851074)
+        [4]=>
+        float(0.0015010833740234)
+        [5]=>
+        float(0.0011661052703857)
+        [6]=>
+        float(0.00080990791320801)
+        [7]=>
+        float(0.00078105926513672)
+        [8]=>
+        float(0.00093793869018555)
+        [9]=>
+        float(0.0010240077972412)
+        [10]=>
+        float(0.00093793869018555)
+        [11]=>
+        float(0.00089406967163086)
+        [12]=>
+        float(0.0013461112976074)
+        [13]=>
+        float(0.00094914436340332)
+        [14]=>
+        float(0.0013740062713623)
+        [15]=>
+        float(0.00034403800964355)
+        [16]=>
+        float(0.0010390281677246)
+        [17]=>
+        float(0.00095200538635254)
+        [18]=>
+        float(0.00097107887268066)
+        [19]=>
+        float(0.0015521049499512)
+        [20]=>
+        float(0.00052213668823242)
+        [21]=>
+        float(0.0015199184417725)
+        [22]=>
+        float(0.00033998489379883)
+        [23]=>
+        float(0.0012428760528564)
+        [24]=>
+        float(0.00091290473937988)
+        [25]=>
+        float(0.0007631778717041)
+        [26]=>
+        float(0.001539945602417)
+        [27]=>
+        float(0.00088691711425781)
+      }
+      ["data_cache"]=>
+      array(0) {
+      }
+      ["trans_enabled"]=>
+      bool(true)
+      ["trans_strict"]=>
+      bool(true)
+      ["_trans_depth"]=>
+      int(0)
+      ["_trans_status"]=>
+      bool(true)
+      ["cache_on"]=>
+      bool(false)
+      ["cachedir"]=>
+      string(0) ""
+      ["cache_autodel"]=>
+      bool(false)
+      ["CACHE"]=>
+      NULL
+      ["_protect_identifiers"]=>
+      bool(true)
+      ["_reserved_identifiers"]=>
+      array(1) {
+        [0]=>
+        string(1) "*"
+      }
+      ["stmt_id"]=>
+      NULL
+      ["curs_id"]=>
+      NULL
+      ["limit_used"]=>
+      NULL
+      ["stricton"]=>
+      bool(false)
+    }
+    ["slave"]=>
+    object(CI_DB_mysql_driver)#59 (79) {
+      ["dbdriver"]=>
+      string(5) "mysql"
+      ["_escape_char"]=>
+      string(1) "`"
+      ["_like_escape_str"]=>
+      string(0) ""
+      ["_like_escape_chr"]=>
+      string(0) ""
+      ["delete_hack"]=>
+      bool(true)
+      ["_count_string"]=>
+      string(19) "SELECT COUNT(*) AS "
+      ["_random_keyword"]=>
+      string(7) " RAND()"
+      ["db_exception"]=>
+      bool(true)
+      ["found_rows"]=>
+      int(2)
+      ["ar_calc_found_rows"]=>
+      bool(false)
+      ["ar_for_update"]=>
+      bool(false)
+      ["error_number":protected]=>
+      bool(false)
+      ["error_message":protected]=>
+      bool(false)
+      ["error_query":protected]=>
+      bool(false)
+      ["ar_select"]=>
+      array(0) {
+      }
+      ["ar_distinct"]=>
+      bool(false)
+      ["ar_from"]=>
+      array(0) {
+      }
+      ["ar_join"]=>
+      array(0) {
+      }
+      ["ar_where"]=>
+      array(0) {
+      }
+      ["ar_like"]=>
+      array(0) {
+      }
+      ["ar_groupby"]=>
+      array(0) {
+      }
+      ["ar_having"]=>
+      array(0) {
+      }
+      ["ar_keys"]=>
+      array(0) {
+      }
+      ["ar_limit"]=>
+      bool(false)
+      ["ar_offset"]=>
+      bool(false)
+      ["ar_order"]=>
+      bool(false)
+      ["ar_orderby"]=>
+      array(0) {
+      }
+      ["ar_set"]=>
+      array(0) {
+      }
+      ["ar_wherein"]=>
+      array(0) {
+      }
+      ["ar_aliased_tables"]=>
+      array(0) {
+      }
+      ["ar_store_array"]=>
+      array(0) {
+      }
+      ["ar_caching"]=>
+      bool(false)
+      ["ar_cache_exists"]=>
+      array(0) {
+      }
+      ["ar_cache_select"]=>
+      array(0) {
+      }
+      ["ar_cache_from"]=>
+      array(0) {
+      }
+      ["ar_cache_join"]=>
+      array(0) {
+      }
+      ["ar_cache_where"]=>
+      array(0) {
+      }
+      ["ar_cache_like"]=>
+      array(0) {
+      }
+      ["ar_cache_groupby"]=>
+      array(0) {
+      }
+      ["ar_cache_having"]=>
+      array(0) {
+      }
+      ["ar_cache_orderby"]=>
+      array(0) {
+      }
+      ["ar_cache_set"]=>
+      array(0) {
+      }
+      ["ar_no_escape"]=>
+      array(0) {
+      }
+      ["ar_cache_no_escape"]=>
+      array(0) {
+      }
+      ["username"]=>
+      string(16) "develop_test_app"
+      ["password"]=>
+      string(16) "develop_test_app"
+      ["hostname"]=>
+      string(9) "localhost"
+      ["database"]=>
+      string(8) "ecm_main"
+      ["dbprefix"]=>
+      string(0) ""
+      ["char_set"]=>
+      string(4) "utf8"
+      ["dbcollat"]=>
+      string(15) "utf8_general_ci"
+      ["autoinit"]=>
+      bool(true)
+      ["swap_pre"]=>
+      string(0) ""
+      ["port"]=>
+      string(0) ""
+      ["pconnect"]=>
+      bool(false)
+      ["conn_id"]=>
+      resource(132) of type (mysql link)
+      ["result_id"]=>
+      resource(198) of type (mysql result)
+      ["db_debug"]=>
+      bool(false)
+      ["benchmark"]=>
+      float(0.0051748752593994)
+      ["query_count"]=>
+      int(9)
+      ["bind_marker"]=>
+      string(1) "?"
+      ["save_queries"]=>
+      bool(true)
+      ["queries"]=>
+      array(9) {
+        [0]=>
+        string(24) "SHOW COLUMNS FROM `user`"
+        [1]=>
+        string(27) "SHOW COLUMNS FROM `keyword`"
+        [2]=>
+        string(35) "SHOW COLUMNS FROM `popular_keyword`"
+        [3]=>
+        string(226) "SELECT SQL_CALC_FOUND_ROWS `keyword`.*, `popular_keyword`.`id` AS popular_id, `popular_keyword`.`position`
+FROM (`popular_keyword`)
+JOIN `keyword` ON `keyword`.`id` = `popular_keyword`.`keyword_id`
+ORDER BY `position`
+LIMIT 10"
+        [4]=>
+        string(28) "SELECT FOUND_ROWS() as frows"
+        [5]=>
+        string(225) "SELECT SQL_CALC_FOUND_ROWS `keyword`.*, `popular_keyword`.`id` AS popular_id, `popular_keyword`.`position`
+FROM (`popular_keyword`)
+JOIN `keyword` ON `keyword`.`id` = `popular_keyword`.`keyword_id`
+ORDER BY `position`
+LIMIT 1"
+        [6]=>
+        string(28) "SELECT FOUND_ROWS() as frows"
+        [7]=>
+        string(229) "SELECT SQL_CALC_FOUND_ROWS `keyword`.*, `popular_keyword`.`id` AS popular_id, `popular_keyword`.`position`
+FROM (`popular_keyword`)
+JOIN `keyword` ON `keyword`.`id` = `popular_keyword`.`keyword_id`
+ORDER BY `position`
+LIMIT 1, 10"
+        [8]=>
+        string(28) "SELECT FOUND_ROWS() as frows"
+      }
+      ["query_times"]=>
+      array(9) {
+        [0]=>
+        float(0.00079584121704102)
+        [1]=>
+        float(0.00069499015808105)
+        [2]=>
+        float(0.00076913833618164)
+        [3]=>
+        float(0.00053596496582031)
+        [4]=>
+        float(0.00041604042053223)
+        [5]=>
+        float(0.00060296058654785)
+        [6]=>
+        float(0.00017094612121582)
+        [7]=>
+        float(0.0008399486541748)
+        [8]=>
+        float(0.00034904479980469)
+      }
+      ["data_cache"]=>
+      array(1) {
+        ["field_names"]=>
+        array(3) {
+          ["user"]=>
+          array(20) {
+            [0]=>
+            string(2) "id"
+            [1]=>
+            string(8) "nickname"
+            [2]=>
+            string(9) "image_url"
+            [3]=>
+            string(8) "birthday"
+            [4]=>
+            string(6) "gender"
+            [5]=>
+            string(4) "area"
+            [6]=>
+            string(12) "introduction"
+            [7]=>
+            string(8) "blog_url"
+            [8]=>
+            string(10) "post_count"
+            [9]=>
+            string(12) "follow_count"
+            [10]=>
+            string(14) "follower_count"
+            [11]=>
+            string(12) "attend_count"
+            [12]=>
+            string(10) "like_count"
+            [13]=>
+            string(17) "contribution_rank"
+            [14]=>
+            string(10) "created_at"
+            [15]=>
+            string(10) "created_by"
+            [16]=>
+            string(10) "updated_at"
+            [17]=>
+            string(10) "updated_by"
+            [18]=>
+            string(10) "deleted_at"
+            [19]=>
+            string(10) "deleted_by"
+          }
+          ["keyword"]=>
+          array(9) {
+            [0]=>
+            string(2) "id"
+            [1]=>
+            string(4) "name"
+            [2]=>
+            string(10) "used_count"
+            [3]=>
+            string(10) "created_at"
+            [4]=>
+            string(10) "created_by"
+            [5]=>
+            string(10) "updated_at"
+            [6]=>
+            string(10) "updated_by"
+            [7]=>
+            string(10) "deleted_at"
+            [8]=>
+            string(10) "deleted_by"
+          }
+          ["popular_keyword"]=>
+          array(7) {
+            [0]=>
+            string(2) "id"
+            [1]=>
+            string(10) "keyword_id"
+            [2]=>
+            string(8) "position"
+            [3]=>
+            string(10) "created_at"
+            [4]=>
+            string(10) "created_by"
+            [5]=>
+            string(10) "updated_at"
+            [6]=>
+            string(10) "updated_by"
+          }
+        }
+      }
+      ["trans_enabled"]=>
+      bool(true)
+      ["trans_strict"]=>
+      bool(true)
+      ["_trans_depth"]=>
+      int(0)
+      ["_trans_status"]=>
+      bool(true)
+      ["cache_on"]=>
+      bool(false)
+      ["cachedir"]=>
+      string(0) ""
+      ["cache_autodel"]=>
+      bool(false)
+      ["CACHE"]=>
+      NULL
+      ["_protect_identifiers"]=>
+      bool(true)
+      ["_reserved_identifiers"]=>
+      array(1) {
+        [0]=>
+        string(1) "*"
+      }
+      ["stmt_id"]=>
+      NULL
+      ["curs_id"]=>
+      NULL
+      ["limit_used"]=>
+      NULL
+      ["stricton"]=>
+      bool(false)
+    }
+    ["fields"]=>
+    array(20) {
+      [0]=>
+      string(2) "id"
+      [1]=>
+      string(8) "nickname"
+      [2]=>
+      string(9) "image_url"
+      [3]=>
+      string(8) "birthday"
+      [4]=>
+      string(6) "gender"
+      [5]=>
+      string(4) "area"
+      [6]=>
+      string(12) "introduction"
+      [7]=>
+      string(8) "blog_url"
+      [8]=>
+      string(10) "post_count"
+      [9]=>
+      string(12) "follow_count"
+      [10]=>
+      string(14) "follower_count"
+      [11]=>
+      string(12) "attend_count"
+      [12]=>
+      string(10) "like_count"
+      [13]=>
+      string(17) "contribution_rank"
+      [14]=>
+      string(10) "created_at"
+      [15]=>
+      string(10) "created_by"
+      [16]=>
+      string(10) "updated_at"
+      [17]=>
+      string(10) "updated_by"
+      [18]=>
+      string(10) "deleted_at"
+      [19]=>
+      string(10) "deleted_by"
+    }
+    ["foreign_keys"]=>
+    array(0) {
+    }
+    ["errors"]=>
+    object(APP_Model_errors)#282 (4) {
+      ["base"]=>
+      *RECURSION*
+      ["errors":protected]=>
+      array(0) {
+      }
+      ["CI":protected]=>
+      *RECURSION*
+      ["__position":"APP_Errors":private]=>
+      int(0)
+    }
+    ["created_at_column_name"]=>
+    string(10) "created_at"
+    ["updated_at_column_name"]=>
+    string(10) "updated_at"
+    ["created_by_column_name"]=>
+    string(10) "created_by"
+    ["updated_by_column_name"]=>
+    string(10) "updated_by"
+    ["created_at_column_name_regex"]=>
+    string(24) "/^([a-z]+_)?created_at$/"
+    ["updated_at_column_name_regex"]=>
+    string(24) "/^([a-z]+_)?updated_at$/"
+    ["created_by_column_name_regex"]=>
+    string(24) "/^([a-z]+_)?created_by$/"
+    ["updated_by_column_name_regex"]=>
+    string(24) "/^([a-z]+_)?updated_by$/"
+    ["delegate_method_chains":protected]=>
+    array(25) {
+      [0]=>
+      string(6) "select"
+      [1]=>
+      string(10) "select_max"
+      [2]=>
+      string(10) "select_sum"
+      [3]=>
+      string(5) "where"
+      [4]=>
+      string(8) "or_where"
+      [5]=>
+      string(8) "where_in"
+      [6]=>
+      string(12) "where_not_in"
+      [7]=>
+      string(15) "or_where_not_in"
+      [8]=>
+      string(4) "like"
+      [9]=>
+      string(7) "or_like"
+      [10]=>
+      string(8) "not_like"
+      [11]=>
+      string(11) "or_not_like"
+      [12]=>
+      string(8) "distinct"
+      [13]=>
+      string(6) "having"
+      [14]=>
+      string(9) "or_having"
+      [15]=>
+      string(4) "join"
+      [16]=>
+      string(8) "group_by"
+      [17]=>
+      string(8) "order_by"
+      [18]=>
+      string(13) "order_by_rand"
+      [19]=>
+      string(14) "order_by_field"
+      [20]=>
+      string(6) "offset"
+      [21]=>
+      string(5) "limit"
+      [22]=>
+      string(15) "calc_found_rows"
+      [23]=>
+      string(10) "for_update"
+      [24]=>
+      string(3) "set"
+    }
+    ["delegate_methods":protected]=>
+    array(2) {
+      [0]=>
+      string(15) "escape_like_str"
+      [1]=>
+      string(10) "escape_str"
+    }
+    ["delegate_methods_to_master":protected]=>
+    array(9) {
+      [0]=>
+      string(11) "trans_start"
+      [1]=>
+      string(14) "trans_complete"
+      [2]=>
+      string(12) "trans_status"
+      [3]=>
+      string(11) "trans_begin"
+      [4]=>
+      string(14) "trans_rollback"
+      [5]=>
+      string(20) "trans_force_rollback"
+      [6]=>
+      string(12) "trans_commit"
+      [7]=>
+      string(18) "trans_reset_status"
+      [8]=>
+      string(9) "insert_id"
+    }
+    ["frows"]=>
+    NULL
+    ["_delegate_select_queue_variables":protected]=>
+    array(17) {
+      [0]=>
+      string(9) "ar_select"
+      [1]=>
+      string(7) "ar_from"
+      [2]=>
+      string(7) "ar_join"
+      [3]=>
+      string(8) "ar_where"
+      [4]=>
+      string(7) "ar_like"
+      [5]=>
+      string(10) "ar_groupby"
+      [6]=>
+      string(9) "ar_having"
+      [7]=>
+      string(10) "ar_orderby"
+      [8]=>
+      string(10) "ar_wherein"
+      [9]=>
+      string(17) "ar_aliased_tables"
+      [10]=>
+      string(12) "ar_no_escape"
+      [11]=>
+      string(11) "ar_distinct"
+      [12]=>
+      string(8) "ar_limit"
+      [13]=>
+      string(9) "ar_offset"
+      [14]=>
+      string(8) "ar_order"
+      [15]=>
+      string(18) "ar_calc_found_rows"
+      [16]=>
+      string(13) "ar_for_update"
+    }
+    ["_delegate_write_queue_variables":protected]=>
+    array(8) {
+      [0]=>
+      string(6) "ar_set"
+      [1]=>
+      string(7) "ar_from"
+      [2]=>
+      string(8) "ar_where"
+      [3]=>
+      string(7) "ar_like"
+      [4]=>
+      string(10) "ar_orderby"
+      [5]=>
+      string(7) "ar_keys"
+      [6]=>
+      string(8) "ar_limit"
+      [7]=>
+      string(8) "ar_order"
+    }
+  }
+  ["keyword_model"]=>
+  object(Keyword_model)#280 (25) {
+    ["database_name"]=>
+    string(8) "ecm_main"
+    ["table_name"]=>
+    string(7) "keyword"
+    ["primary_key"]=>
+    string(2) "id"
+    ["master_name"]=>
+    string(2) "db"
+    ["slave_name"]=>
+    string(3) "dbs"
+    ["master"]=>
+    object(CI_DB_mysql_driver)#58 (79) {
+      ["dbdriver"]=>
+      string(5) "mysql"
+      ["_escape_char"]=>
+      string(1) "`"
+      ["_like_escape_str"]=>
+      string(0) ""
+      ["_like_escape_chr"]=>
+      string(0) ""
+      ["delete_hack"]=>
+      bool(true)
+      ["_count_string"]=>
+      string(19) "SELECT COUNT(*) AS "
+      ["_random_keyword"]=>
+      string(7) " RAND()"
+      ["db_exception"]=>
+      bool(true)
+      ["found_rows"]=>
+      int(0)
+      ["ar_calc_found_rows"]=>
+      bool(false)
+      ["ar_for_update"]=>
+      bool(false)
+      ["error_number":protected]=>
+      bool(false)
+      ["error_message":protected]=>
+      bool(false)
+      ["error_query":protected]=>
+      bool(false)
+      ["ar_select"]=>
+      array(0) {
+      }
+      ["ar_distinct"]=>
+      bool(false)
+      ["ar_from"]=>
+      array(0) {
+      }
+      ["ar_join"]=>
+      array(0) {
+      }
+      ["ar_where"]=>
+      array(0) {
+      }
+      ["ar_like"]=>
+      array(0) {
+      }
+      ["ar_groupby"]=>
+      array(0) {
+      }
+      ["ar_having"]=>
+      array(0) {
+      }
+      ["ar_keys"]=>
+      array(0) {
+      }
+      ["ar_limit"]=>
+      bool(false)
+      ["ar_offset"]=>
+      bool(false)
+      ["ar_order"]=>
+      bool(false)
+      ["ar_orderby"]=>
+      array(0) {
+      }
+      ["ar_set"]=>
+      array(0) {
+      }
+      ["ar_wherein"]=>
+      array(0) {
+      }
+      ["ar_aliased_tables"]=>
+      array(0) {
+      }
+      ["ar_store_array"]=>
+      array(0) {
+      }
+      ["ar_caching"]=>
+      bool(false)
+      ["ar_cache_exists"]=>
+      array(0) {
+      }
+      ["ar_cache_select"]=>
+      array(0) {
+      }
+      ["ar_cache_from"]=>
+      array(0) {
+      }
+      ["ar_cache_join"]=>
+      array(0) {
+      }
+      ["ar_cache_where"]=>
+      array(0) {
+      }
+      ["ar_cache_like"]=>
+      array(0) {
+      }
+      ["ar_cache_groupby"]=>
+      array(0) {
+      }
+      ["ar_cache_having"]=>
+      array(0) {
+      }
+      ["ar_cache_orderby"]=>
+      array(0) {
+      }
+      ["ar_cache_set"]=>
+      array(0) {
+      }
+      ["ar_no_escape"]=>
+      array(0) {
+      }
+      ["ar_cache_no_escape"]=>
+      array(0) {
+      }
+      ["username"]=>
+      string(16) "develop_test_app"
+      ["password"]=>
+      string(16) "develop_test_app"
+      ["hostname"]=>
+      string(9) "localhost"
+      ["database"]=>
+      string(8) "ecm_main"
+      ["dbprefix"]=>
+      string(0) ""
+      ["char_set"]=>
+      string(4) "utf8"
+      ["dbcollat"]=>
+      string(15) "utf8_general_ci"
+      ["autoinit"]=>
+      bool(true)
+      ["swap_pre"]=>
+      string(0) ""
+      ["port"]=>
+      string(0) ""
+      ["pconnect"]=>
+      bool(true)
+      ["conn_id"]=>
+      resource(130) of type (mysql link persistent)
+      ["result_id"]=>
+      bool(true)
+      ["db_debug"]=>
+      bool(false)
+      ["benchmark"]=>
+      float(0.028579473495483)
+      ["query_count"]=>
+      int(28)
+      ["bind_marker"]=>
+      string(1) "?"
+      ["save_queries"]=>
+      bool(true)
+      ["queries"]=>
+      array(28) {
+        [0]=>
+        string(416) "INSERT INTO `user` (`id`, `nickname`, `image_url`, `birthday`, `gender`, `area`, `blog_url`, `post_count`, `follow_count`, `attend_count`, `like_count`, `contribution_rank`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1, 'nickname', 'http://example.com/hoge.jpg', '1988-02-01', 0, 'area', 'http://example.com/blog', 0, 2, 3, 4, 5, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [1]=>
+        string(53) "SELECT *
+FROM (`user`)
+WHERE `user`.`id` =  1
+LIMIT 1"
+        [2]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1001, 'keyword1', 200, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [3]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1002, 'keyword2', 100, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [4]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1003, 'keyword3', 150, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [5]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2001, 1001, 1, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [6]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2002, 1003, 2, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [7]=>
+        string(416) "INSERT INTO `user` (`id`, `nickname`, `image_url`, `birthday`, `gender`, `area`, `blog_url`, `post_count`, `follow_count`, `attend_count`, `like_count`, `contribution_rank`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1, 'nickname', 'http://example.com/hoge.jpg', '1988-02-01', 0, 'area', 'http://example.com/blog', 0, 2, 3, 4, 5, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [8]=>
+        string(53) "SELECT *
+FROM (`user`)
+WHERE `user`.`id` =  1
+LIMIT 1"
+        [9]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1001, 'keyword1', 200, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [10]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1002, 'keyword2', 100, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [11]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1003, 'keyword3', 150, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [12]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2001, 1001, 1, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [13]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2002, 1003, 2, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [14]=>
+        string(416) "INSERT INTO `user` (`id`, `nickname`, `image_url`, `birthday`, `gender`, `area`, `blog_url`, `post_count`, `follow_count`, `attend_count`, `like_count`, `contribution_rank`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1, 'nickname', 'http://example.com/hoge.jpg', '1988-02-01', 0, 'area', 'http://example.com/blog', 0, 2, 3, 4, 5, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [15]=>
+        string(53) "SELECT *
+FROM (`user`)
+WHERE `user`.`id` =  1
+LIMIT 1"
+        [16]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1001, 'keyword1', 200, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [17]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1002, 'keyword2', 100, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [18]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1003, 'keyword3', 150, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [19]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2001, 1001, 1, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [20]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2002, 1003, 2, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [21]=>
+        string(416) "INSERT INTO `user` (`id`, `nickname`, `image_url`, `birthday`, `gender`, `area`, `blog_url`, `post_count`, `follow_count`, `attend_count`, `like_count`, `contribution_rank`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1, 'nickname', 'http://example.com/hoge.jpg', '1988-02-01', 0, 'area', 'http://example.com/blog', 0, 2, 3, 4, 5, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [22]=>
+        string(53) "SELECT *
+FROM (`user`)
+WHERE `user`.`id` =  1
+LIMIT 1"
+        [23]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1001, 'keyword1', 200, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [24]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1002, 'keyword2', 100, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [25]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1003, 'keyword3', 150, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [26]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2001, 1001, 1, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [27]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2002, 1003, 2, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      }
+      ["query_times"]=>
+      array(28) {
+        [0]=>
+        float(0.0012240409851074)
+        [1]=>
+        float(0.00069808959960938)
+        [2]=>
+        float(0.0011258125305176)
+        [3]=>
+        float(0.0012240409851074)
+        [4]=>
+        float(0.0015010833740234)
+        [5]=>
+        float(0.0011661052703857)
+        [6]=>
+        float(0.00080990791320801)
+        [7]=>
+        float(0.00078105926513672)
+        [8]=>
+        float(0.00093793869018555)
+        [9]=>
+        float(0.0010240077972412)
+        [10]=>
+        float(0.00093793869018555)
+        [11]=>
+        float(0.00089406967163086)
+        [12]=>
+        float(0.0013461112976074)
+        [13]=>
+        float(0.00094914436340332)
+        [14]=>
+        float(0.0013740062713623)
+        [15]=>
+        float(0.00034403800964355)
+        [16]=>
+        float(0.0010390281677246)
+        [17]=>
+        float(0.00095200538635254)
+        [18]=>
+        float(0.00097107887268066)
+        [19]=>
+        float(0.0015521049499512)
+        [20]=>
+        float(0.00052213668823242)
+        [21]=>
+        float(0.0015199184417725)
+        [22]=>
+        float(0.00033998489379883)
+        [23]=>
+        float(0.0012428760528564)
+        [24]=>
+        float(0.00091290473937988)
+        [25]=>
+        float(0.0007631778717041)
+        [26]=>
+        float(0.001539945602417)
+        [27]=>
+        float(0.00088691711425781)
+      }
+      ["data_cache"]=>
+      array(0) {
+      }
+      ["trans_enabled"]=>
+      bool(true)
+      ["trans_strict"]=>
+      bool(true)
+      ["_trans_depth"]=>
+      int(0)
+      ["_trans_status"]=>
+      bool(true)
+      ["cache_on"]=>
+      bool(false)
+      ["cachedir"]=>
+      string(0) ""
+      ["cache_autodel"]=>
+      bool(false)
+      ["CACHE"]=>
+      NULL
+      ["_protect_identifiers"]=>
+      bool(true)
+      ["_reserved_identifiers"]=>
+      array(1) {
+        [0]=>
+        string(1) "*"
+      }
+      ["stmt_id"]=>
+      NULL
+      ["curs_id"]=>
+      NULL
+      ["limit_used"]=>
+      NULL
+      ["stricton"]=>
+      bool(false)
+    }
+    ["slave"]=>
+    object(CI_DB_mysql_driver)#59 (79) {
+      ["dbdriver"]=>
+      string(5) "mysql"
+      ["_escape_char"]=>
+      string(1) "`"
+      ["_like_escape_str"]=>
+      string(0) ""
+      ["_like_escape_chr"]=>
+      string(0) ""
+      ["delete_hack"]=>
+      bool(true)
+      ["_count_string"]=>
+      string(19) "SELECT COUNT(*) AS "
+      ["_random_keyword"]=>
+      string(7) " RAND()"
+      ["db_exception"]=>
+      bool(true)
+      ["found_rows"]=>
+      int(2)
+      ["ar_calc_found_rows"]=>
+      bool(false)
+      ["ar_for_update"]=>
+      bool(false)
+      ["error_number":protected]=>
+      bool(false)
+      ["error_message":protected]=>
+      bool(false)
+      ["error_query":protected]=>
+      bool(false)
+      ["ar_select"]=>
+      array(0) {
+      }
+      ["ar_distinct"]=>
+      bool(false)
+      ["ar_from"]=>
+      array(0) {
+      }
+      ["ar_join"]=>
+      array(0) {
+      }
+      ["ar_where"]=>
+      array(0) {
+      }
+      ["ar_like"]=>
+      array(0) {
+      }
+      ["ar_groupby"]=>
+      array(0) {
+      }
+      ["ar_having"]=>
+      array(0) {
+      }
+      ["ar_keys"]=>
+      array(0) {
+      }
+      ["ar_limit"]=>
+      bool(false)
+      ["ar_offset"]=>
+      bool(false)
+      ["ar_order"]=>
+      bool(false)
+      ["ar_orderby"]=>
+      array(0) {
+      }
+      ["ar_set"]=>
+      array(0) {
+      }
+      ["ar_wherein"]=>
+      array(0) {
+      }
+      ["ar_aliased_tables"]=>
+      array(0) {
+      }
+      ["ar_store_array"]=>
+      array(0) {
+      }
+      ["ar_caching"]=>
+      bool(false)
+      ["ar_cache_exists"]=>
+      array(0) {
+      }
+      ["ar_cache_select"]=>
+      array(0) {
+      }
+      ["ar_cache_from"]=>
+      array(0) {
+      }
+      ["ar_cache_join"]=>
+      array(0) {
+      }
+      ["ar_cache_where"]=>
+      array(0) {
+      }
+      ["ar_cache_like"]=>
+      array(0) {
+      }
+      ["ar_cache_groupby"]=>
+      array(0) {
+      }
+      ["ar_cache_having"]=>
+      array(0) {
+      }
+      ["ar_cache_orderby"]=>
+      array(0) {
+      }
+      ["ar_cache_set"]=>
+      array(0) {
+      }
+      ["ar_no_escape"]=>
+      array(0) {
+      }
+      ["ar_cache_no_escape"]=>
+      array(0) {
+      }
+      ["username"]=>
+      string(16) "develop_test_app"
+      ["password"]=>
+      string(16) "develop_test_app"
+      ["hostname"]=>
+      string(9) "localhost"
+      ["database"]=>
+      string(8) "ecm_main"
+      ["dbprefix"]=>
+      string(0) ""
+      ["char_set"]=>
+      string(4) "utf8"
+      ["dbcollat"]=>
+      string(15) "utf8_general_ci"
+      ["autoinit"]=>
+      bool(true)
+      ["swap_pre"]=>
+      string(0) ""
+      ["port"]=>
+      string(0) ""
+      ["pconnect"]=>
+      bool(false)
+      ["conn_id"]=>
+      resource(132) of type (mysql link)
+      ["result_id"]=>
+      resource(198) of type (mysql result)
+      ["db_debug"]=>
+      bool(false)
+      ["benchmark"]=>
+      float(0.0051748752593994)
+      ["query_count"]=>
+      int(9)
+      ["bind_marker"]=>
+      string(1) "?"
+      ["save_queries"]=>
+      bool(true)
+      ["queries"]=>
+      array(9) {
+        [0]=>
+        string(24) "SHOW COLUMNS FROM `user`"
+        [1]=>
+        string(27) "SHOW COLUMNS FROM `keyword`"
+        [2]=>
+        string(35) "SHOW COLUMNS FROM `popular_keyword`"
+        [3]=>
+        string(226) "SELECT SQL_CALC_FOUND_ROWS `keyword`.*, `popular_keyword`.`id` AS popular_id, `popular_keyword`.`position`
+FROM (`popular_keyword`)
+JOIN `keyword` ON `keyword`.`id` = `popular_keyword`.`keyword_id`
+ORDER BY `position`
+LIMIT 10"
+        [4]=>
+        string(28) "SELECT FOUND_ROWS() as frows"
+        [5]=>
+        string(225) "SELECT SQL_CALC_FOUND_ROWS `keyword`.*, `popular_keyword`.`id` AS popular_id, `popular_keyword`.`position`
+FROM (`popular_keyword`)
+JOIN `keyword` ON `keyword`.`id` = `popular_keyword`.`keyword_id`
+ORDER BY `position`
+LIMIT 1"
+        [6]=>
+        string(28) "SELECT FOUND_ROWS() as frows"
+        [7]=>
+        string(229) "SELECT SQL_CALC_FOUND_ROWS `keyword`.*, `popular_keyword`.`id` AS popular_id, `popular_keyword`.`position`
+FROM (`popular_keyword`)
+JOIN `keyword` ON `keyword`.`id` = `popular_keyword`.`keyword_id`
+ORDER BY `position`
+LIMIT 1, 10"
+        [8]=>
+        string(28) "SELECT FOUND_ROWS() as frows"
+      }
+      ["query_times"]=>
+      array(9) {
+        [0]=>
+        float(0.00079584121704102)
+        [1]=>
+        float(0.00069499015808105)
+        [2]=>
+        float(0.00076913833618164)
+        [3]=>
+        float(0.00053596496582031)
+        [4]=>
+        float(0.00041604042053223)
+        [5]=>
+        float(0.00060296058654785)
+        [6]=>
+        float(0.00017094612121582)
+        [7]=>
+        float(0.0008399486541748)
+        [8]=>
+        float(0.00034904479980469)
+      }
+      ["data_cache"]=>
+      array(1) {
+        ["field_names"]=>
+        array(3) {
+          ["user"]=>
+          array(20) {
+            [0]=>
+            string(2) "id"
+            [1]=>
+            string(8) "nickname"
+            [2]=>
+            string(9) "image_url"
+            [3]=>
+            string(8) "birthday"
+            [4]=>
+            string(6) "gender"
+            [5]=>
+            string(4) "area"
+            [6]=>
+            string(12) "introduction"
+            [7]=>
+            string(8) "blog_url"
+            [8]=>
+            string(10) "post_count"
+            [9]=>
+            string(12) "follow_count"
+            [10]=>
+            string(14) "follower_count"
+            [11]=>
+            string(12) "attend_count"
+            [12]=>
+            string(10) "like_count"
+            [13]=>
+            string(17) "contribution_rank"
+            [14]=>
+            string(10) "created_at"
+            [15]=>
+            string(10) "created_by"
+            [16]=>
+            string(10) "updated_at"
+            [17]=>
+            string(10) "updated_by"
+            [18]=>
+            string(10) "deleted_at"
+            [19]=>
+            string(10) "deleted_by"
+          }
+          ["keyword"]=>
+          array(9) {
+            [0]=>
+            string(2) "id"
+            [1]=>
+            string(4) "name"
+            [2]=>
+            string(10) "used_count"
+            [3]=>
+            string(10) "created_at"
+            [4]=>
+            string(10) "created_by"
+            [5]=>
+            string(10) "updated_at"
+            [6]=>
+            string(10) "updated_by"
+            [7]=>
+            string(10) "deleted_at"
+            [8]=>
+            string(10) "deleted_by"
+          }
+          ["popular_keyword"]=>
+          array(7) {
+            [0]=>
+            string(2) "id"
+            [1]=>
+            string(10) "keyword_id"
+            [2]=>
+            string(8) "position"
+            [3]=>
+            string(10) "created_at"
+            [4]=>
+            string(10) "created_by"
+            [5]=>
+            string(10) "updated_at"
+            [6]=>
+            string(10) "updated_by"
+          }
+        }
+      }
+      ["trans_enabled"]=>
+      bool(true)
+      ["trans_strict"]=>
+      bool(true)
+      ["_trans_depth"]=>
+      int(0)
+      ["_trans_status"]=>
+      bool(true)
+      ["cache_on"]=>
+      bool(false)
+      ["cachedir"]=>
+      string(0) ""
+      ["cache_autodel"]=>
+      bool(false)
+      ["CACHE"]=>
+      NULL
+      ["_protect_identifiers"]=>
+      bool(true)
+      ["_reserved_identifiers"]=>
+      array(1) {
+        [0]=>
+        string(1) "*"
+      }
+      ["stmt_id"]=>
+      NULL
+      ["curs_id"]=>
+      NULL
+      ["limit_used"]=>
+      NULL
+      ["stricton"]=>
+      bool(false)
+    }
+    ["record_class"]=>
+    string(6) "object"
+    ["fields"]=>
+    array(9) {
+      [0]=>
+      string(2) "id"
+      [1]=>
+      string(4) "name"
+      [2]=>
+      string(10) "used_count"
+      [3]=>
+      string(10) "created_at"
+      [4]=>
+      string(10) "created_by"
+      [5]=>
+      string(10) "updated_at"
+      [6]=>
+      string(10) "updated_by"
+      [7]=>
+      string(10) "deleted_at"
+      [8]=>
+      string(10) "deleted_by"
+    }
+    ["foreign_keys"]=>
+    array(0) {
+    }
+    ["errors"]=>
+    object(APP_Model_errors)#279 (4) {
+      ["base"]=>
+      *RECURSION*
+      ["errors":protected]=>
+      array(0) {
+      }
+      ["CI":protected]=>
+      *RECURSION*
+      ["__position":"APP_Errors":private]=>
+      int(0)
+    }
+    ["created_at_column_name"]=>
+    string(10) "created_at"
+    ["updated_at_column_name"]=>
+    string(10) "updated_at"
+    ["created_by_column_name"]=>
+    string(10) "created_by"
+    ["updated_by_column_name"]=>
+    string(10) "updated_by"
+    ["created_at_column_name_regex"]=>
+    string(24) "/^([a-z]+_)?created_at$/"
+    ["updated_at_column_name_regex"]=>
+    string(24) "/^([a-z]+_)?updated_at$/"
+    ["created_by_column_name_regex"]=>
+    string(24) "/^([a-z]+_)?created_by$/"
+    ["updated_by_column_name_regex"]=>
+    string(24) "/^([a-z]+_)?updated_by$/"
+    ["delegate_method_chains":protected]=>
+    array(25) {
+      [0]=>
+      string(6) "select"
+      [1]=>
+      string(10) "select_max"
+      [2]=>
+      string(10) "select_sum"
+      [3]=>
+      string(5) "where"
+      [4]=>
+      string(8) "or_where"
+      [5]=>
+      string(8) "where_in"
+      [6]=>
+      string(12) "where_not_in"
+      [7]=>
+      string(15) "or_where_not_in"
+      [8]=>
+      string(4) "like"
+      [9]=>
+      string(7) "or_like"
+      [10]=>
+      string(8) "not_like"
+      [11]=>
+      string(11) "or_not_like"
+      [12]=>
+      string(8) "distinct"
+      [13]=>
+      string(6) "having"
+      [14]=>
+      string(9) "or_having"
+      [15]=>
+      string(4) "join"
+      [16]=>
+      string(8) "group_by"
+      [17]=>
+      string(8) "order_by"
+      [18]=>
+      string(13) "order_by_rand"
+      [19]=>
+      string(14) "order_by_field"
+      [20]=>
+      string(6) "offset"
+      [21]=>
+      string(5) "limit"
+      [22]=>
+      string(15) "calc_found_rows"
+      [23]=>
+      string(10) "for_update"
+      [24]=>
+      string(3) "set"
+    }
+    ["delegate_methods":protected]=>
+    array(2) {
+      [0]=>
+      string(15) "escape_like_str"
+      [1]=>
+      string(10) "escape_str"
+    }
+    ["delegate_methods_to_master":protected]=>
+    array(9) {
+      [0]=>
+      string(11) "trans_start"
+      [1]=>
+      string(14) "trans_complete"
+      [2]=>
+      string(12) "trans_status"
+      [3]=>
+      string(11) "trans_begin"
+      [4]=>
+      string(14) "trans_rollback"
+      [5]=>
+      string(20) "trans_force_rollback"
+      [6]=>
+      string(12) "trans_commit"
+      [7]=>
+      string(18) "trans_reset_status"
+      [8]=>
+      string(9) "insert_id"
+    }
+    ["frows"]=>
+    NULL
+    ["_delegate_select_queue_variables":protected]=>
+    array(17) {
+      [0]=>
+      string(9) "ar_select"
+      [1]=>
+      string(7) "ar_from"
+      [2]=>
+      string(7) "ar_join"
+      [3]=>
+      string(8) "ar_where"
+      [4]=>
+      string(7) "ar_like"
+      [5]=>
+      string(10) "ar_groupby"
+      [6]=>
+      string(9) "ar_having"
+      [7]=>
+      string(10) "ar_orderby"
+      [8]=>
+      string(10) "ar_wherein"
+      [9]=>
+      string(17) "ar_aliased_tables"
+      [10]=>
+      string(12) "ar_no_escape"
+      [11]=>
+      string(11) "ar_distinct"
+      [12]=>
+      string(8) "ar_limit"
+      [13]=>
+      string(9) "ar_offset"
+      [14]=>
+      string(8) "ar_order"
+      [15]=>
+      string(18) "ar_calc_found_rows"
+      [16]=>
+      string(13) "ar_for_update"
+    }
+    ["_delegate_write_queue_variables":protected]=>
+    array(8) {
+      [0]=>
+      string(6) "ar_set"
+      [1]=>
+      string(7) "ar_from"
+      [2]=>
+      string(8) "ar_where"
+      [3]=>
+      string(7) "ar_like"
+      [4]=>
+      string(10) "ar_orderby"
+      [5]=>
+      string(7) "ar_keys"
+      [6]=>
+      string(8) "ar_limit"
+      [7]=>
+      string(8) "ar_order"
+    }
+  }
+  ["popular_keyword_model"]=>
+  object(Popular_keyword_model)#277 (25) {
+    ["database_name"]=>
+    string(8) "ecm_main"
+    ["table_name"]=>
+    string(15) "popular_keyword"
+    ["primary_key"]=>
+    string(2) "id"
+    ["master_name"]=>
+    string(2) "db"
+    ["slave_name"]=>
+    string(3) "dbs"
+    ["master"]=>
+    object(CI_DB_mysql_driver)#58 (79) {
+      ["dbdriver"]=>
+      string(5) "mysql"
+      ["_escape_char"]=>
+      string(1) "`"
+      ["_like_escape_str"]=>
+      string(0) ""
+      ["_like_escape_chr"]=>
+      string(0) ""
+      ["delete_hack"]=>
+      bool(true)
+      ["_count_string"]=>
+      string(19) "SELECT COUNT(*) AS "
+      ["_random_keyword"]=>
+      string(7) " RAND()"
+      ["db_exception"]=>
+      bool(true)
+      ["found_rows"]=>
+      int(0)
+      ["ar_calc_found_rows"]=>
+      bool(false)
+      ["ar_for_update"]=>
+      bool(false)
+      ["error_number":protected]=>
+      bool(false)
+      ["error_message":protected]=>
+      bool(false)
+      ["error_query":protected]=>
+      bool(false)
+      ["ar_select"]=>
+      array(0) {
+      }
+      ["ar_distinct"]=>
+      bool(false)
+      ["ar_from"]=>
+      array(0) {
+      }
+      ["ar_join"]=>
+      array(0) {
+      }
+      ["ar_where"]=>
+      array(0) {
+      }
+      ["ar_like"]=>
+      array(0) {
+      }
+      ["ar_groupby"]=>
+      array(0) {
+      }
+      ["ar_having"]=>
+      array(0) {
+      }
+      ["ar_keys"]=>
+      array(0) {
+      }
+      ["ar_limit"]=>
+      bool(false)
+      ["ar_offset"]=>
+      bool(false)
+      ["ar_order"]=>
+      bool(false)
+      ["ar_orderby"]=>
+      array(0) {
+      }
+      ["ar_set"]=>
+      array(0) {
+      }
+      ["ar_wherein"]=>
+      array(0) {
+      }
+      ["ar_aliased_tables"]=>
+      array(0) {
+      }
+      ["ar_store_array"]=>
+      array(0) {
+      }
+      ["ar_caching"]=>
+      bool(false)
+      ["ar_cache_exists"]=>
+      array(0) {
+      }
+      ["ar_cache_select"]=>
+      array(0) {
+      }
+      ["ar_cache_from"]=>
+      array(0) {
+      }
+      ["ar_cache_join"]=>
+      array(0) {
+      }
+      ["ar_cache_where"]=>
+      array(0) {
+      }
+      ["ar_cache_like"]=>
+      array(0) {
+      }
+      ["ar_cache_groupby"]=>
+      array(0) {
+      }
+      ["ar_cache_having"]=>
+      array(0) {
+      }
+      ["ar_cache_orderby"]=>
+      array(0) {
+      }
+      ["ar_cache_set"]=>
+      array(0) {
+      }
+      ["ar_no_escape"]=>
+      array(0) {
+      }
+      ["ar_cache_no_escape"]=>
+      array(0) {
+      }
+      ["username"]=>
+      string(16) "develop_test_app"
+      ["password"]=>
+      string(16) "develop_test_app"
+      ["hostname"]=>
+      string(9) "localhost"
+      ["database"]=>
+      string(8) "ecm_main"
+      ["dbprefix"]=>
+      string(0) ""
+      ["char_set"]=>
+      string(4) "utf8"
+      ["dbcollat"]=>
+      string(15) "utf8_general_ci"
+      ["autoinit"]=>
+      bool(true)
+      ["swap_pre"]=>
+      string(0) ""
+      ["port"]=>
+      string(0) ""
+      ["pconnect"]=>
+      bool(true)
+      ["conn_id"]=>
+      resource(130) of type (mysql link persistent)
+      ["result_id"]=>
+      bool(true)
+      ["db_debug"]=>
+      bool(false)
+      ["benchmark"]=>
+      float(0.028579473495483)
+      ["query_count"]=>
+      int(28)
+      ["bind_marker"]=>
+      string(1) "?"
+      ["save_queries"]=>
+      bool(true)
+      ["queries"]=>
+      array(28) {
+        [0]=>
+        string(416) "INSERT INTO `user` (`id`, `nickname`, `image_url`, `birthday`, `gender`, `area`, `blog_url`, `post_count`, `follow_count`, `attend_count`, `like_count`, `contribution_rank`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1, 'nickname', 'http://example.com/hoge.jpg', '1988-02-01', 0, 'area', 'http://example.com/blog', 0, 2, 3, 4, 5, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [1]=>
+        string(53) "SELECT *
+FROM (`user`)
+WHERE `user`.`id` =  1
+LIMIT 1"
+        [2]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1001, 'keyword1', 200, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [3]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1002, 'keyword2', 100, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [4]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1003, 'keyword3', 150, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [5]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2001, 1001, 1, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [6]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2002, 1003, 2, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [7]=>
+        string(416) "INSERT INTO `user` (`id`, `nickname`, `image_url`, `birthday`, `gender`, `area`, `blog_url`, `post_count`, `follow_count`, `attend_count`, `like_count`, `contribution_rank`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1, 'nickname', 'http://example.com/hoge.jpg', '1988-02-01', 0, 'area', 'http://example.com/blog', 0, 2, 3, 4, 5, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [8]=>
+        string(53) "SELECT *
+FROM (`user`)
+WHERE `user`.`id` =  1
+LIMIT 1"
+        [9]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1001, 'keyword1', 200, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [10]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1002, 'keyword2', 100, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [11]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1003, 'keyword3', 150, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [12]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2001, 1001, 1, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [13]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2002, 1003, 2, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [14]=>
+        string(416) "INSERT INTO `user` (`id`, `nickname`, `image_url`, `birthday`, `gender`, `area`, `blog_url`, `post_count`, `follow_count`, `attend_count`, `like_count`, `contribution_rank`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1, 'nickname', 'http://example.com/hoge.jpg', '1988-02-01', 0, 'area', 'http://example.com/blog', 0, 2, 3, 4, 5, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [15]=>
+        string(53) "SELECT *
+FROM (`user`)
+WHERE `user`.`id` =  1
+LIMIT 1"
+        [16]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1001, 'keyword1', 200, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [17]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1002, 'keyword2', 100, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [18]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1003, 'keyword3', 150, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [19]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2001, 1001, 1, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [20]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2002, 1003, 2, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [21]=>
+        string(416) "INSERT INTO `user` (`id`, `nickname`, `image_url`, `birthday`, `gender`, `area`, `blog_url`, `post_count`, `follow_count`, `attend_count`, `like_count`, `contribution_rank`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1, 'nickname', 'http://example.com/hoge.jpg', '1988-02-01', 0, 'area', 'http://example.com/blog', 0, 2, 3, 4, 5, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [22]=>
+        string(53) "SELECT *
+FROM (`user`)
+WHERE `user`.`id` =  1
+LIMIT 1"
+        [23]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1001, 'keyword1', 200, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [24]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1002, 'keyword2', 100, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [25]=>
+        string(203) "INSERT INTO `keyword` (`id`, `name`, `used_count`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (1003, 'keyword3', 150, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [26]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2001, 1001, 1, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+        [27]=>
+        string(207) "INSERT INTO `popular_keyword` (`id`, `keyword_id`, `position`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES (2002, 1003, 2, '2013-11-29 13:47:20', 'system', '2013-11-29 13:47:20', 'system')"
+      }
+      ["query_times"]=>
+      array(28) {
+        [0]=>
+        float(0.0012240409851074)
+        [1]=>
+        float(0.00069808959960938)
+        [2]=>
+        float(0.0011258125305176)
+        [3]=>
+        float(0.0012240409851074)
+        [4]=>
+        float(0.0015010833740234)
+        [5]=>
+        float(0.0011661052703857)
+        [6]=>
+        float(0.00080990791320801)
+        [7]=>
+        float(0.00078105926513672)
+        [8]=>
+        float(0.00093793869018555)
+        [9]=>
+        float(0.0010240077972412)
+        [10]=>
+        float(0.00093793869018555)
+        [11]=>
+        float(0.00089406967163086)
+        [12]=>
+        float(0.0013461112976074)
+        [13]=>
+        float(0.00094914436340332)
+        [14]=>
+        float(0.0013740062713623)
+        [15]=>
+        float(0.00034403800964355)
+        [16]=>
+        float(0.0010390281677246)
+        [17]=>
+        float(0.00095200538635254)
+        [18]=>
+        float(0.00097107887268066)
+        [19]=>
+        float(0.0015521049499512)
+        [20]=>
+        float(0.00052213668823242)
+        [21]=>
+        float(0.0015199184417725)
+        [22]=>
+        float(0.00033998489379883)
+        [23]=>
+        float(0.0012428760528564)
+        [24]=>
+        float(0.00091290473937988)
+        [25]=>
+        float(0.0007631778717041)
+        [26]=>
+        float(0.001539945602417)
+        [27]=>
+        float(0.00088691711425781)
+      }
+      ["data_cache"]=>
+      array(0) {
+      }
+      ["trans_enabled"]=>
+      bool(true)
+      ["trans_strict"]=>
+      bool(true)
+      ["_trans_depth"]=>
+      int(0)
+      ["_trans_status"]=>
+      bool(true)
+      ["cache_on"]=>
+      bool(false)
+      ["cachedir"]=>
+      string(0) ""
+      ["cache_autodel"]=>
+      bool(false)
+      ["CACHE"]=>
+      NULL
+      ["_protect_identifiers"]=>
+      bool(true)
+      ["_reserved_identifiers"]=>
+      array(1) {
+        [0]=>
+        string(1) "*"
+      }
+      ["stmt_id"]=>
+      NULL
+      ["curs_id"]=>
+      NULL
+      ["limit_used"]=>
+      NULL
+      ["stricton"]=>
+      bool(false)
+    }
+    ["slave"]=>
+    object(CI_DB_mysql_driver)#59 (79) {
+      ["dbdriver"]=>
+      string(5) "mysql"
+      ["_escape_char"]=>
+      string(1) "`"
+      ["_like_escape_str"]=>
+      string(0) ""
+      ["_like_escape_chr"]=>
+      string(0) ""
+      ["delete_hack"]=>
+      bool(true)
+      ["_count_string"]=>
+      string(19) "SELECT COUNT(*) AS "
+      ["_random_keyword"]=>
+      string(7) " RAND()"
+      ["db_exception"]=>
+      bool(true)
+      ["found_rows"]=>
+      int(2)
+      ["ar_calc_found_rows"]=>
+      bool(false)
+      ["ar_for_update"]=>
+      bool(false)
+      ["error_number":protected]=>
+      bool(false)
+      ["error_message":protected]=>
+      bool(false)
+      ["error_query":protected]=>
+      bool(false)
+      ["ar_select"]=>
+      array(0) {
+      }
+      ["ar_distinct"]=>
+      bool(false)
+      ["ar_from"]=>
+      array(0) {
+      }
+      ["ar_join"]=>
+      array(0) {
+      }
+      ["ar_where"]=>
+      array(0) {
+      }
+      ["ar_like"]=>
+      array(0) {
+      }
+      ["ar_groupby"]=>
+      array(0) {
+      }
+      ["ar_having"]=>
+      array(0) {
+      }
+      ["ar_keys"]=>
+      array(0) {
+      }
+      ["ar_limit"]=>
+      bool(false)
+      ["ar_offset"]=>
+      bool(false)
+      ["ar_order"]=>
+      bool(false)
+      ["ar_orderby"]=>
+      array(0) {
+      }
+      ["ar_set"]=>
+      array(0) {
+      }
+      ["ar_wherein"]=>
+      array(0) {
+      }
+      ["ar_aliased_tables"]=>
+      array(0) {
+      }
+      ["ar_store_array"]=>
+      array(0) {
+      }
+      ["ar_caching"]=>
+      bool(false)
+      ["ar_cache_exists"]=>
+      array(0) {
+      }
+      ["ar_cache_select"]=>
+      array(0) {
+      }
+      ["ar_cache_from"]=>
+      array(0) {
+      }
+      ["ar_cache_join"]=>
+      array(0) {
+      }
+      ["ar_cache_where"]=>
+      array(0) {
+      }
+      ["ar_cache_like"]=>
+      array(0) {
+      }
+      ["ar_cache_groupby"]=>
+      array(0) {
+      }
+      ["ar_cache_having"]=>
+      array(0) {
+      }
+      ["ar_cache_orderby"]=>
+      array(0) {
+      }
+      ["ar_cache_set"]=>
+      array(0) {
+      }
+      ["ar_no_escape"]=>
+      array(0) {
+      }
+      ["ar_cache_no_escape"]=>
+      array(0) {
+      }
+      ["username"]=>
+      string(16) "develop_test_app"
+      ["password"]=>
+      string(16) "develop_test_app"
+      ["hostname"]=>
+      string(9) "localhost"
+      ["database"]=>
+      string(8) "ecm_main"
+      ["dbprefix"]=>
+      string(0) ""
+      ["char_set"]=>
+      string(4) "utf8"
+      ["dbcollat"]=>
+      string(15) "utf8_general_ci"
+      ["autoinit"]=>
+      bool(true)
+      ["swap_pre"]=>
+      string(0) ""
+      ["port"]=>
+      string(0) ""
+      ["pconnect"]=>
+      bool(false)
+      ["conn_id"]=>
+      resource(132) of type (mysql link)
+      ["result_id"]=>
+      resource(198) of type (mysql result)
+      ["db_debug"]=>
+      bool(false)
+      ["benchmark"]=>
+      float(0.0051748752593994)
+      ["query_count"]=>
+      int(9)
+      ["bind_marker"]=>
+      string(1) "?"
+      ["save_queries"]=>
+      bool(true)
+      ["queries"]=>
+      array(9) {
+        [0]=>
+        string(24) "SHOW COLUMNS FROM `user`"
+        [1]=>
+        string(27) "SHOW COLUMNS FROM `keyword`"
+        [2]=>
+        string(35) "SHOW COLUMNS FROM `popular_keyword`"
+        [3]=>
+        string(226) "SELECT SQL_CALC_FOUND_ROWS `keyword`.*, `popular_keyword`.`id` AS popular_id, `popular_keyword`.`position`
+FROM (`popular_keyword`)
+JOIN `keyword` ON `keyword`.`id` = `popular_keyword`.`keyword_id`
+ORDER BY `position`
+LIMIT 10"
+        [4]=>
+        string(28) "SELECT FOUND_ROWS() as frows"
+        [5]=>
+        string(225) "SELECT SQL_CALC_FOUND_ROWS `keyword`.*, `popular_keyword`.`id` AS popular_id, `popular_keyword`.`position`
+FROM (`popular_keyword`)
+JOIN `keyword` ON `keyword`.`id` = `popular_keyword`.`keyword_id`
+ORDER BY `position`
+LIMIT 1"
+        [6]=>
+        string(28) "SELECT FOUND_ROWS() as frows"
+        [7]=>
+        string(229) "SELECT SQL_CALC_FOUND_ROWS `keyword`.*, `popular_keyword`.`id` AS popular_id, `popular_keyword`.`position`
+FROM (`popular_keyword`)
+JOIN `keyword` ON `keyword`.`id` = `popular_keyword`.`keyword_id`
+ORDER BY `position`
+LIMIT 1, 10"
+        [8]=>
+        string(28) "SELECT FOUND_ROWS() as frows"
+      }
+      ["query_times"]=>
+      array(9) {
+        [0]=>
+        float(0.00079584121704102)
+        [1]=>
+        float(0.00069499015808105)
+        [2]=>
+        float(0.00076913833618164)
+        [3]=>
+        float(0.00053596496582031)
+        [4]=>
+        float(0.00041604042053223)
+        [5]=>
+        float(0.00060296058654785)
+        [6]=>
+        float(0.00017094612121582)
+        [7]=>
+        float(0.0008399486541748)
+        [8]=>
+        float(0.00034904479980469)
+      }
+      ["data_cache"]=>
+      array(1) {
+        ["field_names"]=>
+        array(3) {
+          ["user"]=>
+          array(20) {
+            [0]=>
+            string(2) "id"
+            [1]=>
+            string(8) "nickname"
+            [2]=>
+            string(9) "image_url"
+            [3]=>
+            string(8) "birthday"
+            [4]=>
+            string(6) "gender"
+            [5]=>
+            string(4) "area"
+            [6]=>
+            string(12) "introduction"
+            [7]=>
+            string(8) "blog_url"
+            [8]=>
+            string(10) "post_count"
+            [9]=>
+            string(12) "follow_count"
+            [10]=>
+            string(14) "follower_count"
+            [11]=>
+            string(12) "attend_count"
+            [12]=>
+            string(10) "like_count"
+            [13]=>
+            string(17) "contribution_rank"
+            [14]=>
+            string(10) "created_at"
+            [15]=>
+            string(10) "created_by"
+            [16]=>
+            string(10) "updated_at"
+            [17]=>
+            string(10) "updated_by"
+            [18]=>
+            string(10) "deleted_at"
+            [19]=>
+            string(10) "deleted_by"
+          }
+          ["keyword"]=>
+          array(9) {
+            [0]=>
+            string(2) "id"
+            [1]=>
+            string(4) "name"
+            [2]=>
+            string(10) "used_count"
+            [3]=>
+            string(10) "created_at"
+            [4]=>
+            string(10) "created_by"
+            [5]=>
+            string(10) "updated_at"
+            [6]=>
+            string(10) "updated_by"
+            [7]=>
+            string(10) "deleted_at"
+            [8]=>
+            string(10) "deleted_by"
+          }
+          ["popular_keyword"]=>
+          array(7) {
+            [0]=>
+            string(2) "id"
+            [1]=>
+            string(10) "keyword_id"
+            [2]=>
+            string(8) "position"
+            [3]=>
+            string(10) "created_at"
+            [4]=>
+            string(10) "created_by"
+            [5]=>
+            string(10) "updated_at"
+            [6]=>
+            string(10) "updated_by"
+          }
+        }
+      }
+      ["trans_enabled"]=>
+      bool(true)
+      ["trans_strict"]=>
+      bool(true)
+      ["_trans_depth"]=>
+      int(0)
+      ["_trans_status"]=>
+      bool(true)
+      ["cache_on"]=>
+      bool(false)
+      ["cachedir"]=>
+      string(0) ""
+      ["cache_autodel"]=>
+      bool(false)
+      ["CACHE"]=>
+      NULL
+      ["_protect_identifiers"]=>
+      bool(true)
+      ["_reserved_identifiers"]=>
+      array(1) {
+        [0]=>
+        string(1) "*"
+      }
+      ["stmt_id"]=>
+      NULL
+      ["curs_id"]=>
+      NULL
+      ["limit_used"]=>
+      NULL
+      ["stricton"]=>
+      bool(false)
+    }
+    ["record_class"]=>
+    string(6) "object"
+    ["fields"]=>
+    array(7) {
+      [0]=>
+      string(2) "id"
+      [1]=>
+      string(10) "keyword_id"
+      [2]=>
+      string(8) "position"
+      [3]=>
+      string(10) "created_at"
+      [4]=>
+      string(10) "created_by"
+      [5]=>
+      string(10) "updated_at"
+      [6]=>
+      string(10) "updated_by"
+    }
+    ["foreign_keys"]=>
+    array(0) {
+    }
+    ["errors"]=>
+    object(APP_Model_errors)#276 (4) {
+      ["base"]=>
+      *RECURSION*
+      ["errors":protected]=>
+      array(0) {
+      }
+      ["CI":protected]=>
+      *RECURSION*
+      ["__position":"APP_Errors":private]=>
+      int(0)
+    }
+    ["created_at_column_name"]=>
+    string(10) "created_at"
+    ["updated_at_column_name"]=>
+    string(10) "updated_at"
+    ["created_by_column_name"]=>
+    string(10) "created_by"
+    ["updated_by_column_name"]=>
+    string(10) "updated_by"
+    ["created_at_column_name_regex"]=>
+    string(24) "/^([a-z]+_)?created_at$/"
+    ["updated_at_column_name_regex"]=>
+    string(24) "/^([a-z]+_)?updated_at$/"
+    ["created_by_column_name_regex"]=>
+    string(24) "/^([a-z]+_)?created_by$/"
+    ["updated_by_column_name_regex"]=>
+    string(24) "/^([a-z]+_)?updated_by$/"
+    ["delegate_method_chains":protected]=>
+    array(25) {
+      [0]=>
+      string(6) "select"
+      [1]=>
+      string(10) "select_max"
+      [2]=>
+      string(10) "select_sum"
+      [3]=>
+      string(5) "where"
+      [4]=>
+      string(8) "or_where"
+      [5]=>
+      string(8) "where_in"
+      [6]=>
+      string(12) "where_not_in"
+      [7]=>
+      string(15) "or_where_not_in"
+      [8]=>
+      string(4) "like"
+      [9]=>
+      string(7) "or_like"
+      [10]=>
+      string(8) "not_like"
+      [11]=>
+      string(11) "or_not_like"
+      [12]=>
+      string(8) "distinct"
+      [13]=>
+      string(6) "having"
+      [14]=>
+      string(9) "or_having"
+      [15]=>
+      string(4) "join"
+      [16]=>
+      string(8) "group_by"
+      [17]=>
+      string(8) "order_by"
+      [18]=>
+      string(13) "order_by_rand"
+      [19]=>
+      string(14) "order_by_field"
+      [20]=>
+      string(6) "offset"
+      [21]=>
+      string(5) "limit"
+      [22]=>
+      string(15) "calc_found_rows"
+      [23]=>
+      string(10) "for_update"
+      [24]=>
+      string(3) "set"
+    }
+    ["delegate_methods":protected]=>
+    array(2) {
+      [0]=>
+      string(15) "escape_like_str"
+      [1]=>
+      string(10) "escape_str"
+    }
+    ["delegate_methods_to_master":protected]=>
+    array(9) {
+      [0]=>
+      string(11) "trans_start"
+      [1]=>
+      string(14) "trans_complete"
+      [2]=>
+      string(12) "trans_status"
+      [3]=>
+      string(11) "trans_begin"
+      [4]=>
+      string(14) "trans_rollback"
+      [5]=>
+      string(20) "trans_force_rollback"
+      [6]=>
+      string(12) "trans_commit"
+      [7]=>
+      string(18) "trans_reset_status"
+      [8]=>
+      string(9) "insert_id"
+    }
+    ["frows"]=>
+    NULL
+    ["_delegate_select_queue_variables":protected]=>
+    array(17) {
+      [0]=>
+      string(9) "ar_select"
+      [1]=>
+      string(7) "ar_from"
+      [2]=>
+      string(7) "ar_join"
+      [3]=>
+      string(8) "ar_where"
+      [4]=>
+      string(7) "ar_like"
+      [5]=>
+      string(10) "ar_groupby"
+      [6]=>
+      string(9) "ar_having"
+      [7]=>
+      string(10) "ar_orderby"
+      [8]=>
+      string(10) "ar_wherein"
+      [9]=>
+      string(17) "ar_aliased_tables"
+      [10]=>
+      string(12) "ar_no_escape"
+      [11]=>
+      string(11) "ar_distinct"
+      [12]=>
+      string(8) "ar_limit"
+      [13]=>
+      string(9) "ar_offset"
+      [14]=>
+      string(8) "ar_order"
+      [15]=>
+      string(18) "ar_calc_found_rows"
+      [16]=>
+      string(13) "ar_for_update"
+    }
+    ["_delegate_write_queue_variables":protected]=>
+    array(8) {
+      [0]=>
+      string(6) "ar_set"
+      [1]=>
+      string(7) "ar_from"
+      [2]=>
+      string(8) "ar_where"
+      [3]=>
+      string(7) "ar_like"
+      [4]=>
+      string(10) "ar_orderby"
+      [5]=>
+      string(7) "ar_keys"
+      [6]=>
+      string(8) "ar_limit"
+      [7]=>
+      string(8) "ar_order"
+    }
+  }
+  ["keyword_api"]=>
+  object(Keyword_api)#275 (3) {
+    ["validator_name"]=>
+    string(24) "Ecm_api_param_validation"
+    ["CI":protected]=>
+    *RECURSION*
+    ["operator":protected]=>
+    object(User_record)#278 (20) {
+      ["id"]=>
+      string(1) "1"
+      ["nickname"]=>
+      string(8) "nickname"
+      ["image_url"]=>
+      string(27) "http://example.com/hoge.jpg"
+      ["birthday"]=>
+      string(10) "1988-02-01"
+      ["gender"]=>
+      string(0) ""
+      ["area"]=>
+      string(4) "area"
+      ["introduction"]=>
+      NULL
+      ["blog_url"]=>
+      string(23) "http://example.com/blog"
+      ["post_count"]=>
+      string(1) "0"
+      ["follow_count"]=>
+      string(1) "2"
+      ["follower_count"]=>
+      string(1) "0"
+      ["attend_count"]=>
+      string(1) "3"
+      ["like_count"]=>
+      string(1) "4"
+      ["contribution_rank"]=>
+      string(1) "5"
+      ["created_at"]=>
+      string(19) "2013-11-29 13:47:20"
+      ["created_by"]=>
+      string(6) "system"
+      ["updated_at"]=>
+      string(19) "2013-11-29 13:47:20"
+      ["updated_by"]=>
+      string(6) "system"
+      ["deleted_at"]=>
+      NULL
+      ["deleted_by"]=>
+      NULL
+    }
+  }
+}
+[CIUnit] PHP Error: Notice - Undefined property: APP_Controller::$response File Path: api/KeywordTest.php (line: 164)
+hoooooooogeeeeee[]¥n[CIUnit] PHP Error: Notice - Undefined property: APP_Controller::$response File Path: libraries/APP_Form_validation.php (line: 34)
+
+Fatal error: Call to a member function submit_false_json() on a non-object in /vagrant/shared/libraries/APP_Form_validation.php on line 34

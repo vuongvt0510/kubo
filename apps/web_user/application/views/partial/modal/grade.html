@@ -1,0 +1,51 @@
+<div class="modal fade" id="grade-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    学年を選択しよう
+                </div>
+                <div class="modal-basic-title">
+                    学年を選ぶと、あなたに合った動画が表示されます。
+                </div>
+            </div>
+            <div class="modal-body clearfix">
+                <div class="col-md-6 col-md-push-3">
+                    <div class="form-group">
+                        <select id="grade_value" class="form-control">
+                            <!--{foreach from=$grade_list item=item}-->
+                            <option value="<!--{$item.id|escape|default:0}-->"><!--{$item.name|escape|default:'--'}--></option>
+                            <!--{/foreach}-->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6 col-sm-push-3">
+                            <button  id ="modal_update_grade" type="button" class="btn btn-block btn-green">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--{content_for name="headjs"}-->
+<script>
+    $(document).ready(function(){
+        // Show the Modal on load
+        $("#grade-modal").modal({
+            backdrop: 'static'
+        });
+
+        // Cal ajax to update cookie grade
+        $( "#modal_update_grade" ).on( "click", function() {
+            var grade = $("#grade_value").val();
+            if(grade.trim() != '') {
+                $.cookie("current_grade_id", grade);
+                $("#grade-modal").modal("hide");
+                window.location.reload();
+            }
+        });
+    });
+</script>
+<!--{/content_for}-->

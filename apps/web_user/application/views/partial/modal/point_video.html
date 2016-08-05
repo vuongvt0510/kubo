@@ -1,0 +1,31 @@
+<!-- Modal Points -->
+<div class="modal fade" id="modalPointVideo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content yellow">
+            <div class="modal-header">
+                <h4 class="modal-title yellow">ポイントGET!</h4>
+            </div>
+            <div class="modal-body text-center">
+                <p id="point_title" class="point-name">動画ボーナス</p>
+                <ul id="modalPointlist" class="detail-list list-unstyled text-left">
+                </ul>
+                <p class="point"><span id="point_number" class="num"><!--{$get_point.base_point|escape|default:'0' * $get_point.campaign|escape|default:'0'}--></span>&nbsp;ポイント</p>
+            </div>
+            <div class="modal-footer">
+                <div class="col-sm-6 col-sm-push-3">
+                    <button id="PointVideo-close" type="button" class="btn btn-green btn-block">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--{content_for name="headjs"}-->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#PointVideo-close').on('click', function(){
+            $('#modalPointVideo').modal('hide');
+        });
+    });
+</script>
+<!--{/content_for}-->

@@ -1,0 +1,14 @@
+.ie11, .ie10, .ie9 {
+  .modal-questions {
+    .radio input[type=radio], .checkbox input[type=checkbox] {
+      width: auto;
+      height: auto;
+      top: -1px;
+      @include opacity(1);
+    }
+    .checkbox input[type=checkbox] {
+      z-index: 1;
+      top: 2px;
+    }
+  }
+}

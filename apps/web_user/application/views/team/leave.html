@@ -1,0 +1,46 @@
+<div class="friend-page friend-index list-team">
+    <div class="bg-triangle">
+        <div class="container">
+            <div class="page-title">
+                <div class="container text-center">
+                    <p class="h1">チームから退会</p>
+                    <p class="caption">チームから退会することができます</p>
+                </div>
+            </div>
+            <div class="main-content">
+                <form class="content-frame form-horizontal" method="post">
+                    <div class="bg-triangle-blue head text-center">
+                        <p class="h4">選択中のチーム: <span class="team-title"><!--{$group.group_name|escape|default:''}--></span>
+                            <!--<div class="update"><a href="/team/&lt;!&ndash;{$group_id|escape|default:''}&ndash;&gt;/update">チーム名を編集</a></div>-->
+                    </div>
+
+                    <p class="form-caption">チームから退会しますか?<br> この作業は取り消せません。</p>
+                    <p>※このチームでのノーマルクエスト・イベントクエストのクエスト結果を見る事ができなくなります。 <br>※このチームのグループメッセージを見る事ができなくなります。</p>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <a href="/team/<!--{$group_id|escape|default:''}-->" class="btn btn-gray btn-block">キャンセル</a>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-green btn-block">チームから退会</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!--{content_for name="headjs"}-->
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        $("label.check").click(function(){
+            $(this).toggleClass("checked");
+        });
+
+    });
+</script>
+<!--{/content_for}-->

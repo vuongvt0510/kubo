@@ -1,0 +1,32 @@
+<div class="station-page">
+    <div class="bg-shining-yellow rabi-balloon-wrapper <!--{if !empty($current_user)}-->higher<!--{/if}-->">
+        <div class="bg-inner">
+            <div class="container">
+                <div class="rabi-balloon">
+                    <div class="rabi"></div>
+                    <div class="balloon">
+                        <h1 class="title">スクールTVドリル</h1>
+                        <p>各教科の力をつけるドリルを用意したよ！</p>
+                        <p>ドリルの学習でポイントをためると、ポイント交換が出来る機能をリリース予定です。</p>
+                        <p>学習できるドリルも続々リリース予定！</p>
+                        <!--{if ($is_login) }-->
+                        <a href="/station/purchased/<!--{$user_id|escape|default:''}-->" class="btn btn-green">購入したドリルへ</a>
+                        <!--{/if}-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-triangle-blue">
+        <div class="container">
+            <!--{if !empty($subjects)}-->
+                <!--{foreach from=$subjects key=key item=subject}-->
+                    <h3 class="title-yellow-bg"><!--{$subject.category.title|escape|default:''}--></h3>
+                    <!--{include file="partial/deck_list_line.html" decks=$subject.decks href="deck/"}-->
+                <!--{/foreach}-->
+            <!--{else}-->
+            <!--{include file="partial/no_item.html" message="まだ購入したドリルはありません"}-->
+            <!--{/if}-->
+        </div>
+    </div>
+</div>

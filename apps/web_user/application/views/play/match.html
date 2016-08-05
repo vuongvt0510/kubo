@@ -1,0 +1,127 @@
+<div class="play-page play-match-page">
+    <div class="bg-shining-yellow">
+        <div class="bg-inner" id="drill-screen">
+
+            <div class="container">
+                <div class="content-frame-designed-corner with-ribbon-title">
+                    <div class="frame-inner">
+                        <div class="layer"></div>
+                        <div class="head"></div>
+                        <div class="middle">
+                            <h1 class="ribbon-img-title"><img src="/images/play/battle-title.png" alt="バトル"></h1>
+
+                            <!--{if $from_quest == TRUE}-->
+                            <div class="btn-area text-center">
+                                <button type="button" class="btn btn-yellow">クエストチャレンジ</button>
+                            </div>
+                            <p class="frame-title">
+                                <!--{$quest_desciption|default:''}-->
+                            </p>
+                            <!--{else}-->
+                            <p class="frame-title">１対１で対戦しよう</br>
+                                勝つとラビポイントがもらえるよ！ファイト</p>
+                            <!--{/if}-->
+
+                            <div class="info-area">
+                                <div class="item-name">対戦プレイヤー</div>
+                                <!--{include file="partial/match_player_list.html" players=$player}-->
+                            </div>
+
+                            <div class="info-area">
+                                <div class="item-name">このプレイヤーに勝利してGET!</div>
+                                <ul class="rt-addmorescore">
+                                    <li>
+                                        <div class="rt-ico rt-ico-point">ラビポイント</div>
+                                        <div class="rt-point">
+                                            + <span><!--{$rabipoint_bonus|escape|default:'5'}--></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!--{include file="partial/stage_list.html" stages=$stage}-->
+
+                            <div class="btn-area text-center">
+                                <!--{if $from_quest == FALSE}-->
+                                <p class="text col-md-12 col-sm-12 text-center">
+                                    <i class="icon icon-carrot"></i> <span>パワーを1つつかって対戦する</span>
+                                    <!--{*
+                                    spent power
+
+                                    1:1 → -1
+                                    multi players → -2 (after 4/4)
+                                    team → -3 (after 4/4)
+
+                                    after 4/4 release, the number need to be variables.
+                                    *}-->
+                                </p>
+                                <!--{/if}-->
+
+                                <!--{if $power.current_power > 0}-->
+                                <button id="ballte-start-play" class="btn btn-yellow btn-lg">スタート</button>
+                                <!--{else}-->
+                                <a href="/play/training" class="btn btn-no-power btn-lg">パワーが足りません</a>
+                                <!--{/if}-->
+                            </div>
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="text-center">
+                    <a href="/play/select_player" class="btn btn-outline back-link">戻る</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--{content_for name="modal"}-->
+<!--{include file="partial/modal/interest.html"}-->
+<!--{include file="partial/modal/result_match.html"}-->
+<!--{include file="partial/modal/tutorial.html"}-->
+<!--{include file="partial/modal/score.html"}-->
+<!--{include file="partial/modal/change_ranking.html"}-->
+<div style="z-index: 1000;" class="modal fade" id="modalDrill-disable" tabindex="-2" role="dialog"></div>
+<!--{/content_for}-->
+
+<!--{content_for name="headjs"}-->
+<script src="/js/drill_stage/STV.DrillScreen.js"></script>
+<script src="/js/drill_stage/STV.DrillScreen.Stage.js"></script>
+<script src="/js/drill_stage/STV.DrillScreen.Base.Stage.js"></script>
+<script src="/js/drill_stage/STV.DrillScreen.Progress.js"></script>
+
+<!--suppress JSUnresolvedVariable -->
+
+<script type="text/javascript">
+    (function () {
+
+        $(document).ready(function() {
+
+            var obj = new STV.DrillScreen.Stage({
+                drillObject: <!--{$questions|@json_encode|default:"{}"}-->
+            });
+
+            $("#ballte-start-play").on("click", function() {
+                $("#modalDrill-disable").modal({
+                    backdrop: 'static'
+                });
+
+                // Run Drill Stage
+                obj.launch();
+
+                // play sound
+                var sd = $('.x-sound-drill');
+                sd[0].currentTime = 0;
+                sd[0].play();
+
+            });
+
+        });
+    })();
+
+</script>
+<!--{/content_for}-->

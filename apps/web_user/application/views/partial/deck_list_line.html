@@ -1,0 +1,27 @@
+<ul class="deck-list-line list-unstyled <!--{if isset($stage_page)}-->selected<!--{/if}-->">
+    <!--{if !empty($decks)}-->
+    <!--{foreach from=$decks key=key item=deck}-->
+    <li class="item">
+        <!--{if isset($href)}-->
+        <a class="item-inner" href="/<!--{$href|escape|default:''}--><!--{$deck.id|escape|default:''}-->">
+        <!--{else}-->
+        <div class="item-inner">
+        <!--{/if}-->
+            <div class="left">
+                <div class="thumb x-img-liquid"><!--{* TODO: .x-img-liquid -> need js plugin to adjust aspect ratio, if the sever image is not fixed *}-->
+                    <img src="<!--{image_link key=$deck.image_key|escape|default:''}-->" class="img-responsive" alt="">
+                </div>
+            </div>
+            <div class="right text-left">
+                <p style="color: black;" title="<!--{$deck.name|escape}-->" class="title"><!--{$deck.name|escape|default:''}--></p>
+                <div class="subject bg-<!--{$deck.subject.color|escape}-->"><!--{$deck.subject.short_name|escape|default:''}--></div>   
+            </div>
+        <!--{if isset($href)}-->
+        </a>
+        <!--{else}-->
+        </div>
+        <!--{/if}-->
+    </li>
+    <!--{/foreach}-->
+    <!--{/if}-->
+</ul>

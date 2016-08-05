@@ -1,0 +1,336 @@
+<div class="bg-triangle">
+    <div class="container">
+        <div class="page-title">
+            <p class="h1">タイムライン</p>
+        </div>
+        <div class="main-content">
+            <div class="activity-area mb50-sm">
+                <div class="container">
+                    <!--{if !empty($timeline_list)}-->
+                    <ul style="margin-bottom: 0px;" id="timeline_list" class="activity-list list-unstyled row">
+                        <!--{foreach from=$timeline_list key=key item=timeline}-->
+                        <li class="col-sm-12">
+                            <!--{include file="partial/activity_content.html" timeline=$timeline href='play/select_drill/'}-->
+                        </li>
+                        <!--{/foreach}-->
+                    </ul>
+                    <!--{if isset($show_more)}-->
+                    <div style="text-align: center">
+                        <button type="button" class="show_more center btn btn-sm btn-more">もっと見る<div class="ripple-container"></div></button>
+                    </div>
+                    <!--{/if}-->
+                    <!--{else}-->
+                    <!--{include file="partial/no_item.html" message="アクティビティはありません\n動画をみたりドリルをプレイすると\n学習した内容がここに表示されるよ"}-->
+                    <!--{/if}-->
+                    <div class="wrapper-loading"><span class="loading-icon loading"></span></div>
+                </div>
+            </div>
+        </div>
+        <input id="latest_timeline" type="hidden" value="<!--{$timeline_list.0.created_at|escape|default:''}-->">
+        <input id="current_latest_timeline" type="hidden" value="<!--{$timeline_list.0.created_at|escape|default:''}-->">
+    </div>
+</div>
+<!--{content_for name="headjs"}-->
+
+<script type="text/javascript">
+    (function () {
+
+        var offset = 20;
+        $(document).ready(function() {
+
+            // Add good
+            $(".add_good").on('click', function() {
+                var el = $(this);
+                $.ajax({
+                    method: "POST",
+                    url: "<!--{site_url('timeline')}-->/add_good",
+                    data: {
+                        timeline_id: el.data('timeline_id'),
+                        target_id: el.data('user_id')
+                    },
+                    dataType: 'json'
+                }).done(function( res ) {
+                    if(res != null) {
+                        $('#add_good'+el.data('timeline_id')+' .add_good').addClass('disable');
+                        $('#add_good'+el.data('timeline_id')+' .add_good').removeClass('active');
+                        $('#add_good'+el.data('timeline_id')+' .good_total').html(res['total']);
+
+                        if (res.trophy.image_key) {
+                            $("#get_trophy_image").prop('src', '/image/show/'+res.trophy.image_key);
+                            $('#get_trophy_title').html(res.trophy.name);
+                            $('#get_trophy_description').html(res.trophy.description);
+                        }
+
+                        if (res.point) {
+                            $('#point_title').html(res.point.title_modal);
+                            $('#point_number').html(res.point.base_point*res.point.campaign);
+                        }
+
+                        if (res.trophy.image_key && !res.point) {
+                            $('#modalGetTrophy').modal();
+                        }
+
+                        if (!res.trophy.image_key && res.point) {
+                            $('#modalPoint').modal();
+                        }
+
+                        if (res.trophy.image_key && res.point) {
+                            $('#modalGetTrophy').modal();
+                            $('#modalGetTrophy').on('hidden.bs.modal', function(){
+                                $('#modalPoint').modal();
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Autoload new timeline
+            setInterval(function() {
+                $.ajax({
+                    method: "POST",
+                    url: "<!--{site_url('timeline')}-->/get_list_new_timelines",
+                    data: {latest_timeline: $('#latest_timeline').val(), user_id: <!--{$user_id|escape|default:''}-->, get_friend: <!--{$get_friend|escape|default:''}-->},
+                    dataType: 'json'
+                }).done(function( res ) {
+                    if (res.length > 0) {
+                        var items = res;
+                        items.forEach(function(entry) {
+                            if (entry['avatar_id'] == 0 ) {
+                                entry['avatar_id'] = 2;
+                            }
+                            if (entry['good_from_operator'] == 1 ) {
+                                entry['good_from_operator'] = 'disable';
+                            } else {
+                                entry['good_from_operator'] = 'active';
+                            }
+
+                            var html = '<li class="col-sm-12">';
+                            html += '<div id="add_good'+entry['id']+'" class="activity-content">';
+                            html += '<div class="head clearfix">';
+                            html += '<a class="thumb" href="/dashboard/'+entry['user_id']+'">';
+                            html += '<img src="/images/avatar/'+entry['avatar_id']+'.png" alt="">';
+                            html += '</a>';
+                            html += '<div class="user-name">'+entry['nickname']+'</div>';
+                            html += '<div class="time x-time-format"><span class="date pull-right c-blue-light common-time" data-time="'+entry['created_at']+'"></span></div>';
+                            html += '</div>';
+                            html += '<div class="content">';
+                            html += '<div class="trophy-image">';
+                            if (entry['link']){
+                                html += '<a href="/deck/' + entry['target_id'] + '" title="">';
+                                html += '<img src="/image/show/'+entry['extra_data']['image_key']+'/small" alt="" width="100px" height="100px" >';
+                                html += '</a>';
+                            } else {
+                                html += '<img src="/image/show/'+entry['extra_data']['image_key']+'/small" alt="" width="100px" height="100px" >';
+                            }
+                            html += '</div>';
+                            html += '<div class="content-cell">';
+                            if (entry['link']){
+                                html += '<a href="/deck/' + entry['target_id'] + '" title="">';
+                                html += '<p class="title bold c-normal">'+entry['extra_data']['name']+'</p>';
+                                html += '<p class="desc c-normal">'+entry['extra_data']['description']+'</p>';
+                                html += '</a>';
+                            } else {
+                                html += '<p class="title bold">' + entry['extra_data']['name'] + '</p>';
+                                html += '<p class="desc">' + entry['extra_data']['description'] + '</p>';
+                            }
+                            html += '<a href="/timeline/detail/'+entry['id']+'">';
+                            html += '<span class="current-good c-navy">';
+                            html += '<span class="el-icons el-heart"></span>';
+                            html += '<span class="good_total bold">'+entry['good_total']+'</span>GOOD';
+                            html += '</span>';
+                            html += '<span class="current-comment ml5 c-navy">';
+                            html += '<span class="comment_total bold">'+entry['comment_total']+'</span>コメント';
+                            html += '</span>';
+                            html += '</a>';
+                            html += '</div>';
+                            html += '</div>';
+                            html += '<div class="foot clearfix">';
+                            html += '<a data-timeline_id="'+entry['id']+'" data-user_id="'+entry['user_id']+'" class="add_good '+entry['good_from_operator']+' bg-lbl" href="javascript:;">';
+                            html += '<span class="el-icons el-heart c-red-dark"></span>';
+                            html += '<span class="lbl c-blue-light">GOOD</span>';
+                            html += '</a>';
+                            html += '<a class="bg-lbl" href="/timeline/detail/'+entry['id']+'">';
+                            html += '<span class="lbl el-comment c-blue-light">コメントする</span>';
+                            html += '</a>';
+                            html += '</div>';
+                            html += '</div>';
+                            html += '</li>';
+
+                            $('#timeline_list').prepend(html);
+                            $('#latest_timeline').val(items[0]['created_at']);
+                        });
+                        // Add good
+                        $(".add_good").on('click', function() {
+                            var el = $(this);
+                            $.ajax({
+                                method: "POST",
+                                url: "<!--{site_url('timeline')}-->/add_good",
+                                data: {
+                                    timeline_id: el.data('timeline_id'),
+                                    target_id: el.data('user_id')
+                                },
+                                dataType: 'json'
+                            }).done(function( res ) {
+                                if(res != null) {
+                                    $('#add_good'+el.data('timeline_id')+' .add_good').addClass('disable');
+                                    $('#add_good'+el.data('timeline_id')+' .add_good').removeClass('active');
+                                    $('#add_good'+el.data('timeline_id')+' .good_total').html(res['total']);
+
+                                    if (res['trophy']) {
+                                        $("#get_trophy_image").prop('src', '/image/show/'+res['trophy']['image_key']);
+                                        $('#get_trophy_title').html(res['trophy']['name']);
+                                        $('#get_trophy_description').html(res['trophy']['description']);
+                                        $('#modalGetTrophy').modal();
+                                    }
+                                }
+                            });
+                        });
+                    }
+                });
+            }, 4000);
+
+            // Catch event scroll
+            $(window).scroll(function() {
+                if ($(window).scrollTop() + $(window).height() >= $(document).height() - 300 ) {
+
+                    if (offset < 100 ) {
+                        var count_records = $("#timeline_list li").length;
+                        if (offset <= count_records) {
+                            $(".loading").show();
+                            $(".show_more").hide();
+                            get_new_timelines(offset);
+                            offset = offset + 20;
+                        }
+                    }
+                }
+            });
+
+            $('.show_more').on('click', function() {
+                var count_records = $("#timeline_list li").length;
+                if (offset <= count_records) {
+                    $(".loading").show();
+                    $(".show_more").hide();
+                    get_new_timelines(offset);
+                    offset = offset + 20;
+                }
+            });
+
+            // Get old timelines
+            function get_new_timelines(offset) {
+                $.ajax({
+                    method: "POST",
+                    url: "<!--{site_url('timeline')}-->/get_list_old_timelines",
+                    data: {
+                        user_id: <!--{$user_id|escape|default:''}-->,
+                        latest_timeline: $('#current_latest_timeline').val(),
+                        offset: offset,
+                        get_friend: <!--{$get_friend|escape|default:''}-->
+                    },
+                    dataType: 'json'
+                }).done(function (res) {
+                    if (res.length == 20) {
+                        $(".show_more").show();
+                    }
+                    $(".loading").hide();
+                    if (res.length > 0) {
+                        var items = res;
+                        items.forEach(function (entry) {
+
+                            if (entry['avatar_id'] == 0 ) {
+                                entry['avatar_id'] = 2;
+                            }
+                            if (entry['good_from_operator'] == 1 ) {
+                                entry['good_from_operator'] = 'disable';
+                            } else {
+                                entry['good_from_operator'] = 'active';
+                            }
+
+                            var html = '<li class="col-sm-12">';
+                            html += '<div id="add_good'+entry['id']+'" class="activity-content">';
+                            html += '<div class="head clearfix">';
+                            html += '<a class="thumb" href="/dashboard/'+entry['user_id']+'">';
+                            html += '<img src="/images/avatar/'+entry['avatar_id']+'.png" alt="">';
+                            html += '</a>';
+                            html += '<div class="user-name">'+entry['nickname']+'</div>';
+                            html += '<div class="time x-time-format"><span class="date pull-right c-blue-light common-time" data-time="'+entry['created_at']+'"></span></div>';
+                            html += '</div>';
+                            html += '<div class="content">';
+                            html += '<div class="trophy-image">';
+                            if (entry['link']){
+                                html += '<a href="/deck/' + entry['target_id'] + '" title="">';
+                                html += '<img src="/image/show/'+entry['extra_data']['image_key']+'/small" alt="" width="100px" height="100px" >';
+                                html += '</a>';
+                            } else {
+                                html += '<img src="/image/show/'+entry['extra_data']['image_key']+'/small" alt="" width="100px" height="100px" >';
+                            }
+                            html += '</div>';
+                            html += '<div class="content-cell">';
+                            if (entry['link']){
+                                html += '<a href="/deck/' + entry['target_id'] + '" title="">';
+                                html += '<p class="title bold c-normal">'+entry['extra_data']['name']+'</p>';
+                                html += '<p class="desc c-normal">'+entry['extra_data']['description']+'</p>';
+                                html += '</a>';
+                            } else {
+                                html += '<p class="title bold">' + entry['extra_data']['name'] + '</p>';
+                                html += '<p class="desc">' + entry['extra_data']['description'] + '</p>';
+                            }
+                            html += '<a href="/timeline/detail/'+entry['id']+'">';
+                            html += '<span class="current-good c-navy">';
+                            html += '<span class="el-icons el-heart"></span>';
+                            html += '<span class="good_total bold">'+entry['good_total']+'</span>GOOD';
+                            html += '</span>';
+                            html += '<span class="current-comment ml5 c-navy">';
+                            html += '<span class="comment_total bold">'+entry['comment_total']+'</span>コメント';
+                            html += '</span>';
+                            html += '</a>';
+                            html += '</div>';
+                            html += '</div>';
+                            html += '<div class="foot clearfix">';
+                            html += '<a data-timeline_id="'+entry['id']+'" data-user_id="'+entry['user_id']+'" class="add_good '+entry['good_from_operator']+' bg-lbl" href="javascript:;">';
+                            html += '<span class="el-icons el-heart c-red-dark"></span>';
+                            html += '<span class="lbl c-blue-light">GOOD</span>';
+                            html += '</a>';
+                            html += '<a class="bg-lbl" href="/timeline/detail/'+entry['id']+'">';
+                            html += '<span class="lbl el-comment c-blue-light">コメントする</span>';
+                            html += '</a>';
+                            html += '</div>';
+                            html += '</div>';
+                            html += '</li>';
+
+                            $('#timeline_list').append(html);
+                        });
+
+                        // Add good
+                        $(".add_good").on('click', function() {
+                            var el = $(this);
+                            $.ajax({
+                                method: "POST",
+                                url: "<!--{site_url('timeline')}-->/add_good",
+                                data: {
+                                    timeline_id: el.data('timeline_id'),
+                                    target_id: el.data('user_id')
+                                },
+                                dataType: 'json'
+                            }).done(function( res ) {
+                                if(res != null) {
+                                    $('#add_good'+el.data('timeline_id')+' .add_good').addClass('disable');
+                                    $('#add_good'+el.data('timeline_id')+' .add_good').removeClass('active');
+                                    $('#add_good'+el.data('timeline_id')+' .good_total').html(res['total']);
+
+                                    if (res['trophy']) {
+                                        $("#get_trophy_image").prop('src', '/image/show/'+res['trophy']['image_key']);
+                                        $('#get_trophy_title').html(res['trophy']['name']);
+                                        $('#get_trophy_description').html(res['trophy']['description']);
+                                        $('#modalGetTrophy').modal();
+                                    }
+                                }
+                            });
+                        });
+                    }
+                });
+            }
+        });
+    })();
+
+</script>
+<!--{/content_for}-->

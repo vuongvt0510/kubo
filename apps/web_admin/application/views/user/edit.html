@@ -1,0 +1,161 @@
+<!--{content_for name="page_styles"}-->
+<!--<link href="/assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css"/>-->
+<link href="/assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+<!--{/content_for}-->
+
+<!--{content_for name="page_plugins"}-->
+<script src="/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>
+<!--{/content_for}-->
+
+<!-- BEGIN PAGE TITLE-->
+<h3 class="page-title"> <i class="icon-user-follow"></i> ユーザー編集 </h3>
+<!-- END PAGE TITLE-->
+<div class="btn-group btn-group-devided margin-bottom-20">
+    <a href="/user/detail/<!--{$user.id|escape|default:''}-->" class="btn btn-lg yellow-lemon btn-icon-lg"><i class="fa fa-arrow-circle-o-left"></i> 戻る</a>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title tabbable-line">
+                <div class="caption">
+                    <i class="icon-user-follow font-dark"></i>
+                    <span class="caption-subject font-dark bold uppercase">ユーザー編集</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form id="user_detail" class="" action="" method="post">
+                            <div class="table-scrollable">
+                                <table class="table table-bordered table-striped">
+                                    <tr>
+                                        <th width="12%" class="active">ユーザーID</th>
+                                        <td colspan="3"><label id="id" ><!--{$user.id|escape|default:''}--></label></td>
+                                    </tr>
+                                    <tr>
+                                        <th width="12%" class="active">ログインID</th>
+                                        <td colspan="3"><label id="login_id" ><!--{$user.login_id|escape|default:''}--></label></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="active">ニックネーム</th>
+                                        <td colspan="3">
+                                            <div class="form-group">
+                                                <input type="text" name="nickname" id="nickname" class="form-control margin-bottom-10" value="<!--{$user.nickname|escape|default:''}-->" placeholder="">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="active">ユーザー種別</th>
+                                        <td colspan="3"><label id="primary_type"  ><!--{if $user.primary_type == 'student' }-->子ども<!--{else}-->保護者<!--{/if}--></label></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="active">メールアドレス</th>
+                                        <td colspan="3">
+                                            <div class="form-group">
+                                                <input type="email" name="email" id="email" class="form-control margin-bottom-10" value="<!--{$user.email|escape|default:''}-->" placeholder="">
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="active">性別</th>
+                                        <td colspan="3">
+                                            <div class="radio-list">
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="gender" class="gender" value="male" <!--{if $user.gender == 'male'}--> checked <!--{/if}--> > 男
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="gender" class="gender" value="female" <!--{if $user.gender == 'female'}--> checked <!--{/if}--> > 女
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="active">キャンペーンコード</th>
+                                        <td class="form-group" colspan="3">
+                                            <div>
+                                                <input type="text" name="campaign_code" id="campaign_code" class="form-control margin-bottom-10" value="<!--{$campaign_code|escape|default:''}-->" placeholder="">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="active">フォルスクラブ紹介コード</th>
+                                        <td class="form-group" colspan="3">
+                                            <div>
+                                                <input type="text" name="promotion_code" id="promotion_code" class="form-control margin-bottom-10" value="<!--{$promotion_code|escape|default:''}-->" placeholder="">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </form>
+                        <div class="form-actions text-center">
+                            <button  id="modal_confirm" type="button" class="btn btn-lg green">確認</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--{include file='partial/modal/confirm_update.html'}-->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<!--{content_for name="page_plugins"}-->
+<script src="/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.ja.min.js" type="text/javascript"></script>
+<!--{/content_for}-->
+
+<!--{content_for name="page_scripts"}-->
+<script>
+    $(document).ready(function(){
+        $("#modal_confirm").click(function(){
+            var primary_type = $('.primary_type:checked').val();
+            if (primary_type == 'student') {
+                primary_type = '子';
+            } else {
+                primary_type = '保護者';
+            }
+
+            var gender = $('.gender:checked').val();
+            if (gender == 'male') {
+                gender = '男';
+            } else {
+                gender = '女';
+            }
+
+
+            var grade;
+            grade = ($('#primary_type').text() != '保護者') ? $("#grade option:selected").html() : '-';
+
+            $('#modal_id').html($('#id').text());
+            $('#modal_login_id').html($('#login_id').text());
+            $('#modal_nickname_lable').html($('#nickname').val());
+            $('#modal_primary_type').html($('#primary_type').text());
+            $('#modal_email_lable').html($('#email').val());
+            $('#modal_gender_lable').html(gender);
+
+
+            $('#modal_promotion_code').val($('#promotion_code').val());
+            $('#modal_campaign_code_lable').html($('#campaign_code').val());
+
+            var pro_code = ($('#promotion_code').val() != "")?$('#promotion_code').val():"-";
+
+            $('#modal_promotion_code_lable').html(pro_code);
+            
+            $('#details-modal').modal({
+                show: true,
+                backdrop: 'static'
+            });
+        });
+
+        $("#submit_modal").click(function(){
+            $("#user_detail").submit();
+        });
+    });
+</script>
+<!--{/content_for}-->

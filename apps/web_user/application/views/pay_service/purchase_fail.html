@@ -1,0 +1,19 @@
+<div class="bg-triangle">
+    <div class="container">
+        <div class="page-title">
+            <p class="h1">月額プラン購入失敗</p>
+            <p class="caption">詳細は以下をご確認ください。</p>
+        </div>
+        <div class="main-content">
+            <div class="content-frame">
+                <p style="color:red;" class="h3 text-center bold"><!--{$errmsg|escape|default:''}--></p>
+
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <a class="btn btn-green col-md-12" href="/pay_service/<!--{$user_id|escape|default:''}-->/purchase">購入画面に戻る</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

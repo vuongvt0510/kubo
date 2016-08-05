@@ -1,0 +1,58 @@
+<!--{if empty($current_user)}-->
+<ul class="menu-login list-unstyled clearfix">
+    <li class="visible-lg visible-md"><a href="/?grade_id=<!--{$current_grade.id|escape}-->#content" class="btn btn-md btn-link"><!--{$current_grade.name|escape|default:''}--></a></li>
+    <li><a href="/register<!--{$register_url|escape|default:''}-->" class="btn btn-md btn-header<!--{if isset($register_page)}--> active<!--{/if}-->"><i class="el-icons el-user3"></i> 無料会員登録</a></li>
+    <li><a href="/login" class="btn btn-md btn-header btn-login<!--{if isset($login_page)}--> active<!--{/if}-->"><i class="el-icons el-login"></i> ログイン</a></li>
+</ul>
+<!--{else}-->
+<div class="menu-action-wrapper<!--{if $current_user.primary_type == 'student'}--> student<!--{/if}-->">
+    <!--{if $current_user.primary_type == 'parent'}-->
+    <select class="switch_student select-student" name="">
+        <!--{foreach from=$students_switch item=student}-->
+        <option <!--{if $switch_student_id == $student.id}-->selected<!--{/if}--> value="<!--{$student.id}-->"><!--{$student.nickname|escape|default:'ニックネームなし'}-->さん (<!--{$student.current_school.name|escape|default:''}--> <!--{$student.current_grade.name|escape|default:''}-->)</option>
+        <!--{foreachelse}-->
+        <option>お子様を追加してください</option>
+        <!--{/foreach}-->
+    </select>
+    <!--{/if}-->
+    <ul class="menu-action list-unstyled clearfix">
+        <!--{if  $current_user.primary_type == 'student' || ( $current_user.primary_type == 'parent' )}-->
+            <li>
+                <a href="/content" class="btn btn-md btn-header<!--{if isset($content_page)}--> active<!--{/if}-->">
+                    <i class="el-icons el-list-ul"></i> 目次
+                </a>
+            </li>
+            <li>
+                <a href="/p/<!--{if $current_user.primary_type=='student'}--><!--{$current_user.id|escape}--><!--{else}--><!--{$switch_student_id|escape|default:0}--><!--{/if}-->/history" class="btn btn-md btn-header<!--{if isset($history_page)}--> active<!--{/if}-->">
+                    <i class="el-icons el-history"></i> 視聴履歴
+                </a>
+            </li>
+
+        <!--{/if}-->
+        <li>
+            <!--{* TODO: unify to el-icons, if possible *}-->
+            <a href="/dashboard<!--{if $current_user.primary_type=='parent'}-->/<!--{$switch_student_id|escape}--><!--{/if}-->" class="btn btn-md btn-header<!--{if isset($dashboard_page)}--> active<!--{/if}-->">
+                <!--{if isset($dashboard_page)}--><img src="/images/icons/dashboard_green.png" alt="" class="icon-dashboard">
+                <!--{else}--><img src="/images/icons/dashboard.png" alt="" class="icon-dashboard"><!--{/if}--> ダッシュボード
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+<ul class="menu-notification list-unstyled clearfix">
+    <li>
+        <a href="/notification">
+            <img class="icon" src="/images/icons/notification.png" alt="">
+            <span class="badge badge_notification x-badge_notification"></span>
+        </a>
+    </li>
+    <li>
+        <a href="/message">
+            <img class="icon" src="/images/icons/message.png" alt="">
+            <span class="badge badge_message x-badge_message"></span>
+        </a>
+    </li>
+</ul>
+
+<!--{/if}-->

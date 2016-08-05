@@ -1,0 +1,50 @@
+<div class="modal fade" id="modalDrill-play" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <button id="play-close" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-header">
+                <div class="modal-title">
+                    レッスンを⾒ながらつぶやこう！
+                </div>
+                <div class="modal-basic-title">
+                    レッスンを見ながら、おもったコトを <br>
+                    ラビボタンでつぶやいてみよう！
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body-interest-item">
+                    <div class="image-left">
+                        <img class="img-responsive" src="/images/modal/modal_interest-left.png" alt="ラビボタン！（ユーザー名)の気持ちを伝える「ラビボタン」は全部で4つだよ！レッスン中何度でもつぶやけるよ！">
+                    </div>
+                    <div class="image-right with-text">
+                        <img class="img-responsive" src="/images/modal/modal_interest-right.png" alt="ラビボタン！（ユーザー名)の気持ちを伝える「ラビボタン」は全部で4つだよ！レッスン中何度でもつぶやけるよ！">
+                        <div class="text-center">
+                            <p class="c-brown-border bold mb0 mt20">（ユーザー名)の気持ちを伝える「ラビボタン」は全部で4つだよ！</p>
+                            <p class="c-pink bold">レッスン中何度でもつぶやけるよ！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-green" data-dismiss="modal">レッスンスタート！</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--{include file="partial/modal/cancel.html"}-->
+
+<!--{content_for name="headjs"}-->
+<script>
+    $(document).ready(function(){
+
+        $( "#play-close" ).on( "click", function() {
+            $("#modalDrill-cancel").modal({
+                backdrop: 'static'
+            });
+        });
+    });
+</script>
+<!--{/content_for}-->

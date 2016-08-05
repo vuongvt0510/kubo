@@ -1,0 +1,66 @@
+<div class="modal fade" id="modalDrill-resultMatch" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-result">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <div class="content-frame-designed-corner with-ribbon-title">
+                    <div class="frame-inner">
+                        <div class="layer"></div>
+                        <div class="head"></div>
+                        <div class="middle middle-resultMatch">
+                            <div class="rt-score-wrap">
+                                <p class="rt-titleimg">
+                                    <img src="/images/modal/youwin.png" alt="youwin">
+                                    <span>あなたの勝ち</span>
+                                </p>
+                                <p class="rt-score">
+                                    <span><!--{$score|dummy:"1,090"}--></span>点
+                                </p>
+                                <ul class="rt-addmorescore">
+                                    <li>
+                                        <div class="rt-ico rt-ico-point">ラビポイント</div>
+                                        <div class="rt-point">+ <span><!--{$score|dummy:"0000"}--></span></div>
+                                    </li>
+                                </ul>
+                                <div class="info-area">
+                                    <div class="item-name">対戦プレイヤー</div>
+                                    <!--{include file="partial/match_player_list.html" players=1 href='play/match/'}-->
+                                </div>
+                                <!--<dl class="rt-board">
+
+                                    <dt>対戦プレイヤー</dt>
+                                    <dd>
+                                        <div class="rt-board-in">
+                                            <ul class="match-player-list list-unstyled">
+                                                <li class="item">
+                                                    <div class="clearfix item-in">
+                                                        <div class="pull-left">
+                                                            <img height="42"
+                                                                src="/images/avatar/2.png"
+                                                                alt="" class="thumb img-responsive">
+                                                            <span class="user-name">user-nameuser-nameuser-nameuser-name</span>
+                                                        </div>
+                                                    <div class="pull-right">
+                                                        <div class="score">
+                                                            <span class="num">8000000</span>点
+                                                        </div>
+                                                    </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </dd>
+                                </dl></dl>-->
+                            </div>
+                            <div class="rt-button-group">
+                                <a href="/play/select_stage" class="btn btn-outline btn-yellow">もう一度プレイ</a>
+                                <a href="/play/select_drill" class="btn btn-outline btn-yellow">ドリルを選ぶ</a>
+                            </div>
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

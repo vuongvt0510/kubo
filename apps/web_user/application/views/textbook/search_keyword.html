@@ -1,0 +1,74 @@
+<div class="textbook-search-page">
+    <div class="bg-triangle">
+        <div class="container">
+            <div class="page-title">
+                <p class="h1"><!--{$subject_short_name|escape|default:"教科"}-->の教科書を検索</p><!--{* TODO: assign subject short name *}-->
+            </div>
+
+            <div class="main-content content-frame">
+                <form class="form-horizontal" method="post">
+                    <div class="form-group">
+                        <!--{if !empty($chosen_textbook)}-->
+                        <label class="col-sm-4 control-label text-left">選択中の教科書</label>
+                        <div class="col-sm-8">
+                            <div class="current-value">
+                                <!--{$chosen_textbook.textbook.name|escape|default:''}--><br>
+                                <span class="small"><!--{$chosen_textbook.publisher.name|escape|default:''}--></span>
+                            </div>
+                        </div>
+                        <!--{/if}-->
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label text-left">キーワード検索</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="keyword" placeholder="出版社、教科書名" value="<!--{$keyword}-->">
+                                <div class="small">
+                                    教科書の出版社を入力すると教科書の候補が表示されます
+                                </div>
+                            <span class="input-group-btn">
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-green">検索</button>
+                                </div>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!--{if !empty($keyword)}-->
+                <form class="form-horizontal" method="post">
+                    <div class="form-title text-center clearfix mt30">
+                        <p class="h4">教科書を選択してください</p>
+                    </div>
+                    <div class="form-group">
+                        <div class="result-box">
+                            <!--{foreach from=$list_textbooks item=item}-->
+                            <div class="form-group">
+                                <div class="radio radio-primary">
+                                    <label>
+                                        <input type="radio" name="textbook" value="<!--{$item.textbook.id|escape|default:''}-->" <!--{if $item@first}-->checked<!--{/if}-->>
+                                        <b><!--{$item.publisher.name|escape|default:''}--></b>
+
+                                        <!--*<p class="small"><!--{$item.publisher.name|escape|default:''}--></p>*-->
+                                    </label>
+                                </div>
+                            </div>
+                            <!--{foreachelse}-->
+                            <!--{include file="partial/no_item.html" message="お探しの教科書が見つかりませんでした<br>入力内容をお確かめください"}-->
+                            <!--{/foreach}-->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <a href="/textbook/<!--{$user_id|escape|default:''}-->" class="btn btn-gray btn-block">戻る</a>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-green btn-block">この教科書に決定</button>
+                        </div>
+                    </div>
+                </form>
+                <!--{/if}-->
+            </div>
+        </div>
+    </div>
+</div>

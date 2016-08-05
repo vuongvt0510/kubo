@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+    <title>Extends-CI</title>
+    <parser>
+        <target>../../docs</target>
+        <markers>
+            <item>TODO</item>
+            <item>FIXME</item>
+        </markers>
+    </parser>
+    <transformer>
+        <target>../../docs</target>
+    </transformer>
+    <files>
+        <directory>../../shared/core</directory>
+        <directory>../../shared/models</directory>
+        <directory>../../shared/controllers</directory>
+        <directory>../../shared/libraries</directory>
+        <directory>../../shared/helpers</directory>
+        <directory>../../shared/hooks</directory>
+        <directory>../../system</directory>
+    </files>
+</phpdoc>

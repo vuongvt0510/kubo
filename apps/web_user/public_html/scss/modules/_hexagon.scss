@@ -1,0 +1,209 @@
+$pi: 3.14159265359;
+$_precision: 10;
+
+@function pow($base, $exp) {
+  $value: $base;
+  @if $exp > 1 {
+    @for $i from 2 through $exp {
+      $value: $value * $base;
+    }
+  }
+  @if $exp < 1 {
+    @for $i from 0 through -$exp {
+      $value: $value / $base;
+    }
+  }
+  @return $value;
+}
+
+@function fact($num) {
+  $fact: 1;
+  @if $num > 0 {
+    @for $i from 1 through $num {
+      $fact: $fact * $i;
+    }
+  }
+  @return $fact;
+}
+
+@function _to_unitless_rad($angle) {
+  @if unit($angle) == "deg" {
+    $angle: $angle / 180deg * $pi;
+  }
+  @if unit($angle) == "rad" {
+    $angle: $angle / 1rad;
+  }
+  @return $angle;
+}
+
+@function sin($angle) {
+  $a: _to_unitless_rad($angle);
+  $sin: $a;
+  @for $n from 1 through $_precision {
+    $sin: $sin + (pow(-1, $n) / fact(2 * $n + 1) ) * pow($a, (2 * $n + 1));
+  }
+  @return $sin;
+}
+
+@function cos($angle) {
+  $a: _to_unitless_rad($angle);
+  $cos: 1;
+  @for $n from 1 through $_precision {
+    $cos: $cos + ( pow(-1,$n) / fact(2*$n) ) * pow($a,2*$n);
+  }
+  @return $cos;
+}
+
+@function tan($angle) {
+  @return sin($angle) / cos($angle);
+}
+
+@function sqrt($r) {
+  $x0: 1;
+  $x1: $x0;
+
+  @for $i from 1 through 10 {
+    $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
+    $x0: $x1;
+  }
+
+  @return $x1;
+}
+
+@function decimal-round ($number, $digits: 0, $mode: round) {
+  $n: 1;
+  // $number must be a number
+  @if type-of($number) != number {
+    @warn '#{$number} is not a number.';
+    @return $number;
+  }
+  // $digits must be a unitless number
+  @if type-of($digits) != number {
+    @warn '#{$digits} is not a number.';
+    @return $number;
+  } @else if not unitless($digits) {
+    @warn '#{$digits} has a unit.';
+    @return $number;
+  }
+  @for $i from 1 through $digits {
+    $n: $n * 10;
+  }
+  @if $mode == round {
+    @return round($number * $n) / $n;
+  } @else if $mode == ceil {
+    @return ceil($number * $n) / $n;
+  } @else if $mode == floor {
+    @return floor($number * $n) / $n;
+  } @else {
+    @warn '#{$mode} is undefined keyword.';
+    @return $number;
+  }
+}
+
+@function decimal-ceil ($number, $digits: 0) {
+  @return decimal-round($number, $digits, ceil);
+}
+
+@function decimal-floor ($number, $digits: 0) {
+  @return decimal-round($number, $digits, floor);
+}
+
+@mixin hexagon($size: 300px, $background: url(http://placekitten.com/g/650), $borderColor: #fff, $shadow: 0 0 20px rgba(0,0,0,0.8), $borderWidth: 4px) {
+  $scaleFactor: tan(30deg); /*this smushes a square into a 60deg/120deg rhombus*/
+  $inverseScale: 1/$scaleFactor;
+  $sideLength: $size/sqrt(3);
+  $totalHeight: $sideLength + $size;
+  $boxShadow: $shadow;
+  $scaledBorderWidth: $borderWidth/$scaleFactor;
+  $border: solid #{$borderWidth} $borderColor;
+  $scaledBorder: solid #{$scaledBorderWidth} $borderColor;
+
+  position: relative;
+  height: $size;
+  width: $sideLength;
+  //margin-top: $size/3;
+  //margin-bottom: $size/3;
+  //background: $background;
+  background-size: auto $totalHeight;
+  background-position: center center;
+  //box-shadow: $boxShadow;
+  border-top: $border;
+  border-bottom: $border;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background-color: $c-white;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, .3);
+  .hex1,
+  .hex2 {
+    position: absolute;
+    overflow: hidden;
+    width: $size/sqrt(2);
+    height: $size/sqrt(2);
+    top: $sideLength/4 - $borderWidth; /*for some reason this 1px correction is needed */
+    background: inherit;
+    //box-shadow: $boxShadow;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, .3);
+    @include transform(scaleX(#{$scaleFactor}) rotate(45deg));
+    &:after {
+      /*counter rotate and un-scale the bg image*/
+      content: "";
+      position: absolute;
+      top: -($sideLength/4 + 1px); /*same correction as up above */
+      height: $size;
+      width: $size/sqrt(2);
+      left: 0;
+      background: inherit;
+
+      @include transform(rotate(-45deg) scaleX(#{$inverseScale}));
+    }
+  }
+
+  .hex1 {
+    left: - $size/sqrt(2)/2;
+    border-left: $scaledBorder;
+    border-bottom: $scaledBorder;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    &:after {
+      background-position: 17% center;
+      margin-left: -$scaledBorderWidth;
+    }
+  }
+
+  .hex2 {
+    right: -$size/sqrt(2)/2;
+    border-top: $scaledBorder;
+    border-right: $scaledBorder;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    &:after {
+      background-position: 83% center;
+      margin-top: - $scaledBorderWidth + 1px; /*that pesky single pixel correction again*/
+    }
+  }
+
+  /*cover up the box shadows */
+  &:after {
+    content: "";
+    position: absolute;
+    left: $borderWidth/sqrt(2);
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: $sideLength - 2*$borderWidth/sqrt(2);
+    background: inherit;
+  }
+}
+
+.hexagon-img {
+  width: 86px;
+  margin-left: -22px;
+  img {
+    width: 100%;
+    height: auto;
+  }
+  @media (max-width: $screen-xs-max) {
+    width: 52px;
+    margin-left: -15px;
+  }
+}

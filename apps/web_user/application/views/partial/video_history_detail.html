@@ -1,0 +1,36 @@
+<!--{if !empty($chapter)}-->
+<div class="video-boxes-with-more-details">
+    <ul class="list-unstyled video-boxes">
+        <li>
+            <div class="thumbnail-wrapper">
+                <a class="<!--{if empty($current_user)}-->x-limit-playing-video<!--{/if}-->" href="/v/<!--{$chapter.id|escape|default:'-'}-->">
+                    <img src="<!--{$video.thumbnail_url|escape|default:'/images/video-no-image.png'}-->" alt="" class="thumbnail img-responsive">
+                </a>
+            </div>
+            <div class="details-wrapper">
+                <div class="status">
+                    <!--{if !empty($chapter.status)}-->
+                        <span class="label-status done">
+                            <i class="el-icons el-reload"></i> 視聴済み
+                        </span>
+                    <!--{else}-->
+                        <span class="label-status in-progress"><!--{* TODO unify to el-icon if possible *}-->
+                            <img src="/images/icons/listening.png" alt=""> 視聴中
+                        </span>
+                    <!--{/if}-->
+                </div>
+
+                <p class="subject"><!--{$chapter.subject_name|escape|default:'--'}--></p>
+
+                <p class="unit-and-chapter"><!--{$chapter.chapter_name|escape|default:'-'}--></p>
+                <h3 class="title"><!--{$chapter.name|escape|strip|default:'-'}--></h3>
+                <ul class="list-unstyled points-list">
+                    <li>
+                        <!--{$chapter.description|escape|nl2br|default:'-'}-->
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>
+<!--{/if}-->

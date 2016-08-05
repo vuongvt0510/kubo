@@ -1,0 +1,318 @@
+<%
+  require 'json'
+  begin
+    options = JSON.parse(ARGV[0], {symbolize_names: true})
+  rescue
+    options = {}
+  end
+%>
+files:
+  "/etc/logrotate.d/beanstalk-app":
+    owner: root
+    group: root
+    mode: "000600"
+    content: |
+      /var/log/webapp_user/application.log
+      /var/log/webapp_api/application.log
+      /var/log/webapp_admin/application.log
+      {
+          missingok
+          notifempty
+          compress
+          daily
+          rotate 30
+      }
+
+  "/etc/httpd/conf.d/cache.conf":
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      <IfModule expires_module>
+         ExpiresActive On
+         ExpiresByType image/jpeg A60
+         ExpiresByType text/css A60
+         ExpiresByType text/javascript A60
+         ExpiresByType application/javascript A60
+         ExpiresByType application/x-javascript A60
+      </IfModule>
+
+      <IfModule cache_module>
+      <IfModule cache_disk_module>
+        CacheRoot /home/cluser/cache
+        CacheMaxFileSize 4194304
+        CacheEnable disk /index.php/images
+        CacheEnable disk /dist
+        CacheIgnoreCacheControl On
+      </IfModule>
+      </IfModule>
+
+  "/etc/httpd/conf.d/redirect.conf":
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      <VirtualHost *:80>
+        ServerName school-tv.jp
+        RewriteEngine On
+        RewriteCond %{HTTP:X-Forwarded-Proto} ^http$
+        RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+        DocumentRoot /var/www/html/apps/web_user/public_html
+        SetEnv CODEIGNITER_ENV production
+
+        <Directory /var/www/html/apps/web_user/public_html>
+          AllowOverride All
+          Order deny,allow
+          Deny from all
+          Allow from all
+          require all granted
+         <IfModule expires_module>
+          ExpiresActive On
+          ExpiresByType image/jpeg A60
+         </IfModule>
+        </Directory>
+        <IfModule cache_module>
+         <IfModule cache_disk_module>
+           CacheRoot /mnt/cache
+           CacheMaxFileSize 4194304
+           CacheEnable disk /index.php/images
+           CacheIgnoreCacheControl On
+         </IfModule>
+        </IfModule>
+      </VirtualHost>
+
+      <VirtualHost *:80>
+        ServerName www.school-tv.jp
+        RewriteEngine On
+        RewriteRule ^/$ https://school-tv.jp/ [R=301,L]
+      </VirtualHost>
+
+      <VirtualHost *:80>
+        ServerName admin.school-tv.jp
+        RewriteEngine On
+        RewriteCond %{HTTP:X-Forwarded-Proto} ^http$
+        RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+        DocumentRoot /var/www/html/apps/web_admin/public_html
+        SetEnv CODEIGNITER_ENV production
+
+        <Directory /var/www/html/apps/web_admin/public_html>
+          AllowOverride All
+          Order deny,allow
+          Deny from all
+          Allow from all
+          require all granted
+         </Directory>
+      </VirtualHost>
+
+      <VirtualHost *:80>
+        ServerName st-api-server.elasticbeanstalk.com
+        DocumentRoot /var/www/html/apps/web_user/public_html
+        SetEnv CODEIGNITER_ENV production
+
+        <Directory /var/www/html/apps/web_user/public_html>
+          AllowOverride All
+          Order deny,allow
+          Deny from all
+          Allow from all
+          require all granted
+         <IfModule expires_module>
+          ExpiresActive On
+          ExpiresByType image/jpeg A60
+         </IfModule>
+        </Directory>
+        <IfModule cache_module>
+         <IfModule cache_disk_module>
+           CacheRoot /mnt/cache
+           CacheMaxFileSize 4194304
+           CacheEnable disk /index.php/images
+           CacheIgnoreCacheControl On
+         </IfModule>
+        </IfModule>
+      </VirtualHost>
+
+      <VirtualHost *:80>
+        ServerName st-admin-server.elasticbeanstalk.com
+        DocumentRoot /var/www/html/apps/web_admin/public_html
+        SetEnv CODEIGNITER_ENV production
+
+        <Directory /var/www/html/apps/web_admin/public_html>
+          AllowOverride All
+          Order deny,allow
+          Deny from all
+          Allow from all
+          require all granted
+         </Directory>
+      </VirtualHost>
+
+  "/etc/httpd/conf.d/betatest.conf":
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+
+      <VirtualHost *:80>
+        ServerName betatest.school-tv.jp
+        DocumentRoot /var/www/html/apps/web_user/public_html
+        SetEnv CODEIGNITER_ENV production
+
+        <Directory /var/www/html/apps/web_user/public_html>
+          AllowOverride All
+          Order deny,allow
+          Deny from all
+          Allow from all
+          require all granted
+         <IfModule expires_module>
+          ExpiresActive On
+          ExpiresByType image/jpeg A60
+         </IfModule>
+        </Directory>
+        <IfModule cache_module>
+         <IfModule cache_disk_module>
+           CacheRoot /mnt/cache
+           CacheMaxFileSize 4194304
+           CacheEnable disk /index.php/images
+           CacheIgnoreCacheControl On
+         </IfModule>
+        </IfModule>
+      </VirtualHost>
+
+      <VirtualHost *:80>
+        ServerName betatest-admin.school-tv.jp
+        DocumentRoot /var/www/html/apps/web_admin/public_html
+        SetEnv CODEIGNITER_ENV production
+
+        <Directory /var/www/html/apps/web_admin/public_html>
+          AllowOverride All
+          Order deny,allow
+          Deny from all
+          Allow from all
+          require all granted
+         </Directory>
+      </VirtualHost>
+
+  "/etc/httpd/conf.d/staging.conf":
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+
+      <VirtualHost *:80>
+        ServerName staging.school-tv.jp
+        DocumentRoot /var/www/html/apps/web_user/public_html
+        SetEnv CODEIGNITER_ENV staging
+
+        <Directory /var/www/html/apps/web_user/public_html>
+          AllowOverride All
+          Order deny,allow
+          Deny from all
+          Allow from all
+          require all granted
+         <IfModule expires_module>
+          ExpiresActive On
+          ExpiresByType image/jpeg A60
+         </IfModule>
+        </Directory>
+        <IfModule cache_module>
+         <IfModule cache_disk_module>
+           CacheRoot /mnt/cache
+           CacheMaxFileSize 4194304
+           CacheEnable disk /index.php/images
+           CacheIgnoreCacheControl On
+         </IfModule>
+        </IfModule>
+      </VirtualHost>
+
+      <VirtualHost *:80>
+        ServerName staging-admin.school-tv.jp
+        DocumentRoot /var/www/html/apps/web_admin/public_html
+        SetEnv CODEIGNITER_ENV staging
+
+        <Directory /var/www/html/apps/web_admin/public_html>
+          AllowOverride All
+          Order deny,allow
+          Deny from all
+          Allow from all
+          require all granted
+         </Directory>
+      </VirtualHost>
+
+      <VirtualHost *:80>
+        ServerName staging-st-api-server.elasticbeanstalk.com
+        DocumentRoot /var/www/html/apps/web_user/public_html
+        SetEnv CODEIGNITER_ENV staging
+
+        <Directory /var/www/html/apps/web_user/public_html>
+          AllowOverride All
+          Order deny,allow
+          Deny from all
+          Allow from all
+          require all granted
+         <IfModule expires_module>
+          ExpiresActive On
+          ExpiresByType image/jpeg A60
+         </IfModule>
+        </Directory>
+        <IfModule cache_module>
+         <IfModule cache_disk_module>
+           CacheRoot /mnt/cache
+           CacheMaxFileSize 4194304
+           CacheEnable disk /index.php/images
+           CacheIgnoreCacheControl On
+         </IfModule>
+        </IfModule>
+      </VirtualHost>
+
+      <VirtualHost *:80>
+        ServerName staging-st-admin-server.elasticbeanstalk.com
+        DocumentRoot /var/www/html/apps/web_admin/public_html
+        SetEnv CODEIGNITER_ENV staging
+
+        <Directory /var/www/html/apps/web_admin/public_html>
+          AllowOverride All
+          Order deny,allow
+          Deny from all
+          Allow from all
+          require all granted
+         </Directory>
+      </VirtualHost>
+
+
+commands:
+  01-create-user-log-directory:
+    command: mkdir -p /var/log/webapp_user && chown -R webapp:webapp /var/log/webapp_user && chmod 750 /var/log/webapp_user
+  02-create-api-log-directory:
+    command: mkdir -p /var/log/webapp_api && chown -R webapp:webapp /var/log/webapp_api && chmod 750 /var/log/webapp_api
+  03-create-admin-log-directory:
+    command: mkdir -p /var/log/webapp_admin && chown -R webapp:webapp /var/log/webapp_admin && chmod 750 /var/log/webapp_admin
+  04-remove-logrotate-backup-file:
+    command: rm -rf /etc/logrotate.d/beanstalk-app.bak || true
+#  05-start-htcacheclean:
+#    command: /usr/sbin/htcacheclean -d 15 -p /mnt/cache -l 300M -P /var/run/htcacheclean.pid -it
+
+container_commands:
+  <%
+  apps_dir = File.join(options[:repo_path], "apps")
+  apps = Dir.glob(File.join(apps_dir, "*")).map{|d| d.gsub(apps_dir + "/", "")}.select{|d| d != 'auto_test'}
+  apps.each_with_index do |app, idx| %>
+  <%= sprintf("%02d", idx) %>-update-web_user-log:
+    command: rm -rf apps/web_user/application/logs && mkdir -p apps/web_user/application && ln -s /var/log/webapp_user apps/web_user/application/logs
+  <%= sprintf("%02d", idx) %>-create-web_user-temp-directory:
+    command: rm -rf apps/web_user/application/tmp && mkdir -p apps/web_user/application/tmp/templates_c && chmod 777 apps/web_user/application/tmp/templates_c
+
+  <%= sprintf("%02d", idx) %>-update-web_external_api-log:
+    command: rm -rf apps/web_external_api/application/logs && mkdir -p apps/web_external_api/application && ln -s /var/log/webapp_api apps/web_external_api/application/logs
+  <%= sprintf("%02d", idx) %>-create-web_external_api-temp-directory:
+    command: rm -rf apps/web_external_api/application/tmp && mkdir -p apps/web_external_api/application/tmp/templates_c && chmod 777 apps/web_external_api/application/tmp/templates_c
+
+  <%= sprintf("%02d", idx) %>-update-web_admin-log:
+    command: rm -rf apps/web_admin/application/logs && mkdir -p apps/web_admin/application && ln -s /var/log/webapp_admin apps/web_admin/application/logs
+  <%= sprintf("%02d", idx) %>-create-web_admin-temp-directory:
+    command: rm -rf apps/web_admin/application/tmp && mkdir -p apps/web_admin/application/tmp/templates_c && chmod 777 apps/web_admin/application/tmp/templates_c
+
+
+  <% end %>
+  90-dump-schema:
+    command: php tools/ci.php schema_dump/execute all
+

@@ -1,0 +1,22 @@
+<div class="form-group">
+    <label>
+        <select class="form-control input-md input-inline pagination-limit-control">
+            <option value="?<!--{if !empty($pagination.search)}--><!--{$pagination.search}-->&<!--{/if}-->limit=20" <!--{if $pagination.items_per_page == 20}-->selected<!--{/if}-->>20</option>
+            <option value="?<!--{if !empty($pagination.search)}--><!--{$pagination.search}-->&<!--{/if}-->limit=50" <!--{if $pagination.items_per_page == 50}-->selected<!--{/if}-->>50</option>
+            <option value="?<!--{if !empty($pagination.search)}--><!--{$pagination.search}-->&<!--{/if}-->limit=100" <!--{if $pagination.items_per_page == 100}-->selected<!--{/if}-->>100</option>
+        </select>
+        <span>件表示</span>
+    </label>
+</div>
+
+<!--{content_for name="page_scripts"}-->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.pagination-limit-control').change(function() {
+            $this = $(this);
+            window.location.href = $this.val();
+        });
+    });
+</script>
+
+<!--{/content_for}-->

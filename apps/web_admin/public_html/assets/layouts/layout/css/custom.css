@@ -1,0 +1,431 @@
+/* here you can put your own css to customize and override the theme */
+@charset "UTF-8";
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: '小塚ゴシック Pr6N', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', "游ゴシック", 'メイリオ', Meiryo, verdana, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+}
+
+/*Gutter*/
+.gutter-10 .row {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+.gutter-10 [class*="col-"] {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.gutter-20 .row {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.gutter-20 [class*="col-"] {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.modal .table-scrollable {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.modal .table-scrollable + .table-scrollable {
+    margin-bottom: 10px !important;
+}
+
+.table > thead > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > th,
+.table > tbody > tr > td,
+.table > tfoot > tr > th,
+.table > tfoot > tr > td {
+    padding: 15px;
+}
+
+.table-align-middle td,
+.table-align-middle th {
+    vertical-align: middle !important;
+}
+
+.bootbox.modal .modal-dialog {
+    width: auto;
+    margin: 0;
+}
+
+/*
+<label class="checkbox">
+    <input type="checkbox">
+    <span class="text">
+        <b>福岡教育大学附属福岡中学校</b>
+        <span class="help-block">福岡県福岡市中央区西公園12-1</span>
+    </span>
+</label>
+*/
+.checkbox {
+    display: table;
+}
+
+.checkbox-list .checkbox {
+    display: table;
+}
+
+.checkbox .checker {
+    display: table-cell;
+    padding: 0px;
+}
+
+.checkbox .text {
+    display: table-cell;
+}
+
+/*
+<label class="checkbox">
+    <input type="checkbox">
+    <span class="text">
+        <b>福岡教育大学附属福岡中学校</b>
+        <span class="help-block">福岡県福岡市中央区西公園12-1</span>
+    </span>
+</label>
+*/
+.radio-btn {
+    display: table;
+}
+
+.radio-list .radio-btn {
+    display: table;
+    margin-bottom: 7px;
+    border-bottom: 1px solid #f3f3f3;
+    width: 100%;
+    padding-bottom: 7px;
+}
+
+.radio-btn .radio {
+    display: table-cell;
+    padding-right: 10px;
+}
+
+.radio-btn .text {
+    display: table-cell;
+}
+
+.btn-icon-lg i {
+    font-size: 20px;
+    position: relative;
+    top: 2px;
+}
+
+.modal-footer .btn + .btn,
+.btn + .btn {
+    margin-left: 10px;
+}
+
+input::-webkit-input-placeholder {
+    line-height: normal;
+}
+
+input::-moz-placeholder {
+    line-height: normal;
+}
+
+input:-ms-input-placeholder {
+    line-height: normal;
+}
+
+.input-group-sm > .input-group-btn > select.btn,
+.input-group-sm > select.form-control,
+.input-group-sm > select.input-group-addon,
+select.input-sm {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+select.form-control {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.help-block {
+    font-size: 12px;
+}
+
+/* Template */
+.login .content .form-actions {
+    margin: 0;
+    padding: 0;
+}
+
+.page-header.navbar .page-logo .logo-default {
+    margin: 11px 0 0;
+    height: 22px;
+    width: auto;
+}
+
+.page-title-wrap {
+    margin-bottom: 20px;
+}
+
+.page-title-wrap:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.page-title-wrap .page-title {
+    float: left;
+}
+
+.page-title-wrap .page-title-action {
+    float: right;
+    padding-top: 20px;
+}
+
+/*
+* Custom style - Quynh HP
+* 16-06-2016
+*/
+
+/* COLOR */
+.c-red{
+    color: #ff7e7e;
+}
+/* GENERAL */
+
+.stat{
+    margin-top: 25px;
+    padding: 0px
+}
+/* SEARCH */
+.advance-search{
+    margin-top: 10px;
+}
+@media (max-width: 768px){
+    .advance-search .pr0, .advance-search .pl0{
+        padding-left: 15px;
+        padding-right: 0px;
+    }
+}
+
+/* TABLE */
+.heading th{
+    background-color: #364150;
+    border: 1px solid #596a7d !important;
+    color: #fff;
+}
+.sort{
+    cursor: pointer;
+}
+.team-name{
+    font-size: 18px;
+}
+
+/* FORM */
+textarea.form-control{
+    resize: vertical;
+}
+.checkbox{
+    width: 100%;
+}
+.profile-userpic{
+    float: left;
+    margin-right: 40px;
+}
+.profile-userpic .thumb{
+    width: 150px;
+    height: auto;
+}
+.profile-userinfo{
+    text-align: left;
+    float: left;
+}
+.checkbox-group{
+    display: inline-block;
+    padding: 8px 3px 8px 0px;
+}
+.input-group.date{
+    margin-bottom: 10px;
+}
+.date-form:after{
+    position: absolute;
+    content: "~";
+    padding-left: 10px;
+    padding-top: 5px;
+    font-size: 16px;
+    top: 0;
+}
+/* OTHERS */
+.profile-userpic .thumb img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+}
+.profile-userbuttons{
+    text-align: left !important;
+}
+.fit-cover{
+    object-fit: cover;
+    object-position: center;
+}
+.item-pic{
+    height: 45px !important;
+}
+.item-status .label{
+    margin-right: 10px;
+    padding: 6px 12px;
+    display: inline-block;
+    line-height: 1.44;
+}
+.table thead tr th {
+    font-size: 13px;
+    font-weight: 500;
+}
+.table thead tr th a{
+    color: #e7ecf1;
+}
+.table thead tr th a:hover{
+    text-decoration: none
+}
+.table td{
+    word-break: break-all !important;
+    font-size: 13.5px;
+    padding: 12px 10px !important;
+}
+.td-ellipse{
+    font-size: 12px;
+    margin-bottom: 0;
+}
+.mt10{
+    margin-top: 10px !important;
+}
+.mt15{
+    margin-top: 15px !important;
+}
+.mb15{
+    margin-bottom: 15px !important;
+}
+.mb5{
+    margin-bottom: 5px !important;
+}
+.ml5{
+    margin-left: 5px !important;
+}
+.mt5{
+    margin-top: 5px !important;
+}
+.ml0{
+    margin-left: 0px !important;
+}
+.pl0{
+    padding-left: 0px !important;
+}
+.pr0{
+    padding-right: 0px !important;
+}
+.p0{
+    padding: 0px !important;
+}
+.pt0{
+    padding-top: 0 !important;
+}
+
+.f16{
+    font-size: 16px !important;
+}
+.divider{
+    height: 1px;
+    background-color: #e7ecf1;
+    margin: 25px 0;
+}
+.dashboard-stat{
+    margin-bottom: 0px;
+}
+.dashboard-stat .visual>i {
+    color: #FFF;
+    opacity: .1;
+}
+[data-toggle="tooltip"]{
+    cursor: pointer;
+}
+/* MODAL */
+.modal-text{
+    margin: 35px 40px;
+    line-height: 1.5;
+}
+.modal {
+    text-align: center;
+    padding: 0!important;
+}
+
+.modal:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+.modal-title{
+    text-align: left;
+}
+/* ALERT */
+
+.alert{
+    margin-left: -20px;
+    margin-right: -20px;
+}
+.rabi-point .label{
+    font-size: 30px;
+}
+.radio-inline .radio{
+    padding-top: 0px;
+}
+.radio-text{
+    margin-left: 30px;
+    display: inline-block;
+}
+.scroller{
+    max-height: 250px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.scroller input[type="radio"]{
+    vertical-align: top;
+}
+.table-empty{
+    height: 200px;
+    vertical-align: middle !important;
+    text-align: center;
+    font-size: 16px !important;
+    color: #ACB5C3;
+    line-height: 200px;
+}
+/*IE cross browser */
+select{
+    /*Resets Chrome/Safari and allows styling*/
+    -webkit-appearance: none;
+    /*Removes default arrow from firefox*/
+    text-indent: 0.01px;
+    text-overflow: "";
+    /*Custom*/
+    border: 1px solid #c2cad8;
+    padding: 7px 18px 7px 7px !important;
+    background: #ffffff url('../../../../images/ic-sort.png') no-repeat 98% 50% !important;
+    background-size: 10px !important;
+}
+select.pagination-limit-control{
+    background-position-x: 93% !important;
+}
+select::-ms-expand {
+    display: none;
+}
+.datepicker-switch{
+    text-align: center;
+}

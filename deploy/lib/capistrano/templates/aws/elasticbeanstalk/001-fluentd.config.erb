@@ -1,0 +1,258 @@
+<%
+  require 'json'
+  begin
+    options = JSON.parse(ARGV[0], {symbolize_names: true})
+  rescue
+    options = {}
+  end
+%>
+files:
+  "/etc/rsyslog.conf":
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      # rsyslog v5 configuration file
+      
+      # For more information see /usr/share/doc/rsyslog-*/rsyslog_conf.html
+      # If you experience problems, see http://www.rsyslog.com/doc/troubleshoot.html
+      
+      #### FILE MASK (APPENDED) ####
+      $umask 0000
+      $FileOwner root
+      $FileGroup logging
+      $FIleCreateMode 0640
+      
+      #### MODULES ####
+      
+      $ModLoad imuxsock # provides support for local system logging (e.g. via logger command)
+      $ModLoad imklog   # provides kernel logging support (previously done by rklogd)
+      #$ModLoad immark  # provides --MARK-- message capability
+      
+      # Provides UDP syslog reception
+      #$ModLoad imudp
+      #$UDPServerRun 514
+      
+      # Provides TCP syslog reception
+      #$ModLoad imtcp
+      #$InputTCPServerRun 514
+      
+      
+      #### GLOBAL DIRECTIVES ####
+      
+      # Use default timestamp format
+      $ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat
+      
+      # File syncing capability is disabled by default. This feature is usually not required,
+      # not useful and an extreme performance hit
+      #$ActionFileEnableSync on
+      
+      #### RULES ####
+      
+      # Log all kernel messages to the console.
+      # Logging much else clutters up the screen.
+      # kern.*                                                 /dev/console
+      
+      # Log anything (except mail) of level info or higher.
+      # Don't log private authentication messages!
+      *.info;mail.none;authpriv.none;cron.none                /var/log/messages
+      
+      # The authpriv file has restricted access.
+      authpriv.*                                              /var/log/secure
+      
+      # Log all the mail messages in one place.
+      mail.*                                                  -/var/log/maillog
+      
+      
+      # Log cron stuff
+      cron.*                                                  /var/log/cron
+      
+      # Everybody gets emergency messages
+      *.emerg                                                 *
+      
+      # Save news errors of level crit and higher in a special file.
+      uucp,news.crit                                          /var/log/spooler
+      
+      # Save boot messages also to boot.log
+      local7.*                                                /var/log/boot.log
+      
+      
+      # ### begin forwarding rule ###
+      # The statement between the begin ... end define a SINGLE forwarding
+      # rule. They belong together, do NOT split them. If you create multiple
+      # forwarding rules, duplicate the whole block!
+      # Remote Logging (we use TCP for reliable delivery)
+      #
+      # An on-disk queue is created for this action. If the remote host is
+      # down, messages are spooled to disk and sent when it is up again.
+      #$WorkDirectory /var/lib/rsyslog # where to place spool files
+      #$ActionQueueFileName fwdRule1 # unique name prefix for spool files
+      #$ActionQueueMaxDiskSpace 1g   # 1gb space limit (use as much as possible)
+      #$ActionQueueSaveOnShutdown on # save messages to disk on shutdown
+      #$ActionQueueType LinkedList   # run asynchronously
+      #$ActionResumeRetryCount -1    # infinite retries if host is down
+      # remote host is: name/ip:port, e.g. 192.168.0.1:514, port optional
+      #*.* @@remote-host:514
+      # ### end of the forwarding rule ###
+      
+      # Finally include all config files in /etc/rsyslog.d. This allows overrides
+      # of the default configuration above.
+      $IncludeConfig /etc/rsyslog.d/*.conf
+
+  "/etc/td-agent/td-agent.conf":
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      <source>
+        tag log.syslog
+        type tail
+        format syslog
+      
+        path /var/log/messages
+        pos_file /var/log/td-agent/messages.pos
+        refresh_interval 300
+      </source>
+
+      <source>
+        tag log.secure
+        type tail
+        format syslog
+      
+        path /var/log/secure
+        pos_file /var/log/td-agent/secure.pos
+        refresh_interval 300
+      </source>
+      
+      <source>
+        tag log.maillog
+        type tail
+        format syslog
+      
+        path /var/log/maillog
+        pos_file /var/log/td-agent/maillog.pos
+        refresh_interval 300
+      </source>
+      
+      <source>
+        tag log.user_application
+        type tail
+        format /^(?<time>\d+-\d+-\d+\s+\d+:\d+:\d+),\d+\s+(?<remote_ip>\d+\.\d+\.\d+.\d+)\s+\[(?<pid>\d+)\]\s+(?<level>[A-Z]+)\s*:\s+(?<contents>.+)/
+      
+        path /var/log/webapp_user/application.log
+        pos_file /var/log/td-agent/user_application_log.pos
+        refresh_interval 300
+      </source>
+
+      <source>
+        tag log.api_application
+        type tail
+        format /^(?<time>\d+-\d+-\d+\s+\d+:\d+:\d+),\d+\s+(?<remote_ip>\d+\.\d+\.\d+.\d+)\s+\[(?<pid>\d+)\]\s+(?<level>[A-Z]+)\s*:\s+(?<contents>.+)/
+
+        path /var/log/webapp_api/application.log
+        pos_file /var/log/td-agent/api_application_log.pos
+        refresh_interval 300
+      </source>
+
+      <source>
+        tag log.admin_application
+        type tail
+        format /^(?<time>\d+-\d+-\d+\s+\d+:\d+:\d+),\d+\s+(?<remote_ip>\d+\.\d+\.\d+.\d+)\s+\[(?<pid>\d+)\]\s+(?<level>[A-Z]+)\s*:\s+(?<contents>.+)/
+
+        path /var/log/webapp_admin/application.log
+        pos_file /var/log/td-agent/admin_application_log.pos
+        refresh_interval 300
+      </source>
+
+      
+      <source>
+        tag apache.access
+        type tail
+        format apache2
+        path /var/log/httpd/access_log
+        pos_file /var/log/td-agent/httpd.access_log.pos
+        refresh_interval 300
+      </source>
+      
+      <match apache.access>
+        type filter
+        all allow
+        deny code: 408
+        deny agent: ELB-HealthChecker/1.0
+        add_prefix log
+      </match>
+      
+      <source>
+        tag log.apache.error
+        type tail
+        format /^\[[^ ]* (?<time>[^\]]*)\] \[(?<level>[^\]]*)\] \[pid (?<pid>[^\]]*)\] (\[client (?<client>[^\]]*)\])?\s*(?<message>.*)$/
+        path /var/log/httpd/error_log
+        pos_file /var/log/td-agent/httpd.error_log.pos
+        refresh_interval 300
+      </source>
+      
+      <match log.**>
+        type forest
+        subtype s3
+        <template>
+          s3_bucket <%= options[:fluentd][:s3_bucket] %>
+          s3_region ap-northeast-1
+          s3_object_key_format %{path}%{time_slice}_%{index}_%{hostname}.%{file_extension}
+          
+          buffer_type file
+          buffer_path /var/log/td-agent/s3.${tag}
+          path ${tag}/
+          time_slice_format %Y-%m-%d/%H
+          time_slice_wait 1m
+           
+          retry_wait 30s
+          retry_limit 10
+          flush_at_shutdown true
+          
+          format json
+          include_time_key true
+          time_key log_time
+        </template>
+      </match>
+
+#commands:
+#  01-add-repos:
+#    command: wget -O/etc/yum.repos.d/treasure-data.repo https://raw.github.com/treasure-data/td-agent/master/redhat/treasure-data.repo
+
+#  02-install-fluentd:
+#    command: yum install -y --nogpgcheck td-agent
+
+#  03-install-fluend-plugin-s3:
+#    command: /usr/lib64/fluent/ruby/bin/fluent-gem install --no-rdoc --no-ri -v 0.5.4 fluent-plugin-s3
+
+#  04-install-fluend-plugin-forest:
+#    command: /usr/lib64/fluent/ruby/bin/fluent-gem install --no-rdoc --no-ri -v 0.3.0 fluent-plugin-forest
+
+#  05-install-fluend-plugin-tail-ex:
+#    command: /usr/lib64/fluent/ruby/bin/fluent-gem install --no-rdoc --no-ri -v 0.1.1 fluent-plugin-tail-ex
+
+#  06-install-fluentd-plugin-filter:
+#    command: /usr/lib64/fluent/ruby/bin/fluent-gem install --no-rdoc --no-ri -v 0.0.3 fluent-plugin-filter
+
+#  07-install-fluentd-plugin-cloudwatch:
+#    command: /usr/lib64/fluent/ruby/bin/fluent-gem install --no-rdoc --no-ri -v 1.2.10 fluent-plugin-cloudwatch
+
+#  08-install-fluentd-plugin-mackerel:
+#    command: /usr/lib64/fluent/ruby/bin/fluent-gem install --no-rdoc --no-ri -v 0.1.0 fluent-plugin-mackerel
+
+#  01-add-permission-for-syslog:
+#  09-add-permission-for-syslog:
+#    command: chmod 640 /var/log/messages /var/log/secure /var/log/maillog && chown root:logging /var/log/messages /var/log/secure /var/log/maillog
+
+#  02-add-permission-for-apache-log:
+#  10-add-permission-for-apache-log:
+#    command: usermod -G webapp,logging,applications td-agent && chmod 750 /var/log/httpd
+
+#  03-restart-rsyslog:
+#  11-restart-rsyslog:
+#    command: /etc/init.d/rsyslog restart
+
+#  04-start-fluentd:
+#  12-start-fluentd:
+#    command: /etc/init.d/td-agent restart
+

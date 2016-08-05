@@ -1,0 +1,46 @@
+<div class="page-title"><i class="fa fa-user-secret"></i> アカウント編集</div>
+<!-- END PAGE TITLE-->
+
+<div class="btn-group btn-group-devided margin-bottom-20">
+    <a href="/admin/index" class="btn btn-lg yellow-lemon btn-icon-lg"><i class="fa fa-arrow-circle-o-left"></i>戻る</a>
+</div>
+<!-- END PAGE HEADER-->
+<form method="post" id="form" action="" class="form-horizontal">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="portlet light">
+                <div class="portlet-body">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-3 col-lg-2 control-label pt0">権限</label>
+                            <!--{for $i=0 to count($role)-1}-->
+                            <label class="radio-inline p0">
+                                <input name="role_id"  value="<!--{$role.$i.id}-->" type="radio"<!--{if $role.$i.id == $admin.role_id|escape|default:'' }--> checked <!--{/if}-->> <!--{$role.$i.name}-->
+                            </label>
+                            <!--{/for}-->
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 col-lg-2 control-label">ユーザー名</label>
+                            <div class="col-md-9 col-lg-10 form-group">
+                                <input type="text" name="name" id="name" class="form-control margin-bottom-10" value="<!--{if empty($post) }--><!--{$admin.name|escape|default:''}--><!--{/if}--><!--{$post.name|escape|default:''}-->" placeholder="ユーザー名">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 col-lg-2 control-label">ログインID</label>
+                            <div class="col-md-9 col-lg-10 form-group">
+                                <input type="text" name="login_id" readonly id="login_id" class="form-control margin-bottom-10" value="<!--{$admin.login_id|escape}-->">
+                            </div>
+                        </div>
+                        <div class="form-actions text-right">
+                            <button type="button" id="back" class="btn btn-lg grey-salsa">キャンセル</button>
+                            <button type="button" id="submitForm" href="#details-modal" data-toggle="modal" class="btn btn-lg green">確認</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<!--{include file="admin/modal_partial.html" title="アカウント編集" }-->

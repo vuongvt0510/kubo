@@ -1,0 +1,150 @@
+<div class="bg-triangle">
+    <div class="container">
+        <!—{if $device_type=="SP"}—>
+        <div class="visible-xs content-timeline mb10">
+            <div class="top-bg-xs text-center">
+                <a href="/" alt="back" class="btn-back"></a>
+                <span class="title-xs">メッセージ</span>
+                <!--{if $family || $friend}-->
+                <a href="/message/friend_list" class="btn-add">
+                    <span class="icon-add"><span>
+                </a>
+                <!--{/if}-->
+            </div>
+        </div>
+        <!—{else}—>
+        <div class="hidden-xs">
+            <div class="page-title">
+                <p class="h1">メッセージ</p>
+                <!--{if $family || $friend}-->
+                <a href="/message/friend_list" class="btn btn-green btn-add">
+                    <span class="txt-add"><span>メッセージ新規作成</span></span>
+                    <div class="ripple-container"></div>
+                </a>
+                <!--{/if}-->
+            </div>
+        </div>
+        <!—{/if}-->
+
+        <div class="main-content">
+            <div class="content-frame relation message-frame">
+                <ul class="tab list-unstyled" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#message_family" role="tab" data-toggle="tab"><span class="family-tab">家族</span></a>
+                    </li>
+                    <!--{if $primary_type != parent}-->
+                    <li role="presentation">
+                        <a href="#message_friend" role="tab" data-toggle="tab"><span class="friend-tab">友達</span></a>
+                    </li>
+                    <!--{/if}-->
+                </ul>
+
+                <div class="tab-content">
+                    <div role="tabpanel" id="message_family" class="tab-pane active">
+                        <!--{if !empty($message_family['items'])}-->
+                        <div>
+                            <ul class="list-unstyled">
+                                <!--{foreach from=$message_family['items'] key=key item=item}-->
+                                <!--{if $item.created_at > $item.last_time}-->
+                                <li class=" item clearfix">
+                                <!--{else}-->
+                                <li class=" seen item clearfix">
+                                <!--{/if}-->
+                                    <div class="item-content">
+                                        <div class="left clearfix">
+                                            <!--{if $item.room.room_type == 'family'}-->
+                                            <img src="/images/avatar/<!--{$item.room.group_avatar|escape|default:'family'}-->.png" alt="">
+                                            <!--{else}-->
+                                            <img src="/images/avatar/<!--{if $item.avatar_id == 0}--><!--{if $item.primary_type == 'parent'}-->12<!--{else}-->2<!--{/if}--><!--{else}--><!--{$item.avatar_id}--><!--{/if}-->.png" alt="">
+                                            <!--{/if}-->
+                                        </div>
+                                        <div class="center">
+                                            <!--{if $item.room.room_type == 'family'}-->
+                                            <div class="name"><!--{$item.room.room_name|escape|default:'ニックネームなし'}--></div>
+                                            <!--{else}-->
+                                            <div class="name"><!--{$item.nickname|escape|default:'ニックネームなし'}--></div>
+                                            <!--{/if}-->
+                                            <a class="message" id="text" href="/message/<!--{$item.room_id|escape|default:''}-->">
+                                                <!--{if $item.user_send != $item.user_id}-->
+                                                <span class="el-icons el-action-undo"></span>
+                                                <!--{/if}-->
+                                                <!--{$item.message|escape|default:'メッセージを入力してください'}-->
+                                            </a>
+                                            <div class="time x-time-format common-time" data-time="<!--{$item.created_at|escape|default:''}-->">
+                                                <!--{common_time datetime=$item.created_at|escape|default:''}-->
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <span class="el-icons el-angle-right"></span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!--{/foreach}-->
+                            </ul>
+                        </div>
+                        <!--{else}-->
+                            <!--{if $family}-->
+                                <!--{include file="partial/no_item.html" message="表示できるメッセージはありません"}-->
+                            <!--{else}-->
+                                <!--{include file="partial/no_item.html" message="メッセージ機能を利用するには家族グループに参加する必要があります"}-->
+                            <!--{/if}-->
+                        <!--{/if}-->
+                    </div>
+
+                    <!--{if $primary_type != parent}-->
+                    <div role="tabpanel" id="message_friend" class="tab-pane">
+                        <!--{if !empty($message_friend['items'])}-->
+                        <div>
+                            <ul class="list-unstyled">
+                                <!--{foreach from=$message_friend['items'] key=key item=item}-->
+                                <!--{if $item.created_at > $item.last_time}-->
+                                <li class="item clearfix">
+                                <!--{else}-->
+                                <li class="seen item clearfix">
+                                <!--{/if}-->
+                                    <div class="item-content">
+                                        <div class="left clearfix">
+                                            <!--{if $item.room.room_type == 'friend'}-->
+                                            <img src="/images/avatar/<!--{$item.room.group_avatar|escape|default:'team'}-->.png" alt="">
+                                            <!--{else}-->
+                                            <img src="/images/avatar/<!--{if $item.avatar_id == 0}--><!--{if $item.primary_type == 'parent'}-->12<!--{else}-->2<!--{/if}--><!--{else}--><!--{$item.avatar_id}--><!--{/if}-->.png" alt="">
+                                            <!--{/if}-->
+                                        </div>
+                                        <div class="center">
+                                            <!--{if $item.room.room_type == 'friend'}-->
+                                            <div class="name"><!--{$item.room.room_name|escape|default:''}--></div>
+                                            <!--{else}-->
+                                            <div class="name"><!--{$item.nickname|escape|default:'ニックネームなし'}--></div>
+                                            <!--{/if}-->
+                                            <a class="message" id="text" href="/message/<!--{$item.room_id|escape|default:''}-->">
+                                                <!--{if $item.user_send != $item.user_id}-->
+                                                <span class="el-icons el-action-undo"></span>
+                                                <!--{/if}-->
+                                                <!--{$item.message|escape|default:'メッセージを入力してください'}-->
+                                            </a>
+                                            <div class="time x-time-format common-time" data-time="<!--{$item.created_at|escape|default:''}-->">
+                                                <!--{common_time datetime=$item.created_at|escape|default:''}-->
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <span class="el-icons el-angle-right"></span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!--{/foreach}-->
+                            </ul>
+                        </div>
+                        <!--{else}-->
+                            <!--{if $friend }-->
+                                <!--{include file="partial/no_item.html" message="表示できるメッセージはありません"}-->
+                            <!--{else}-->
+                                <!--{include file="partial/no_item.html" message="メッセージ機能を利用するには友達が必要です"}-->
+                            <!--{/if}-->
+                        <!--{/if}-->
+                    </div>
+                    <!--{/if}-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

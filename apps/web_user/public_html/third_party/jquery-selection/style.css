@@ -1,0 +1,47 @@
+body {
+	margin: 0;
+	font: 14px sans-serif;
+	background: #444;
+	color: #ddd;
+	}
+
+.selection {
+	display: block;
+	width: 530px;
+	margin: 25px auto;
+	border-radius: 4px;
+	padding: 10px;
+	overflow: hidden;
+	background: rgba(0,0,0, .5);
+	}
+	.selection:after {
+		display: block;
+		content: "";
+		clear: both;
+		}
+	.colors,
+	.list {
+		display: inline-block;
+		vertical-align: top;
+		}
+	.colors {
+		width: 400px;
+		height: 250px;
+		}
+		.jqselection-selectable {
+			float: left;
+			width: 20%;
+			height: 25%;
+			}
+	.list {
+		font-family: monospace,courier;
+		text-align: left;
+		}
+		.list ol {
+			margin: 0;
+			}
+			.list span {
+				border-left: 1em solid;
+				padding-left: .5em;
+				font-weight: bold;
+				}

@@ -1,0 +1,81 @@
+<!--{if isset($no_child)}-->
+<div class="bg-triangle">
+    <div class="container">
+        <!--{include file="partial/no_item.html" message="表示できるお子様がいません。\n「プロフィール編集」内の「家族グループ」でお子様を登録してください。"}-->
+    </div>
+</div>
+<!--{else}-->
+<div class="monthly-report">
+    <div class="section-title-top bg-white">
+        <div class="container">
+            <p class="h3"><span class="c-primary"><!--{$user_info.nickname|escape|default:'ニックネームなし'}-->さん</span> のスクールTV動画視聴時間</p>
+            <a href="/content/monthly_report/<!--{$user_info.id|escape|default:''}-->" title="過去の動画学習時間を⾒る" class="no-underline">
+                <div class="bg-white">
+                    <div class="header text-center">
+                        <img src="/images/icons/learning.png" alt="icons" class="" height="28" width="33">
+                        <span class="title c-green-dark bold">スクールTV 動画学習時間</span>
+                    </div>
+                    <div class="block-time text-center">
+                        <p class="bg-gray h3 bold">今月: <span><!--{if floor($watching_monthly_report.this_month / 3600) != 0}--><!--{floor($watching_monthly_report.this_month / 3600)|escape}--></span>時間<span><!--{/if}--><!--{floor($watching_monthly_report.this_month / 60 % 60)|escape|default:'0'}--></span>分</p>
+                        <p class="small"> (先月: <span><!--{if floor($watching_monthly_report.last_month / 3600) != 0}--><!--{floor($watching_monthly_report.last_month / 3600)|escape}--></span>時間<span><!--{/if}--><!--{floor($watching_monthly_report.last_month / 60 % 60)|escape|default:'0'}--></span>分)</p>
+                    </div>
+                    <div class="block-right">
+                        <span>過去の動画学習時間を⾒る</span>
+                    </div>
+                </div>
+            </a>
+            <!--{if $contract_status == FALSE}-->
+            <div title="動画に沿ったドリルで定着率アップ" class="no-underline">
+                <div class="banner-area">
+                    <img class="img-responsive hidden-xs" src="/images/banner/dashboard/db200_pc.png" alt="動画に沿ったドリルで定着率アップ！">
+                    <img class="img-responsive center-block visible-xs" src="/images/banner/dashboard/db200_sp.png" alt="動画に沿ったドリルで定着率アップ！">
+                </div>
+            </div>
+            <!--{/if}-->
+        </div>
+    </div>
+    <div class="tab-title">
+        <div class="container">
+            <ul class="list-unstyled" role="tablist">
+                <!--{if !empty($subjects)}-->
+                <!--{assign var=i value=1}-->
+                <!--{foreach from=$subjects key=key item=item}-->
+                <li role="presentation" class="<!--{$item.subject.color|escape|default:'-'}--> <!--{if $i == 1}--> active <!--{/if}-->">
+                    <a href="#tab_<!--{$item.subject.id}-->" role="tab" data-toggle="tab"><!--{$item.subject.short_name|escape|default:'-'}--></a>
+                    <h2 class="title">
+                        <span class="textbook-name"><!--{$subjects[$key].textbook.name|default:'-'}--></span>
+                        <span class="hidden-xs">｜</span><br class="visible-xs">
+                        <span class="publisher"><!--{$subjects[$key].publisher.name|default:'-'}--></span>
+                    </h2>
+                </li>
+                <!--{assign var=i value=2}-->
+                <!--{/foreach}-->
+                <!--{/if}-->
+            </ul>
+        </div>
+    </div>
+    <div class="tab-content">
+        <!--{if !empty($subject_textbooks)}-->
+        <!--{assign var=i value=1}-->
+        <!--{foreach from=$subject_textbooks key=key item=textbooks}-->
+        <div class="tab-pane <!--{if $i == 1}--> active <!--{/if}-->" id="tab_<!--{$key|escape|default:'-'}-->">
+            <!--{foreach from=$textbooks item=item}-->
+            <div class="main-content bg-triangle-blue bg-inner">
+                <div class="container">
+                    <!--{include file="partial/learning_history_list.html" item=$item chapters=$chapters[$item].chapters videos=$videos in_progress=$chapters[$item].in_progress done=$chapters[$item].done total_questions = $chapters[$item].total_questions correct_answer = $chapters[$item].correct_answer total_second = $chapters[$item].total_second time_scores = $chapters[$item].time_scores}-->
+                    <div class="divider dashed white"></div>
+                    <div class="text-center">
+                        <a href="/dashboard" class="btn btn-outline back-link mt20">ダッシュボードへ戻る</a>
+                    </div>
+                </div>
+
+            </div>
+            <!--{/foreach}-->
+        </div>
+        <!--{assign var=i value=2}-->
+        <!--{/foreach}-->
+        <!--{/if}-->
+    </div>
+
+</div>
+<!--{/if}-->

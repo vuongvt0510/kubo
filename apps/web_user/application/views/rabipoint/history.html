@@ -1,0 +1,72 @@
+<div class="coin-page rabbi-page">
+    <div class="bg-triangle">
+        <div class="container">
+            <div class="page-title">
+                <p class="h1">ラビポイントを確認</p>
+            </div>
+            <div class="main-content">
+                <div class="content-frame form-horizontal">
+                    <div class="bg-triangle-blue head text-center">
+                        <span class="title">
+                            <span class="name"><!--{$user.nickname|escape|default:$user.login_id}--></span>のラビポイント
+                        </span>
+                    </div>
+                    <div class="current-coin">
+                        <img src="/images/icons/rabbi-point.png" alt="rabbi-point">
+                        <span class="num"><!--{$user.point|number_format|escape|default:'0'}--></span>ラビポイント
+                    </div>
+                    <div class="coin-area">
+                        <div class="purchase-coin-area">
+                        <!--{if $is_contract}-->
+                            <p class="text-center col-md-12">ラビポイントを提携のポイントに交換することができます</p>
+                            <div class="btn-sp col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                                <a class="btn btn-green btn-block custom" href="<!--{url route='rabipoint/exchange' id=$user.user_id|escape|default:''}-->">ポイントを交換</a>
+                            </div>
+                        <!--{else}-->
+                            <p class="text-center col-md-12">スクールTV Plus 会員に入会すると（有料）、ラビポイントを提携ポイント交換先にポイント交換をすることができます。</p>
+                            <div class="btn-sp col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                                <a class="btn btn-green btn-block custom" href="/pay_service/<!--{$user.user_id|escape|default:''}-->">スクールTV Plus会員に申し込む</a>
+                            </div>
+                        <!--{/if}-->
+                        </div>
+
+                        <ul class="tab list-unstyled">
+                            <li role="presentation">
+                                <a href="/rabipoint/<!--{$user_id|escape|default:''}-->">獲得履歴</a>
+                            </li>
+                            <li role="presentation" class="active">
+                                <a href="/rabipoint/history/<!--{$user_id|escape|default:''}-->">利用履歴</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                        <div role="tabpanel" id="get-history" class="tab-pane active">
+                            <!--{if !empty($list_points.items)}-->
+                            <ul class="coin-list list-unstyled review">
+                                <!--{foreach from=$list_points.items item=point}-->
+                                <li class="rabbi-icon">
+                                    <div class="description">
+                                        <p class="person"><!--{$point.point|escape|default:'0'}--> <!--{if isset($point.is_expired)}-->ポイント失効<!--{else}-->ポイント利用<!--{/if}--></p>
+                                        <p class="how-much <!--{$point.color|escape|default:''}-->"><!--{$point.status|escape|default:''}--></p>
+                                        <span class="time text-right"><!--{$point.created_at|date_format:"%Y.%m.%d %H:%M:%S"|escape|default:''}--></span>
+                                    </div>
+                                </li>
+                                <!--{/foreach}-->
+                            </ul>
+
+                            <div class="pagination-wrapper">
+                                <!--{if $pagination.total > $pagination.items_per_page}-->
+                                <!--{include file='partial/pagination.html' config=$pagination custom=''}-->
+                                <!--{/if}-->
+                            </div>
+                            <!--{else}-->
+                            <!--{include file="partial/no_item.html" message="利用したコインはありません"}-->
+                            <!--{/if}-->
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

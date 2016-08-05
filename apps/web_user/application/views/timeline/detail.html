@@ -1,0 +1,92 @@
+<div class="bg-triangle">
+    <div class="container">
+        <!—{if $device_type=="SP"}—>
+        <div class="visible-xs content-timeline mb10">
+            <div class="top-bg-xs text-center">
+                <a href="/" alt="back" class="btn-back"></a>
+                <span class="title-xs">タイムライン</span>
+            </div>
+        </div>
+        <!—{else}—>
+        <div class="hidden-xs">
+            <div class="page-title">
+                <p class="h1">タイムライン</p>
+            </div>
+        </div>
+        <!—{/if}-->
+        <div class="main-content">
+            <div class="content-frame content-tl-detail">
+                <!--{include file="partial/activity_content.html" timeline=$timeline}-->
+                <div class="container-comment">
+                    <!--{if !empty($goods)}-->
+                    <span class="el-icons el-heart c-red-dark"></span>
+                    <ul class="list-fav list-inline list-unstyled">
+                        <!--{foreach from=$goods key=key item=good}-->
+                        <li><a href="/dashboard/<!--{$good.user_id|escape|default:''}-->"><!--{$good.nickname|escape|default:$good.login_id}--></a></li>
+                        <!--{/foreach}-->
+                    </ul>
+                    <span class="desc"><!--{if $goods_total - 3 > 0}-->他<!--{$goods_total-3|escape|default:''}-->人<!--{/if}-->がGOODと言っています</span>
+                    <!--{/if}-->
+                    <div class="comments list-comment">
+                        <div class="wrapper-loading text-center">
+                            <span class="loading-icon loading"></span>
+                        </div>
+                        <!--{if $show_more == 'true'}-->
+                        <div style="text-align: center">
+                            <button type="button" id="show_more" class="center btn btn-sm btn-more">もっと見る<div class="ripple-container"></div></button>
+                        </div>
+                        <!--{/if}-->
+                        <ul id="list_comments" class="list-unstyled">
+                            <!--{foreach from=$comments key=key item=comment}-->
+                            <li class="item">
+                                <div class="activity-content">
+                                    <div class="head clearfix">
+                                        <a class="thumb" href="/dashboard/<!--{$comment.user_id|escape|default:''}-->">
+                                            <img src="<!--{avatar_link avatar_id=$comment.avatar_id primary_type=$comment.primary_type}-->" alt="">
+                                        </a>
+                                        <div class="center">
+                                            <div class="status"><!--{$comment.nickname|escape|default:$comment.login_id}--></div>
+                                            <div class="comment"><!--{$comment.content|escape|nl2br|default:''}--></div>
+                                        </div>
+                                        <div class="time x-time-format">
+                                            <span class="date pull-right c-blue-light common-time" data-time="<!--{$comment.created_at|escape|default:''}-->">
+                                                <!--{common_time datetime=$comment.created_at|escape|default:''}-->
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!--{/foreach}-->
+                        </ul>
+                    </div>
+                    <!--{*
+                    <div class="content-timeline">
+                        <div class="form-message">
+                            <!--{include file="partial/comment_form.html"}-->
+                        </div>
+                    </div>
+                    *}-->
+                </div>
+            </div>
+            <div class="content-timeline">
+                <div class="form-message clearfix">
+                    <!--{include file="partial/comment_form.html"}-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--{content_for name="headjs"}-->
+<script src="/js/ST.Timeline.Detail.js"></script>
+<script>
+    $(document).ready(function () {
+        new ST.TimelineDetail({
+            el: $('.timeline-detail'),
+            full_detail: true,
+            last_time: '<!--{$last_time}-->',
+            oldest_time: '<!--{$oldest_time}-->',
+            has_oldest_comments: <!--{$show_more}-->
+        });
+    });
+</script>
+<!--{/content_for}-->

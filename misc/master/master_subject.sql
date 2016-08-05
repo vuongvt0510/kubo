@@ -1,0 +1,53 @@
+USE schooltv_main;
+
+SET FOREIGN_KEY_CHECKS=0;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+
+REPLACE INTO `master_subject` (`id`, `grade_id`, `name`, `short_name`, `rubi`, `color`, `type`, `display_flag`) VALUES
+(11, 1, '小学校1年 国語', '国語', 'こくご', 'yellow', 'japanese-language', 0), 
+(12, 1, '小学校1年 算数', '算数', 'さんすう', 'orange', 'math', 1), 
+(13, 1, '小学校1年 理科', '理科', NULL, 'green', 'science', 1), 
+(14, 1, '小学校1年 社会', '社会', NULL, 'light-blue', 'civics', 1), 
+(21, 2, '小学校2年 国語', '国語', 'こくご', 'yellow', 'japanese-language', 0), 
+(22, 2, '小学校2年 算数', '算数', 'さんすう', 'orange', 'math', 1), 
+(23, 2, '小学校2年 理科', '理科', NULL, 'green', 'science', 1), 
+(24, 2, '小学校2年 社会', '社会', NULL, 'light-blue', 'civics', 1), 
+(31, 3, '小学校3年 国語', '国語', 'こくご', 'yellow', 'japanese-language', 0), 
+(32, 3, '小学校3年 算数', '算数', 'さんすう', 'orange', 'math', 1), 
+(33, 3, '小学校3年 理科', '理科', 'りか', 'green', 'science', 1), 
+(34, 3, '小学校3年 社会', '社会', 'しゃかい', 'light-blue', 'civics', 1), 
+(41, 4, '小学校4年 国語', '国語', 'こくご', 'yellow', 'japanese-language', 0), 
+(42, 4, '小学校4年 算数', '算数', 'さんすう', 'orange', 'math', 1), 
+(43, 4, '小学校4年 理科', '理科', 'りか', 'green', 'science', 1), 
+(44, 4, '小学校4年 社会', '社会', 'しゃかい', 'light-blue', 'civics', 1), 
+(51, 5, '小学校5年 国語', '国語', 'こくご', 'yellow', 'japanese-language', 0), 
+(52, 5, '小学校5年 算数', '算数', 'さんすう', 'orange', 'math', 1), 
+(53, 5, '小学校5年 理科', '理科', 'りか', 'green', 'science', 1), 
+(54, 5, '小学校5年 社会', '社会', 'しゃかい', 'light-blue', 'civics', 1), 
+(61, 6, '小学校6年 国語', '国語', 'こくご', 'yellow', 'japanese-language', 0), 
+(62, 6, '小学校6年 算数', '算数', 'さんすう', 'orange', 'math', 1), 
+(63, 6, '小学校6年 理科', '理科', 'りか', 'green', 'science', 1), 
+(64, 6, '小学校6年 社会', '社会', 'しゃかい', 'light-blue', 'civics', 1), 
+(71, 7, '中学校1年 国語', '国語', '', 'yellow', 'japanese-language', 0), 
+(72, 7, '中学校1年 数学', '数学', '', 'orange', 'math', 1), 
+(73, 7, '中学校1年 理科', '理科', '', 'green', 'science', 1), 
+(74, 7, '中学校1年 英語', '英語', '', 'light-blue', 'english', 1), 
+(75, 7, '中学校1年 地理', '地理', '', 'violet', 'geography', 1),
+(76, 7, '中学校1年 歴史', '歴史', '', 'light-pink', 'history', 1), 
+(77, 7, '中学校1年 公民', '公民', NULL, 'brown', 'civics', 1), 
+(81, 8, '中学校2年 国語', '国語', '', 'yellow', 'japanese-language', 0), 
+(82, 8, '中学校2年 数学', '数学', '', 'orange', 'math', 1), 
+(83, 8, '中学校2年 理科', '理科', '', 'green', 'science', 1), 
+(84, 8, '中学校2年 英語', '英語', '', 'light-blue', 'english', 1), 
+(85, 8, '中学校2年 地理', '地理', '', 'violet', 'geography', 1),
+(86, 8, '中学校2年 歴史', '歴史', '', 'light-pink', 'history', 1), 
+(87, 8, '中学校2年 公民', '公民', NULL, 'brown', 'civics', 1), 
+(91, 9, '中学校3年 国語', '国語', '', 'yellow', 'japanese-language', 0), 
+(92, 9, '中学校3年 数学', '数学', '', 'orange', 'math', 1), 
+(93, 9, '中学校3年 理科', '理科', '', 'green', 'science', 1), 
+(94, 9, '中学校3年 英語', '英語', '', 'light-blue', 'english', 1), 
+(95, 9, '中学校3年 地理', '地理', '', 'violet', 'geography', 1),
+(96, 9, '中学校3年 歴史', '歴史', '', 'light-pink', 'history', 1), 
+(97, 9, '中学校3年 公民', '公民', '', 'brown', 'civics', 1);
+
+SET FOREIGN_KEY_CHECKS=1;

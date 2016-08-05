@@ -1,0 +1,53 @@
+<ul class="stage-list list-unstyled">
+    <!--{if !empty($stages)}-->
+    <!--{foreach from=$stages key=key item=stage name=i}-->
+    <li class="item">
+        <!--{if isset($is_team_battle_mode) && $is_team_battle_mode == TRUE && $stage.group_played}-->
+        <div class="item-inner clearfix" data-stage="<!--{$stage.id|escape|default:''}-->" style="cursor: pointer;">
+        <!--{else if isset($href)}-->
+        <a class="item-inner clearfix" href="/<!--{$href|escape|default:''}--><!--{$stage.id|escape|default:''}-->" data-stage="<!--{$stage.id|escape|default:''}-->">
+        <!--{else}-->
+        <div class="item-inner clearfix">
+        <!--{/if}-->
+            <div class="left <!--{if isset($stage.memorization)}-->left-xs<!--{/if}-->">
+                <div class="clearfix">
+                    <span class="label pull-left">ステージ<!--{$stage.order|escape|default:'1'}--></span>
+                    <!--{if !empty($stage.score.created_at) && !$is_trial}--><span class="time pull-right"><!--{$stage.score.created_at|date_format:'Y.m.d'|escape}--><br class="visible-xs">にバトル</span><!--{/if}-->
+                </div>
+                <p class="stage-title x-ellipsis"><!--{$stage.name|escape|default:''}--></p>
+            </div>
+            <div class="right <!--{if isset($stage.memorization)}-->right-xs<!--{/if}-->">
+                <!--{if isset($stage.memorization)}-->
+                <dl>
+                    <dt><i class="circle"></i>覚えた</dt>
+                    <dd><!--{$stage.memorization.remember|escape|default:'0'}--></dd>
+                    <dt><i class="triangle"></i>もう少し</dt>
+                    <dd><!--{$stage.memorization.consider|escape|default:'0'}--></dd>
+                    <dt><i class="cross"></i>覚えていない</dt>
+                    <dd><!--{$stage.memorization.forget|escape|default:'0'}--></dd>
+                    <dt><i class="horizontal"></i>未チェック</dt>
+                    <dd><!--{$stage.memorization.not_checked|escape|default:'0'}--></dd>
+                </dl>
+                <!--{else if isset($stage.clear_total) && $stage.clear_total == 0}-->
+                <span class="text">チャレンジしよう</span>
+                <!--{else if isset($stage.clear_total)}-->
+                <span class="text">クエスト<!--{$stage.clear_total}-->を</span>
+                <!--{else if is_numeric($stage.score.highest_score) && !$is_trial}-->
+                <span class="text">ハイスコア</span>
+                <div class="score">
+                    <span class="num"><!--{$stage.score.highest_score|escape|default:''}--></span>点
+                </div>
+                <!--{else}-->
+                <span class="text">プレイして<br class="visible-xs">みよう</span>
+                <!--{/if}-->
+
+            </div>
+        <!--{if isset($href)}-->
+        </a>
+        <!--{else}-->
+        </div>
+        <!--{/if}-->
+    </li>
+    <!--{/foreach}-->
+    <!--{/if}-->
+</ul>

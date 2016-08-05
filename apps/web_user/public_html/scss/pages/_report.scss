@@ -1,0 +1,300 @@
+/*
+* use for db110, db120, db130, db140, db200
+*/
+.monthly-report{
+  .section-title-top{
+    .bg-white{
+      border: 2px solid $c-blue-light;
+      padding: 15px 20px;
+      border-radius: 3px;
+      margin: 20px 0;
+      position: relative;
+    }
+    @media (max-width: $screen-xs-max) {
+      padding: 0;
+    }
+    .h3{
+      @media (max-width: $screen-xs-max) {
+        font-size: 18px;
+        line-height: 1.4;
+      }
+    }
+  }
+  .main-content{
+    min-height: 571px;
+  }
+  .bg-inner{
+    padding-bottom: 120px;
+  }
+  .block-time{
+    .bg-gray{
+      display: inline-block;
+      margin: 10px 0px;
+    }
+    .small{
+      display: inline-block;
+      font-weight: normal;
+      font-size: 20px;
+    }
+  }
+  .block-right{
+    font-size: 15px;
+    color: $c-white;
+    background-color: $c-blue-light;
+    padding: 10px;
+    height: 41px;
+    @media (max-width: $screen-sm-max) {
+      position: relative;
+      margin-top: 15px;
+      text-align: center;
+    }
+    @media (min-width: $screen-md-min) {
+      position: absolute; //following bg-white
+      right: 0;
+      bottom: 20px;
+      z-index: 99;
+      &:before{
+        content: "";
+        border-radius: 50%;
+        background-color: $c-blue-light;
+        height: 41px;
+        width: 41px;
+        left: -10%;
+        bottom: 0;
+        position: absolute;
+        z-index: -1;
+      }
+    }
+    &:after{
+      font-family: $f-icons !important;
+      content: "\f105";
+      right: 7px;
+      bottom: 0;
+      line-height: 41px;
+      position: absolute;
+    }
+    span{
+      padding-right: 15px;
+    }
+  }
+  //tab
+  .tab-title{
+    background: none;
+  }
+  //learning_history_list.html
+  .history-list{
+    margin: 35px 0;
+    li{
+      margin-bottom: 15px;
+    }
+    .bg-white{
+      padding: 17px;
+    }
+    .title{
+      @media (max-width: $screen-xs-max) {
+        font-size: 19px;
+      }
+    }
+  }
+  .block-yellow{
+    background-color: #fefad3;
+    margin: 10px auto 0 auto;
+    position: relative;
+    @media (max-width: $screen-xs-max) {
+      padding: 12px 12px 12px 30px;
+      font-size: 13px;
+    }
+    @media (min-width: $screen-sm-min) {
+      padding: 12px 50px;
+      font-size: 18px;
+    }
+    .small{
+      font-size: 12px;
+    }
+  }
+  .clock{
+    &:before{
+      position: absolute;
+      content: "";
+      background: url('../images/icons/clock.png') no-repeat;
+      @media (max-width: $screen-xs-max) {
+        left: -21px;
+        background-size: 90%;
+      }
+      @media (min-width: $screen-sm-min) {
+        left: -27px
+      }
+      height: 22px;
+      width: 19px;
+    }
+  }
+  .pen{
+    &:before{
+      position: absolute;
+      content: "";
+      background: url('../images/icons/pen.png') no-repeat;
+      @media (max-width: $screen-xs-max) {
+        left: -21px;
+        background-size: 90%;
+      }
+      @media (min-width: $screen-sm-min) {
+        left: -27px;
+      }
+      height: 22px;
+      width: 22px;
+    }
+  }
+  .game{
+    &:before{
+      position: absolute;
+      content: "";
+      background: url('../images/icons/game.png') no-repeat;
+      @media (max-width: $screen-xs-max) {
+        left: -21px;
+        background-size: 90%;
+      }
+      @media (min-width: $screen-sm-min) {
+        left: -27px;
+      }
+      height: 22px;
+      width: 22px;
+    }
+  }
+  .trophy{
+    &:before{
+      position: absolute;
+      content: "";
+      background: url('../images/icons/trophy.png') no-repeat;
+      @media (max-width: $screen-xs-max) {
+        left: -21px;
+        background-size: 90%;
+      }
+      @media (min-width: $screen-sm-min) {
+        left: -27px;
+      }
+      height: 22px;
+      width: 22px;
+    }
+  }
+  //db110
+  .deck-list-line{
+    @media (max-width: $screen-xs-max) {
+      margin-bottom: 30px !important;
+    }
+  }
+}
+.report-frame{
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  @media (max-width: $screen-xs-max) {
+    padding-top: 20px;
+  }
+  @media (min-width: $screen-sm-min) {
+    padding-top: 40px;
+  }
+}
+//db140
+.border-list{
+  padding: 0px;
+  li{
+    list-style-type: none;
+    padding: 15px 25px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+  }
+  .blue-dark-border{
+    border: 2px solid $c-blue-dark;
+    background-color: $c-white;
+  }
+  .date{
+    font-size: 18px;
+  }
+  .time {
+    font-size: 22px;
+  }
+}
+
+.divider.dashed.white{
+  border-color: $c-white;
+}
+.no-underline{
+  text-decoration: none !important;
+  color: initial !important;
+}
+//db120
+.border-light-blue{
+  @media (min-width: $screen-sm-min) {
+    padding: 0 94px;
+  }
+
+  .deck-list-line .item .item-inner{
+    border: 3px solid #60c1d4;
+    padding: 15px 20px;
+    border-radius: 3px;
+    margin: 20px 0;
+    position: relative;
+    .left{
+      width: 80px;
+      .thumb{
+        height: 80px;
+      }
+    }
+  }
+}
+
+//db130
+.status-list{
+  .item{
+    border-radius: 3px;
+    margin: 10px 0;
+    .header{
+      position: relative;
+      background-color: #fefad3;
+      padding: 18px;
+      border-bottom: 1px solid $c-blue-dark;
+    }
+    .datetime{
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: 12px;
+    }
+    .bottom{
+      padding: 15px;
+      @media (max-width: $screen-xs-max) {
+        margin: auto;
+      }
+      @media (min-width: $screen-sm-min) {
+        text-align: center;
+      }
+    }
+  }
+
+  .label{
+    color: $c-white;
+    padding: 7px 20px;
+    width: 100px;
+    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max){
+      width: 78px;
+    }
+    display: block;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: normal;
+  }
+  .label-orange{
+    background-color: #ed9050;
+  }
+  .label-green{
+    background-color: #7ac349;
+  }
+  .label-purple{
+    background-color: #b38ef0;
+  }
+  .inline-block{
+    display: inline-block;
+    @media (max-width: $screen-xs-max) {
+      margin: 5px 0 5px 10%;
+    }
+  }
+}

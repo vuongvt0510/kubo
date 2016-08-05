@@ -1,0 +1,76 @@
+<div id="add_good<!--{$timeline.id|escape|default:''}-->" class="activity-content timeline-detail" data-timeline_id="<!--{$timeline.id|escape|default:''}-->" data-user_id="<!--{$timeline.user_id|escape|default:''}-->">
+    <div class="head clearfix">
+        <!--{*
+        link
+        himself → DB10
+        friend → FD10
+        *}-->
+        <a class="thumb" href="/dashboard/<!--{$timeline.user_id|escape|default:''}-->">
+            <img src="/images/avatar/<!--{if $timeline.avatar_id == 0}-->2<!--{else}--><!--{$timeline.avatar_id}--><!--{/if}-->.png" alt="" width="75" height="65">
+        </a>
+        <div class="user-name">
+            <a class="thumb c-normal" href="/dashboard/<!--{$timeline.user_id|escape|default:''}-->">
+                <!--{$timeline.nickname|escape|default:''}-->
+            </a>
+        </div>
+        <div class="time x-time-format">
+            <span class="date pull-right c-blue-light common-time" data-time="<!--{$timeline.created_at|escape|default:''}-->">
+                <!--{common_time datetime=$timeline.created_at|escape|default:''}-->
+            </span>
+        </div>
+    </div>
+    <div class="content">
+        <!--{* link to DK10 *}-->
+        <div class="trophy-image">
+            <!--{if isset($timeline.link) && $timeline.link == TRUE}-->
+            <a href="/deck/<!--{$timeline.target_id|escape|default:''}-->" title="">
+                <img src="<!--{image_link key=$timeline.extra_data.image_key|escape|default:'' type='small'}-->" alt="" width="100" height="100" >
+            </a>
+            <!--{else}-->
+            <img src="<!--{image_link key=$timeline.extra_data.image_key|escape|default:'' type='small'}-->" alt="" width="100" height="100" >
+            <!--{/if}-->
+        </div>
+        <div class="content-cell">
+            <!--{if isset($timeline.link) && $timeline.link == TRUE}-->
+            <a href="/deck/<!--{$timeline.target_id|escape|default:''}-->" title="">
+                <p class="title bold c-normal"><!--{$timeline.extra_data.name|escape|default:''}--></p>
+                <p class="desc c-normal"><!--{$timeline.extra_data.description|escape|default:''}--></p>
+            </a>
+            <!--{else}-->
+            <p class="title bold"><!--{$timeline.extra_data.name|escape|default:''}--></p>
+            <p class="desc"><!--{$timeline.extra_data.description|escape|default:''}--></p>
+            <!--{/if}-->
+            <!--{if isset($timeline.time) && isset($timeline.correct_answer) && isset($timeline.total_question)}-->
+            <div class="block-time">
+                <div class="col-xs-12 col-md-6 p3">
+                    <p class="small bg-gray text-center bold">学習時間 : <!--{if (int)($timeline.time/60) != 0}--><!--{(int)($timeline.time/60)|escape|default:''}-->分<!--{/if}--><!--{$timeline.time%60|escape|default:''}-->秒</p>
+                </div>
+                <div class="col-xs-12 col-md-6 p3 mb5">
+                    <p class="small bg-gray text-center bold">正解：<!--{$timeline.correct_answer|escape|default:''}-->問／<!--{$timeline.total_question|escape|default:''}-->問中</p>
+                </div>
+            </div>
+            <!--{/if}-->
+            <a href="/timeline/detail/<!--{$timeline.id|escape|default:''}-->">
+                <span class="current-good c-navy">
+                    <span class="el-icons el-heart"></span>
+                    <span class="good_total bold"><!--{$timeline.good_total|escape|default:'0'}--></span>GOOD
+                </span>
+            </a>
+            <a href="/timeline/detail/<!--{$timeline.id|escape|default:''}-->">
+                <span class="current-comment ml5 c-navy">
+                    <span class="comment_total bold"><!--{$timeline.comment_total|escape|default:'0'}--></span>コメント
+                </span>
+            </a>
+        </div>
+    </div>
+    <div class="foot clearfix">
+        <a data-timeline_id="<!--{$timeline.id|escape|default:''}-->" data-user_id="<!--{$timeline.user_id|escape|default:''}-->" class="add_good <!--{if $timeline.good_from_operator == 1}-->disable<!--{else}-->active<!--{/if}--> bg-lbl" href="javascript:;">
+            <span class="el-icons el-heart c-red-dark"></span>
+            <span class="lbl c-blue-light">GOOD</span>
+        </a>
+
+        <a class="bg-lbl" href="/timeline/detail/<!--{$timeline.id|escape|default:''}-->">
+            <span class="lbl el-comment c-blue-light">コメントする</span>
+        </a>
+    </div>
+</div>

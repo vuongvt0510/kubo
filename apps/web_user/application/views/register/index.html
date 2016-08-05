@@ -1,0 +1,59 @@
+<div class="bg-triangle">
+    <div class="container">
+        <div class="page-title">
+            <p class="h1">無料会員登録</p>
+            <p class="caption">
+                登録すると続きの動画を再生したり教科書を設定して<br>
+                学校の授業にあった動画を見ることができます
+            </p>
+        </div>
+        <div class="main-content">
+            <form class="content-frame content-frame-polygon-bg form-horizontal" method="post">
+                <!--{if isset($errmsg)}-->
+                <div class="form-group">
+                    <label style="color:red;" class="col-xs-12 text-center control-label"><!--{$errmsg|escape}--></label>
+                </div>
+                <!--{/if}-->
+                <div class="polygon-bg"><img src="/images/background/content-frame-polygon.png" alt="" class="img-responsive"></div>
+                <div class="form-steps">
+                    <ul class="list-unstyled">
+                        <li class="active">アカウントを<br>えらぶ</li>
+                        <li>保護者<br>アカウント<br>作成</li>
+                        <li>子ども<br>アカウント<br>作成</li>
+                        <li>学習<br>スタート</li>
+                    </ul>
+                </div>
+                <div class="form-group">
+                    <p class="h4 bold text-center">お子さまと一緒に学習できます（無料）</p>
+                    <div class="col-md-6 col-md-push-3 col-sm-10 col-sm-push-1">
+                        <div class="clearfix">
+                            <a href="/register/parent" class="btn btn-block btn-green btn-register btn-register-parent-child">親子でアカウントを作成</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <p class="h4 bold text-center">お子さまだけでも学習できます（無料）</p>
+                    <div class="col-md-6 col-md-push-3 col-sm-10 col-sm-push-1">
+                        <div class="clearfix"><a href="/register/student" class="btn btn-block btn-green btn-register btn-register-child">子どもアカウントを作成</a></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <p class="h4 bold text-center">保護者の方だけ登録する（無料）</p>
+                    <div class="col-md-6 col-md-push-3 col-sm-10 col-sm-push-1">
+                        <div class="clearfix">
+                            <a href="/register/parent?parent_only=1" class="btn btn-block btn-green btn-register btn-register-parent">保護者アカウントを作成</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="form-group content-frame-bottom">
+                    <div class="text-center">
+                        <div class="clearfix">
+                            <a href="/login" class="btn btn-link">すでに会員の方は&nbsp;&nbsp;<span style="color: #00bf9d; text-decoration: underline">ログイン</span></a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

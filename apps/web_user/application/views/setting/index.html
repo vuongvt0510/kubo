@@ -1,0 +1,166 @@
+<div class="bg-triangle">
+    <div class="container">
+        <div class="page-title">
+            <p class="h1">プロフィール編集</p>
+            <p class="caption">さまざまな設定が⾏えます</p>
+        </div>
+        <div class="main-content">
+            <div class="content-frame">
+
+                <div class="settings-list">
+                    <ul class="list-unstyled">
+                        <!--{if $user.primary_type == 'student'}-->
+                        <li>
+                            <div class="name">学校・学年</div>
+                            <div class="description bold">
+                                <!--{$user.current_school.name|escape|default:''}--> <!--{$user.current_grade.name|escape|default:'未設定'}-->
+                            </div>
+                            <div class="link">
+                                <a href="/school/search" class="btn btn-green btn-right-arrow">編集</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="name">教科書</div>
+                            <div class="description">
+                                学校で使っている教科書を編集できます
+                            </div>
+                            <div class="link">
+                                <a href="/textbook" class="btn btn-green btn-right-arrow">編集</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="name">家族グループ</div>
+                            <div class="description">
+                                保護者の方と一緒に学習ができます
+                            </div>
+                            <div class="link">
+                                <a href="/group_setting/family" class="btn btn-green btn-right-arrow">確認</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="name">チーム</div>
+                            <div class="description">
+                                友達とグループ対戦などができます
+                            </div>
+                            <div class="link">
+                                <a href="/team" class="btn btn-green btn-right-arrow">編集</a>
+                            </div>
+                        </li>
+                        <!--{/if}-->
+
+                        <!--{if $user.primary_type == 'parent'}-->
+                        <li>
+                            <div class="name">家族グループ</div>
+                            <div class="description">
+                                お子さまや他の保護者の方をグループに招待したり、<br>
+                                お子さまのアカウントの削除ができます
+                            </div>
+                            <div class="link">
+                                <a href="/group_setting/family" class="btn btn-green btn-right-arrow">編集</a>
+                            </div>
+                        </li>
+                        <!--{/if}-->
+
+                        <li>
+                            <div class="name">友達に教える</div>
+                            <div class="description">
+                                友達にスクールTVを教えることができます
+                            </div>
+                            <div class="link">
+                                <a href="/invite" class="btn btn-orange btn-right-arrow">招待</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="name">アイコン</div>
+                            <div class="description">
+                                <img class="avatar" src="/images/avatar/<!--{if $current_user.avatar_id == 0}--><!--{if $current_user.primary_type == 'parent'}-->12<!--{else}-->2<!--{/if}--><!--{else}--><!--{$current_user.avatar_id}--><!--{/if}-->.png" alt="" class="img-responsive">
+                            </div>
+                            <div class="link">
+                                <a href="/setting/avatar" class="btn btn-green btn-right-arrow">編集</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="name">プロフィール</div>
+                            <div class="description bold">
+                                ID: <!--{$user.login_id|escape|default:''}-->&nbsp;&nbsp;&nbsp;&nbsp;
+                                <!--{$user.nickname|escape}-->&nbsp;&nbsp;&nbsp;&nbsp;
+                                <!--{if !empty($user.gender)}-->性別：<!--{if $user.gender == 'female'}-->女性<!--{elseif $user.gender == 'male'}-->男性<!--{/if}--><!--{/if}-->
+                            </div>
+                            <div class="link">
+                                <a href="/setting/profile" class="btn btn-green btn-right-arrow">編集</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="name">メールアドレス</div>
+                            <div class="description bold">
+                                <!--{$user.email|escape|default:''}-->
+                            </div>
+                            <div class="link">
+                                <a href="/setting/change_email" class="btn btn-green btn-right-arrow">編集</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="name">パスワード</div>
+                            <div class="description bold">*******</div>
+                            <div class="link">
+                                <a href="/setting/change_password" class="btn btn-green btn-right-arrow">編集</a>
+                            </div>
+                        </li>
+
+                    </ul>
+                    
+                    <!--{if $user.primary_type == 'parent'}-->
+                    <!--{foreach from=$students_switch key=key item=item}-->
+                    <div class="child-setting">
+                        <p class="user-name">お子様「<!--{$item.nickname|escape|default:'ニックネームなし'}-->」さん</p>
+                        <ul class="list-unstyled">
+                             <li class="clearfix">
+                                <div class="name">学校・学年</div>
+                                <div class="description bold">
+                                    <!--{$item.current_school.name|escape|default:''}--> <!--{$item.current_grade.name|escape|default:''}-->
+                                </div>
+                                <div class="link">
+                                    <a href="/school/search/<!--{$item.id}-->" class="btn btn-green btn-right-arrow">編集</a>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="name">教科書</div>
+                                <div class="description">
+                                    学校で使っている教科書を編集できます
+                                </div>
+                                <div class="link">
+                                    <a href="/textbook/<!--{$item.id}-->" class="btn btn-green btn-right-arrow">編集</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--{/foreach}-->
+                    <!--{foreach from=$students_not_verified key=key item=item}-->
+                    <div class="child-setting clearfix">
+                        <p class="user-name pull-left">お子様「<!--{$item.nickname|escape|default:'ニックネームなし'}-->」さん</p>
+                        <div class="label label-status pull-right">メール未認証</div>
+                    </div>
+                    <!--{/foreach}-->
+                    <!--{/if}-->
+
+                    <ul class="list-unstyled">
+                        <!--{if isset($user.oauth_type)}-->
+                        <li>
+                            <div class="name">SNSログイン</div>
+                            <div class="description"><!--{if $user.oauth_type == 'facebook'}-->Facebook<!--{else}-->twitter<!--{/if}-->アカウントでログインできます</div>
+                        </li>
+                        <!--{/if}-->
+                        <li>
+                            <div class="name">お問い合わせ</div>
+                            <div class="description">スクールTVへお問い合わせができます</div>
+                            <div class="link">
+                                <a href="/inquiry" class="btn btn-green btn-right-arrow">進む</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

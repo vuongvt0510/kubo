@@ -1,0 +1,138 @@
+<div class="modal fade-in modal-ranking" id="modalDrill-ranking" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-header">
+                <div class="modal-ranking-title">
+                    <div class="text">あなたのスコア</div>
+                    <div class="circle-text"><b><!--{$score|dummy:"--"}--></b>点</div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="ranking-wrapper">
+                    <div class="panel panel-brown-linear-gradient">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <div class="panel-image">
+                                    <div class="hexagon-img">
+                                        <img src="/images/panel/ranking-top.png" alt="">
+                                    </div>
+                                </div>
+                                スコアランキングトップ3
+                            </div>
+                        </div>
+                    </div>
+                    <ol class="list-unstyled ranking-list">
+                        <!--{for $i=0 to 2}-->
+                        <!--{assign var="pos_tmp" value=$i+1}-->
+                        <li class="no-auto" data-number="<!--{$ranking[$i].position|default:$pos_tmp}-->">
+                            <!--{if !isset($ranking[$i]) && empty($ranking[$i]) && $pos_tmp == 1}-->
+                                <!--{assign var="user_avatar" value=2}-->
+                                <!--{if !empty($current_user)}-->
+                                    <!--{if $current_user.primary_type == 'parent'}-->
+                                        <!--{assign var="user_avatar" value=($current_user.avatar_id == 0) ? 12 : $current_user.avatar_id }-->
+                                    <!--{else}-->
+                                        <!--{assign var="user_avatar" value=($current_user.avatar_id == 0) ? 2 : $current_user.avatar_id }-->
+                                    <!--{/if}-->
+                                <!--{/if}-->
+
+                                <div class="avatar">
+                                <img class="img-responsive" src="/images/avatar/<!--{$user_avatar}-->.png" alt="">
+                                </div>
+                                <div class="title"><!--{$current_user.nickname|dummy:"あなた"}--></div>
+                                <div class="score">0点</div>
+                            <!--{else}-->
+                                <div class="avatar">
+                                    <img class="img-responsive"
+                                         src="/images/avatar/<!--{if isset($ranking[$i].user.avatar_id) && $ranking[$i].user.avatar_id != 0}--><!--{$ranking[$i].user.avatar_id}--><!--{else}-->2<!--{/if}-->.png"
+                                         alt="">
+                                </div>
+                                <div class="title <!--{if isset($ranking[$i].show_class)}-->show-ranking-name<!--{/if}-->"><!--{if isset($ranking[$i].user.name)}--> <!--{$ranking[$i].user.name|dummy:"あなた"}--> <!--{else}--><!--{"--"}--> <!--{/if}--></div>
+                                <div class="score"><!--{$ranking[$i].score|dummy:"--"}-->点</div>
+                            <!--{/if}-->
+                        </li>
+                        <!--{/for}-->
+
+                        <!--{if !empty($detail) && (!empty($current_user) || !$is_login)}-->
+                        <!--{if $detail.current_position > 3 }-->
+                        <li class="no-auto" data-number="<!--{$detail.current_position}-->">
+                            <div class="avatar">
+                                <!--{if isset($current_user.nickname)}-->
+                                <img class="img-responsive"
+                                     src="/images/avatar/<!--{if $current_user.avatar_id == 0}-->2<!--{else}--><!--{$current_user.avatar_id}--><!--{/if}-->.png"
+                                     alt="">
+                                <!--{else}-->
+                                <img class="img-responsive" src="/images/avatar/2.png" alt="">
+                                <!--{/if}-->
+                            </div>
+                            <div class="title <!--{if isset($detail.show_class)}-->show-ranking-name<!--{/if}-->"><!--{if isset($current_user.nickname)}--><!--{$current_user.nickname}-->
+                                <!--{else}-->あなた<!--{/if}--></div>
+                            <div class="score"><!--{$detail.score|dummy:"--"}-->点</div>
+                        </li>
+                        <!--{/if}-->
+                        <!--{/if}-->
+                    </ol>
+                    <div class="mt50">
+                        <div class="tweet-buttons middle-auto tweet-buttons-horizontal tweet-buttons-block">
+                            <p class="h2 text-center">
+                                ラビボタンプッシュ回数
+                            </p>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <button class="btn-link rabi-1" button-id="1">
+                                        <img src="/images/icons/tweet-understand-completely.png"
+                                             alt="Understand completely" class="img-resonsive">
+                                    </button>
+                                    <span class="count">0</span>
+                                </li>
+                                <li>
+                                    <button class="btn-link rabi-2" button-id="2">
+                                        <img src="/images/icons/tweet-cannot-understand.png" alt="Cannot understand"
+                                             class="img-resonsive">
+                                    </button>
+                                    <span class="count">0</span>
+                                </li>
+                                <li>
+                                    <button class="btn-link rabi-3" button-id="3">
+                                        <img src="/images/icons/tweet-understand-well.png" alt="Understand well"
+                                             class="img-resonsive">
+                                    </button>
+                                    <span class="count">0</span>
+                                </li>
+                                <li>
+                                    <button class="btn-link rabi-4" button-id="4">
+                                        <img src="/images/icons/tweet-interesting.png" alt="Interesting"
+                                             class="img-resonsive">
+                                    </button>
+                                    <span class="count">0</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--{if empty($current_user)}-->
+            <div class="modal-footer">
+                <div class="text-center">
+                    <p class="h1">名前を入力してランキングに参加しよう！</p>
+                    <form action="/register" method="get">
+                        <div class="input-group">
+                            <input type="text" class="form-control ranking-nickname" placeholder="名前" name="nickname">
+                            <p class="text-danger help-text" style="display: none">名前欄は必須フィールドです</p>
+
+                            <div class="input-group-btn">
+                                <button class="btn btn-green btn-block ranking-input-name" type="button">決定</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-green btn-block ranking-register" type="submit" style="display: none">
+                            会員登録して動画の続きを見る
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <!--{/if}-->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+    <title>Dialog/Modal sample</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>Test Dialog/Modal window sample</h1>
+
+    <p>
+        <button class="btn btn-success x-btn-alert">Alert</button>
+    </p>
+
+    <p>
+        <button class="btn btn-success x-btn-confirm">Confirm</button>
+    </p>
+
+    <p>
+        <button class="btn btn-success x-btn-prompt">Prompt</button>
+    </p>
+
+    <p>
+        <button class="btn btn-success x-btn-dialog">Dialog</button>
+    </p>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!--should be unify into one js-->
+<script src="/third_party/util/sprintf/dist/sprintf.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js"></script>
+
+<script src="/base/Base.js"></script>
+
+<script type="text/javascript">
+    AppCore.Config.baseUrl = '';
+
+    (function () {
+
+        $(document).ready(function () {
+            var app = new AppCore.Base({
+                el: $('body')
+            });
+
+            $('.x-btn-alert').on('click', function () {
+                app.alert('Open Alert?');
+            });
+
+            $('.x-btn-confirm').on('click', function () {
+                app.confirm('Open Confirm?', function (result) {
+                    console.info(result);
+                });
+            });
+
+            $('.x-btn-prompt').on('click', function () {
+                app.prompt('Open Prompt?', function (result) {
+                    console.info(result);
+                });
+            });
+
+            $('.x-btn-dialog').on('click', function () {
+                app.modal({
+                    url: 'modal.html',
+                    data: {
+                        id: 1
+                    }
+                });
+            });
+        });
+    })();
+</script>
+</body>
+</html>

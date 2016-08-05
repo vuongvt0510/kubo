@@ -1,0 +1,112 @@
+<!-- BEGIN PAGE TITLE-->
+<div class="page-title-wrap">
+    <h3 class="page-title"><i class="icon-share"></i> キャンペーンコード作成</h3>
+</div>
+<!-- END PAGE TITLE-->
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-body">
+                <form id="campaignForm" class="form-horizontal" method="post">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-3 col-lg-2 control-label">キャンペーン名</label>
+                            <div class="col-md-9 col-lg-10 mb15 form-group">
+                                <input id="name" name="name" type="text" class="form-control margin-bottom-10" value="<!--{$post.name|escape|default:''}-->" placeholder="キャンペーン名">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 col-lg-2 control-label">キャンペーンコード</label>
+                            <div class="form-group col-md-9 col-lg-10 mb15">
+                                <input id="code" name="code" type="text" class="form-control margin-bottom-10" value="<!--{$post.code|escape|default:''}-->" placeholder="キャンペーンコード">
+                                <p class="small">※半角英数字のみ</p>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 col-lg-2 control-label">キャンペーン期間</label>
+                            <div class="form-group col-md-9 col-lg-10 mb15">
+                                <div class="row">
+                                    <div class="col-lg-6 gutter-10">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group date date-picker" data-date-format="yyyy-mm-dd"
+                                                     data-date-viewmode="years">
+                                                    <input id="from_date" name="started_at" type="text" class="form-control" value="<!--{if $post.started_at != ''}--><!--{date('Y/m/d', strtotime($post.started_at))}--><!--{/if}-->">
+
+                                                    <div class="input-group-btn">
+                                                        <button class="btn default" type="button">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 margin-bottom-10">
+                                                <select id="from_hour" name="from_hour" class="form-control">
+                                                    <!--{for $i=0 to 23}-->
+                                                    <option value="<!--{sprintf('%02d',$i)}-->" <!--{if $post.from_hour|default:0 == $i}-->selected<!--{/if}-->><!--{sprintf('%02d',$i)}--></option>
+                                                    <!--{/for}-->
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2 margin-bottom-10">
+                                                <select id="from_minute" name="from_minute" class="form-control">
+                                                    <!--{for $i=0 to 59}-->
+                                                    <option value="<!--{sprintf('%02d',$i)}-->" <!--{if $post.from_minute|default:0 == $i}-->selected<!--{/if}-->><!--{sprintf('%02d',$i)}--></option>
+                                                    <!--{/for}-->
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2 margin-bottom-10">
+                                                <label class="control-label">から</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 gutter-10">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group date date-picker" data-date-format="yyyy-mm-dd"
+                                                     data-date-viewmode="years">
+                                                    <input id="to_date" name="ended_at" type="text" class="form-control" value="<!--{if $post.ended_at != ''}--><!--{date('Y/m/d', strtotime($post.ended_at))}--><!--{/if}-->">
+
+                                                    <div class="input-group-btn">
+                                                        <button class="btn default" type="button">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 margin-bottom-10">
+                                                <select id="to_hour" name="to_hour" class="form-control">
+                                                    <!--{for $i=0 to 23}-->
+                                                    <option value="<!--{sprintf('%02d',$i)}-->" <!--{if $post.to_hour|default:0 == $i}-->selected<!--{/if}-->><!--{sprintf('%02d',$i)}--></option>
+                                                    <!--{/for}-->
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2 margin-bottom-10">
+                                                <select id="to_minute" name="to_minute" class="form-control">
+                                                    <!--{for $i=0 to 59}-->
+                                                    <option value="<!--{sprintf('%02d',$i)}-->" <!--{if $post.to_minute|default:0 == $i}-->selected<!--{/if}-->><!--{sprintf('%02d',$i)}--></option>
+                                                    <!--{/for}-->
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2 margin-bottom-10">
+                                                <label class="control-label">まで</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions text-right">
+                        <a href="/campaign" type="button" class="btn btn-lg grey-salsa">キャンセル</a>
+                        <a id="submitForm" type="submit" class="btn btn-lg green">確認</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--{include file="campaign/modal_partial.html" text='キャンペーンコード作成'}-->

@@ -1,0 +1,32 @@
+###
+### サーバー初期設定
+###
+commands:
+  01-change-localtime:
+    command: cp /usr/share/zoneinfo/Japan /etc/localtime
+
+###
+### 初期グループ設定
+###
+groups:
+  applications:
+    gid: 600
+  logging:
+    gid: 601
+  #administrators:  # wheelで代用
+  #  gid: 610
+  developers:
+    gid: 611
+  deployers:
+    gid: 612
+
+###
+### 初期インスールパッケージ
+###
+packages:
+  yum:
+    php55-pecl-apcu: []
+    php55-pecl-imagick: []
+    monit: []
+    bash: []    # BASHのセキュリティホール対応
+

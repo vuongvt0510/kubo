@@ -1,0 +1,119 @@
+.profile-detail-page {
+  .learning-videos {
+    padding: 60px 0;
+    .panel {
+      margin-bottom: -40px;
+    }
+  }
+  .main-content {
+    padding-top: 60px;
+  }
+
+  .drill-section {
+    @media (min-width: $screen-sm) {
+      padding: 50px 0 70px;
+    }
+    .title-yellow-bg {
+      margin: 0 0 30px;
+
+      @media (max-width: $screen-xs-max) {
+        margin: 0 -15px;
+      }
+    }
+  }
+}
+.search-items-by {
+  text-align: center;
+  padding-top: 25px;
+  padding-bottom: 70px;
+
+  @media (max-width: $screen-xs-max) {
+    padding-bottom: 25px;
+  }
+
+  .search-group {
+    &.by-grade .available-search a {
+      font-size: 17px;
+    }
+    + .search-group {
+      margin-top: 30px;
+    }
+    > .el-icons {
+      color: $c-white;
+      font-size: 23px;
+    }
+    > .h3 {
+      font-size: 24px;
+      font-weight: 700;
+      color: $c-white;
+      margin-top: 5px;
+    }
+    .available-search {
+      display: table;
+      width: 100%;
+      a {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        width: auto;
+        background-color: #fff;
+        padding: 28px 10px 5px;
+        font-size: 24px;
+        font-weight: 700;
+        color: $c-text-color;
+        &:nth-child(odd) {
+          background-color: #eee;
+        }
+        &:hover {
+          text-decoration: none;
+          background-color: #ddd;
+        }
+        span {
+          padding: 0 3px;
+        }
+        .el-icons {
+          font-weight: 700;
+          font-size: 27px;
+        }
+      }
+    }
+  }
+  @media (max-width: $screen-xs-max) {
+    .search-group {
+      &.by-grade .available-search a {
+        font-size: 13px;
+      }
+      > .h3 {
+        font-size: 14px;
+      }
+      > .el-icons {
+        font-size: 18px;
+      }
+      .available-search {
+        display: block;
+        @include clearfix;
+        a {
+          display: block;
+          width: 50%;
+          float: left;
+          padding: 10px;
+          font-size: 15px;
+          &:nth-child(odd) {
+            background-color: $c-white;
+          }
+          &:nth-child(1),
+          &:nth-child(4),
+          &:nth-child(5),
+          &:nth-child(8),
+          &:nth-child(9) {
+            background-color: #eee;
+          }
+          br,
+          .el-icons {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

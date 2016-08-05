@@ -1,0 +1,37 @@
+# Root of the project or not (ルートフォルダかどうか)
+root = true
+
+[*]
+# Line separator (改行コード)
+end_of_line = lf
+charset = utf-8
+
+[*.php]
+# Indent Style: 4 space (インデントスタイル：4スペース)
+indent_style = space
+indent_size = 4
+
+[*.js]
+# Indent Style: 4 space (インデントスタイル：4スペース)
+indent_style = space
+indent_size = 4
+
+[*.html]
+# Indent Style: 4 space (インデントスタイル：4スペース)
+indent_style = space
+indent_size = 4
+
+[*.scss]
+# Indent Style: 2 space (インデントスタイル：2スペース)
+indent_style = space
+indent_size = 2
+
+[*.less]
+# Indent Style: 2 space (インデントスタイル：2スペース)
+indent_style = space
+indent_size = 2
+
+[*.css]
+# Indent Style: 2 space (インデントスタイル：2スペース)
+indent_style = space
+indent_size = 2

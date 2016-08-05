@@ -1,0 +1,52 @@
+<!--{if !empty($chapters)}-->
+<ul class="list-unstyled history-list">
+    <!--{foreach from=$chapters item=chapter}-->
+    <!--{if !empty($videos[$chapter.deck_id].brightcove_id)}--><!--{* hide the videos which hasn't been connected to brightcove yet *}-->
+    <li>
+        <div class="bg-white">
+
+            <!--{if !empty($textbook)}-->
+            <p class="subject"><!--{$textbook.subject.name|escape|default:'--'}--></p>
+            <!--{/if}-->
+
+            <p class="unit-and-chapter mb5"><!--{$chapter.chapter_name|escape|default:'-'}--></p>
+            <h3 class="title mt0"><!--{$chapter.name|escape|strip|default:'-'}--></h3>
+
+            <div class="block-yellow row">
+                <div class="p0 col-xs-6 clock text-left">
+                    動画視聴時間 <br class="visible-xs">(合計)
+                </div>
+                <div class="p0 col-xs-6 text-right">
+                    <!--{if (!empty($done) && in_array($videos[$chapter.deck_id].id, $done)) || (!empty($in_progress) && in_array($videos[$chapter.deck_id].id, $in_progress))}-->
+                    <span class="c-red"><!--{(int) ($total_second[$chapter.video_id] / 60)|escape|default:'0'}-->分</span>
+                    <!--{else}-->
+                    <span>まだ学習していません</span>
+                    <!--{/if}-->
+                </div>
+            </div>
+
+            <div class="block-yellow row">
+                <div class="p0 col-xs-6 pen text-left">
+                    動画ドリル <br class="visible-xs">(最新）
+                </div>
+                <div class="p0 col-xs-6 text-right">
+
+                    <!--{if (!empty($done) && in_array($videos[$chapter.deck_id].id, $done)) || (!empty($in_progress) && in_array($videos[$chapter.deck_id].id, $in_progress))}-->
+                    <span class="c-red"><!--{$correct_answer[$chapter.video_id]|escape|default:'-'}-->問正解</span>／<!--{$total_questions[$chapter.video_id]|escape|default:'0'}-->問中
+                    <!--{else}-->
+                    まだ学習していません
+                    <!--{/if}-->
+                    <!--{if isset($time_scores[$chapter.video_id])}-->
+                    <div class="small"><!--{date('Y.m.d H:i:s', strtotime($time_scores[$chapter.video_id]))|escape|default:''}-->
+                    </div>
+                    <!--{/if}-->
+                </div>
+
+            </div>
+
+        </div>
+    </li>
+    <!--{/if}-->
+    <!--{/foreach}-->
+</ul>
+<!--{/if}-->

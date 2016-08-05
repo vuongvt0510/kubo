@@ -1,0 +1,264 @@
+@font-face {
+  font-family: 'el-icons';
+  src:    url('../fonts/el-icons/icomoon.eot?58z5wa');
+  src:    url('../fonts/el-icons/icomoon.eot?58z5wa#iefix') format('embedded-opentype'),
+  url('../fonts/el-icons/icomoon.ttf?58z5wa') format('truetype'),
+  url('../fonts/el-icons/icomoon.woff?58z5wa') format('woff'),
+  url('../fonts/el-icons/icomoon.svg?58z5wa#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+$f-icons: 'el-icons';
+
+
+.el-icons {
+  font-family: $f-icons !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.el-check2:before {
+  content: "\f03a";
+}
+.el-chevron-down2:before {
+  content: "\f0a3";
+}
+.el-chevron-left2:before {
+  content: "\f0a4";
+}
+.el-chevron-right2:before {
+  content: "\f078";
+}
+.el-chevron-up2:before {
+  content: "\f0a2";
+}
+.el-hubot:before {
+  content: "\f09d";
+}
+.el-list-unordered:before {
+  content: "\f061";
+}
+.el-triangle-down:before {
+  content: "\f05b";
+}
+.el-triangle-left:before {
+  content: "\f044";
+}
+.el-triangle-right:before {
+  content: "\f05a";
+}
+.el-triangle-up:before {
+  content: "\f0aa";
+}
+.el-x:before {
+  content: "\f081";
+}
+.el-headphones:before {
+  content: "\e900";
+}
+.el-bell:before {
+  content: "\e901";
+}
+.el-list-numbered:before {
+  content: "\e902";
+}
+.el-list:before {
+  content: "\e903";
+}
+.el-list2:before {
+  content: "\e904";
+}
+.el-heart:before {
+  content: "\e90c";
+}
+.el-heart-broken:before {
+  content: "\e90d";
+}
+.el-heart2:before {
+  content: "\f004";
+}
+.el-check:before {
+  content: "\f00c";
+}
+.el-close:before {
+  content: "\f00d";
+}
+.el-remove:before {
+  content: "\f00d";
+}
+.el-times:before {
+  content: "\f00d";
+}
+.el-trash-o:before {
+  content: "\f014";
+}
+.el-chevron-left:before {
+  content: "\f053";
+}
+.el-chevron-right:before {
+  content: "\f054";
+}
+.el-plus:before {
+  content: "\f067";
+}
+.el-minus:before {
+  content: "\f068";
+}
+.el-chevron-up:before {
+  content: "\f077";
+}
+.el-chevron-down:before {
+  content: "\f079";
+}
+.el-twitter:before {
+  content: "\f099";
+}
+.el-facebook:before {
+  content: "\f09a";
+}
+.el-facebook-f:before {
+  content: "\f09a";
+}
+.el-list-ul:before {
+  content: "\f0ca";
+}
+.el-list-ol:before {
+  content: "\f0cb";
+}
+.el-user-md:before {
+  content: "\f0f0";
+}
+.el-angle-double-left:before {
+  content: "\f100";
+}
+.el-angle-double-right:before {
+  content: "\f101";
+}
+.el-angle-double-up:before {
+  content: "\f102";
+}
+.el-angle-double-down:before {
+  content: "\f103";
+}
+.el-angle-left:before {
+  content: "\f104";
+}
+.el-angle-right:before {
+  content: "\f105";
+}
+.el-angle-up:before {
+  content: "\f106";
+}
+.el-angle-down:before {
+  content: "\f107";
+}
+.el-circle-o:before {
+  content: "\f10c";
+}
+.el-circle:before {
+  content: "\f111";
+}
+.el-play-circle:before {
+  content: "\f144";
+}
+.el-history:before {
+  content: "\f1da";
+}
+.el-reload:before {
+  content: "\e905";
+}
+.el-refresh:before {
+  content: "\e906";
+}
+.el-book:before {
+  content: "\e907";
+}
+.el-user:before {
+  content: "\e908";
+}
+.el-user2:before {
+  content: "\e909";
+}
+.el-user-female:before {
+  content: "\e000";
+}
+.el-user-follow:before {
+  content: "\e002";
+}
+.el-user-following:before {
+  content: "\e003";
+}
+.el-user-unfollow:before {
+  content: "\e004";
+}
+.el-user3:before {
+  content: "\e005";
+}
+.el-earphones-alt:before {
+  content: "\e03c";
+}
+.el-earphones:before {
+  content: "\e03d";
+}
+.el-book-open:before {
+  content: "\e04c";
+}
+.el-basket-loaded:before {
+  content: "\e04d";
+}
+.el-basket:before {
+  content: "\e04e";
+}
+.el-action-undo:before {
+  content: "\e050";
+}
+.el-action-redo:before {
+  content: "\e051";
+}
+.el-share-alt:before {
+  content: "\e05a";
+}
+.el-logout:before {
+  content: "\e065";
+}
+.el-login:before {
+  content: "\e066";
+}
+.el-list3:before {
+  content: "\e067";
+}
+.el-heart3:before {
+  content: "\e08a";
+}
+.el-reload2:before {
+  content: "\e099";
+}
+.el-settings:before {
+  content: "\e09a";
+}
+.el-users:before {
+  content: "\e001";
+}
+.el-heart4:before {
+  content: "\e90e";
+}
+.el-user4:before {
+  content: "\e90a";
+}
+.el-news:before {
+  content: "\e90b";
+}
+.el-square:before{
+  content: "\f0c8";
+}
+.el-action-undo:before {
+  content: "\e050";
+}

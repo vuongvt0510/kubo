@@ -1,0 +1,162 @@
+<div class="play-page play-index-page">
+    <div class="bg-shining-yellow">
+        <div class="bg-inner">
+            <div class="container">
+                <!--{if $is_draw}-->
+                    <div class="content-frame-designed-corner with-ribbon-title">
+                        <div class="frame-inner">
+                            <div class="layer"></div>
+                            <div class="head"></div>
+                            <div class="middle middle-resultMatch-draw">
+                                <div class="rt-score-wrap">
+                                    <p class="rt-titleimg">
+                                        <img src="/images/modal/draw.png" alt="draw">
+                                        <span>引き分け</span>
+                                    </p>
+                                    <p class="rt-score">
+                                        <span><!--{$result.score|escape|default:''}--></span>点
+                                    </p>
+                                    <ul class="rt-addmorescore">
+                                        <li>
+                                            <div class="rt-ico rt-ico-point">ラビポイント</div>
+                                            <div class="rt-point">
+                                                + <span><!--{$result.rabipoint_bonus|escape|default:'5'}--></span>
+                                            </div>
+                                        </li>
+                                        <!--{include file="play/partial/point_reason.html"}-->
+                                        <!--{if $from_quest == FALSE}-->
+                                        <li>
+                                            <div class="rt-ico rt-ico-carrot">パワー</div>
+                                            <div class="rt-point"><!--{if ($result.power_bonus >= 0)}-->+ <!--{else}-->- <!--{/if}--> 
+                                                <span class="ico-carrot"><!--{$result.power_bonus|abs|escape|default:''}--></span>
+                                            </div>
+                                        </li>
+                                        <!--{/if}-->
+                                    </ul>
+                                <div class="info-area">
+                                    <div class="item-name">対戦プレイヤー</div>
+                                    <!--{include file="partial/match_player_list.html" players=$opponent href='play/match/'}-->
+                                </div>
+
+                            </div>
+                            <div class="rt-button-group<!--{if !$can_battle}--> no-coin<!--{/if}-->">
+                                <!--{if $can_battle}-->
+                                <a href="/play/select_player" class="btn btn-outline btn-yellow">もう一度プレイ</a>
+                                <a href="/play/select_drill" class="btn btn-outline btn-yellow">ドリルを選ぶ</a>
+                                <!--{else if $from_quest == TRUE}-->
+                                <a href="/play/quest_detail" class="btn btn-outline btn-yellow">クエスト詳細へ</a>
+                                <!--{else}-->
+                                <a href="/play/training" class="btn btn-outline btn-yellow">トレーニングをプレイ</a>
+                                <a href="/play/select_drill" class="btn btn-outline btn-yellow">違うドリルでトレーニングをプレイ</a>
+                                <!--{/if}-->
+                            </div>
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                <!--{else}-->
+                    <!--{if $is_win}-->
+                    <div class="content-frame-designed-corner with-ribbon-title">
+                        <div class="frame-inner">
+                            <div class="layer"></div>
+                            <div class="head"></div>
+                            <div class="middle middle-resultMatch">
+                                <div class="rt-score-wrap">
+                                    <p class="rt-titleimg">
+                                        <img src="/images/modal/youwin.png" alt="youwin">
+                                        <span>あなたの勝ち</span>
+                                    </p>
+                                    <p class="rt-score">
+                                        <span><!--{$result.score|escape|default:''}--></span>点
+                                    </p>
+                                    <ul class="rt-addmorescore">
+                                        <li>
+                                            <div class="rt-ico rt-ico-point">ラビポイント</div>
+                                            <div class="rt-point">
+                                                + <span><!--{$result.rabipoint_bonus|escape|default:'5'}--></span>
+                                            </div>
+                                        </li>
+                                        <!--{include file="play/partial/point_reason.html"}-->
+                                        <!--{if $from_quest == FALSE}-->
+                                        <li>
+                                            <div class="rt-ico rt-ico-carrot">パワー</div>
+                                            <div class="rt-point"><!--{if ($result.power_bonus >= 0)}-->+ <!--{else}-->- <!--{/if}--> 
+                                                <span class="ico-carrot"><!--{$result.power_bonus|abs|escape|default:''}--></span>
+                                            </div>
+                                        </li>
+                                        <!--{/if}-->
+                                    </ul>
+                                <div class="info-area">
+                                    <div class="item-name">対戦プレイヤー</div>
+                                    <!--{include file="partial/match_player_list.html" players=$opponent href='play/match/'}-->
+                                </div>
+                            </div>
+                            <div class="rt-button-group<!--{if !$can_battle}--> no-coin<!--{/if}-->">
+                                <!--{if $can_battle}-->
+                                <a href="/play/select_player" class="btn btn-outline btn-yellow">もう一度プレイ</a>
+                                <a href="/play/select_drill" class="btn btn-outline btn-yellow">ドリルを選ぶ</a>
+                                <!--{else if $from_quest == TRUE}-->
+                                <a href="/play/quest_detail" class="btn btn-outline btn-yellow">クエスト詳細へ</a>
+                                <!--{else}-->
+                                <a href="/play/training" class="btn btn-outline btn-yellow">トレーニングをプレイ</a>
+                                <a href="/play/select_drill" class="btn btn-outline btn-yellow">違うドリルでトレーニングをプレイ</a>
+                                <!--{/if}-->
+                            </div>
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                    <!--{else}-->
+                    <div class="content-frame-designed-corner with-ribbon-title">
+                        <div class="frame-inner">
+                            <div class="layer"></div>
+                            <div class="head"></div>
+                            <div class="middle middle-resultMatch-lose">
+                                <div class="rt-score-wrap">
+                                    <p class="rt-titleimg">
+                                        <img src="/images/modal/youlose.png" alt="youlose">
+                                        <span>あなたの負け</span>
+                                    </p>
+                                    <p class="rt-score">
+                                        <span><!--{$result.score|escape|default:''}--></span>点
+                                    </p>
+                                    <ul class="rt-addmorescore">
+                                        <li>
+                                            <div class="rt-ico rt-ico-point">ラビポイント</div>
+                                            <div class="rt-point">
+                                                + <span><!--{$result.rabipoint_bonus|escape|default:'5'}--></span>
+                                            </div>
+                                        </li>
+                                        <!--{include file="play/partial/point_reason.html"}-->
+                                        <!--{if $from_quest == FALSE}-->
+                                        <li>
+                                            <div class="rt-ico rt-ico-carrot">パワー</div>
+                                            <div class="rt-point"><!--{if ($result.power_bonus >= 0)}-->+ <!--{else}-->- <!--{/if}--> 
+                                                <span class="ico-carrot"><!--{$result.power_bonus|abs|escape|default:''}--></span>
+                                            </div>
+                                        </li>
+                                        <!--{/if}-->
+                                    </ul>
+                                <div class="info-area">
+                                    <div class="item-name">対戦プレイヤー</div>
+                                    <!--{include file="partial/match_player_list.html" players=$opponent href='play/match/'}-->
+                                </div>
+                            </div>
+                            <div class="rt-button-group<!--{if !$can_battle}--> no-coin<!--{/if}-->">
+                                <!--{if $can_battle}-->
+                                <a href="/play/select_player" class="btn btn-outline btn-yellow">もう一度プレイ</a>
+                                <a href="/play/select_drill" class="btn btn-outline btn-yellow">ドリルを選ぶ</a>
+                                <!--{else if $from_quest == TRUE}-->
+                                <a href="/play/quest_detail" class="btn btn-outline btn-yellow">クエスト詳細へ</a>
+                                <!--{else}-->
+                                <a href="/play/training" class="btn btn-outline btn-yellow">トレーニングをプレイ</a>
+                                <a href="/play/select_drill" class="btn btn-outline btn-yellow">違うドリルでトレーニングをプレイ</a>
+                                <!--{/if}-->
+                            </div>
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                    <!--{/if}-->
+                <!--{/if}-->
+            </div>
+        </div>
+    </div>
+</div>

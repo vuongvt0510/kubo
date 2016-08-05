@@ -1,0 +1,98 @@
+<div class="pay-service-page pay-service-index">
+    <div class="bg-triangle">
+        <div class="container">
+            <div class="page-title">
+                <p class="h1">スクールTV Plus</p>
+            </div>
+            <div class="main-content">
+                <div class="content-frame">
+                    <div class="contract-status">
+                        <p class="student">お子さま</p>
+                        <p class="student-name"><!--{$contract.nickname|escape|default:$contract.login_id}--></p>
+
+                        <!--{if $contract.status == 'under_contract'}-->
+                        <p class="status">スクールTV Plus：<span class="status-name">契約中</span></p>
+                        <p class="exp">月額有料プランをご利用できます</p>
+                        <!--{else if $contract.status == 'pending'}--><!--{* there is some problem with credit card *}-->
+                        <p class="status">スクールTV Plus：<span class="status-name">更新停止</span></p>
+                        <p class="exp"><!--{if !$is_expired}-->今月のスクールTV Plusのお支払いが正常に完了していません。再度クレジットカード情報をご確認の上、お支払いをお願いいたします。
+                            <!--{else}-->
+                            今月のスクールTV Plusのお支払いが正常に完了していません。（現在月額有料プランはご利用いただけません。）再度クレジットカード情報をご確認の上、お支払いをお願いいたします。<br>
+                            お支払いが正常に完了しない場合、今月25日をもって自動解約となります。
+                            <br>
+                            <!--{/if}--></p>
+                        <!--{else if $contract.status == 'canceling'}--><!--{*quit using this paied service*}-->
+                        <p class="status">スクールTV Plus：<span class="status-name">解約(月末まで有効)</span></p>
+                        <p class="exp">スクールTV Plusを解約しました。<br>お支払い済みの期間は、月額有料プランを引き続きお使いいただけます。</p>
+                        <!--{else}-->
+                        <p class="status">スクールTV Plus：<span class="status-name">未契約</span></p>
+                        <!--{/if}-->
+
+                    </div>
+                    <div class="divider dashed"></div>
+
+                    <!--{if !empty($credit_card)}-->
+                    <p class="h4 bold text-center">&lt;&nbsp;クレジットカード情報を変更されたい方&nbsp;&gt;</p>
+                    <p class="text-center">クレジットカード情報を変更して更新することができます。</p>
+
+                    <div class="settings-list">
+                        <ul class="list-unstyled">
+                            <li>
+                                <div class="name">カード情報</div>
+                                <div class="description bold">
+                                    <!--{$credit_card.card_type|escape|default:''}--> <!--{$credit_card.card_number|escape|default:''}--><br>
+                                    有効期限： <!--{$credit_card.expire|escape|default:''}-->
+                                </div>
+                                <!--{if in_array($contract.status, ['under_contract', 'pending', 'canceling'])}-->
+                                <div class="link">
+                                    <a href="/credit_card/register/?redirect=<!--{$param_url_request_update_cc}-->" class="btn btn-green btn-right-arrow">編集</a>
+                                </div>
+                                <!--{/if}-->
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="divider dashed"></div>
+                    <!--{/if}-->
+
+                    <div class="row">
+                        <div class="col-sm-6 <!--{if !(empty($credit_card) && in_array($contract.status, ['free', 'not_contract']) || (!empty($credit_card) && in_array($contract.status, ['pending'])) ) }-->col-sm-offset-3<!--{/if}-->">
+                            <a href="/dashboard/<!--{$contract.user_id|escape}-->" class="btn btn-gray btn-block">戻る</a>
+                        </div>
+
+                        <!--{if empty($credit_card) && in_array($contract.status, ['free', 'not_contract'])}-->
+                        <div class="col-sm-6">
+                            <a href="/coin/password/<!--{$contract.user_id|escape}-->?redirect=<!--{$param_url_request}-->" class="btn btn-green btn-block"><!--{if $contract.status == 'pending'}-->支払い<!--{else}-->申し込み画面へ<!--{/if}--></a>
+                        </div>
+                        <!--{elseif !empty($credit_card) && in_array($contract.status, ['pending'])}-->
+                        <div class="col-sm-6">
+                            <a href="/pay_service/<!--{$contract.user_id|escape}-->/purchase?redirect=<!--{$param_url_request}-->" class="btn btn-green btn-block"><!--{if $contract.status == 'pending'}-->支払い<!--{else}-->申し込み画面へ<!--{/if}--></a>
+                        </div>
+                        <!--{/if}-->
+
+                    </div>
+
+                    <div class="explanation-area clearfix">
+                        <p class="h4 bold text-center">スクールTV有料プランとは？</p>
+                        <div class="row">
+                            <div class="col-md-2 col-sm-3 col-xs-4 col-md-offset-0 col-sm-offset-0 col-xs-offset-4">
+                                <img src="/images/rabi-balloon/rabi-smile.png" alt="Rabi" class="img-responsive">
+                            </div>
+                            <div class="explanation-text col-md-10 col-sm-9 col-xs-12">
+                                <p>動画のレッスン中の質問が、選択式になってパワーアップするよ！</p>
+                                <p>画面を操作して答えるから、動画を見るだけよりも、
+                                    楽しく学ぶことができるよ！</p>
+                                <p>※月額<!--{$amount}-->円の有料プランです。</p>
+                                <p>※動画によっては、選択式の質問がない場合があります。</p>
+                            </div>
+                        </div>
+                        <!--{if $contract.status == 'under_contract' && !empty($credit_card)}-->
+                        <p class="cancel pull-right">
+                            スクールTV Plusを<a href="/pay_service/<!--{$contract.user_id|escape}-->/cancel">解約する</a>
+                        </p>
+                        <!--{/if}-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

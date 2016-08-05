@@ -1,0 +1,33 @@
+<!--{if empty($current_user)}-->
+<a href="javascript:;" data-toggle="modal" class="btn btn-red x-require-login" data-message="ドリルの購入、ドリルのお試しプレイにはログインが必要です。" data-url="/register" data-label="登録ページへ">
+    <span class="icon-rabicoin"></span>
+    <span class="num"><!--{$deck.coin|escape|default:10}--></span>
+    コイン
+</a>
+<a href="javascript:;" class="text-primary btn btn-light-blue x-require-login" data-message="ドリルの購入、ドリルのお試しプレイにはログインが必要です。" data-url="/register" data-label="登録ページへ">
+    <span class="icon-controller"></span>
+    お試しプレイ
+</a>
+<!--{else}--><!--{* login *}-->
+    <!--{if ($is_purchased)}-->
+    <a href="/play/<!--{$deck.id|escape|default:''}-->" class="btn btn-light-blue">
+        <span class="icon-controller"></span>
+        プレイ
+    </a>
+    <!--{else}-->
+        <!--{if ($is_student)}-->
+            <a href="#modalGetDeck" data-toggle="modal" class="btn btn-red">
+                <span class="icon-rabicoin"></span>
+                <span class="num"><!--{$deck.coin|escape|default:10}--></span>
+                コイン
+            </a>
+            <!--{include file="partial/modal/cant_getting_deck.html"}-->
+            <!--{include file="partial/modal/getting_deck.html"}-->
+        <!--{/if}-->
+
+        <a href="/play/<!--{$deck.id}-->/trial" class="btn btn-light-blue">
+            <span class="icon-controller"></span>
+            お試しプレイ
+        </a>
+    <!--{/if}-->
+<!--{/if}-->

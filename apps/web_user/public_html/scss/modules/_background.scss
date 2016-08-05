@@ -1,0 +1,114 @@
+.bg-triangle {
+  background-image: url("../images/background/bg-triangle.jpg");
+
+  @media (max-width: $screen-xs-max) {
+    background-size: 120px auto;
+  }
+}
+.bg-triangle-light {
+  background-image: url("../images/background/bg-triangle-light.jpg");
+
+  @media (max-width: $screen-xs-max) {
+    background-size: 120px auto;
+  }
+}
+.bg-triangle-blue {
+  background-image: url("../images/background/bg-triangle-blue.jpg");
+
+  @media (max-width: $screen-xs-max) {
+    background-size: 120px auto;
+  }
+}
+.bg-triangle-yellow-light {
+  background-image: url("../images/background/bg-triangle-yellow-light.jpg");
+
+  @media (max-width: $screen-xs-max) {
+    background-size: 120px auto;
+  }
+}
+.bg-shining-yellow {
+  position: relative;
+  background: #f3d102;
+
+  .bg-inner {
+    height: 100%;
+    background: url("../images/background/bg-shining-yellow.jpg") left top no-repeat;
+    background-size: 100% auto;
+
+    @media (max-width: $screen-xs-max) {
+      background-size: 160% auto;
+      background-position: center top;
+    }
+  }
+}
+
+.bg-gray {
+  background-color: #f4f4f4;
+}
+.bg-green {
+  background-color: #54dfaa;
+  &.bg-subject {
+    background-color: #a6fada;
+  }
+}
+.bg-blue {
+  background-color: #51d1ea;
+  &.bg-subject {
+    background-color: #a8c2fb;
+  }
+}
+.bg-light-blue {
+  background-color: #3bdfff;
+  &.bg-subject {
+    background-color: #a4e8f5;
+  }
+}
+.bg-violet {
+  background-color: #82a3ea;
+  &.bg-subject {
+    background-color: #9fb9f4;
+  }
+}
+.bg-orange {
+  background-color: #ffa32f;
+  &.bg-subject {
+    background-color: #ffc77f;
+  }
+}
+.bg-white {
+  background-color: $c-white;
+}
+.bg-light-yellow {
+  background-color: #ffffc6;
+}
+.bg-yellow {
+  background-color: #f4c000;
+  &.bg-subject {
+    background-color: #f7e677;
+  }
+}
+.bg-pink {
+  background-color: #ff7e7e;
+  &.bg-subject {
+    background-color: #f7b6b6;
+  }
+}
+.bg-light-pink {
+  background-color: #ff7e7e;
+  &.bg-subject {
+    background-color: #f7b6b6;
+  }
+}
+.bg-brown {
+  background-color: #d8a84c;
+  &.bg-subject {
+    background-color: #f4e3c2;
+  }
+}
+.bg-yellow {
+  background-color: #fffd3c;
+}
+.bg-transparent{
+  background-color: transparent !important;
+  border: 0 !important;
+}

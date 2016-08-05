@@ -1,0 +1,51 @@
+<div class="bg-triangle">
+    <div class="container">
+        <div class="page-title">
+            <p class="h1">教科書設定</p>
+            <p class="caption">
+                教科書を設定するとあなたの学校の教科書に合った
+                <br class="hidden-xs">
+                動画を⾒ることができるようになります。
+            </p>
+        </div>
+        <div class="main-content">
+            <div class="content-frame">
+                <p class="h3 text-center mb30">学校で使⽤している教科書を確認してください</p>
+                <div class="settings-list">
+                    <ul class="list-unstyled">
+                        <!--{foreach from=$list_textbooks item=item}-->
+                        <li>
+                            <div class="name">
+                                <div class="label-subject label-<!--{$item.subject.color|escape|default:'orange'}-->">
+                                    <!--{$item.subject.short_name|escape|default:''}-->
+                                </div>
+                            </div>
+                            <div class="description">
+                                <span class="bold">
+                                    <!--{$item.textbook.name|escape|default:''}-->
+                                </span>
+                                <br>
+                                <!--{$item.publisher.name|escape|default:''}-->
+                            </div>
+                            <div class="link">
+                                <!--{assign var=u_id value = ''}-->
+                                <!--{if !empty($user_id)}-->
+                                    <!--{assign var=u_id value="&user_id=`$user_id`"}-->
+                                <!--{/if}-->
+
+                                <a href="/textbook/search/<!--{$item.textbook.name|escape|default:''}-->/keyword?textbook_id=<!--{$item.textbook.id|escape|default:''}-->&subject_id=<!--{$item.subject.id|escape|default:''}--><!--{$u_id|escape|default:''}-->" class="btn btn-green btn-right-arrow">教科書を変更</a>
+                            </div>
+                        </li>
+                        <!--{/foreach}-->
+                    </ul>
+                </div>
+                <div class="divider dashed"></div>
+                <div class="row mt30">
+                    <div class="col-sm-6 col-sm-push-3">
+                        <a href="/setting" class="btn btn-green btn-block">OK</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

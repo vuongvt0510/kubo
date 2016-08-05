@@ -1,0 +1,65 @@
+<div class="bg-triangle">
+    <div class="container">
+
+        <!--{if ($device_type=="SP")}-->
+        <div class="visible-xs content-timeline mb10">
+            <div class="top-bg-xs text-center">
+                <a href="/" alt="back" class="btn-back"></a>
+                <span class="title-xs">通知</span>
+            </div>
+        </div>
+       <!--{else}-->
+        <div class="hidden-xs">
+            <div class="page-title">
+                <p class="h1">通知</p>
+            </div>
+        </div>
+        <!--{/if}-->
+        <div class="main-content">
+            <div class="content-frame relation message-frame">
+                <ul class="tab list-unstyled" role="tablist">
+                    <li role="presentation" class="family">
+                        <a href="/notification"><span class="family-tab">家族</span></a>
+                    </li>
+                    <li role="presentation" class="active friend">
+                        <a href="/notification/friend"><span class="friend-tab">友達</span></a>
+                    </li>
+                    <li role="presentation" class="schooltv">
+                        <a href="/notification/point_exchange"><span class="schooltv-tab">スクールTV</span></a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" id="message_friend" class="tab-pane active">
+                        <!--{if !empty($notification_friend.items)}-->
+                        <div>
+                            <ul class="list-unstyled">
+                                <!--{foreach from=$notification_friend.items key=key item=item}-->
+                                <li class="item clearfix">
+                                    <div class="item-content">
+                                        <div class="left clearfix">
+                                            <img src="/images/avatar/<!--{if $item.avatar_id == 0}--><!--{if $item.primary_type == 'parent'}-->12<!--{else}-->2<!--{/if}--><!--{else}--><!--{$item.avatar_id}--><!--{/if}-->.png" alt="">
+                                        </div>
+                                        <div class="center">
+                                            <div class="name"><!--{$item.extra_data.title|escape|default:''}--></div>
+                                            <a class="message" id="text" href="<!--{$item.extra_data.destination|escape|default:''}-->"><!--{$item.extra_data.content|escape|default:''}--></a>
+                                            <div class="time x-time-format common-time" data-time="<!--{$item.created_at|escape|default:''}-->"><!--{* TODO: need js plugin to change the expression of time like '10 minutes before' *}-->
+                                                <!--{$item.created_at|escape:default:''}-->
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <span class="el-icons el-angle-right"></span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!--{/foreach}-->
+                            </ul>
+                        </div>
+                        <!--{else}-->
+                            <!--{include file="partial/no_item.html" message="表示できる通知はありません"}-->
+                        <!--{/if}-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

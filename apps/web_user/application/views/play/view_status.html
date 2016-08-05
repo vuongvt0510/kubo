@@ -1,0 +1,77 @@
+<div class="play-page memorize monthly-report">
+    <div class="bg-triangle-blue">
+        <div class="bg-white">
+            <div class="section-title-top bg-white">
+                <div class="container">
+                    <p class="h3"><span class="c-primary"><!--{$user_nickname|escape|default:'ニックネームなしさん'}-->さん</span> のドリルプレイ状況</p>
+                    <div class="bg-transparent border-light-blue">
+                        <!--{include file="partial/deck_list_line.html" decks=$deck}-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <div class="container ">
+                <div class="bg-inner">
+                    <div class="content-frame bg-transparent report-frame">
+                            <div class="middle mt20">
+                                <!--{include file="partial/stage_status_list.html" stages=$stage}-->
+                                <div class="clearfix"></div>
+                                <div class="text-center h3 c-white mt30 mb20">最近の成績</div>
+                                <div class="status-list border-list">
+                                    <!--{foreach from=$learning_history item=history}-->
+                                    <div class="item blue-dark-border">
+                                        <div class="item-inner">
+                                            <div class="header">
+                                                <span class="datetime"><!--{date('Y.m.d', strtotime($history.created_at))|escape|default:'0'}--></span>
+                                                <div class="text-center mt10">
+                                                    <span class="h4">スコア: </span>
+                                                    <span class="h3 bold c-red-dark"><!--{$history.score|escape|default:'0'}--></span><span class="c-red-dark">点</span>
+                                                </div>
+                                            </div>
+                                            <div class="bottom">
+                                                <div class="container-fluid">
+                                                    <div class="col-xs-12 col-sm-4 pl0 pr0">
+                                                        <div>
+                                                            <div class="inline-block"><span class="label label-orange">正解数</span></div>
+                                                            <span class="c-red-dark"><!--{$history.correct_answer|escape|default:'0'}-->問</span>
+                                                            <span>／<!--{$history.total_questions|escape|default:'0'}-->問中</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-4 pl0 pr0">
+                                                        <div>
+                                                            <div class="inline-block"><span class="label label-green">正解率</span></div>
+                                                            <span class="c-red-dark"><!--{$history.correct_answer/$history.total_questions * 100|escape|default:'0'}-->%</span>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-4 pl0 pr0">
+                                                        <div>
+                                                            <div class="inline-block"><span class="label label-purple">スピード</span></div>
+                                                            <span class="c-red-dark"><!--{$history.second|escape|default:'0'}-->秒</span>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!--{/foreach}-->
+                                </div>
+
+
+                            </div>
+                            <div class="foot"></div>
+
+                    </div>
+                    <div class="divider dashed white"></div>
+                    <div class="text-center">
+                        <a href="/play/select_stage" class="btn btn-outline back-link">ステージ一覧へ戻る</a>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+</div>

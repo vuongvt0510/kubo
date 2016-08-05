@@ -1,0 +1,28 @@
+<div class="modal fade" id="purchase-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button id="cancel-close" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-header">
+                <div class="modal-title">
+                    入手確認
+                </div>
+            </div>
+            <div class="modal-body text-center">
+                <p class="modal-basic-tt">このドリルを入手しますか？</p>
+                <div class="modal-basic-boxgrey">
+                    <p class="text-center"><!--{$deck.name|escape|default:''}--></p>
+                    <p class="text-center fz18"><!--{$deck.coin|escape|default:''}-->コイン</p>
+                </div>
+            </div>
+            <div class="modal-footer modal-footer-btngroup text-center">
+                <form action="/deck/purchase/<!--{$deck.id}-->" method="POST">
+                    <input type="hidden" name="token" value="test123">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
+                    <button type="submit" class="btn btn-green">入手</button>
+                </form>
+            </div>
+        </div>
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

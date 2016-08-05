@@ -1,0 +1,19 @@
+<div class="bg-triangle">
+    <div class="container">
+        <div class="page-title">
+            <p class="h1"><!--{$nickname|escape|default:''}-->が購入したドリル</p>
+        </div>
+    </div>
+</div>
+<div class="bg-triangle-blue">
+    <div class="container">
+        <!--{if !empty($purchases)}-->
+            <!--{foreach from=$purchases key=key item=purchase}-->
+                <h3 class="title-yellow-bg"><!--{$purchase.category.title|escape|default:''}--></h3>
+                <!--{include file="partial/deck_list_line.html" decks=$purchase.decks href="play/"}-->
+            <!--{/foreach}-->
+        <!--{else}-->
+            <!--{include file="partial/no_item.html" message="ドリルを購入すると表示されるよ\n勉強してみたいドリルを探そう！"}-->
+        <!--{/if}-->
+    </div>
+</div>

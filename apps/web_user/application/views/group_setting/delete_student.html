@@ -1,0 +1,56 @@
+<div class="bg-triangle">
+    <div class="container">
+        <div class="page-title">
+            <p class="h1">子どもアカウントを削除</p>
+            <p class="caption">削除するアカウントを確認してください</p>
+        </div>
+
+        <div class="main-content">
+
+            <div class="content-frame form-horizontal">
+                <div class="bg-triangle-blue head text-center">
+                    <span class="h4">選択中のグループ <!--{$group_name|escape|default:''}--></span>
+                </div>
+                <!--{if isset($members)}-->
+                <!--{foreach $members as $member}-->
+                <!--{if $member.primary_type == 'student'}-->
+                <form method="post">
+                    <div class="box-bortop text-left">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-left">ID</label>
+                            <div class="col-sm-8">
+                                <p class="form-control-static bold"><!--{$member.login_id|escape|default:''}--></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-left">名前</label>
+                            <div class="col-sm-8">
+                                <p class="form-control-static"><!--{$member.nickname|escape|default:''}--></p>
+                            </div>
+
+                        </div>
+                        <input type="hidden" name="member_id" value="<!--{$member.id|escape|default:''}-->">
+                        <input type="hidden" name="member_login_id" value="<!--{$member.login_id|escape|default:''}-->">
+                        <input type="hidden" name="member_nickname" value="<!--{$member.nickname|escape|default:''}-->">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6 col-sm-push-3">
+                                    <button type="submit" class="btn btn-green btn-block">削除</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="divider dashed"></div>
+                <!--{/if}-->
+                <!--{/foreach}-->
+                <!--{/if}-->
+                <div class="row">
+                    <div class="col-sm-6 col-sm-push-3">
+                        <a href="/group_setting/<!--{$group_id|escape|default:''}-->/student" class="btn btn-gray btn-block">キャンセル</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,357 @@
+.group-setting-page {
+
+  .bg-triangle {
+    padding-bottom: 80px;
+
+    @media (max-width: $screen-xs-max) {
+      padding-bottom: 40px;
+    }
+  }
+
+  // CF10
+  .group-box {
+    position: relative;
+    display: block;
+    padding-top: 70px;
+    background: #fff;
+    box-shadow: 3px 3px 3px rgba(#000, 0.15);
+    margin-bottom: 20px;
+
+    @media (max-width: $screen-xs-max) {
+      padding-top: 35px;
+      margin-bottom: 10px;
+    }
+
+    &:hover {
+      background: #f1fcff;
+      text-decoration: none;
+    }
+
+    &:after {
+      content:'';
+      display: block;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 69px;
+      height: 69px;
+      background: url("/images/arrow-triangle.png");
+
+      @media (max-width: $screen-xs-max) {
+        width: 35px;
+        height: 35px;
+        background-size: 100%;
+      }
+    }
+  }
+  .group-id {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    color: #fff;
+    font-size: 28px;
+    padding: 5px 30px;
+    background: #6ecbe6;
+    border-right: 1px solid #63b6cf;
+    border-bottom: 1px solid #63b6cf;
+
+    @media (max-width: $screen-xs-max) {
+      height: 30px;
+      font-size: 14px;
+      padding: 5px 15px;
+    }
+  }
+  .group-info {
+    padding: 0 30px 20px;
+    margin-bottom: 0;
+
+    @media (max-width: $screen-xs-max) {
+      padding: 0 15px 10px;
+      margin-bottom: 0;
+    }
+
+    dt {
+      @media (min-width: $screen-sm) {
+        width: 130px;
+      }
+    }
+    dd {
+      @media (min-width: $screen-sm) {
+        margin-left: 150px;
+      }
+      @media (max-width: $screen-xs-max) {
+        margin-bottom: 5px;
+      }
+    }
+    dt,dd {
+      color: #38454f;
+      font-size: 18px;
+      font-weight: normal;
+      text-align: left;
+
+      @media (max-width: $screen-xs-max) {
+        font-size: 12px;
+      }
+
+      &.group-name-dt {
+        @media (min-width: $screen-sm) {
+          padding-top: 5px;
+        }
+      }
+
+      &.group-name {
+        font-size: 24px;
+        font-weight: bold;
+
+        @media (max-width: $screen-xs-max) {
+          font-size: 15px;
+        }
+      }
+      .owner-nickname {
+        font-weight: bold;
+      }
+    }
+  }
+  .role-label {
+    display: inline-block;
+    width: 74px;
+    height: 24px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+
+    @media (max-width: $screen-xs-max) {
+      width: 54px;
+      height: 19px;
+      font-size: 10px;
+      border-radius: 5px;
+      border-width: 2px !important;
+    }
+
+    &.green {
+      color: #00bf9d;
+      border: 3px solid #00bf9d;
+    }
+    &.orange {
+      color: #ff9b24;
+      border: 3px solid #ff9b24;
+    }
+  }
+
+  .member-list {
+
+    .item {
+      height: 80px;
+      border-top: 1px solid #e0e0e0;
+    }
+    .cell {
+      display: table-cell;
+      vertical-align: middle;
+
+      &.first {
+        width: 70px;
+        text-align: right;
+        @media (max-width: $screen-xs-max) {
+          width: 50px;
+        }
+      }
+      &.second {
+        width: 90px;
+        text-align: right;
+
+        @media (max-width: $screen-xs-max) {
+          width: 60px;
+        }
+      }
+      &.third {
+        height: 80px;
+        padding: 0 20px;
+        max-width: 255px;
+        line-height: 1.2;
+      }
+    }
+    .thumb {
+      width: 45px;
+    }
+    .member-name {
+      font-size: 24px;
+      color: #38454f;
+      margin: 0;
+
+      @media (max-width: $screen-xs-max) {
+        font-size: 14px;
+      }
+    }
+    .member-id {
+      font-size: 18px;
+      color: #38454f;
+
+      @media (max-width: $screen-xs-max) {
+        font-size: 11px;
+      }
+    }
+  }
+
+  //.btn-area {
+  //  .btn {
+  //    @media (min-width: $screen-sm) {
+  //      width: 400px;
+  //    }
+  //  }
+  //}
+  .btn-area-lg {
+    @media (min-width: $screen-sm) {
+      .btn {
+        width: 500px;
+        height: 50px;
+      }
+    }
+  }
+
+  .divider {
+    margin: 40px 0;
+
+    @media (max-width: $screen-xs-max) {
+      margin: 20px 0;
+    }
+  }
+
+
+  // SR20
+  &.recommend-student-confirm-page {
+    .content-frame {
+      padding: 20px;
+      margin-bottom: 20px;
+
+      @media (max-width: $screen-xs-max) {
+        padding: 20px 15px 15px;
+      }
+    }
+    .form-horizontal {
+      margin: 0;
+    }
+    .form-title {
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+    .form-group {
+      margin-top: 3px;
+    }
+    .control-label {
+      @media(max-width: $screen-xs-max) {
+        text-align: left;
+        font-size: 12px;
+      }
+    }
+    .form-control-static {
+      font-size: 18px;
+      @media(max-width: $screen-xs-max) {
+        font-size: 14px;
+      }
+    }
+    .group-box:after {
+      display: none;
+    }
+  }
+
+  //MT10
+  .team{
+    .item{
+      position: relative;
+      a:hover, a:active, a:focus{
+        text-decoration: none;
+      }
+      .group-info{
+        @media (max-width: $screen-sm-max){
+          overflow: hidden;
+        }
+        @media (max-width: 767px) {
+          display: block;
+          overflow: hidden;
+        }
+        dt{
+          font-size: 16px;
+          @media (max-width: $screen-sm-max) {
+            width:40%;
+            overflow: hidden;
+            float: left;
+          }
+          @media (max-width: $screen-xs-max) {
+            width:30%;
+          }
+          @media (max-width: 425px) {
+            width:35%;
+            font-size: 14px;
+          }
+        }
+        dd{
+          font-size: 14px;
+          margin-bottom: 5px;
+          @media (max-width: $screen-sm-max){
+            width:60%;
+            overflow: hidden;
+            float: left;
+            margin: 0 0 5px;
+          }
+          @media (max-width: $screen-xs-max) {
+            width:70%;
+          }
+          @media (max-width: 425px) {
+            width:65%;
+          }
+        }
+        dd.group-name{
+          font-size: 20px;
+          @media (max-width: 425px) {
+            font-size: 16px;
+          }
+        }
+      }
+
+
+      .member-list{
+
+        .member-name{
+          font-size: 18px;
+        }
+        .member-id{
+          font-size: 14px;
+        }
+
+      }
+
+      .crt-team{
+        margin-bottom: 50px;
+        .group-box{
+          padding-top: 50px;
+          @media (max-width: 767px) {
+            padding-top: 25px;
+
+          }
+          a{
+            h2 {
+              font-weight: bold;
+              @media (max-width: 425px) {
+                font-size: 20px;
+              }
+            }
+          }
+        }
+        .divider{
+          margin: 50px 0 0;
+          @media (max-width: 767px) {
+            margin: 30px 0 0;
+          }
+        }
+        p{
+          padding: 24px 0 25px;
+          @media (max-width: 767px) {
+            padding: 18px 0;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+.no-item {
+  position: relative;
+  height: 600px;
+  &.small{
+    height: 400px;
+    @media (max-width: $screen-xs-max) {
+      height: 220px;
+    }
+  }
+  @media (max-width: $screen-xs-max) {
+    height: 360px;
+  }
+
+  .box {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 220px;
+
+    .rabi {
+      width: 97px;
+      height: 181px;
+      background: url("../images/no-item.png") left top no-repeat;
+      background-size: 100% auto;
+      margin: 0 auto 10px;
+
+      @media (max-width: $screen-xs-max) {
+        width: 67px;
+        height: 134px;
+      }
+    }
+    .text {
+      color: #56240e;
+      font-size: 18px;
+      text-align: center;
+
+      @media (max-width: $screen-xs-max) {
+        font-size: 12px;
+      }
+    }
+  }
+}

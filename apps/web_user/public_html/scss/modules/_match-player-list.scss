@@ -1,0 +1,80 @@
+.match-player-list {
+  max-width: 442px;
+  width: 90%;
+  margin: 0 auto 10px;
+  .item {
+    .item-in {
+      display: block;
+      width: 100%;
+      min-height: 70px;
+      background: #37a8e6;
+      border: 4px solid #1e6fbe;
+      border-radius: 4px;
+      color: #fff;
+      padding: 7px 15px;
+      margin-bottom: 15px;
+      box-shadow: 0px 3px 0 0 rgba(0, 72, 113, 0.22);;
+    }
+
+    .thumb {
+      width: 50px;
+    }
+    .tb-score{
+      width: 100%;
+      .td-image{
+        padding-top: 3px;
+        width: 55px;
+        vertical-align:middle;
+      }
+      .td-score{
+        width: 36%;
+        max-width: 138px;
+        .ic-group{
+          padding-top: 9%;
+        }
+      }
+      .td-username{
+        padding-top: 5px;
+        padding-left: 7px;
+        word-wrap: break-word;
+        white-space: normal;
+        display: inline-block;
+        word-break: break-all;
+        display:table-cell;
+      }
+    }
+    .user-name {
+      color: #fff;
+      font-size: 14px;
+      @media (max-width: $screen-xs-max) {
+        font-size: 13px;
+      }
+    }
+
+    // how to make el-icons? el-icon is different from design but is it ok?
+    .icon-group {
+      display: inline-block;
+      width: 20px;
+      height: 23px;
+      background: url("/images/icons/icon-group.png") left top no-repeat;
+      background-size: 100% auto;
+      margin: 13px 5px;
+    }
+
+    .score {
+      float: right;
+      color: #fff;
+      font-size: 16px;
+      padding-top: 4px;
+      .num {
+        color: #fff;
+        font-size: 26px;
+        font-weight: bold;
+        padding-left: 5px;
+        @media (max-width: $screen-xs-max) {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

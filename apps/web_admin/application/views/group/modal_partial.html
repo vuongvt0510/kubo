@@ -1,0 +1,84 @@
+<!--{content_for name="page_styles"}-->
+<link href="/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet"
+      type="text/css"/>
+<link href="/assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css"/>
+<link href="/assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+<!--{/content_for}-->
+
+<!--{content_for name="page_plugins"}-->
+<script src="/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.ja.min.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>
+<!--{/content_for}-->
+
+<!--{content_for name="page_scripts"}-->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#submitForm').on('click', function(e) {
+            var type = $("input[name=primary_type]:checked").val();
+            var group_name = $("#group_name").val() ? $("#group_name").val() : '';
+
+            var type_name = '';
+            type_name = type == 'family' ? "家族グループ" : "チーム";
+            $(".modal-body #group_name_modal").html(group_name);
+            $(".modal-body #primary_type_modal").html(type_name);
+        });
+        $("#modalSubmit").click(function () {
+            $("#form_create-group").submit();
+        });
+
+    });
+</script>
+
+<!--{/content_for}-->
+<!-- Modal -->
+<div id="details-modal" class="modal fade" tabindex="-1" data-width="760">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">新しいグループを作成</h4>
+    </div>
+    <div class="modal-body">
+        このユーザーでこのグループを作成しますか？
+        <div class="table-scrollable">
+            <table class="table table-hover text-left">
+                <tr>
+                    <th width="12%" class="active">ユーザーID</th>
+                    <td><!--{$user_detail.id|escape|default:''}--></td>
+                </tr>
+                <tr>
+                    <th width="12%" class="active">ID</th>
+                    <td><!--{$user_detail.login_id|escape|default:''}--></td>
+                </tr>
+                <tr>
+                    <th width="12%" class="active">名前</th>
+                    <td><!--{$user_detail.nickname|escape|default:''}--></td>
+                </tr>
+                <tr>
+                    <th width="12%" class="active">メールアドレス</th>
+                    <td><!--{$user_detail.email|escape|default:''}--></td>
+                </tr>
+                <tr>
+                    <th width="12%" class="active">ユーザー種別</th>
+                    <td><!--{if $user_detail.primary_type == 'student'}-->子<!--{else}-->保護者<!--{/if}--></td>
+                </tr>
+
+                <tr>
+                    <th class="active">グループ名</th>
+                    <td id="group_name_modal"></td>
+                </tr>
+                <tr>
+                    <th class="active">グループ種別</th>
+                    <td id="primary_type_modal"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="text-center">
+            <button type="button" data-dismiss="modal" class="btn btn-lg grey-salsa">キャンセル</button>
+            <button id="modalSubmit" type="button" class="btn btn-lg green">追加</button>
+        </div>
+    </div>
+</div>
+

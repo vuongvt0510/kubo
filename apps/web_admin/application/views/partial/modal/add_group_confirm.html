@@ -1,0 +1,83 @@
+<!-- Modal delete confirmation-->
+<div id="add-group-modal" class="modal fade modal-scroll" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">グループに追加</h4>
+            </div>
+            <form action="/user_group/add_user_group" method="post">
+                <div class="modal-body">
+                    <!--{if $status}-->
+                    <p>このユーザーはこのグループに参加しました</p>
+                    <!--{elseif $maximum }-->
+                    <p>グループメンバー数が上限に達しました。</p>
+                    <!--{else}-->
+                    <p>このユーザーを追加しますか？</p>
+                    <!--{/if}-->
+                    <div class="table-scrollable">
+                        <table class="table table-hover table-align-middle">
+                            <tr>
+                                <th width="12%" class="active">ユーザーID</th>
+                                <td><!--{$user_detail.id|escape|default:''}--></td>
+                            </tr>
+                            <tr>
+                                <th class="active">ID</th>
+                                <td><!--{$user_detail.login_id|escape|default:''}--></td>
+                            </tr>
+                            <tr>
+                                <th class="active">名前</th>
+                                <td><!--{$user_detail.nickname|escape|default:''}--></td>
+                            </tr>
+                            <tr>
+                                <th class="active">メールアドレス</th>
+                                <td><!--{$user_detail.email|escape|default:''}--></td>
+                            </tr>
+                            <tr>
+                                <th class="active">ユーザー種別</th>
+                                <td><span class="label label-sm label-primary"><!--{if $user_detail.primary_type == 'parent'}-->保護者<!--{else}-->子<!--{/if}--></span>
+                                    <!--{if (($user_detail.status != 'active') && ($user_detail.status != 'suspended'))}--> <span class="ml5 label label-sm label-warning">未承認</span><!--{/if}-->
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <p>追加するグループを確認してください</p>
+                    <div class="table-scrollable">
+                        <table class="table table-striped  table-hover table-align-middle" style="width: 50%">
+                            <tr>
+                            <tr>
+                                <th width="12%" class="active"><!--{if $group.type == 'family'}-->家族グループID<!--{else}-->友達グループID<!--{/if}--></th>
+                                <td><!--{$group.group_name|escape|default:''}--></td>
+                            </tr>
+                            <tr >
+                                <th rowspan="<!--{$rowspan|default:0}-->" class="active"><!--{if $group.type == 'family'}-->家族一覧<!--{else}-->メンバー<!--{/if}--></th>
+                            </tr>
+                            <!--{foreach from=$members key=key item=item}-->
+                            <tr>
+                                <td>ID <!--{$item.id|escape|default:''}-->: <!--{$item.login_id|escape|default:''}--> [<!--{$item.nickname|escape|default:''}-->]
+                                    <span class="label label-sm label-primary"><!--{if $item.primary_type == 'student'}--> 子<!--{else}--> 保護者<!--{/if}--></span>
+                                    <!--{if (($item.status != 'active') && ($item.status != 'suspended'))}--> <span class="ml5 label label-sm label-warning">未承認</span><!--{/if}-->
+                                </td>
+                            </tr>
+                            <!--{/foreach}-->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <input type="hidden" id="user_id" name="user_id" value="<!--{$user_detail.id|escape|default:''}-->" >
+                <input type="hidden" id="group_id" name="group_id" value="<!--{$group_id|escape|default:''}-->" >
+
+                <div class="modal-footer">
+                    <div class="text-center">
+                        <button type="button" data-dismiss="modal" aria-hidden="true" class="btn btn-lg default" >キャンセル</button>
+                        <!--{if !$status && !$maximum }-->
+                        <button type="submit" class="btn btn-lg green" >追加</button>
+                        <!--{/if}-->
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

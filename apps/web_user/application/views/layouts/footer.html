@@ -1,0 +1,34 @@
+<footer id="footer" class="x-footer">
+    <!--{if !isset($student_has_no_grade)}-->
+    <nav class="footer-nav">
+        <ul>
+            <li><a href="/about">スクールTVの使い方</a></li>
+            <li>｜</li>
+            <li><a href="/faq">FAQ</a></li>
+            <li>｜</li>
+            <li><a href="/rules">利用規約</a></li>
+            <li>｜</li>
+            <li><a href="/about_payment">資金決済法</a></li>
+            <li>｜</li>
+            <li><a href="/attention">特定商取引法 </a></li>
+        </ul>
+    </nav>
+    <!--{/if}-->
+    <div class="footer-logo">
+        <!--{if !empty($current_user) }-->
+            <!--{if $current_user.primary_type == 'parent' && empty($students_switch)}-->
+                 <a href="<!--{$site_url|cat:'/?grade_id='}--><!--{$current_grade.id|escape}-->#content" class="logo-link"><img src="/images/logo.png" alt="logo" class="img-responsive" width="200"></a>
+            <!--{else}-->
+                <a href="<!--{if isset($current_user)}-->/profile/detail<!--{else}-->/<!--{/if}-->" class="logo-link">
+                    <img src="/images/logo.png" alt="logo" class="img-responsive" width="200">
+                </a>
+            <!--{/if}-->
+        <!--{else}-->
+            <a href="<!--{$site_url|cat:'/?grade_id='}--><!--{$current_grade.id|escape}-->#content" class="logo-link"><img src="/images/logo.png" alt="logo" class="img-responsive" width="200"></a>
+        <!--{/if}-->
+        <p>Copyright© e-Learning Laboratory Co.,Ltd. All Rights Reserved</p>
+    </div>
+</footer>
+
+<!--{content_yield name='modal'}-->
+

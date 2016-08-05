@@ -1,0 +1,71 @@
+<div class="play-page memorize">
+    <div class="bg-shining-yellow">
+        <div class="bg-inner">
+
+            <div class="container ">
+                <div class="content-frame-designed-corner">
+                    <div class="frame-inner">
+                        <div class="head"></div>
+                        <div class="middle">
+
+                            <p class="frame-title">全部覚えられるかな?</p>
+
+                            <!--{include file="partial/deck_list_line.html" decks=$deck}-->
+
+                            <hr>
+
+                            <!--{include file="partial/stage_list.html" stages=$stage}-->
+
+                            <div class="clearfix"></div>
+                            <!--{if $is_student == TRUE}-->
+                            <div class="row btn-list list-unstyled text-center">
+
+                                <p class="col-md-6 col-sm-6 col-xs-6">
+                                    <a class="btn btn-yellow btnLink pdt15" href="/play/memorize_result/all">すべてチェック<br>
+                                        <span>全部チェックできるよ</span>
+                                    </a>
+                                </p>
+                                <p class="col-md-6 col-sm-6 col-xs-6">
+                                    <!--{if $disable_button != TRUE}-->
+                                    <a class="btn btn-yellow btnLink" href="/play/memorize_result/incorect">苦手チェック<br>
+                                        <span>覚えていないものだけチェックできるよ</span>
+                                    </a>
+                                    <!--{else}-->
+                                    <button id="incorrect-question" class="btn btn-yellow btnLink disabled" type="button">ニガテチェック<br>
+                                        <span>覚えていないものだけチェックできるよ</span>
+                                    </button>
+                                    <!--{/if}-->
+                                </p>
+
+                            </div>
+                            <!--{/if}-->
+                            <div class="clearfix"></div>
+
+                            <p class="status">このステージの覚えたチェック</p>
+                            <ul class="list-vocabulary list-unstyled">
+                                <!--{foreach from=$questions key=key item=question}-->
+                                <li class="row">
+                                    <div class="image col-md-2 col-sm-2 col-xs-1">
+                                        <img src="/images/play/<!--{if $question.status == 'remember'}-->circle<!--{else if $question.status == 'consider'}-->triangle<!--{else if $question.status == 'forget'}-->cross<!--{else}-->horizontal<!--{/if}-->.png" class="img-responsive" alt="">
+                                    </div>
+                                    <div class="text col-md-10 col-sm-10 col-xs-11">
+                                        <p><!--{$question.question|escape|default:''}--></p>
+                                    </div>
+                                </li>
+                                <!--{/foreach}-->
+                            </ul>
+
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="text-center">
+                    <a href="/play/select_stage" class="btn btn-outline back-link">戻る</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

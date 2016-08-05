@@ -1,0 +1,101 @@
+<!-- SC30 - Modal Seach school with schoolname-->
+<div id="search-school-name-modal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">都道府県・市町村から学校名を検索</h4>
+            </div>
+            <div class="modal-body">
+
+                <form class="form-horizontal margin-bottom-30" role="form">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-4 col-lg-3 control-label"></label>
+                            <div class="col-md-8 col-lg-9">
+                                <p style="color:red; display: none;" class="form-control-static" id="err_msg_name">学年が間違っています</p><br>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 col-lg-3 control-label">選択中の学校</label>
+
+                            <div class="col-md-8 col-lg-9">
+                                <p class="form-control-static"><!--{$user_detail.current_school.name|escape|default:''}--></p><br>
+                                <span class="small"><!--{$user_detail.current_school.address|escape|default:''}--></span>
+                                <input type="hidden" id="school_id_name" value="<!--{$user_detail.current_school.id|escape|default:''}-->">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 col-lg-3 control-label">学年</label>
+                            <div class="col-md-8 col-lg-9">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <select name="grade_id" id="grade_name" class="form-control">
+                                            <!--{foreach $grades as $grade}-->
+                                            <option <!--{if $user_detail.current_grade.id == $grade.id}-->selected<!--{/if}--> value="<!--{$grade.id|escape}-->"><!--{$grade.name|escape}--></option>
+                                            <!--{/foreach}-->
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 col-lg-3 control-label">都道府県</label>
+                            <div class="col-md-8 col-lg-9">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <select name="prefecture" id="prefecture" class="form-control">
+                                            <option value="0">選択してください</option>
+                                            <!--{foreach from=$prefectures item=prefecture}-->
+                                            <option value="<!--{$prefecture.id|escape}-->"><!--{$prefecture.name|escape}--></option>
+                                            <!--{/foreach}-->
+                                        </select>
+                                        <span class="help-block help-block-error" id="error_prefecture">都道府県を選択してください</span><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 col-lg-3 control-label">市町村</label>
+
+                            <div class="col-md-8 col-lg-9">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <select name="district" id="district" class="form-control">
+                                            <option>選択してください</option>
+                                        </select><br>
+                                        <span class="help-block help-block-error" id="valid_area"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 col-lg-3 control-label">学校名</label>
+
+                            <div class="col-md-8 col-lg-9">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" name ="school_name" id = "school_name" placeholder="学校名を入力">
+                                    </div>
+                                </div>
+                                <span class="help-block">学校名は入力しなくても検索できます</span>
+                            </div>
+
+                        </div>
+                        <div class="form-group text-center" >
+                            <button type="button" id="search_name" style="margin-top: 10px" class="btn green btn-lg"><i class="icon-magnifier font-white" ></i> 検索</button>
+                        </div>
+                    </div>
+                </form>
+                <div id="result3"></div>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center">
+                    <button type="button"  id="update_school_grade_name" class="btn btn-lg green">この学校に決定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

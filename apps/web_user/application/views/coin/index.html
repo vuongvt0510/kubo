@@ -1,0 +1,129 @@
+<div class="coin-page rabbi-page">
+    <div class="bg-triangle">
+        <div class="container">
+            <div class="page-title">
+                <p class="h1">コインを確認</p>
+            </div>
+            <div class="main-content">
+                <div class="content-frame form-horizontal">
+                    <div class="bg-triangle-blue head text-center">
+                        <span class="title">
+                            <span class="name"><!--{$user_coin.nickname|escape|default:$user_coin.login_id}--></span>
+                            のコイン
+                        </span>
+                    </div>
+                    <div class="current-coin">
+                        <img src="/images/icons/rabikoin.png" alt="rabbi-point">
+                        <span class="num"><!--{$user_coin.current_coin|number_format|escape|default:0}--></span>コイン
+                    </div>
+                    <div class="coin-area">
+                        <!--{if $operator_primary_type == 'parent'}-->
+                        <div class="purchase-coin-area">
+                            <p class="text-center col-xs-12">コインが少なくなったら購入することができます</p>
+                            <div class="btn-sp col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                                <a class="btn btn-green btn-block custom" href="<!--{url route='coin/password' id=$user_coin.id}-->">コインを購入</a>
+                            </div>
+                        </div>
+
+                        <!--{else}-->
+                            <!--{if $has_parent}-->
+                            <div class="purchase-coin-area">
+                                <p class="text-center col-md-12">コインが少なくなったらおねだりすることができます</p>
+                                <form id="form-ask-coin" action="/coin/ask_parent" method="POST" role="form">
+                                    <div class="btn-sp col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                                        <input type="hidden" name="user_id" class="user_id" value="<!--{$user_id|escape|default:''}-->">
+                                        <button class="btn btn-green btn-block asking custom" type="submit">おねだり</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!--{else}-->
+                            <div class="explanation-area clearfix">
+                                <p class="h4 bold text-center">STEP1</p>
+                                <p class="text-center">保護者の方もスクールTVの会員になろう</p>
+                                <p class="h4 bold text-center">STEP2</p>
+                                <p class="text-center">保護者の方と家族グループを作ろう</p>
+                                <p class="h4 bold text-center">STEP3</p>
+                                <p class="text-center">保護者の方がスクールTVにログインして、<br>きみのダッシュボードから契約ができます</p>
+                            </div>
+                            <!--{/if}-->
+                        <!--{/if}-->
+
+                        <ul class="tab list-unstyled" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#get-history" role="tab" data-toggle="tab">獲得履歴</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#spend-history" role="tab" data-toggle="tab">利用履歴</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div role="tabpanel" id="get-history" class="tab-pane active">
+                                <!--{if !empty($list_purchases)}-->
+                                <ul class="coin-list list-unstyled">
+                                    <!--{foreach from=$list_purchases item=purchase}-->
+                                    <li>
+                                        <div class="thumb">
+                                            <img class="avatar img-responsive" src="/images/avatar/<!--{if $purchase.avatar_id == 0}--><!--{if $purchase.primary_type == 'parent'}-->12<!--{else}-->2<!--{/if}--><!--{else}--><!--{$purchase.avatar_id}--><!--{/if}-->.png" alt="">
+                                        </div>
+                                        <div class="description">
+                                            <p class="person"><!--{$purchase.nickname|escape|default:$purchase.login_id}-->さんが購入</p>
+                                            <p class="how-much"><!--{$purchase.coin|escape|default:0}-->コイン獲得</p>
+                                            <span class="time"><!--{$purchase.created_at|escape}--></span><!--{*TODO: Add js plugin to change the format like '10 minutes ago'*}-->
+                                        </div>
+                                    </li>
+                                    <!--{/foreach}-->
+                                </ul>
+                                <!--{else}-->
+                                <!--{include file="partial/no_item.html" message="獲得したコインはありません"}-->
+                                <!--{/if}-->
+                            </div>
+
+                            <div role="tabpanel" id="spend-history" class="tab-pane">
+                                <!--{if !empty($list_buyings)}-->
+                                <ul class="coin-list list-unstyled">
+                                    <!--{foreach from=$list_buyings item=buying}-->
+                                    <li>
+                                        <div class="thumb">
+                                            <!--{*
+                                            <img src="<!--{image_link key=$buying.target.image_key|escape|default:''}-->" />
+                                            *}-->
+                                            <img class="coin-image img-responsive" src="<!--{image_link key=$buying.target.image_key|escape|default:''}-->" class="img-responsive" alt="" width="100%">
+                                        </div>
+                                        <div class="description">
+                                            <p class="coin-spend"><!--{$buying.coin|escape|default:0}-->コイン利用</p>
+                                            <p class="deck-name"><!--{$buying.target.name|escape|default:''}--></p>
+                                            <span class="time"><!--{$buying.created_at|escape}--></span><!--{*TODO: Add js plugin to change the format like '10 minutes ago'*}-->
+                                        </div>
+                                    </li>
+                                    <!--{/foreach}-->
+                                </ul>
+                                <!--{else}-->
+                                <!--{include file="partial/no_item.html" message="利用したコインはありません"}-->
+                                <!--{/if}-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--{content_for name="headjs"}-->
+<script>
+    $(document).ready(function() {
+        $('.asking').click(function() {
+            $(this).removeClass('btn-green');
+            $(this).addClass('btn-gray');
+            $(this).text('おねだりしました');
+            $(this).css('cursor', 'progress');
+        });
+        $("#form-ask-coin").submit(function() {
+            $(this).submit(function() {
+                return false;
+            });
+            return true;
+        });
+    })
+</script>
+<!--{/content_for}-->

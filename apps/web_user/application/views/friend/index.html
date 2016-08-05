@@ -1,0 +1,27 @@
+<div class="friend-page friend-index">
+    <div class="bg-triangle">
+        <div class="container">
+            <div class="page-title">
+                <p class="h1"><!--{$user_info.nickname|escape|default:'ニックネームなし'}-->の友達</p>
+
+                <!--{if !isset($friend_view)}-->
+                <a class="btn btn-green" href="/friend/add">
+                    <span class="el-icons el-user-follow"></span>
+                    友達を追加
+                </a>
+                <!--{/if}-->
+            </div>
+
+            <div class="main-content">
+                <div class="content-frame">
+
+                    <!--{if !empty($list_friends)}-->
+                        <!--{include file="partial/friend_list.html" friends=$list_friends}-->
+                    <!--{else}-->
+                        <!--{include file="partial/no_item.html" message="表示できる友達はいません\nスクールTVに参加している友達とつながろう"}-->
+                    <!--{/if}-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

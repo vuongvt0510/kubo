@@ -1,0 +1,199 @@
+.video-detail-page {
+  .video-banner {
+    background-color: #080708;
+    //@media (max-width: 1279px) {
+    //  border-bottom: 100px solid #52bede;
+    //}
+    @media (max-width: 1279px) {
+      border-bottom: 70px solid #52bede;
+    }
+    @media (max-width: 767px) {
+      border-bottom-width: 0;
+    }
+    @media (max-width: $screen-xs-max) {
+      border-bottom-width: 0;
+    }
+    .video-banner-wrapper {
+      text-align: center;
+    }
+    .video-image {
+      display: inline-block;
+      position: relative;
+      a {
+        display: block;
+        &:before {
+          content: '';
+          display: block;
+          width: 84px;
+          height: 84px;
+          background-image: url('../images/icons/video-play-lg.png');
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          margin-top: -42px;
+          margin-left: -42px;
+          z-index: 2;
+          opacity: 1;
+        }
+        &:hover:before {
+          opacity: 0.7;
+        }
+      }
+    }
+    #drill-screen {
+      position: relative;
+    }
+    .tweet-buttons {
+      position: absolute;
+      right: -120px;
+      top: 60px;
+      z-index: 1;
+      @media (max-width: 1279px) {
+        right: auto;
+        left: 0;
+        top: auto;
+        bottom: -128px;
+        border-top: 0 none;
+
+        width: auto;
+        display: table;
+        @include clearfix;
+        .h3 {
+          display: table-cell;
+          vertical-align: middle;
+          padding-bottom: 0;
+          border-bottom: 0;
+          border-right: 1px solid #52bede;
+          padding-right: 10px;
+        }
+        ul {
+          display: table-cell;
+          vertical-align: middle;
+          padding-left: 10px;
+        }
+        li {
+          float: left;
+        }
+      }
+      @media (max-width: $screen-xs-max) {
+        bottom: -75px;
+        left: 0;
+        right: 0;
+        display: none !important;
+        padding-left: 60px;
+        max-width: 400px;
+        .h3 {
+          width: 50px;
+          position: absolute;
+          top: 50%;
+          margin-top: -15px;
+          left: 10px;
+        }
+        ul {
+          display: block;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+          li {
+            float: left;
+            width: 25%;
+          }
+        }
+        //bottom: -81px;
+        //width: 100%;
+      }
+    }
+  }
+  .main-content {
+    padding-top: 45px;
+
+    @media (max-width: $screen-lg-max) {
+      padding-top: 75px;
+    }
+    @media (max-width: $screen-xs-max) {
+      padding-top: 30px;
+    }
+  }
+  .video-information {
+    color: #2d3940;
+    margin-bottom: 25px;
+    @include clearfix;
+
+    .description-box {
+      position: relative;
+      padding-right: 240px;
+
+      @media (max-width: $screen-xs-max) {
+        padding: 0;
+      }
+    }
+
+    .h1 {
+      font-size: 42px;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 10px;
+
+      @media (max-width: $screen-xs-max) {
+        font-size: 24px;
+        margin-bottom: 8px;
+      }
+    }
+    .unit-and-chapter {
+      font-size: 20px;
+
+      @media (max-width: $screen-xs-max) {
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+    }
+
+    .subject {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: #edeef0;
+      font-size: 24px;
+      padding: 5px 22px;
+      border-radius: 5px;
+      -webkit-border-radius: 5px;
+      margin-bottom: 0;
+
+      @media (max-width: $screen-xs-max) {
+        position: static;
+        float: left;
+        font-size: 12px;
+        padding: 5px 10px;
+      }
+    }
+
+    //.points-list {
+    //  @media (max-width: $screen-xs-max) {
+    //    padding-top: 15px;
+    //  }
+    //}
+  }
+
+  .current-progress {
+    @media (max-width: $screen-xs-max) {
+      margin-bottom: 0;
+    }
+  }
+  .sub-content {
+    padding-top: 110px;
+
+    @media (max-width: $screen-xs-max) {
+      padding-top: 25px;
+    }
+  }
+
+  // because of tweet buttons
+  .next-video {
+    @media (max-width: $screen-md-max) {
+      padding-top: 40px;
+    }
+    @media (max-width: $screen-xs-max) {
+      padding-top: 10px;
+    }
+  }
+}

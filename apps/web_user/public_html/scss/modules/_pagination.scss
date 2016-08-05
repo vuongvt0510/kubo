@@ -1,0 +1,27 @@
+.pagination-wrapper {
+  text-align: center;
+  .pagination {
+    display: inline-block;
+    margin-bottom: 40px;
+    @include clearfix;
+    > li > a {
+      border: 0 none;
+      border-radius: 4px;
+      text-transform: lowercase;
+      background-color: $c-primary;
+      margin-left: 3px;
+      margin-right: 3px;
+      color: $c-white;
+      font-size: 15px;
+      font-weight: 400;
+      font-family: Arial, sans-serif;
+      &:hover {
+        opacity: 0.8;
+      }
+      @media (max-width: $screen-xs-max) {
+        font-size: 12px;
+        padding: 3px 7px;
+      }
+    }
+  }
+}
