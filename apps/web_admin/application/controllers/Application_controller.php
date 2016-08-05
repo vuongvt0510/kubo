@@ -47,27 +47,27 @@ class Application_controller extends APP_Controller
     public function _render($data = [], $template_path = NULL, $layout = TRUE)
     {
         // 共通のタイトル
-        $app_name = $this->config->item('app_name');
-        if (isset($data['page_title']) && !empty($data['page_title'])) {
-            $data['title'] = $app_name . '|' . $data['page_title'];
-        } else {
-            $data['page_title'] = NULL;
-        }
-
-        // assign meta data
-        $data['meta'] = $this->_meta();
-
-        $data['device_type'] = $this->agent->is_smart_phone() ? 'SP' : 'PC';
-        $data['is_android'] = $this->agent->is_android() ? TRUE : FALSE;
-        $data['current_user'] = !empty($this->current_user) ? $this->current_user : null;
-
-        if (isset($data['pagination'])) {
-            $data['pagination'] = $this->get_pagination($data['pagination']);
-        }
-        //assign breadcrumb
-        if(isset($this->_breadcrumb)){
-            $data['breadcrumb'] = $this->_breadcrumb;
-        }
+//        $app_name = $this->config->item('app_name');
+//        if (isset($data['page_title']) && !empty($data['page_title'])) {
+//            $data['title'] = $app_name . '|' . $data['page_title'];
+//        } else {
+//            $data['page_title'] = NULL;
+//        }
+//
+//        // assign meta data
+//        $data['meta'] = $this->_meta();
+//
+//        $data['device_type'] = $this->agent->is_smart_phone() ? 'SP' : 'PC';
+//        $data['is_android'] = $this->agent->is_android() ? TRUE : FALSE;
+//        $data['current_user'] = !empty($this->current_user) ? $this->current_user : null;
+//
+//        if (isset($data['pagination'])) {
+//            $data['pagination'] = $this->get_pagination($data['pagination']);
+//        }
+//        //assign breadcrumb
+//        if(isset($this->_breadcrumb)){
+//            $data['breadcrumb'] = $this->_breadcrumb;
+//        }
 
         parent::_render($data, $template_path, $layout);
     }
