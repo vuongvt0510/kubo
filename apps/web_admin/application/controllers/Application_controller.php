@@ -27,10 +27,10 @@ class Application_controller extends APP_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->_before_filter('_find_current_user');
+       /* $this->_before_filter('_find_current_user');
         $this->_before_filter('_require_login');
         // profilerを無効化
-        $this->output->enable_profiler(FALSE);
+        $this->output->enable_profiler(FALSE);*/
 
     }
 
