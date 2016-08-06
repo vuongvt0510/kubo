@@ -31,7 +31,6 @@ class Application_controller extends APP_Controller
         $this->_before_filter('_require_login');
         // profilerを無効化
         $this->output->enable_profiler(FALSE);*/
-
     }
 
     /**
