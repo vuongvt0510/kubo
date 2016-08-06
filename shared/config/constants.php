@@ -90,17 +90,5 @@ if (!defined('DEFAULT_MAX_TEAM')) {
 |--------------------------------------------------------------------------
 */
 if (!defined('DB_MAIN')) {
-    define('DB_MAIN', 'schooltv_main');
-}
-
-if (!defined('DB_IMAGE')) {
-    define('DB_IMAGE', 'schooltv_image');
-}
-
-if (!defined('DB_CONTENT')) {
-    define('DB_CONTENT', 'schooltv_content');
-}
-
-if (!defined('DB_MAIL')) {
-    define('DB_MAIL', 'schooltv_mail');
+    define('DB_MAIN', 'kubo');
 }

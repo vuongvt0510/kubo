@@ -33,14 +33,14 @@ class Application_controller extends APP_Controller
         // For maintainance
         // redirect('/under_maintainance.html', 'auto', '302');
 
-        $this->_before_filter('_find_current_user');
+      /*  $this->_before_filter('_find_current_user');
         $this->_before_filter('_check_grade');
         $this->_before_filter('_require_login');
         $this->_before_filter('_find_current_grade');
-        $this->_before_filter('_set_the_promotion_code');
+        $this->_before_filter('_set_the_promotion_code');*/
 
         // profilerを無効化
-        $this->output->enable_profiler(FALSE);
+        //$this->output->enable_profiler(FALSE);
     }
 
     /**
@@ -56,120 +56,7 @@ class Application_controller extends APP_Controller
     public function _render($data = [], $template_path = NULL, $layout = TRUE)
     {
 
-        // Handle login current user
-        if ($this->current_user->is_login()) {
 
-            if ($this->session->userdata('__get_trophy')) {
-                $data['get_trophy'] = $this->session->userdata('__get_trophy');
-                $this->session->unset_userdata('__get_trophy');
-            }
-
-            if ($this->session->userdata('__get_point')) {
-                $data['get_point'] = $this->session->userdata('__get_point');
-                $this->session->unset_userdata('__get_point');
-            }
-
-            if ($this->router->fetch_class() != 'message' || ($this->router->fetch_method() != 'timeline' && $this->router->fetch_method() != 'friend_list')) {
-                $this->session->unset_userdata('share_deck_id');
-            }
-
-            if ($this->session->flashdata('get_trophy')) {
-                $data['get_trophy'] = $this->session->flashdata('get_trophy');
-            }
-
-            if ($this->session->flashdata('get_point')) {
-                $data['get_point'] = $this->session->flashdata('get_point');
-            }
-
-            if (empty($data['get_point']) && $this->current_user->primary_type == 'student') {
-                $point_modals = $this->_api('user_rabipoint')->get_list([
-                    'user_id' => $this->current_user->id,
-                    'modal_not_shown' => TRUE
-                ]);
-                if (!empty($point_modals['result']['items'])) {
-                    $data['point_modals'] = $point_modals;
-                }
-            }
-
-            // Handle login current user
-            $data['current_user'] = (array)$this->current_user;
-
-            // Get user info
-            $user_info = $this->_api('user')->get_detail(['id' => $this->current_user->id]);
-
-            // Get current school
-            if (!empty($data['current_user']['current_school'])) {
-                $data['current_user']['school'] = $user_info['result']['current_school'];
-            }
-
-            // Get current grade
-            if (!empty($data['current_user']['grade_id'])) {
-                $data['current_user']['current_student_grade'] = $user_info['result']['current_grade'];
-            }
-
-            // Check parent has child
-            $data['current_user']['members'] = $this->get_family($this->current_user->id);
-
-            $data['students_switch'] = $this->students;
-            $data['switch_student_id'] = $this->session->userdata('switch_student_id');
-        }
-
-        /** @var array $grade_list */
-
-        $grade_list = $this->_api('grade')->get_list();
-
-        /** @var array $current_grade */
-        $current_grade = $grade_list['result']['items'][0];
-
-        // Open modal to choose grade when not login
-        $data['flag_modal_grade'] = FALSE;
-        if (empty($this->session->userdata('current_grade_id')) && !$this->current_user->is_login()){
-            $data['flag_modal_grade'] = TRUE;
-        }
-
-        $current_grade_id = !empty($this->session->userdata('current_grade_id')) ?
-            $this->session->userdata('current_grade_id') : 1;
-        if (!empty($current_grade_id)) {
-            foreach ($grade_list['result']['items'] AS $v) {
-                if ($v['id'] == $current_grade_id) {
-                    $current_grade = $v;
-                    break;
-                }
-            }
-        }
-
-        $data['current_grade'] = $current_grade;
-        $data['grade_list'] = $grade_list['result']['items'];
-
-        /** @var array $current_textbook */
-        if ($this->current_user->is_login()) {
-            $current_textbook = $this->_api('user_textbook')->get_list([
-                'user_id' => $this->current_user->id
-            ]);
-        }
-
-        $data['current_textbook'] = isset($current_textbook['result']['items']) ?
-            $current_textbook['result']['items'] : null;
-
-        /** @var string $app_name Handle common title */
-        $app_name = $this->config->item('app_name');
-        if (isset($data['page_title']) && !empty($data['page_title'])) {
-            $data['title'] = $app_name . '|' . $data['page_title'];
-        } else {
-            $data['page_title'] = null;
-        }
-
-        // assign meta data
-        if (!isset($data['meta'])) {
-            $data['meta'] = [];
-        }
-        $data['login_id'] = $this->current_user->is_login() ? $this->current_user->login_id : null;
-        $data['meta'] = $this->_meta($data['meta']);
-        // $data['show_username_modal_first_login'] = $this->session->flashdata('show_username_modal_first_login') && $this->current_user->is_login() && empty($this->current_user->nickname) ? TRUE : FALSE;
-        // Show choose grade if
-        $data['device_type'] = $this->agent->is_smart_phone() ? 'SP' : 'PC';
-        $data['is_android'] = $this->agent->is_android() ? TRUE : FALSE;
-        $data['site_url'] = trim($this->config->item('site_url'), '/');
 
         parent::_render($data, $template_path, $layout);
     }

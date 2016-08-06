@@ -29,36 +29,7 @@ class News extends Application_controller
      */
     public function index()
     {
-        $pagination = [
-            'page' => (int) $this->input->get_or_default('p', 1),
-            'limit' => (int) $this->input->get_or_default('limit', PAGINATION_DEFAULT_LIMIT)
-        ];
 
-        $pagination['offset'] = ($pagination['page'] - 1) * $pagination['limit'];
-
-        $filter = [
-            'public_status' => 'all',
-            'status' => 'all',
-            'limit' => $pagination['limit'],
-            'offset' => $pagination['offset']
-        ];
-
-        $this->session->set_userdata('news', $filter);
-        // Call api to get list of news
-
-        $res = $this->_api('news')->get_list($filter);
-
-        $list_news = [];
-        if (isset($res['result'])) {
-            $list_news = $res['result']['items'];
-            $pagination['total'] = $res['result']['total'];
-        }
-
-        $this->_render( array_merge($filter, [
-            'menu_active' => 'li_news_list',
-            'news_list' => $list_news,
-            'pagination' => $pagination
-        ]));
     }
 
     /**
